@@ -1,0 +1,31 @@
+name: Deploy to Infomaniak via FTP
+
+on:
+  push:
+    branches:
+      - main  # Déclenche le déploiement quand on push sur main
+  workflow_dispatch:  # Permet de déclencher manuellement
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Deploy via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        server-dir: /  # Dossier racine sur le serveur (à adapter)
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          **/.DS_Store
+          **/*.py
+          **/*.md
+          **/update_*.py

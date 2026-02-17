@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Nos partenaires | SlideX</title>
+  <meta name="description" content="Découvrez le réseau de partenaires SlideX partout en France : carte interactive, implantations et accès aux fiches de chaque partenaire." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta property="og:title" content="Nos partenaires | SlideX" />
+  <meta property="og:description" content="Carte interactive des partenaires SlideX et liens vers toutes les fiches partenaires." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="SlideX" />
+  <link rel="canonical" href="https://www.slidex.fr/partenaires/" />
+  <link href="../css/normalize.css" rel="stylesheet" type="text/css" />
+  <link href="../css/webflow.css" rel="stylesheet" type="text/css" />
+  <link href="../css/et-voila.webflow.css" rel="stylesheet" type="text/css" />
+  <link href="../css/slidex-custom.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous" />
+  <link href="../images/favicon.svg" rel="icon" type="image/svg+xml" />
+  <style>
+    .partner-hero { background:#0f172a; color:#fff; padding:64px 0; }
+    .network-map-wrapper { transition: all 0.3s ease; }
+    .network-map-wrapper:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.12); transform: translateY(-2px); }
+    #google-map { width: 100%; height: 500px; border-radius: 8px; }
+    @media screen and (max-width: 768px) { .network-map-wrapper { padding: 15px; } #google-map { height: 400px; } }
+  </style>
+  <!-- Google Maps API -->
+  <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbR0ICRIFvyx7F6XTcv1HfNbtmSpwk7Xo&callback=initMap"></script>
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="28263fbc-fd1c-4adc-8204-571acc2440a4";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- Header simple -->
+    <div class="header-wrapper w-nav" role="banner" data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease">
+      <div class="container-default w-container">
+        <div class="header-container-wrapper">
+          <div class="logo-wrapper _42px">
+            <a class="logo-link w-inline-block" href="../index.html"><div class="display-5 strong" style="white-space:nowrap; text-decoration:none;">Slide X</div></a>
+          </div>
+          <div class="nav-menu-middle flex-growth">
+            <nav class="nav-menu-wrapper w-nav-menu" role="navigation">
+              <ul class="list-nav-menu" role="list">
+                <li class="link-nav-item text-uppercase"><a class="link strong w-inline-block" href="../index.html"><div>Accueil</div></a></li>
+                <li class="link-nav-item text-uppercase"><a class="link strong w-inline-block" href="../a-propos.html"><div>A propos</div></a></li>
+                <li class="link-nav-item text-uppercase"><a class="link strong w-inline-block" href="../nos-produits/index.html"><div>Nos produits</div></a></li>
+                <li class="link-nav-item text-uppercase"><a class="link strong w-inline-block" href="../contact-new.html"><div>Contact</div></a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="partner-hero">
+      <div class="w-layout-blockcontainer container-default w-container">
+        <div class="overflow-hidden title-wrap"><div class="subtitle">Réseau</div></div>
+        <h1 class="display-10 strong" style="margin: 8px 0 12px 0;">Nos partenaires</h1>
+        <p class="mg-top-small" style="max-width: 760px; color:#cbd5e1;">Trouvez nos partenaires installateurs partout en France. Cliquez sur la carte pour découvrir les agences, accéder à l’itinéraire et ouvrir la fiche détaillée du partenaire.</p>
+      </div>
+    </section>
+
+    <!-- Section Carte + Infos -->
+    <section class="section">
+      <div class="w-layout-blockcontainer container-default w-container">
+        <div class="w-layout-grid grid-2-columns gap-40px network-grid">
+          <!-- Carte -->
+          <div class="network-map-container">
+            <div class="network-map-wrapper" style="position: relative; background: #f8fafc; border-radius: 12px; padding: 20px; min-height: 500px;">
+              <div id="google-map"></div>
+            </div>
+            <div class="mg-top-small text-center">
+              <p style="color: #64748b; font-size: 14px;">Cliquez sur les marqueurs pour découvrir nos partenaires en France.</p>
+            </div>
+          </div>
+
+          <!-- Infos -->
+          <div class="network-info-container">
+            <div class="card v6" style="height: 100%;">
+              <div>
+                <div class="overflow-hidden title-wrap">
+                  <h3 class="display-7 strong">Informations</h3>
+                </div>
+                <div class="mg-top-small">
+                  <p>Utilisez la carte ou sélectionnez un partenaire ci-dessous pour accéder à sa fiche détaillée.</p>
+                </div>
+              </div>
+
+              <!-- Zone infos sélection -->
+              <div class="mg-top-default">
+                <div id="selected-city-info" style="background: #f8fafc; border-radius: 8px; padding: 20px; display: none;">
+                  <div class="selected-city-content">
+                    <div class="selected-city-name" style="font-weight: 600; color: #1e293b; font-size: 18px; margin-bottom: 8px;"></div>
+                    <div class="selected-city-description" style="color: #64748b; margin-bottom: 16px;"></div>
+                    <div style="display: flex; align-items: center; gap: 8px; color: #f97316; font-size: 14px;">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 5.02944 7.02944 1 12 1C16.9706 1 21 5.02944 21 10Z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/></svg>
+                      <span>Partenaire — horaires agence</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Liste liens partenaires -->
+              <div class="mg-top-default">
+                <h4 class="display-8 strong" style="margin: 0 0 8px 0;">Tous nos partenaires</h4>
+                <ul style="padding-left: 18px; margin: 0;">
+                  <li><a href="das-26-valence.html">DAS 26 (Valence)</a></li>
+                  <li><a href="isere-domotique-gieres.html">Isère Domotique (Gières – Grenoble)</a></li>
+                  <li><a href="jld-services-sin-le-noble.html">JLD Services (Sin‑le‑Noble)</a></li>
+                  <li><a href="denorme-fermeture-distribution-mallemort.html">DENORME FERMETURE DISTRIBUTION (Mallemort)</a></li>
+                  <li><a href="gfa-42-genilac.html">GFA – Gier Fermetures Automatiques (Genilac – Loire)</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer minimal -->
+    <div class="mg-top-large"></div>
+  </div>
+
+  <!-- Script Carte (copie adaptée) -->
+  <script>
+  let map; let markers = []; let selectedCityInfo; let cityBadges;
+  // même données que l'accueil
+  const citiesData = {
+    'Grenoble': { name:'Siège social - Grenoble', description:'Notre siège social et centre de production. Équipe technique et commerciale à votre service.', address:'2 rue Raoul Follereau, 38180 Seyssins', availability:'Ouvert 24h/24 et 7j/7', lat:45.1885, lng:5.7245, type:'headquarters' },
+    'Lille': { name:'Réseau Partenaires Nord', description:'Partenaires spécialisés dans le Nord-Pas-de-Calais et la Picardie.', address:'Lille, Hauts-de-France', availability:'Réseau partenaire 24h/24', lat:50.6292, lng:3.0573, type:'partner' },
+    'Gières': { name:'Isère Domotique', description:'Partenaire installateur à Gières (Grenoble). Portes automatiques — installation et maintenance.', address:'9 bis Rue de la Condamine, 38610 Gières', availability:'Partenaire — horaires agence', phone:'04 76 01 00 96', lat:45.1850, lng:5.7890, type:'partner', link:'partenaires/isere-domotique-gieres.html' },
+    'Eybens': { name:'BAtech Systems', description:'Partenaire installateur à Eybens (Grenoble). Portes de garage et portes automatiques.', address:'28 Av. de la République, 38320 Eybens', availability:'Partenaire — horaires agence', phone:'04 15 98 03 41', lat:45.1530, lng:5.7510, type:'partner' },
+    'Mallemort': { name:'DENORME FERMETURE DISTRIBUTION (DFD)', description:'Partenaire installateur pour le secteur Marseille / Bouches-du-Rhône.', address:'406 Rue Paul Gauguin, 13370 Mallemort', availability:'Partenaire — horaires agence', lat:43.7310, lng:5.1800, type:'partner', link:'partenaires/denorme-fermeture-distribution-mallemort.html' },
+    'Sin-le-Noble': { name:'JLD Services', description:'Partenaire installateur à Sin-le-Noble (Nord). Portes automatiques — installation et maintenance.', address:'128 Rue Cecina, 59450 Sin-le-Noble', availability:'Partenaire — horaires agence', lat:50.3605, lng:3.1150, type:'partner', link:'partenaires/jld-services-sin-le-noble.html' },
+    'Valence': { name:'DAS 26', description:'Partenaire SlideX à Valence. Installation, maintenance et rénovation de portes automatiques (Drôme / Ardèche).', address:'Valence, Drôme', availability:'Partenaire — horaires agence', lat:44.9333, lng:4.8924, type:'partner', link:'partenaires/das-26-valence.html' },
+    'Genilac': { name:'GFA – Gier Fermetures Automatiques', description:'Partenaire SlideX à Genilac (Loire). Installation, maintenance et rénovation de portes automatiques.', address:'95 Rue des Fleurs, 42800 Genilac', availability:'Partenaire — horaires agence', lat:45.567, lng:4.596, type:'partner', link:'partenaires/gfa-42-genilac.html' },
+    'Dole': { name:'Chapat Automatismes', description:'Partenaire SlideX à Dole (Jura). Installation, maintenance de portes automatiques et portails.', address:'17b rue Pierre Vernier, 39100 Dole', availability:'Partenaire — horaires agence', phone:'06 52 65 51 13', lat:47.0942, lng:5.4923, type:'partner', link:'partenaires/chapat-automatismes-39-dole.html' },
+    'Mundolsheim': { name:'APA – Alsace Pro Automatisme', description:'Partenaire SlideX à Mundolsheim (Bas-Rhin). Installation, maintenance de portes automatiques, portails et contrôle d\'accès. Astreinte 24/7.', address:'4 rue Foch, 67450 Mundolsheim', availability:'Partenaire — Astreinte 24/7', phone:'03 88 61 80 94', lat:48.6327, lng:7.7056, type:'partner', link:'partenaires/apa-67-mundolsheim.html' },
+    'Cesson': { name:'IFD', description:'Partenaire SlideX à Cesson-la-Forêt (Seine-et-Marne). N°1 de la devanture. Installation, maintenance de portes automatiques, rideaux de sécurité et façades.', address:'ZAE Rond de Bel Air, 60 rue Newton, 77240 Cesson-la-Forêt', availability:'Partenaire — horaires agence', phone:'01 64 89 78 40', lat:48.5667, lng:2.6000, type:'partner', link:'partenaires/ifd-77-cesson-la-foret.html' },
+    'Fléville-devant-Nancy': { name:'Novatech', description:'Partenaire SlideX à Fléville-devant-Nancy (Meurthe-et-Moselle). Vente, installation, maintenance de portes automatiques et portes industrielles.', address:'255 rue du Ruisseau d\'Urpont, 54710 Fléville-devant-Nancy', availability:'Partenaire — horaires agence', phone:'03 83 37 36 63', lat:48.6167, lng:6.2000, type:'partner', link:'partenaires/novatech-54-fleville-devant-nancy.html' },
+    'Mazeray': { name:'A.R.E.S Fermeture', description:'Partenaire SlideX à Mazeray (Charente-Maritime). Automatisme, installation, maintenance de portes automatiques, portails et contrôle d\'accès. +30 ans d\'expérience.', address:'Le Petit Chatenet, 85 B Rue des Mottes, 17400 Mazeray', availability:'Partenaire — horaires agence', phone:'07 71 75 36 42', lat:45.9667, lng:-0.6500, type:'partner', link:'partenaires/ares-fermeture-17-mazeray.html' }
+  };
+
+  function initMap(){
+    map = new google.maps.Map(document.getElementById('google-map'), {
+      zoom: 6,
+      center: { lat: 46.603354, lng: 1.888334 },
+      mapTypeControl:false, streetViewControl:false, fullscreenControl:true
+    });
+    window.map = map;
+    Object.keys(citiesData).forEach(cityKey => createMarker(cityKey, citiesData[cityKey]));
+    google.maps.event.addListenerOnce(map, 'idle', () => {
+      selectedCityInfo = document.getElementById('selected-city-info');
+      showCityInfo('Grenoble');
+    });
+  }
+
+  function createMarker(cityKey, cityData){
+    const marker = new google.maps.Marker({
+      position: {lat:cityData.lat, lng:cityData.lng}, map, title: cityData.name,
+      icon: { path: google.maps.SymbolPath.CIRCLE, scale: cityData.type === 'headquarters' ? 12 : 10, fillColor: cityData.type === 'headquarters' ? '#ea580c' : '#f97316', fillOpacity: 1, strokeColor:'#ffffff', strokeWeight:3 },
+      animation: google.maps.Animation.DROP
+    });
+    const basePath = '../';
+    const phoneNormalized = cityData.phone ? cityData.phone.replace(/\s+/g,'') : null;
+    const mapsLink = `https://www.google.com/maps?q=${cityData.lat},${cityData.lng}`;
+    const addressHtml = cityData.address ? `<p style=\"margin:6px 0 0 0;color:#334155;font-size:13px;\">${cityData.address}</p>` : '';
+    const callHtml = phoneNormalized ? `<a href=\"tel:${phoneNormalized}\" style=\"display:inline-block;padding:6px 10px;border-radius:6px;background:#2563eb;color:#fff;font-size:12px;text-decoration:none;\">Appeler</a>` : '';
+    const ficheHref = cityData.link ? (cityData.link.startsWith('http') ? cityData.link : basePath + cityData.link) : null;
+    const dirHtml = mapsLink ? `<a href=\"${mapsLink}\" target=\"_blank\" rel=\"noopener\" style=\"display:inline-block;padding:6px 10px;border-radius:6px;background:#f97316;color:#fff;font-size:12px;text-decoration:none;\">Itinéraire</a>` : '';
+    const ficheHtml = ficheHref ? `<a href=\"${ficheHref}\" style=\"display:inline-block;padding:6px 10px;border-radius:6px;background:#0ea5e9;color:#fff;font-size:12px;text-decoration:none;\">Voir la fiche</a>` : '';
+    const infoHtml = `
+      <div style=\"padding:10px;max-width:260px;\">
+        <h3 style=\"margin:0 0 6px 0;color:#1e293b;font-size:16px;font-weight:600;\">${cityData.name}</h3>
+        <p style=\"margin:0 0 6px 0;color:#64748b;font-size:14px;line-height:1.4;\">${cityData.description || ''}</p>
+        ${addressHtml}
+        <div style=\"display:flex;align-items:center;gap:8px;color:#f97316;font-size:12px;font-weight:500;margin-top:8px;\">
+          <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"currentColor\"><path d=\"M21 10C21 17 12 23 12 23S3 17 3 10C3 5.02944 7.02944 1 12 1C16.9706 1 21 5.02944 21 10Z\"/><circle cx=\"12\" cy=\"10\" r=\"3\" fill=\"white\"/></svg>
+          <span>${cityData.availability || ''}</span>
+        </div>
+        <div style=\"display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;\">${callHtml}${dirHtml}${ficheHtml}</div>
+      </div>`;
+    const infoWindow = new google.maps.InfoWindow({ content: infoHtml });
+    marker.addListener('click', () => { markers.forEach(m => m.infoWindow && m.infoWindow.close()); infoWindow.open(map, marker); showCityInfo(cityKey); });
+    marker.infoWindow = infoWindow; markers.push(marker);
+  }
+
+  function showCityInfo(cityName){
+    const cityData = citiesData[cityName]; if(!cityData || !selectedCityInfo) return;
+    selectedCityInfo.style.display = 'block';
+    selectedCityInfo.querySelector('.selected-city-name').textContent = cityData.name;
+    selectedCityInfo.querySelector('.selected-city-description').textContent = cityData.description || '';
+  }
+
+  // Fallback minimal
+  (function ensureMap(){
+    const container = document.getElementById('google-map'); if(!container) return;
+    window.addEventListener('load', ()=>{ setTimeout(()=>{ if(!window.google || !window.google.maps || !map){ container.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;background:#f8fafc;border-radius:8px;color:#64748b;text-align:center;padding:20px;"><div><p style="margin:0 0 8px 0;font-weight:600;">Carte temporairement indisponible</p><p style="margin:0;font-size:13px;">Vous pouvez tout de même accéder aux fiches partenaires ci‑dessous.</p></div></div>'; } }, 4000); });
+  })();
+  </script>
+</body>
+</html>
