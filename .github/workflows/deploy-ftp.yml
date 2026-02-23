@@ -20,7 +20,7 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: /  # Dossier racine sur le serveur (à adapter)
+        server-dir: /sites/slidex.fr/  # Dossier du site sur Infomaniak
         exclude: |
           **/.git*
           **/.git*/**
