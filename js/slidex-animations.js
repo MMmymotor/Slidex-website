@@ -62,11 +62,11 @@
 			inner.className = 'top-banner-inner';
 				var track1 = document.createElement('div');
 				track1.className = 'top-banner-track';
-				track1.textContent = '100€ offerts sur vos 5 premières portes   •   100€ offerts sur vos 5 premières portes   •   ';
+			track1.textContent = '⭐ 5 étoiles sur Google  •  Déjà plus de 1000 kits motorisation vendues   •   ⭐ 5 étoiles sur Google  •  Déjà plus de 1000 kits motorisation vendues   •   ';
 				var track2 = document.createElement('div');
 				track2.className = 'top-banner-track';
 				track2.style.left = '100%';
-				track2.textContent = '100€ offerts sur vos 5 premières portes   •   100€ offerts sur vos 5 premières portes   •   ';
+			track2.textContent = '⭐ 5 étoiles sur Google  •  Déjà plus de 1000 kits motorisation vendues   •   ⭐ 5 étoiles sur Google  •  Déjà plus de 1000 kits motorisation vendues   •   ';
 				inner.appendChild(track1);
 				inner.appendChild(track2);
 				banner.appendChild(inner);
