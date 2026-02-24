@@ -112,6 +112,12 @@
             loadInclude('header.html', 'header-placeholder');
         }
         
+        // Load Google reviews
+        const reviewsPlaceholder = document.getElementById('google-reviews-placeholder');
+        if (reviewsPlaceholder) {
+            loadInclude('google-reviews.html', 'google-reviews-placeholder');
+        }
+        
         // Load footer
         const footerPlaceholder = document.getElementById('footer-placeholder');
         if (footerPlaceholder) {
