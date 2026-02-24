@@ -20,6 +20,164 @@
   <link href="images/favicon.svg" rel="shortcut icon" type="image/x-icon"/>
   <link href="images/webclip.svg" rel="apple-touch-icon"/>
 
+  <style>
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .fade-in-up { animation: fadeInUp 0.6s ease-out; }
+    .float { animation: float 3s ease-in-out infinite; }
+    
+    /* Hero section avec pattern */
+    .hero-pattern {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-pattern::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(14, 165, 233, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    /* Form upload zone custom */
+    .upload-zone {
+      position: relative;
+      border: 2px dashed #cbd5e1;
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      background: #f8fafc;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .upload-zone:hover {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+    .upload-zone input[type="file"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+    
+    /* Card hover effects */
+    .benefit-card {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .benefit-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.05), transparent);
+      transition: left 0.5s ease;
+    }
+    .benefit-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12) !important;
+    }
+    .benefit-card:hover::before {
+      left: 100%;
+    }
+    
+    /* Button hover animations */
+    .btn-submit {
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    .btn-submit:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    /* Form step indicators */
+    .form-step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+    }
+    .step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .step-item.active .step-number {
+      background: #2563eb;
+      color: white;
+    }
+    .step-line {
+      flex: 1;
+      height: 2px;
+      background: #e2e8f0;
+    }
+    
+    /* Stats counter */
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: #2563eb;
+      line-height: 1;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-pattern { padding: 60px 0 40px !important; }
+      .form-step { flex-wrap: wrap; }
+      .stat-number { font-size: 2rem; }
+      .upload-zone { padding: 24px; }
+    }
+  </style>
+
   <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="28263fbc-fd1c-4adc-8204-571acc2440a4";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
 <script src="js/includes-loader.js" type="text/javascript"></script>
@@ -31,32 +189,54 @@
 <div id="header-placeholder"></div>
 
 <!-- HERO SECTION -->
-<div class="section pd-top-120px pd-bottom-80px" style="background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);">
+<div class="section hero-pattern pd-top-120px pd-bottom-80px" style="background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);">
 <div class="container-default w-container">
-<div class="inner-container _800px center text-center">
+<div class="inner-container _800px center text-center fade-in-up">
 <div class="badge-wrapper mg-bottom-24px" style="justify-content: center;">
-<div class="badge primary"><div class="badge-text">Service gratuit</div></div>
+<div class="badge primary"><div class="badge-text">✨ Service gratuit & sans engagement</div></div>
 </div>
-<h1 class="display-7 strong text-titles mg-bottom-24px">Vous avez un devis ?<br/>On vous donne notre avis.</h1>
-<p class="display-3 text-paragraphs mg-bottom-32px">Envoyez-nous votre devis de porte automatique. Nous analysons vos besoins et vous proposons un comparatif détaillé avec nos solutions SlideX + nos partenaires installateurs certifiés près de chez vous.</p>
-<div style="display: inline-flex; align-items: center; gap: 24px; margin-top: 16px;">
+<h1 class="display-7 strong text-titles mg-bottom-24px">Vous avez un devis ?<br/>On vous donne notre avis <span style="color: #2563eb;">gratuitement</span>.</h1>
+<p class="display-3 text-paragraphs mg-bottom-32px" style="max-width: 700px; margin-left: auto; margin-right: auto;">Envoyez-nous votre devis de porte automatique. Notre équipe technique analyse vos besoins et vous propose un comparatif détaillé avec nos solutions SlideX + nos partenaires installateurs certifiés.</p>
+<div style="display: inline-flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 24px; margin-top: 16px;">
 <div style="display: flex; align-items: center; gap: 8px;">
-<svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="color: #2563eb;">
-<path d="M16.25 7.5L8.125 15L3.75 10.909" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<div style="width: 24px; height: 24px; background: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+<svg width="14" height="14" viewBox="0 0 20 20" fill="none" style="color: white;">
+<path d="M16.25 7.5L8.125 15L3.75 10.909" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
-<span style="font-size: 15px; color: #64748b; font-weight: 500;">Réponse en 24h</span>
 </div>
-<div style="display: flex; align-items: center; gap: 8px;">
-<svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="color: #2563eb;">
-<path d="M16.25 7.5L8.125 15L3.75 10.909" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-<span style="font-size: 15px; color: #64748b; font-weight: 500;">Sans engagement</span>
+<span style="font-size: 15px; color: #1e293b; font-weight: 600;">Réponse en 24h</span>
 </div>
 <div style="display: flex; align-items: center; gap: 8px;">
-<svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="color: #2563eb;">
-<path d="M16.25 7.5L8.125 15L3.75 10.909" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<div style="width: 24px; height: 24px; background: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+<svg width="14" height="14" viewBox="0 0 20 20" fill="none" style="color: white;">
+<path d="M16.25 7.5L8.125 15L3.75 10.909" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
-<span style="font-size: 15px; color: #64748b; font-weight: 500;">Analyse objective</span>
+</div>
+<span style="font-size: 15px; color: #1e293b; font-weight: 600;">Sans engagement</span>
+</div>
+<div style="display: flex; align-items: center; gap: 8px;">
+<div style="width: 24px; height: 24px; background: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+<svg width="14" height="14" viewBox="0 0 20 20" fill="none" style="color: white;">
+<path d="M16.25 7.5L8.125 15L3.75 10.909" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
+<span style="font-size: 15px; color: #1e293b; font-weight: 600;">Analyse technique</span>
+</div>
+</div>
+
+<!-- Stats rapides -->
+<div style="display: flex; justify-content: center; gap: 48px; margin-top: 48px; flex-wrap: wrap;">
+<div style="text-align: center;">
+<div class="stat-number">24h</div>
+<div style="color: #64748b; font-size: 14px; margin-top: 4px; font-weight: 500;">Délai de réponse</div>
+</div>
+<div style="text-align: center;">
+<div class="stat-number">150+</div>
+<div style="color: #64748b; font-size: 14px; margin-top: 4px; font-weight: 500;">Devis analysés</div>
+</div>
+<div style="text-align: center;">
+<div class="stat-number">92%</div>
+<div style="color: #64748b; font-size: 14px; margin-top: 4px; font-weight: 500;">Économies moyennes</div>
 </div>
 </div>
 </div>
@@ -67,48 +247,94 @@
 <div class="section pd-top-80px pd-bottom-120px">
 <div style="max-width: 900px; margin: 0 auto; padding: 0 24px;">
 
-<div style="background: white; border-radius: 24px; padding: 48px; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);">
-<h2 class="display-6 strong text-titles mg-bottom-32px text-center">Envoyez-nous votre devis</h2>
+<!-- Indicateurs d'étapes -->
+<div class="form-step">
+<div class="step-item active">
+<div class="step-number">1</div>
+<span style="font-size: 14px; font-weight: 600; color: #1e293b;">Vos coordonnées</span>
+</div>
+<div class="step-line"></div>
+<div class="step-item active">
+<div class="step-number">2</div>
+<span style="font-size: 14px; font-weight: 600; color: #1e293b;">Votre projet</span>
+</div>
+<div class="step-line"></div>
+<div class="step-item active">
+<div class="step-number">3</div>
+<span style="font-size: 14px; font-weight: 600; color: #1e293b;">Le devis</span>
+</div>
+</div>
 
-<form id="analyse-devis-form" style="display: flex; flex-direction: column; gap: 24px;">
-<!-- Informations de contact -->
+<div style="background: white; border-radius: 24px; padding: 48px; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06); border: 1px solid #e2e8f0;">
+<div style="text-align: center; margin-bottom: 40px;">
+<h2 class="display-6 strong text-titles mg-bottom-16px">Envoyez-nous votre devis</h2>
+<p style="color: #64748b; font-size: 16px;">Remplissez ce formulaire en 2 minutes</p>
+</div>
+
+<form id="analyse-devis-form" style="display: flex; flex-direction: column; gap: 32px;">
+<!-- Étape 1: Informations de contact -->
+<div>
+<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 24px;">
+<div style="width: 6px; height: 6px; background: #2563eb; border-radius: 50%;"></div>
+<h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin: 0;">Vos coordonnées</h3>
+</div>
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
 <div>
-<label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">Nom de l'entreprise *</label>
-<input type="text" name="entreprise" required style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: border-color 0.2s;" placeholder="Boulangerie Dupont"/>
+<label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">
+<span style="color: #ef4444;">*</span> Nom de l'entreprise
+</label>
+<input type="text" name="entreprise" required style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: all 0.2s;" placeholder="Boulangerie Dupont"/>
 </div>
 <div>
-<label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">Votre nom *</label>
-<input type="text" name="nom" required style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: border-color 0.2s;" placeholder="Jean Dupont"/>
+<label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">
+<span style="color: #ef4444;">*</span> Votre nom
+</label>
+<input type="text" name="nom" required style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: all 0.2s;" placeholder="Jean Dupont"/>
 </div>
 </div>
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
 <div>
-<label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">Email *</label>
-<input type="email" name="email" required style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: border-color 0.2s;" placeholder="contact@boulangerie.fr"/>
+<label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">
+<span style="color: #ef4444;">*</span> Email
+</label>
+<input type="email" name="email" required style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: all 0.2s;" placeholder="contact@boulangerie.fr"/>
 </div>
 <div>
-<label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">Téléphone *</label>
-<input type="tel" name="telephone" required style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: border-color 0.2s;" placeholder="06 12 34 56 78"/>
+<label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">
+<span style="color: #ef4444;">*</span> Téléphone
+</label>
+<input type="tel" name="telephone" required style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: all 0.2s;" placeholder="06 12 34 56 78"/>
 </div>
 </div>
 
 <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 16px;">
 <div>
-<label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">Ville du projet *</label>
-<input type="text" name="ville" required style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: border-color 0.2s;" placeholder="Lyon"/>
+<label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">
+<span style="color: #ef4444;">*</span> Ville du projet
+</label>
+<input type="text" name="ville" required style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: all 0.2s;" placeholder="Lyon"/>
 </div>
 <div>
-<label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">Code postal *</label>
-<input type="text" name="codepostal" required maxlength="5" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: border-color 0.2s;" placeholder="69000"/>
+<label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">
+<span style="color: #ef4444;">*</span> Code postal
+</label>
+<input type="text" name="codepostal" required maxlength="5" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: all 0.2s;" placeholder="69000"/>
+</div>
 </div>
 </div>
 
-<!-- Type de projet -->
+<!-- Étape 2: Type de projet -->
 <div>
-<label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">Type d'activité *</label>
-<select name="activite" required style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: border-color 0.2s; background: white;">
+<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 24px;">
+<div style="width: 6px; height: 6px; background: #2563eb; border-radius: 50%;"></div>
+<h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin: 0;">Votre projet</h3>
+</div>
+<div>
+<label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">
+<span style="color: #ef4444;">*</span> Type d'activité
+</label>
+<select name="activite" required style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: all 0.2s; background: white; cursor: pointer;">
 <option value="">Sélectionnez votre secteur</option>
 <option value="commerce">Commerce de proximité</option>
 <option value="boulangerie">Boulangerie / Pâtisserie</option>
@@ -120,53 +346,106 @@
 <option value="autre">Autre</option>
 </select>
 </div>
+</div>
 
-<!-- Détails du devis concurrent -->
-<div style="border-top: 2px solid #f1f5f9; padding-top: 24px; margin-top: 8px;">
-<h3 class="display-5 strong mg-bottom-24px" style="color: #0f172a;">Informations sur le devis reçu</h3>
+<!-- Étape 3: Détails du devis concurrent -->
+<div>
+<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 24px;">
+<div style="width: 6px; height: 6px; background: #2563eb; border-radius: 50%;"></div>
+<h3 style="font-size: 18px; font-weight: 700; color: #0f172a; margin: 0;">Informations sur le devis reçu</h3>
+</div>
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
 <div>
 <label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">Montant du devis concurrent</label>
-<input type="text" name="montant_concurrent" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: border-color 0.2s;" placeholder="Ex: 8500 € HT"/>
+<input type="text" name="montant_concurrent" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: all 0.2s;" placeholder="Ex: 8500 € HT"/>
 </div>
 <div>
 <label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">Marque proposée</label>
-<input type="text" name="marque_concurrent" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: border-color 0.2s;" placeholder="Ex: Record, Dormakaba..."/>
+<input type="text" name="marque_concurrent" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: all 0.2s;" placeholder="Ex: Record, Dormakaba..."/>
+</div>
+</div>
+
+<div style="margin-bottom: 24px;">
+<label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 12px;">Joindre le devis (PDF, image)</label>
+<div class="upload-zone" id="upload-zone">
+<input type="file" name="fichier_devis" accept=".pdf,.jpg,.jpeg,.png" id="file-input"/>
+<div class="float" style="margin-bottom: 12px;">
+<svg width="48" height="48" viewBox="0 0 24 24" fill="none" style="color: #2563eb; margin: 0 auto;">
+<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
+<div style="font-weight: 600; color: #1e293b; margin-bottom: 4px;" id="upload-text">Cliquez ou glissez votre fichier ici</div>
+<div style="font-size: 13px; color: #64748b;">PDF, JPG, PNG (max 5MB)</div>
 </div>
 </div>
 
 <div>
-<label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">Joindre le devis (PDF, image)</label>
-<input type="file" name="fichier_devis" accept=".pdf,.jpg,.jpeg,.png" style="width: 100%; padding: 14px 16px; border: 2px dashed #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: border-color 0.2s; background: #f8fafc;"/>
-<p style="font-size: 13px; color: #64748b; margin-top: 8px;">Format accepté : PDF, JPG, PNG (max 5MB)</p>
-</div>
-
-<div style="margin-top: 8px;">
 <label style="display: block; font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 8px;">Commentaires / Questions</label>
-<textarea name="commentaires" rows="4" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: border-color 0.2s; resize: vertical; font-family: inherit;" placeholder="Décrivez votre projet, vos contraintes, vos questions..."></textarea>
+<textarea name="commentaires" rows="5" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; outline: none; transition: all 0.2s; resize: vertical; font-family: inherit;" placeholder="Décrivez votre projet, vos contraintes, vos questions spécifiques..."></textarea>
 </div>
 </div>
 
 <!-- RGPD -->
-<div style="padding: 16px; background: #f8fafc; border-radius: 12px; border-left: 4px solid #2563eb;">
+<div style="padding: 20px; background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-radius: 16px; border: 2px solid #2563eb;">
 <label style="display: flex; align-items: start; gap: 12px; cursor: pointer;">
-<input type="checkbox" name="rgpd" required style="margin-top: 4px; width: 18px; height: 18px; cursor: pointer;"/>
-<span style="font-size: 14px; color: #475569; line-height: 1.5;">
-J'accepte que mes données soient utilisées par SlideX pour analyser mon projet et me recontacter. Vos données ne seront jamais partagées avec des tiers sans votre accord.
+<input type="checkbox" name="rgpd" required style="margin-top: 4px; width: 20px; height: 20px; cursor: pointer; accent-color: #2563eb;"/>
+<span style="font-size: 14px; color: #1e293b; line-height: 1.6; font-weight: 500;">
+J'accepte que mes données soient utilisées par SlideX pour analyser mon projet et me recontacter. <span style="color: #64748b;">Vos données ne seront jamais partagées avec des tiers sans votre accord.</span>
 </span>
 </label>
 </div>
 
 <!-- Submit -->
-<button type="submit" style="width: 100%; padding: 18px 32px; background: #2563eb; color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); margin-top: 8px;">
-Envoyer pour analyse gratuite
+<button type="submit" class="btn-submit" style="width: 100%; padding: 20px 32px; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; border: none; border-radius: 16px; font-size: 17px; font-weight: 700; cursor: pointer; transition: all 0.3s; box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4); position: relative;">
+<span style="position: relative; z-index: 1;">🚀 Envoyer pour analyse gratuite</span>
 </button>
 </form>
 
-<div id="success-message" style="display: none; padding: 24px; background: #dcfce7; border: 2px solid #16a34a; border-radius: 12px; margin-top: 24px; text-align: center;">
-<div style="font-size: 18px; font-weight: 600; color: #166534; margin-bottom: 8px;">✓ Demande envoyée avec succès !</div>
-<p style="font-size: 15px; color: #15803d; margin: 0;">Nous analysons votre projet et vous recontactons sous 24h avec un comparatif détaillé.</p>
+<div id="success-message" style="display: none; padding: 48px; background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border: 3px solid #10b981; border-radius: 24px; margin-top: 32px; text-align: center; position: relative; overflow: hidden;">
+<!-- Confetti animation -->
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; overflow: hidden;">
+<div style="position: absolute; width: 10px; height: 10px; background: #10b981; opacity: 0.6; border-radius: 50%; top: 20%; left: 10%; animation: pulse 2s infinite;"></div>
+<div style="position: absolute; width: 8px; height: 8px; background: #2563eb; opacity: 0.5; border-radius: 50%; top: 30%; right: 15%; animation: pulse 2.5s infinite;"></div>
+<div style="position: absolute; width: 12px; height: 12px; background: #f59e0b; opacity: 0.4; border-radius: 50%; bottom: 25%; left: 20%; animation: pulse 3s infinite;"></div>
+<div style="position: absolute; width: 10px; height: 10px; background: #10b981; opacity: 0.5; border-radius: 50%; bottom: 30%; right: 10%; animation: pulse 2.2s infinite;"></div>
+</div>
+
+<div style="width: 100px; height: 100px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);">
+<svg width="60" height="60" viewBox="0 0 24 24" fill="none" style="color: white;">
+<path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
+<div style="font-size: 28px; font-weight: 700; color: #065f46; margin-bottom: 16px; position: relative; z-index: 1;">🎉 Demande envoyée avec succès !</div>
+<p style="font-size: 17px; color: #047857; margin: 0; line-height: 1.6; max-width: 600px; margin: 0 auto 24px; position: relative; z-index: 1;">
+Notre équipe technique analyse votre projet et vous recontacte <strong>sous 24h</strong> avec un comparatif détaillé et personnalisé.
+</p>
+<div style="display: inline-flex; flex-direction: column; gap: 12px; text-align: left; background: white; padding: 24px 32px; border-radius: 16px; margin-top: 24px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); position: relative; z-index: 1;">
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="width: 32px; height: 32px; background: #dcfce7; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="color: #10b981;">
+<path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
+<span style="color: #1e293b; font-weight: 500;">Analyse technique approfondie</span>
+</div>
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="width: 32px; height: 32px; background: #dcfce7; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="color: #10b981;">
+<path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
+<span style="color: #1e293b; font-weight: 500;">Comparatif prix & délais</span>
+</div>
+<div style="display: flex; align-items: center; gap: 12px;">
+<div style="width: 32px; height: 32px; background: #dcfce7; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="color: #10b981;">
+<path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
+<span style="color: #1e293b; font-weight: 500;">Recommandation installateur local</span>
+</div>
+</div>
 </div>
 </div>
 
@@ -174,56 +453,147 @@ Envoyer pour analyse gratuite
 </div>
 
 <!-- POURQUOI SECTION -->
-<div class="section pd-top-120px pd-bottom-120px bg-neutral-200">
+<div class="section pd-top-120px pd-bottom-120px" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
 <div class="container-default w-container">
 <div class="text-center mg-bottom-64px">
+<div class="badge-wrapper mg-bottom-24px" style="justify-content: center;">
+<div class="badge primary"><div class="badge-text">Nos garanties</div></div>
+</div>
 <h2 class="display-6 strong text-titles">Pourquoi faire analyser votre devis ?</h2>
-<p class="display-3 text-paragraphs mg-top-16px">Un regard expert pour vous aider à faire le bon choix</p>
+<p class="display-3 text-paragraphs mg-top-16px" style="max-width: 700px; margin-left: auto; margin-right: auto;">Un regard expert et indépendant pour vous aider à faire le bon choix</p>
 </div>
 
 <div class="w-layout-grid grid-3-columns gap-large">
-<div class="card v6 text-center">
-<div style="width: 64px; height: 64px; background: #dbeafe; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="color: #2563eb;">
-<path d="M9 11l3 3L22 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<div class="card v6 text-center benefit-card" style="padding: 40px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);">
+<div style="width: 80px; height: 80px; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; position: relative; overflow: hidden;">
+<div style="position: absolute; inset: 0; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), transparent); opacity: 0.5;"></div>
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" style="color: #2563eb; position: relative; z-index: 1;">
+<path d="M9 11l3 3L22 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 </div>
-<h3 class="display-5 strong mg-bottom-16px">Analyse technique objective</h3>
-<p class="display-2 text-paragraphs">Nous vérifions la conformité aux normes EN16005, la cohérence des dimensions, le choix des motorisations et des options de sécurité.</p>
+<h3 class="display-5 strong mg-bottom-16px">Analyse technique<br/>objective</h3>
+<p class="display-2 text-paragraphs" style="line-height: 1.7;">Conformité aux normes <strong>EN16005</strong>, vérification des dimensions, motorisations, et options de sécurité. Notre bureau d'études examine chaque détail.</p>
+<div style="margin-top: 24px; padding-top: 24px; border-top: 2px solid #f1f5f9;">
+<div style="display: flex; align-items: center; justify-content: center; gap: 8px; color: #2563eb; font-weight: 600; font-size: 14px;">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+</svg>
+<span>Normes & Sécurité</span>
+</div>
+</div>
 </div>
 
-<div class="card v6 text-center">
-<div style="width: 64px; height: 64px; background: #dbeafe; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="color: #2563eb;">
-<path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<div class="card v6 text-center benefit-card" style="padding: 40px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);">
+<div style="width: 80px; height: 80px; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; position: relative; overflow: hidden;">
+<div style="position: absolute; inset: 0; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), transparent); opacity: 0.5;"></div>
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" style="color: #2563eb; position: relative; z-index: 1;">
+<path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 </div>
-<h3 class="display-5 strong mg-bottom-16px">Comparatif prix / rapport qualité</h3>
-<p class="display-2 text-paragraphs">Nous comparons le prix proposé avec nos solutions SlideX en stock. Vous recevez un tableau détaillé des différences techniques et tarifaires.</p>
+<h3 class="display-5 strong mg-bottom-16px">Comparatif prix /<br/>qualité</h3>
+<p class="display-2 text-paragraphs" style="line-height: 1.7;">Comparaison détaillée avec nos <strong>solutions SlideX</strong> en stock. Tableau comparatif des différences techniques, délais et tarifs pour éclairer votre décision.</p>
+<div style="margin-top: 24px; padding-top: 24px; border-top: 2px solid #f1f5f9;">
+<div style="display: flex; align-items: center; justify-content: center; gap: 8px; color: #2563eb; font-weight: 600; font-size: 14px;">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+</svg>
+<span>Économies moyennes: 30%</span>
+</div>
+</div>
 </div>
 
-<div class="card v6 text-center">
-<div style="width: 64px; height: 64px; background: #dbeafe; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
-<svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="color: #2563eb;">
-<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-<path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+<div class="card v6 text-center benefit-card" style="padding: 40px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);">
+<div style="width: 80px; height: 80px; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; position: relative; overflow: hidden;">
+<div style="position: absolute; inset: 0; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), transparent); opacity: 0.5;"></div>
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" style="color: #2563eb; position: relative; z-index: 1;">
+<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 </div>
-<h3 class="display-5 strong mg-bottom-16px">Recommandation installateur</h3>
-<p class="display-2 text-paragraphs">Nous vous mettons en relation avec notre partenaire certifié le plus proche. Installation garantie par des pros formés à nos produits.</p>
+<h3 class="display-5 strong mg-bottom-16px">Réseau d'installateurs<br/>certifiés</h3>
+<p class="display-2 text-paragraphs" style="line-height: 1.7;">Mise en relation avec notre <strong>partenaire le plus proche</strong>. Installation certifiée par des professionnels formés à nos produits et à jour des normes.</p>
+<div style="margin-top: 24px; padding-top: 24px; border-top: 2px solid #f1f5f9;">
+<div style="display: flex; align-items: center; justify-content: center; gap: 8px; color: #2563eb; font-weight: 600; font-size: 14px;">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+</svg>
+<span>11+ partenaires France</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Témoignage -->
+<div style="max-width: 800px; margin: 64px auto 0; padding: 40px; background: white; border-radius: 24px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); border: 1px solid #e2e8f0;">
+<div style="display: flex; gap: 24px; align-items: start;">
+<div style="flex-shrink: 0;">
+<div style="width: 64px; height: 64px; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: 700;">
+M.D
+</div>
+</div>
+<div>
+<div style="color: #f59e0b; margin-bottom: 12px; display: flex; gap: 4px;">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+</div>
+<p style="font-size: 17px; line-height: 1.7; color: #1e293b; margin-bottom: 16px; font-style: italic;">
+"J'avais 3 devis pour ma pharmacie. L'équipe SlideX m'a aidé à déchiffrer les différences techniques et m'a proposé une solution 35% moins chère avec un meilleur délai. Leur partenaire local a fait un travail impeccable."
+</p>
+<div style="font-weight: 600; color: #0f172a;">Marc Dupuis</div>
+<div style="font-size: 14px; color: #64748b;">Pharmacie du Centre, Lyon 6ème</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 
 <!-- CTA FINAL -->
-<div class="section pd-top-80px pd-bottom-80px bg-dark">
-<div class="container-default w-container">
+<div class="section pd-top-80px pd-bottom-80px" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); position: relative; overflow: hidden;">
+<!-- Background pattern -->
+<div style="position: absolute; inset: 0; opacity: 0.05; background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+<div style="position: absolute; top: -50%; right: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%); border-radius: 50%; filter: blur(60px);"></div>
+<div style="position: absolute; bottom: -30%; left: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%); border-radius: 50%; filter: blur(60px);"></div>
+
+<div class="container-default w-container" style="position: relative; z-index: 1;">
 <div class="inner-container _600px center text-center">
+<div class="badge-wrapper mg-bottom-24px" style="justify-content: center;">
+<div style="background: rgba(37, 99, 235, 0.2); border: 1px solid rgba(37, 99, 235, 0.3); border-radius: 100px; padding: 8px 16px;">
+<div style="color: #60a5fa; font-size: 13px; font-weight: 600; letter-spacing: 0.5px;">ALTERNATIVE RAPIDE</div>
+</div>
+</div>
 <h2 class="display-6 strong text-light mg-bottom-24px">Pas encore de devis ?</h2>
-<p class="display-3 text-light mg-bottom-32px">Utilisez notre configurateur pour obtenir une estimation immédiate et découvrir nos portes automatiques en stock.</p>
-<a href="connexion-inscription.html" class="primary-button large"><div>Configurateur pour pro</div></a>
+<p class="display-3 text-light mg-bottom-40px" style="opacity: 0.9;">Utilisez notre configurateur pour obtenir une <strong>estimation immédiate</strong> et découvrir nos portes automatiques en stock avec délai de livraison garanti.</p>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-bottom: 32px;">
+<div style="display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: rgba(255, 255, 255, 0.1); border-radius: 12px; backdrop-filter: blur(10px);">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="color: #60a5fa;">
+<path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<span style="color: white; font-weight: 500; font-size: 14px;">Estimation en 2 min</span>
+</div>
+<div style="display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: rgba(255, 255, 255, 0.1); border-radius: 12px; backdrop-filter: blur(10px);">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="color: #60a5fa;">
+<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<span style="color: white; font-weight: 500; font-size: 14px;">Livraison 8-15 jours</span>
+</div>
+<div style="display: flex; align-items: center; gap: 8px; padding: 12px 20px; background: rgba(255, 255, 255, 0.1); border-radius: 12px; backdrop-filter: blur(10px);">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="color: #60a5fa;">
+<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<span style="color: white; font-weight: 500; font-size: 14px;">Stock disponible</span>
+</div>
+</div>
+
+<a href="connexion-inscription.html" style="display: inline-flex; align-items: center; gap: 12px; padding: 18px 40px; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; text-decoration: none; border-radius: 16px; font-weight: 700; font-size: 17px; box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4); transition: all 0.3s ease; border: 2px solid rgba(255, 255, 255, 0.1);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 32px rgba(37, 99, 235, 0.5)';" onmouseout="this.style.transform='translateY(0px)'; this.style.boxShadow='0 8px 24px rgba(37, 99, 235, 0.4)';">
+<span>Accéder au configurateur</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+<path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</a>
 </div>
 </div>
 </div>
@@ -239,32 +609,114 @@ Envoyer pour analyse gratuite
 document.getElementById('analyse-devis-form').addEventListener('submit', function(e) {
   e.preventDefault();
   
+  // Animation du bouton
+  const submitBtn = this.querySelector('button[type="submit"]');
+  submitBtn.innerHTML = '<span style="position: relative; z-index: 1;">⏳ Envoi en cours...</span>';
+  submitBtn.style.opacity = '0.7';
+  submitBtn.disabled = true;
+  
   // Simuler l'envoi (à remplacer par votre backend)
   const formData = new FormData(this);
   
-  console.log('Données du formulaire:');
-  for (let [key, value] of formData.entries()) {
-    console.log(key + ': ' + value);
-  }
-  
-  // Afficher le message de succès
-  this.style.display = 'none';
-  document.getElementById('success-message').style.display = 'block';
-  
-  // Scroll vers le message
-  document.getElementById('success-message').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  setTimeout(() => {
+    console.log('Données du formulaire:');
+    for (let [key, value] of formData.entries()) {
+      console.log(key + ': ' + value);
+    }
+    
+    // Afficher le message de succès
+    this.style.display = 'none';
+    document.getElementById('success-message').style.display = 'block';
+    
+    // Scroll vers le message avec animation
+    setTimeout(() => {
+      document.getElementById('success-message').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
+  }, 1500);
 });
 
+// Upload zone interactions
+const uploadZone = document.getElementById('upload-zone');
+const fileInput = document.getElementById('file-input');
+const uploadText = document.getElementById('upload-text');
+
+if (uploadZone && fileInput) {
+  // Click to upload
+  uploadZone.addEventListener('click', function(e) {
+    if (e.target !== fileInput) {
+      fileInput.click();
+    }
+  });
+  
+  // File selected
+  fileInput.addEventListener('change', function() {
+    if (this.files && this.files[0]) {
+      const fileName = this.files[0].name;
+      const fileSize = (this.files[0].size / 1024 / 1024).toFixed(2);
+      uploadText.innerHTML = `<strong style="color: #2563eb;">✓ ${fileName}</strong> (${fileSize} MB)`;
+      uploadZone.style.borderColor = '#2563eb';
+      uploadZone.style.background = '#eff6ff';
+    }
+  });
+  
+  // Drag and drop
+  uploadZone.addEventListener('dragover', function(e) {
+    e.preventDefault();
+    this.style.borderColor = '#2563eb';
+    this.style.background = '#eff6ff';
+  });
+  
+  uploadZone.addEventListener('dragleave', function() {
+    this.style.borderColor = '#cbd5e1';
+    this.style.background = '#f8fafc';
+  });
+  
+  uploadZone.addEventListener('drop', function(e) {
+    e.preventDefault();
+    this.style.borderColor = '#2563eb';
+    this.style.background = '#eff6ff';
+    
+    if (e.dataTransfer.files.length) {
+      fileInput.files = e.dataTransfer.files;
+      const fileName = e.dataTransfer.files[0].name;
+      const fileSize = (e.dataTransfer.files[0].size / 1024 / 1024).toFixed(2);
+      uploadText.innerHTML = `<strong style="color: #2563eb;">✓ ${fileName}</strong> (${fileSize} MB)`;
+    }
+  });
+}
+
 // Focus states sur les inputs
-document.querySelectorAll('input, textarea, select').forEach(input => {
+document.querySelectorAll('input:not([type="file"]):not([type="checkbox"]), textarea, select').forEach(input => {
   input.addEventListener('focus', function() {
     this.style.borderColor = '#2563eb';
-    this.style.boxShadow = '0 0 0 3px rgba(37, 99, 235, 0.1)';
+    this.style.boxShadow = '0 0 0 4px rgba(37, 99, 235, 0.1)';
   });
   input.addEventListener('blur', function() {
     this.style.borderColor = '#e2e8f0';
     this.style.boxShadow = 'none';
   });
+});
+
+// Animation au scroll
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.benefit-card').forEach(card => {
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(30px)';
+  card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(card);
 });
 </script>
 </body>
