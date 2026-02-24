@@ -271,7 +271,7 @@
 <p style="color: #64748b; font-size: 16px;">Remplissez ce formulaire en 2 minutes</p>
 </div>
 
-<form id="analyse-devis-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 32px;">
+<form id="analyse-devis-form" action="https://api.web3forms.com/submit" method="POST" style="display: flex; flex-direction: column; gap: 32px;">
 <!-- Champs cachés Web3Forms -->
 <input type="hidden" name="access_key" value="f0d465e3-08fd-43bc-9463-3d381fa5104d">
 <input type="hidden" name="subject" value="🔍 Nouvelle demande d'analyse de devis - SlideX">
@@ -605,6 +605,9 @@ document.getElementById('analyse-devis-form').addEventListener('submit', async f
     
     const data = await response.json();
     
+    // Log pour debug
+    console.log('Réponse Web3Forms:', data);
+    
     if (data.success) {
       // Afficher le message de succès
       this.style.display = 'none';
@@ -620,8 +623,9 @@ document.getElementById('analyse-devis-form').addEventListener('submit', async f
         window.$crisp.push(['do', 'message:show', ['text', '✅ Demande d\'analyse de devis envoyée avec succès !']]);
       }
     } else {
-      // Erreur de soumission
-      alert('❌ Une erreur est survenue lors de l\'envoi. Veuillez réessayer ou nous contacter directement au 09 72 10 18 31.');
+      // Erreur de soumission - afficher le message d'erreur de Web3Forms
+      console.error('Erreur Web3Forms:', data.message);
+      alert('❌ Une erreur est survenue lors de l\'envoi. ' + (data.message || 'Veuillez réessayer ou nous contacter directement au 09 72 10 18 31.'));
       submitBtn.innerHTML = originalHTML;
       submitBtn.style.opacity = '1';
       submitBtn.disabled = false;
