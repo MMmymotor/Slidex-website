@@ -18,322 +18,847 @@
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="28263fbc-fd1c-4adc-8204-571acc2440a4";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
 <script src="js/includes-loader.js" type="text/javascript"></script>
+
+<style>
+  /* ============================================ */
+  /*   PAGE À PROPOS — STYLES SPÉCIFIQUES         */
+  /* ============================================ */
+
+  /* ── Hero plein écran ── */
+  .ap-hero {
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .ap-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/Photo-porte-auto.jpg');
+    background-size: cover;
+    background-position: center 40%;
+    filter: brightness(0.3);
+    transform: scale(1.02);
+  }
+  .ap-hero-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    max-width: 780px;
+    padding: 80px 0;
+  }
+  .ap-hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(37, 99, 235, 0.85);
+    backdrop-filter: blur(8px);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    border: 1px solid rgba(96, 165, 250, 0.4);
+  }
+  .ap-hero h1 {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: white;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+  }
+  .ap-hero h1 em {
+    color: #60a5fa;
+    font-style: normal;
+  }
+  .ap-hero-desc {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 520px;
+    line-height: 1.75;
+    margin-bottom: 40px;
+  }
+  .ap-hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    color: #0f172a;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .ap-hero-cta:hover {
+    background: #f0f7ff;
+    transform: translateY(-2px);
+  }
+
+  /* ── Bannière statistiques ── */
+  .ap-stats {
+    background: #0f172a;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .ap-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .ap-stat-item {
+    text-align: center;
+    padding: 48px 24px;
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
+    position: relative;
+  }
+  .ap-stat-item:last-child { border-right: none; }
+  .ap-stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #60a5fa;
+    line-height: 1;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+  }
+  .ap-stat-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── Étiquette de section ── */
+  .ap-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #2563eb;
+    margin-bottom: 18px;
+  }
+  .ap-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #2563eb;
+    flex-shrink: 0;
+  }
+
+  /* ── Section Notre histoire ── */
+  .ap-histoire-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .ap-histoire-img-wrap {
+    position: relative;
+  }
+  .ap-histoire-img-wrap img {
+    width: 100%;
+    border-radius: 20px;
+    display: block;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.12);
+  }
+  .ap-floating-badge {
+    position: absolute;
+    bottom: -20px;
+    right: -16px;
+    background: #2563eb;
+    color: white;
+    padding: 20px 24px;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    box-shadow: 0 12px 40px rgba(37, 99, 235, 0.45);
+  }
+  .ap-floating-badge strong {
+    display: block;
+    font-size: 2.2rem;
+    line-height: 1;
+    margin-bottom: 2px;
+    letter-spacing: -1px;
+  }
+  .ap-histoire-text h2 {
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    letter-spacing: -0.3px;
+  }
+  .ap-histoire-text p {
+    color: #64748b;
+    line-height: 1.75;
+    margin-bottom: 32px;
+  }
+
+  /* ── Timeline ── */
+  .ap-timeline {
+    position: relative;
+    padding-left: 28px;
+    border-left: 2px solid #e2e8f0;
+  }
+  .ap-tl-item {
+    position: relative;
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px dashed #e2e8f0;
+  }
+  .ap-tl-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  .ap-tl-item::before {
+    content: '';
+    position: absolute;
+    left: -35px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #2563eb;
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px #2563eb;
+  }
+  .ap-tl-item h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 6px;
+  }
+  .ap-tl-item p {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+    line-height: 1.65;
+  }
+
+  /* ── Bento Grid Valeurs ── */
+  .ap-bento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 56px;
+  }
+  .ap-bento-card {
+    background: white;
+    border: 1px solid #e8edf5;
+    border-radius: 20px;
+    padding: 32px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .ap-bento-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.09);
+    border-color: #c7d7f7;
+  }
+  .ap-bento-card.wide {
+    grid-column: span 2;
+    background: linear-gradient(135deg, #0f172a 0%, #162444 100%);
+    border-color: transparent;
+  }
+  .ap-bento-card.wide:hover {
+    border-color: transparent;
+  }
+  .ap-bento-card.wide .ap-bento-title { color: white; }
+  .ap-bento-card.wide .ap-bento-desc { color: rgba(255, 255, 255, 0.65); }
+  .ap-bento-card.accent-blue {
+    background: #2563eb;
+    border-color: transparent;
+  }
+  .ap-bento-card.accent-blue:hover { border-color: transparent; }
+  .ap-bento-card.accent-blue .ap-bento-icon { background: rgba(255, 255, 255, 0.12); }
+  .ap-bento-card.accent-blue .ap-bento-title { color: white; }
+  .ap-bento-card.accent-blue .ap-bento-desc { color: rgba(255, 255, 255, 0.75); }
+  .ap-bento-icon {
+    width: 48px;
+    height: 48px;
+    background: #f0f7ff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 22px;
+  }
+  .ap-bento-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 10px;
+  }
+  .ap-bento-desc {
+    font-size: 0.875rem;
+    color: #64748b;
+    line-height: 1.7;
+  }
+
+  /* ── Section Expertise ── */
+  .ap-expertise-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 36px;
+    margin-bottom: 40px;
+  }
+  .ap-expertise-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 22px;
+    background: white;
+    border: 1px solid #e8edf5;
+    border-radius: 14px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .ap-expertise-item:hover {
+    border-color: #2563eb;
+    box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
+  }
+  .ap-expertise-num {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: #f0f7ff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #2563eb;
+    letter-spacing: 0.5px;
+  }
+  .ap-expertise-body strong {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 3px;
+  }
+  .ap-expertise-body span {
+    font-size: 0.82rem;
+    color: #64748b;
+    line-height: 1.5;
+  }
+  .ap-img-card {
+    position: relative;
+  }
+  .ap-img-card img {
+    width: 100%;
+    border-radius: 20px;
+    display: block;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.1);
+  }
+  .ap-cert-badge {
+    position: absolute;
+    top: 24px;
+    left: -16px;
+    background: white;
+    padding: 14px 18px;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .ap-cert-icon {
+    width: 40px;
+    height: 40px;
+    background: #10b981;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .ap-cert-badge strong {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+  .ap-cert-badge span {
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+  .ap-speed-badge {
+    position: absolute;
+    bottom: 24px;
+    right: -16px;
+    background: #0f172a;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  }
+  .ap-speed-badge strong {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #60a5fa;
+    line-height: 1;
+    margin-bottom: 2px;
+  }
+  .ap-speed-badge span {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── CTA sombre ── */
+  .ap-cta {
+    background: linear-gradient(135deg, #0a0f1e 0%, #0f1f3d 50%, #0f172a 100%);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .ap-cta-glow {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .ap-cta-inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+  .ap-cta-inner h2 {
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 20px;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+  }
+  .ap-cta-inner p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.05rem;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+  .ap-cta-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: white;
+    padding: 13px 26px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  .ap-cta-btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.14);
+    color: white;
+  }
+
+  /* ── Animations ── */
+  .ap-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .ap-reveal.ap-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .ap-reveal-delay-1 { transition-delay: 0.1s; }
+  .ap-reveal-delay-2 { transition-delay: 0.2s; }
+  .ap-reveal-delay-3 { transition-delay: 0.3s; }
+  .ap-reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── Responsive ── */
+  @media (max-width: 991px) {
+    .ap-hero { min-height: 480px; }
+    .ap-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .ap-stat-item:nth-child(2) { border-right: none; }
+    .ap-stat-item:nth-child(1),
+    .ap-stat-item:nth-child(2) { border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .ap-histoire-grid { grid-template-columns: 1fr; gap: 50px; }
+    .ap-floating-badge { right: 20px; }
+    .ap-bento { grid-template-columns: 1fr 1fr; }
+    .ap-bento-card.wide { grid-column: span 2; }
+    .ap-img-card { margin-top: 20px; }
+  }
+
+  @media (max-width: 767px) {
+    .ap-hero { min-height: 420px; }
+    .ap-hero-content { padding: 60px 0; }
+    .ap-stats-grid { grid-template-columns: 1fr 1fr; }
+    .ap-stat-item { padding: 32px 16px; }
+    .ap-stat-number { font-size: 2.4rem; }
+    .ap-bento { grid-template-columns: 1fr; gap: 16px; }
+    .ap-bento-card.wide { grid-column: span 1; }
+    .ap-floating-badge { position: static; margin-top: 20px; display: inline-block; }
+    .ap-cert-badge { left: 12px; }
+    .ap-speed-badge { right: 12px; }
+    .ap-cta { padding: 64px 0; }
+    .ap-expertise-item { padding: 14px 16px; }
+  }
+
+  @media (max-width: 479px) {
+    .ap-stat-item:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.07); }
+    .ap-stat-item:nth-child(4) { border-right: none; }
+  }
+</style>
 </head>
 
 <body>
 <div class="page-wrapper">
-  <!-- Header identique -->
   <div id="header-placeholder"></div>
-<!-- Hero Section À Propos -->
-  <section class="section">
+
+  <!-- ════════════════════════════════════ -->
+  <!--   HERO                               -->
+  <!-- ════════════════════════════════════ -->
+  <section class="ap-hero">
+    <div class="ap-hero-bg"></div>
     <div class="w-layout-blockcontainer container-default w-container">
-      <div class="text-center">
-        <div class="overflow-hidden title-wrap">
-          <div class="subtitle">Qui sommes-nous ?</div>
+      <div class="ap-hero-content">
+        <div class="ap-hero-tag">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="white"><circle cx="4" cy="4" r="4"/></svg>
+          B2B · Fabricant français
         </div>
-        <div class="mg-top-default">
-          <h1 class="display-2 strong">À propos de SlideX</h1>
-        </div>
-        <div class="mg-top-small">
-          <div class="inner-container _528px _100-tablet width-100-tablet">
-            <div class="inner-container _528px---tablet center">
-              <p>Fabricant français spécialisé dans les portes automatiques piétonnes et les solutions de rénovation. Notre expertise technique et notre engagement pour l'innovation font de nous un partenaire de confiance pour tous vos projets.</p>
-            </div>
-          </div>
-        </div>
+        <h1>Un fabricant qui travaille<br><em>pour vous</em>, pas contre vous</h1>
+        <p class="ap-hero-desc">SlideX conçoit et fabrique en France des portes automatiques piétonnes et des kits de rénovation, exclusivement pour les installateurs professionnels. Nous ne faisons pas d'installation. Nous ne faisons pas de maintenance. Ce sont vos métiers — nous les respectons.</p>
+        <a href="#notre-histoire" class="ap-hero-cta">
+          Notre positionnement
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="#0f172a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Section Notre Histoire -->
+  <!-- ════════════════════════════════════ -->
+  <!--   STATISTIQUES                       -->
+  <!-- ════════════════════════════════════ -->
+  <div class="ap-stats">
+    <div class="w-layout-blockcontainer container-default w-container">
+      <div class="ap-stats-grid">
+        <div class="ap-stat-item">
+          <div class="ap-stat-number">Zéro</div>
+          <div class="ap-stat-label">Concurrence avec nos clients</div>
+        </div>
+        <div class="ap-stat-item">
+          <div class="ap-stat-number">100%</div>
+          <div class="ap-stat-label">Fabrication française</div>
+        </div>
+        <div class="ap-stat-item">
+          <div class="ap-stat-number">12 j.</div>
+          <div class="ap-stat-label">Livraison standard</div>
+        </div>
+        <div class="ap-stat-item">
+          <div class="ap-stat-number">2 ans</div>
+          <div class="ap-stat-label">Garantie constructeur</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════ -->
+  <!--   NOTRE HISTOIRE                     -->
+  <!-- ════════════════════════════════════ -->
+  <section class="section" id="notre-histoire">
+    <div class="w-layout-blockcontainer container-default w-container">
+      <div class="ap-histoire-grid">
+
+        <!-- Image + badge -->
+        <div class="ap-histoire-img-wrap ap-reveal">
+          <img src="images/Photo-porte-auto.jpg" alt="Atelier de fabrication SlideX"/>
+          <div class="ap-floating-badge">
+            <strong>100%</strong>
+            Made in France
+          </div>
+        </div>
+
+        <!-- Contenu -->
+        <div class="ap-histoire-text">
+          <div class="ap-label ap-reveal">Notre positionnement</div>
+          <h2 class="ap-reveal ap-reveal-delay-1">Un modèle construit<br>autour de vos intérêts</h2>
+          <p class="ap-reveal ap-reveal-delay-2">Sur un marché où certains fabricants tendent à élargir leur périmètre au-delà de la fourniture — en intégrant installation, maintenance ou relation client final — SlideX a fait un choix différent : <strong>rester fabricant, pleinement et uniquement.</strong></p>
+          <p class="ap-reveal ap-reveal-delay-2">Notre modèle est exclusivement B2B. Votre client reste votre client. Vos contrats de maintenance restent les vôtres. <strong>Nous n'intervenons jamais entre vous et votre marché.</strong></p>
+
+          <div class="ap-timeline ap-reveal ap-reveal-delay-3">
+            <div class="ap-tl-item">
+              <h4>Une conviction fondatrice</h4>
+              <p>SlideX a été créé avec la conviction que la valeur long terme d'un installateur repose sur ses clients et ses contrats de maintenance. Nous n'y touchons pas.</p>
+            </div>
+            <div class="ap-tl-item">
+              <h4>Un modèle B2B structurel</h4>
+              <p>Aucune vente au client final, aucune équipe d'installation, aucun service après-vente concurrent au vôtre. Ce n'est pas une politique commerciale — c'est notre architecture.</p>
+            </div>
+            <div class="ap-tl-item">
+              <h4>Un partenariat sur le long terme</h4>
+              <p>Des produits fiables, des délais tenus, un support technique accessible. Tout ce dont vous avez besoin pour développer votre activité sereinement.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════ -->
+  <!--   NOS VALEURS — BENTO GRID           -->
+  <!-- ════════════════════════════════════ -->
   <section class="section" style="background: #f8fafc;">
     <div class="w-layout-blockcontainer container-default w-container">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
-        
-        <!-- Contenu Histoire -->
-        <div>
-          <div class="overflow-hidden title-wrap">
-            <div class="subtitle">Notre histoire</div>
+
+      <div style="text-align: center;" class="ap-reveal">
+        <div class="ap-label" style="justify-content: center;">Nos engagements</div>
+        <h2 style="font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; color: #0f172a; margin-top: 8px; letter-spacing: -0.3px;">Quatre engagements concrets.<br>Pas de clause en petits caractères.</h2>
+        <p style="color: #64748b; margin-top: 16px; font-size: 1rem;">Des principes opérationnels qui orientent chacune de nos décisions.</p>
+      </div>
+
+      <div class="ap-bento">
+
+        <!-- Card large (dark) — Engagement principal -->
+        <div class="ap-bento-card wide ap-reveal">
+          <div class="ap-bento-icon" style="background: rgba(96, 165, 250, 0.12);">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M9 12L11 14L15 10" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 2L2 7V10C2 16 6 20.9 12 22C18 20.9 22 16 22 10V7L12 2Z" stroke="#60a5fa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
-          <div class="mg-top-default">
-            <h2 class="display-6 strong">Une expertise française au service de l'innovation</h2>
-          </div>
-          <div class="mg-top-small">
-            <p style="margin-bottom: 20px;">Fondée par des experts du secteur, SlideX naît de la volonté de proposer des solutions de portes automatiques <strong>innovantes, fiables et accessibles</strong> à tous les professionnels.</p>
-            
-            <p style="margin-bottom: 20px;">Notre approche unique combine <strong>fabrication française</strong>, <strong>technologies avancées</strong> et <strong>service client personnalisé</strong> pour répondre aux besoins spécifiques de chaque projet.</p>
-            
-            <p>Aujourd'hui, nous accompagnons architectes, installateurs et maîtres d'œuvre dans la réalisation de leurs projets avec des délais de production inégalés : <strong>8 jours pour les produits standard, 15 jours avec options</strong>.</p>
-          </div>
-          
-          <!-- Chiffres clés -->
-          <div style="margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-            <div style="text-align: center; padding: 20px; background: white; border-radius: 12px; border: 1px solid #e2e8f0;">
-              <div style="font-size: 2rem; font-weight: 700; color: #2563eb; margin-bottom: 5px;">8 jours</div>
-              <div style="font-size: 0.9rem; color: #64748b;">Livraison standard</div>
-            </div>
-            <div style="text-align: center; padding: 20px; background: white; border-radius: 12px; border: 1px solid #e2e8f0;">
-              <div style="font-size: 2rem; font-weight: 700; color: #2563eb; margin-bottom: 5px;">100%</div>
-              <div style="font-size: 0.9rem; color: #6b7280;">Fabrication française</div>
-            </div>
-            <div style="text-align: center; padding: 20px; background: white; border-radius: 12px; border: 1px solid #e2e8f0;">
-              <div style="font-size: 2rem; font-weight: 700; color: #2563eb; margin-bottom: 5px;">2 ans</div>
-              <div style="font-size: 0.9rem; color: #6b7280;">Garantie constructeur</div>
-            </div>
+          <div class="ap-bento-title" style="font-size: 1.4rem;">Nous ne concurrençons pas nos clients</div>
+          <div class="ap-bento-desc">SlideX n'intervient pas dans l'installation, ni dans la maintenance, ni dans la relation avec vos clients finaux. Ce positionnement est structurel : notre modèle économique repose entièrement sur le succès de nos installateurs partenaires, pas sur la captation de leur périmètre.</div>
+          <div style="margin-top: 24px; display: flex; gap: 10px; flex-wrap: wrap;">
+            <span style="background: rgba(96,165,250,0.12); color: #60a5fa; padding: 5px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 600;">Pas d'équipe terrain</span>
+            <span style="background: rgba(96,165,250,0.12); color: #60a5fa; padding: 5px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 600;">Pas de vente directe</span>
+            <span style="background: rgba(96,165,250,0.12); color: #60a5fa; padding: 5px 12px; border-radius: 100px; font-size: 0.75rem; font-weight: 600;">100% B2B installateurs</span>
           </div>
         </div>
-        
-        <!-- Image Histoire -->
-        <div>
-          <img src="images/Photo-porte-auto.jpg" alt="Atelier de fabrication SlideX" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);"/>
+
+        <!-- Card bleue — Maintenance -->
+        <div class="ap-bento-card accent-blue ap-reveal ap-reveal-delay-1">
+          <div class="ap-bento-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="ap-bento-title">Vous conservez vos contrats de maintenance</div>
+          <div class="ap-bento-desc">La maintenance représente l'essentiel de la valeur long terme pour un installateur. SlideX n'a pas d'équipe SAV terrain et n'entend pas en avoir.</div>
+          <div style="margin-top: 20px; font-size: 1.05rem; font-weight: 700; color: white; line-height: 1.5; padding: 12px 16px; background: rgba(255,255,255,0.1); border-radius: 10px;">Votre client reste votre client.<br>Votre marge reste votre marge.</div>
         </div>
-        
+
+        <!-- Card — Livraison -->
+        <div class="ap-bento-card ap-reveal ap-reveal-delay-2">
+          <div class="ap-bento-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="#2563eb" stroke-width="2"/>
+              <polyline points="12,6 12,12 16,14" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="ap-bento-title">Des délais de livraison maîtrisés</div>
+          <div class="ap-bento-desc">12 jours pour un produit standard, 15 jours avec options. Des engagements tenus, pour que votre planning chantier reste sous contrôle.</div>
+        </div>
+
+        <!-- Card — Support -->
+        <div class="ap-bento-card ap-reveal ap-reveal-delay-2">
+          <div class="ap-bento-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="ap-bento-title">Un support technique accessible</div>
+          <div class="ap-bento-desc">Documentation complète, formation à l'installation incluse, hotline dédiée. Nos équipes sont disponibles pour accompagner chaque projet.</div>
+        </div>
+
+        <!-- Card — Fabrication -->
+        <div class="ap-bento-card ap-reveal ap-reveal-delay-3">
+          <div class="ap-bento-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="9,22 9,12 15,12 15,22" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="ap-bento-title">Fabriqué en France</div>
+          <div class="ap-bento-desc">Conception, assemblage, tests — tout se passe en France. Moins d'aléas, plus de réactivité, un interlocuteur local.</div>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Section Nos Valeurs -->
+  <!-- ════════════════════════════════════ -->
+  <!--   NOTRE EXPERTISE                    -->
+  <!-- ════════════════════════════════════ -->
   <section class="section">
     <div class="w-layout-blockcontainer container-default w-container">
-      <div class="text-center">
-        <div class="overflow-hidden title-wrap">
-          <div class="subtitle">Nos valeurs</div>
-        </div>
-        <div class="mg-top-default">
-          <h2 class="display-6 strong">Ce qui nous guide au quotidien</h2>
-        </div>
-        <div class="mg-top-small">
-          <p>Des principes forts qui orientent toutes nos décisions et notre relation client</p>
-        </div>
-      </div>
+      <div class="ap-histoire-grid">
 
-      <div class="mg-top-extra-large">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
-          
-          <!-- Innovation -->
-          <div style="text-align: center;">
-            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px;">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+        <!-- Texte expertise -->
+        <div>
+          <div class="ap-label ap-reveal">Ce que vous gagnez</div>
+          <h2 style="font-size: clamp(1.7rem, 3vw, 2.5rem); font-weight: 800; color: #0f172a; line-height: 1.15; margin-bottom: 20px; letter-spacing: -0.3px;" class="ap-reveal ap-reveal-delay-1">Conçu pour renforcer<br>votre position sur le marché</h2>
+          <p style="color: #64748b; line-height: 1.75;" class="ap-reveal ap-reveal-delay-2">Chaque aspect de notre offre est pensé pour vous permettre de travailler mieux, de gagner en crédibilité auprès de vos clients et de développer votre activité sur le long terme.</p>
+
+          <div class="ap-expertise-list">
+            <div class="ap-expertise-item ap-reveal ap-reveal-delay-1">
+              <div class="ap-expertise-num">01</div>
+              <div class="ap-expertise-body">
+                <strong>Confidentialité totale de vos clients</strong>
+                <span>SlideX ne collecte aucune donnée client final et ne les contacte jamais, sous quelque forme que ce soit.</span>
+              </div>
             </div>
-            <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 15px; color: #1f2937;">Innovation</h3>
-            <p style="color: #6b7280; line-height: 1.6;">Développement constant de nouvelles solutions pour répondre aux évolutions du marché et aux besoins émergents de nos clients.</p>
+            <div class="ap-expertise-item ap-reveal ap-reveal-delay-2">
+              <div class="ap-expertise-num">02</div>
+              <div class="ap-expertise-body">
+                <strong>Vos contrats de maintenance demeurent les vôtres</strong>
+                <span>SlideX ne dispose d'aucune équipe SAV terrain. Le suivi et l'entretien restent dans votre périmètre exclusif.</span>
+              </div>
+            </div>
+            <div class="ap-expertise-item ap-reveal ap-reveal-delay-3">
+              <div class="ap-expertise-num">03</div>
+              <div class="ap-expertise-body">
+                <strong>Des produits fiables qui protègent votre réputation</strong>
+                <span>Qualité de fabrication, pièces détachées disponibles, documentation technique exhaustive à chaque livraison.</span>
+              </div>
+            </div>
+            <div class="ap-expertise-item ap-reveal ap-reveal-delay-4">
+              <div class="ap-expertise-num">04</div>
+              <div class="ap-expertise-body">
+                <strong>Une autonomie renforcée sur le terrain</strong>
+                <span>Formation à l'installation incluse, hotline technique dédiée, notices détaillées. Tout pour intervenir en confiance.</span>
+              </div>
+            </div>
           </div>
 
-          <!-- Qualité -->
-          <div style="text-align: center;">
-            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px;">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <a class="primary-button w-inline-block ap-reveal" href="nos-produits/index.html">
+            <div>Voir nos produits</div>
+            <div class="item-icon-right icon-right-circle">
+              <div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 10H15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M10 5L15 10L10 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Image avec badges flottants -->
+        <div class="ap-img-card ap-reveal ap-reveal-delay-1">
+          <img src="images/Photowebporteauto.png" alt="Équipe technique SlideX"/>
+
+          <div class="ap-cert-badge">
+            <div class="ap-cert-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M12 2L2 7V10C2 16 6 20.9 12 22C18 20.9 22 16 22 10V7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-            <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 15px; color: #1f2937;">Qualité</h3>
-            <p style="color: #6b7280; line-height: 1.6;">Exigence maximale sur tous nos produits, de la conception à la livraison, avec des tests rigoureux et une traçabilité complète.</p>
-          </div>
-
-          <!-- Réactivité -->
-          <div style="text-align: center;">
-            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px;">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/>
-                <polyline points="12,6 12,12 16,14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+            <div>
+              <strong>Certifié CE</strong>
+              <span>Norme EN16005</span>
             </div>
-            <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 15px; color: #1f2937;">Réactivité</h3>
-            <p style="color: #6b7280; line-height: 1.6;">Délais courts et respect des engagements. Notre organisation optimisée permet une production et livraison dans les meilleurs délais.</p>
           </div>
 
-          <!-- Proximité -->
-          <div style="text-align: center;">
-            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px;">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="12" cy="7" r="4" stroke="white" stroke-width="2"/>
-              </svg>
-            </div>
-            <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 15px; color: #1f2937;">Proximité</h3>
-            <p style="color: #6b7280; line-height: 1.6;">Relation directe avec nos clients, accompagnement personnalisé et support technique dédié pour chaque projet.</p>
+          <div class="ap-speed-badge">
+            <strong>12 j.</strong>
+            <span>Livraison standard</span>
           </div>
-
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Section Expertise -->
-  <section class="section" style="background: #f8fafc;">
+  <!-- ════════════════════════════════════ -->
+  <!--   CTA FINAL                          -->
+  <!-- ════════════════════════════════════ -->
+  <section class="ap-cta">
+    <div class="ap-cta-glow"></div>
     <div class="w-layout-blockcontainer container-default w-container">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
-        
-        <!-- Image Expertise -->
-        <div>
-          <img src="images/Photowebporteauto.png" alt="Équipe technique SlideX" style="width: 100%; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);"/>
+      <div class="ap-cta-inner ap-reveal">
+        <div class="ap-label" style="justify-content: center; color: rgba(255,255,255,0.4);">
+          <span style="background: rgba(255,255,255,0.25); display: block; width: 24px; height: 2px;"></span>
+          Travailler avec nous
         </div>
-        
-        <!-- Contenu Expertise -->
-        <div>
-          <div class="overflow-hidden title-wrap">
-            <div class="subtitle">Notre expertise</div>
-          </div>
-          <div class="mg-top-default">
-            <h2 class="display-6 strong">Une équipe d'experts à votre service</h2>
-          </div>
-          <div class="mg-top-small">
-            <p style="margin-bottom: 25px;">Notre équipe technique maîtrise tous les aspects des portes automatiques : <strong>conception mécanique</strong>, <strong>électronique embarquée</strong>, <strong>systèmes de sécurité</strong> et <strong>conformité normative</strong>.</p>
-            
-            <!-- Liste expertise -->
-            <div style="margin-bottom: 30px;">
-              <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                <div style="width: 6px; height: 6px; background: #2563eb; border-radius: 50%; margin-right: 15px;"></div>
-                <span style="color: #374151;"><strong>Bureau d'études intégré</strong> pour le développement produit</span>
-              </div>
-              <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                <div style="width: 6px; height: 6px; background: #2563eb; border-radius: 50%; margin-right: 15px;"></div>
-                <span style="color: #374151;"><strong>Atelier de fabrication</strong> équipé des dernières technologies</span>
-              </div>
-              <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                <div style="width: 6px; height: 6px; background: #2563eb; border-radius: 50%; margin-right: 15px;"></div>
-                <span style="color: #374151;"><strong>Laboratoire de tests</strong> pour la validation qualité</span>
-              </div>
-              <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                <div style="width: 6px; height: 6px; background: #2563eb; border-radius: 50%; margin-right: 15px;"></div>
-                <span style="color: #374151;"><strong>Service technique</strong> pour l'accompagnement client</span>
+        <h2>Intéressé par un partenariat<br>sur le long terme ?</h2>
+        <p>Configurez votre produit en quelques minutes ou échangez directement avec notre équipe. Nous travaillons exclusivement avec des installateurs professionnels.</p>
+        <div class="flex-horizontal justify-center gap-small-wrap">
+          <a class="primary-button w-inline-block" href="connexion-inscription.html">
+            <div>Utiliser le configurateur</div>
+            <div class="item-icon-right icon-right-circle">
+              <div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 10H15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M10 5L15 10L10 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </div>
             </div>
-
-            <div class="mg-top-default">
-              <a class="primary-button w-inline-block" href="nos-produits/index.html">
-                <div>Découvrir nos produits</div>
-                <div class="item-icon-right icon-right-circle">
-                  <div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5 10H15" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                      <path d="M10 5L15 10L10 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-        
-      </div>
-    </div>
-  </section>
-
-  <!-- Section Engagement -->
-  <section class="section">
-    <div class="w-layout-blockcontainer container-default w-container">
-      <div class="text-center">
-        <div class="overflow-hidden title-wrap">
-          <div class="subtitle">Notre engagement</div>
-        </div>
-        <div class="mg-top-default">
-          <h2 class="display-6 strong">Un partenaire de confiance pour vos projets</h2>
-        </div>
-        <div class="mg-top-small">
-          <p>Nous nous engageons à vous accompagner de la conception à la mise en service</p>
-        </div>
-      </div>
-
-      <div class="mg-top-extra-large">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
-          
-          <!-- Support technique -->
-          <div style="padding: 30px; background: white; border: 1px solid #e2e8f0; border-radius: 16px; text-align: center;">
-            <div style="width: 60px; height: 60px; background: #3b82f6; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 12H18L15 21L9 3L6 12H2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 10px;">Support technique</h3>
-            <p style="color: #6b7280; font-size: 0.9rem;">Assistance dédiée pour l'installation et la maintenance de vos équipements</p>
-          </div>
-
-          <!-- Formation -->
-          <div style="padding: 30px; background: white; border: 1px solid #e2e8f0; border-radius: 16px; text-align: center;">
-            <div style="width: 60px; height: 60px; background: #10b981; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 10V6C22 5.47 21.53 5 21 5H3C2.47 5 2 5.47 2 6V10C2 10.53 2.47 11 3 11H21C21.53 11 22 10.53 22 10Z" stroke="white" stroke-width="2"/>
-                <path d="M6 21V11" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                <path d="M18 21V11" stroke="white" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 10px;">Formation incluse</h3>
-            <p style="color: #6b7280; font-size: 0.9rem;">Formation complète à l'installation et à l'utilisation de nos produits</p>
-          </div>
-
-          <!-- Garantie -->
-          <div style="padding: 30px; background: white; border: 1px solid #e2e8f0; border-radius: 16px; text-align: center;">
-            <div style="width: 60px; height: 60px; background: #f59e0b; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L2 7V10C2 16 6 20.9 12 22C18 20.9 22 16 22 10V7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 10px;">Garantie 2 ans</h3>
-            <p style="color: #6b7280; font-size: 0.9rem;">Garantie constructeur complète avec pièces détachées disponibles</p>
-          </div>
-
-          <!-- Réactivité -->
-          <div style="padding: 30px; background: white; border: 1px solid #e2e8f0; border-radius: 16px; text-align: center;">
-            <div style="width: 60px; height: 60px; background: #8b5cf6; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="12" r="10" stroke="white" stroke-width="2"/>
-                <polyline points="12,6 12,12 16,14" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 10px;">Livraison rapide</h3>
-            <p style="color: #6b7280; font-size: 0.9rem;">Livraison en 8 jours pour les produits standard, 15 jours avec options</p>
-          </div>
-
+          </a>
+          <a class="ap-cta-btn-ghost" href="contact-new.html">
+            Nous contacter
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Section CTA -->
-  <section class="section" style="background: #f8fafc;">
-    <div class="w-layout-blockcontainer container-default w-container">
-      <div class="text-center">
-        <h2 class="display-6 strong">Prêt à démarrer votre projet ?</h2>
-        <p class="mg-top-small">Notre équipe vous accompagne dans le choix de la solution la plus adaptée à vos besoins.</p>
-        <div class="mg-top-default">
-          <div class="flex-horizontal justify-center gap-small-wrap">
-            <a class="primary-button w-inline-block" href="connexion-inscription.html">
-              <div>Utiliser le configurateur</div>
-              <div class="item-icon-right icon-right-circle">
-                <div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 10H15" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M10 5L15 10L10 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-              </div>
-            </a>
-            <a class="secondary-button w-inline-block" href="contact-new.html" style="background: transparent; border: 2px solid #2563eb; color: #2563eb;">
-              <div>Nous contacter</div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer identique -->
-      <div id="google-reviews-placeholder"></div>
-      <div id="footer-placeholder"></div>
-
+  <div id="google-reviews-placeholder"></div>
+  <div id="footer-placeholder"></div>
 </div>
+
 <div class="page-load-wrapper _01">
   <div class="progress-bar" data-w-id="5b7f4b82-2598-8533-eabc-5c83b3645aed"></div>
-  </div>
+</div>
+
 <script crossorigin="anonymous" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6799d9a3630f757829978f69" type="text/javascript"></script>
 <script src="js/webflow.js" type="text/javascript"></script>
 <script src="js/slidex-animations.js" type="text/javascript"></script>
+
+<script>
+  // Scroll reveal — Intersection Observer
+  (function () {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('ap-visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.ap-reveal').forEach(function (el) {
+      observer.observe(el);
+    });
+
+    // Smooth scroll pour le lien hero
+    var heroLink = document.querySelector('.ap-hero-cta');
+    if (heroLink) {
+      heroLink.addEventListener('click', function (e) {
+        var target = document.querySelector('#notre-histoire');
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+  })();
+</script>
 </body>
 </html>

@@ -30,32 +30,280 @@
 <link href="../images/favicon.svg" rel="shortcut icon" type="image/x-icon"/>
 <link href="../images/webclip.svg" rel="apple-touch-icon"/>
 <style>
-/* Page-scoped tweak: keep "Options & Accessoires" next to "Kit de rénovation" on 2-column layouts
-   and avoid large empty space between columns by centering grid and reducing gaps */
+/* ── Layout grille responsive ── */
 @media (max-width: 1200px) {
   .slidex-grid-3 {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: 24px;
     row-gap: 24px;
-    justify-content: center;   /* center the grid within its container */
-    justify-items: stretch;    /* make cards fill their column */
-    max-width: 1100px;         /* prevent edge-to-edge stretching */
+    justify-content: center;
+    justify-items: stretch;
+    max-width: 1100px;
     margin: 0 auto;
   }
-  /* Children order in this grid: 1) 1V  2) 2V  3) Télescopique  4) Kit  5) Options */
-  .slidex-grid-3 > .card.v6:nth-of-type(4) { /* Kit de rénovation */
-    grid-column: 1;
-    grid-row: 2;
-  }
-  .slidex-grid-3 > .card.v6:nth-of-type(5) { /* Options & Accessoires */
-    grid-column: 2;
-    grid-row: 2;
-  }
-  .slidex-grid-3 > .card.v6:nth-of-type(3) { /* Télescopique descend en dessous */
-    grid-column: 1;
-    grid-row: 3;
-  }
+  .slidex-grid-3 > .card.v6:nth-of-type(4) { grid-column: 1; grid-row: 2; }
+  .slidex-grid-3 > .card.v6:nth-of-type(5) { grid-column: 2; grid-row: 2; }
+  .slidex-grid-3 > .card.v6:nth-of-type(3) { grid-column: 1; grid-row: 3; }
+}
+
+/* ── En-tête de page compact ── */
+.np-header {
+  background: linear-gradient(135deg, #0f172a 0%, #162444 100%);
+  padding: 56px 0 52px;
+  position: relative;
+  overflow: hidden;
+}
+.np-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0; right: 0;
+  height: 40px;
+  background: white;
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+.np-header-inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+.np-header-text .subtitle {
+  color: rgba(255,255,255,0.5) !important;
+  font-size: 11px !important;
+  letter-spacing: 2px !important;
+}
+.np-header-text h1 {
+  color: white !important;
+  font-size: clamp(1.9rem, 3.5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 12px 0 0;
+  letter-spacing: -0.3px;
+}
+.np-header-desc {
+  max-width: 520px;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-top: 16px;
+}
+.np-header-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+.np-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.75);
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.np-badge svg { flex-shrink: 0; }
+
+/* ── Cards produits redessinées ── */
+.card.v6 {
+  border-radius: 16px !important;
+  border: 1px solid #e8edf5 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+.card.v6:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 20px 48px rgba(0,0,0,0.1) !important;
+  border-color: #c7d7f7 !important;
+}
+
+/* Image wrapper dans chaque card */
+.np-card-img {
+  position: relative;
+  background: #f8fafc;
+  overflow: hidden;
+}
+.np-card-img img {
+  width: 100%;
+  height: 260px;
+  object-fit: contain;
+  display: block;
+  padding: 20px;
+  transition: transform 0.4s ease;
+}
+.card.v6:hover .np-card-img img {
+  transform: scale(1.03);
+}
+.np-card-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #2563eb;
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 100px;
+  letter-spacing: 0.3px;
+}
+.np-card-badge.orange { background: #f59e0b; }
+.np-card-badge.green  { background: #10b981; }
+.np-card-badge.purple { background: #8b5cf6; }
+.np-card-badge.cyan   { background: #06b6d4; }
+.np-card-badge.future { background: #374151; }
+
+/* Corps de la card */
+.np-card-body {
+  padding: 24px 24px 0;
+  flex: 1;
+}
+.np-card-body .subtitle {
+  font-size: 11px !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  color: #2563eb !important;
+  font-weight: 700 !important;
+  margin-bottom: 6px !important;
+}
+.np-card-body h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 12px;
+}
+.np-card-body p {
+  font-size: 0.875rem;
+  color: #64748b;
+  line-height: 1.7;
+  margin: 0 0 20px;
+}
+
+/* Specs sous forme de tags */
+.np-spec-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 24px;
+}
+.np-spec-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f0f7ff;
+  color: #1d4ed8;
+  border: 1px solid #dbeafe;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+.np-spec-tag.neutral {
+  background: #f8fafc;
+  color: #475569;
+  border-color: #e2e8f0;
+}
+
+/* Footer de card */
+.np-card-footer {
+  padding: 16px 24px 24px;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* ── Section CTA ── */
+.np-cta {
+  background: linear-gradient(135deg, #0a0f1e 0%, #0f1f3d 100%);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+.np-cta::before {
+  content: '';
+  position: absolute;
+  top: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 700px; height: 350px;
+  background: radial-gradient(ellipse, rgba(37,99,235,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.np-cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: white;
+  padding: 13px 26px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+.np-cta-ghost:hover { background: rgba(255,255,255,0.14); color: white; }
+
+/* ── Section support ── */
+.np-support-card {
+  background: white;
+  border: 1px solid #e8edf5;
+  border-radius: 16px;
+  padding: 32px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.np-support-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+  border-color: #c7d7f7;
+}
+.np-support-icon {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+}
+.np-support-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 10px;
+}
+.np-support-card p {
+  font-size: 0.875rem;
+  color: #64748b;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.np-support-list {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.np-support-list li {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.82rem; color: #374151; font-weight: 500;
+}
+.np-support-list li::before {
+  content: '';
+  display: block; flex-shrink: 0;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #2563eb;
+}
+
+/* ── Responsive ── */
+@media (max-width: 767px) {
+  .np-header-inner { flex-direction: column; gap: 0; }
+  .np-header { padding: 40px 0 48px; }
+  .np-card-img img { height: 200px; }
 }
 </style>
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="28263fbc-fd1c-4adc-8204-571acc2440a4";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
@@ -66,427 +314,247 @@
 <body>
 <div class="page-wrapper">
   <div id="header-placeholder"></div>
-                  </nav>
-                </div>
-              </li>
-              <li class="link-nav-item show-on-tablet header-btn">
-                <a class="primary-button w-inline-block" href="https://app.slidex.fr" target="_blank" id="w-node-e9da5fd6-ab44-5b2f-81ad-6e5f36bfab9c-36bfab9c">
-                  <div>Get a quote</div>
-                  <div class="item-icon-right icon-right-circle">
-                    <div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
-                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                    </div>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </nav>
+
+  <!-- ── En-tête de page ── -->
+  <div class="np-header">
+    <div class="w-layout-blockcontainer container-default w-container">
+      <div class="np-header-inner">
+        <div class="np-header-text">
+          <div class="subtitle">Nos portes piétonnes automatiques & kits de renovations</div>
+          <h1 class="display-10 strong">Notre gamme complète</h1>
+          <p class="np-header-desc">Découvrez nos portes piétonnes automatiques SlideX, conçues pour les professionnels. Installation rapide, design moderne, fonctionnement silencieux et compatible PMR. De la porte 1 vantail aux solutions télescopiques, trouvez la solution adaptée à vos projets.</p>
+          <div class="np-header-badges">
+            <span class="np-badge"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 5l1.5 1.5L7 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Fabrication française</span>
+            <span class="np-badge"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 5l1.5 1.5L7 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Compatible PMR &amp; ERP</span>
+            <span class="np-badge"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M3 5l1.5 1.5L7 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Support technique dédié</span>
+          </div>
         </div>
-        <div class="nav-menu-right-side">
-          <div class="buttons-row nav-menu-hidden-on-tablet" style="display: flex; gap: 12px;">
-            <a class="secondary-button w-inline-block" href="../analyse-devis.html" style="background: transparent; border: 2px solid #2563eb; color: #2563eb; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 500; transition: all 0.2s;">
-              <div>Analyse de devis</div>
-            </a>
-            <a class="primary-button w-inline-block" href="../connexion-inscription.html">
-              <div>Configurateur pour pro</div>
-            </a>
-          </div>
-          <div class="hamburger-menu w-nav-button">
-            <div class="hamburger-menu-flex">
-              <div class="hamburger-menu-line top"></div>
-              <div class="hamburger-menu-line middle"></div>
-              <div class="hamburger-menu-line bottom"></div>
+        <div style="flex-shrink: 0;">
+          <a class="primary-button w-inline-block" href="../connexion-inscription.html">
+            <div>Accéder au configurateur</div>
+            <div class="item-icon-right icon-right-circle">
+              <div class="base-icon-font" style="display:flex;align-items:center;justify-content:center;">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Hero Section -->
-  <section class="section hero hero-v3">
-    <div class="w-layout-blockcontainer container-default desktop w-container">
-      <div class="w-layout-grid grid-2-columns hero-v3-grid">
-        <div class="card v3-hero">
-          <div class="card-v3-hero---content">
-            <div class="inner-container _500px---mbl">
-              <div class="inner-container _600px---tablet">
-                <div class="overflow-hidden title-wrap">
-                  <h1 class="display-10 strong text-light">Nos Produits SlideX</h1>
-                  <p class="text-light" style="font-size: 18px; margin-top: 16px; margin-bottom: 24px; font-style: italic; opacity: 0.9; text-align: left;">La gamme complète de portes automatiques professionnelles</p>
-                </div>
-                <div class="inner-container _526px">
-                  <p class="text-neutral">✅ Fabrication française au pied du Vercors<br/>✅ Compatible PMR et normes ERP<br/>✅ Support technique dédié<br/></p>
-                </div>
-              </div>
-              <div class="mg-top-default mg-top-24px---mbl">
-                <div class="buttons-row left">
-                  <a class="primary-button w-inline-block" href="../connexion-inscription.html">
-                    <div>Accéder au configurateur</div>
-                    <div class="item-icon-right icon-right-circle">
-                      <div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
-                          <path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Image côté droit -->
-        <div class="hero-image-wrapper">
-          <img alt="Gamme de portes automatiques SlideX" class="hero-image" loading="eager" src="../images/Photo-porte-auto.jpg" style="width: 100%; height: 500px; object-fit: cover; border-radius: 12px;"/>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section Nos Produits -->
-  <section class="section" style="padding-top: 80px !important; padding-bottom: 80px !important;">
+  <!-- ── Grille des produits ── -->
+  <section class="section">
     <div class="w-layout-blockcontainer container-default w-container">
-      <div class="text-center---tablet">
-        <div class="flex-horizontal space-between-align-bottom title-and-paragraph">
-          <div class="width-100-tablet">
-            <div class="overflow-hidden title-wrap">
-              <div class="subtitle">Nos portes piétonnes automatiques & kits de renovations</div>
-            </div>
-            <div class="mg-top-default">
-              <div class="overflow-hidden">
-                <h2 class="display-10 strong">Notre gamme complète</h2>
-              </div>
-            </div>
-          </div>
-          <div class="inner-container _528px _100-tablet width-100-tablet">
-            <div class="inner-container _528px---tablet center">
-              <p>Découvrez nos portes piétonnes automatiques SlideX, conçues pour les professionnels. Installation rapide, design moderne, fonctionnement silencieux et compatible PMR. De la porte 1 vantail aux solutions télescopiques, trouvez la solution adaptée à vos projets.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Grille des produits -->
       <div class="slidex-grid-3">
-        
+
         <!-- Porte 1 Vantail -->
         <div class="card v6">
-          <div>
-            <div class="overflow-hidden title-wrap">
-              <div class="subtitle">Porte automatique 1 vantail</div>
-            </div>
-            <div class="mg-top-small">
-              <img alt="Porte automatique 1 vantail SlideX" src="../images/1V-SF-GA.png" style="width: 100%; max-height: 350px; object-fit: cover; border-radius: 8px;"/>
-              <h3 class="display-9 strong cartepdt">Un vantail</h3>
-              <p class="mg-top-small">Optez pour notre porte piétonne automatique 1 vantail, idéale pour les espaces restreints et les entrées simples. Compacte, fiable et facile à installer, elle garantit une ouverture fluide, un accès sécurisé et un design discret. Produite en 8 jours, prête à poser.</p>
-              
-              <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 8px; border-left: 4px solid #2563eb;">
-                <h4 style="margin: 0 0 10px 0; color: #1f2937; font-weight: 600;">Caractéristiques :</h4>
-                <ul style="margin: 0; padding-left: 20px; color: #374151;">
-                  <li>Passage libre : 600 à 1200mm</li>
-                  <li>Livraison : 8 jours standard (15 jours avec laquage et vitrage)</li>
-                  <li>Compatible PMR</li>
-                  <li>Installation plug & play</li>
-                </ul>
-              </div>
+          <div class="np-card-img">
+            <span class="np-card-badge">1 vantail</span>
+            <img alt="Porte automatique 1 vantail SlideX" src="../images/1V-SF-GA.png"/>
+          </div>
+          <div class="np-card-body">
+            <div class="subtitle">Porte automatique 1 vantail</div>
+            <h3>Un vantail</h3>
+            <p>Optez pour notre porte piétonne automatique 1 vantail, idéale pour les espaces restreints et les entrées simples. Compacte, fiable et facile à installer, elle garantit une ouverture fluide, un accès sécurisé et un design discret. Produite en 8 jours, prête à poser.</p>
+            <div class="np-spec-tags">
+              <span class="np-spec-tag">600 – 1 200 mm</span>
+              <span class="np-spec-tag">12 j. standard</span>
+              <span class="np-spec-tag">Compatible PMR</span>
+              <span class="np-spec-tag neutral">Plug &amp; play</span>
             </div>
           </div>
-          <div class="mg-top-default mg-top-24px---mbl">
-            <div class="flex-horizontal justify-start gap-small-wrap">
-              <a class="primary-button w-inline-block" href="../product-detail.html">
-                <div>Voir en détail</div>
-                <div class="item-icon-right icon-right-circle">
-                  <div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
-                      <path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            </div>
+          <div class="np-card-footer">
+            <a class="primary-button w-inline-block" href="../product-detail.html">
+              <div>Voir en détail</div>
+              <div class="item-icon-right icon-right-circle"><div class="base-icon-font" style="display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+            </a>
           </div>
         </div>
 
         <!-- Porte 2 Vantaux -->
         <div class="card v6">
-          <div>
-            <div class="overflow-hidden title-wrap">
-              <div class="subtitle">Porte automatique deux vantaux</div>
-            </div>
-            <div class="mg-top-small">
-              <img alt="Porte automatique 2 vantaux SlideX" src="../images/2V-SF-GA.png" style="width: 100%; max-height: 350px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;"/>
-              <h3 class="display-9 strong cartepdt">Deux vantaux</h3>
-              <div class="inner-container _640px">
-                <p class="mg-top-small">Choisissez notre porte piétonne automatique 2 vantaux pour un passage large, fluide et confortable. Parfaite pour les zones à fort trafic ou les entrées professionnelles, elle allie performance, esthétique et sécurité. Livrée en 8 jours standard (15 jours avec laquage et vitrage), simple à installer.</p>
-              </div>
-              
-              <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 8px; border-left: 4px solid #10b981;">
-                <h4 style="margin: 0 0 10px 0; color: #1f2937; font-weight: 600;">Caractéristiques :</h4>
-                <ul style="margin: 0; padding-left: 20px; color: #374151;">
-                  <li>Passage libre : 1200 à 2400mm</li>
-                  <li>Livraison : 8 jours standard (15 jours avec laquage et vitrage)</li>
-                  <li>Idéal zones à fort trafic</li>
-                  <li>Ouverture symétrique</li>
-                </ul>
-              </div>
+          <div class="np-card-img">
+            <span class="np-card-badge green">2 vantaux</span>
+            <img alt="Porte automatique 2 vantaux SlideX" src="../images/2V-SF-GA.png"/>
+          </div>
+          <div class="np-card-body">
+            <div class="subtitle">Porte automatique deux vantaux</div>
+            <h3>Deux vantaux</h3>
+            <p>Choisissez notre porte piétonne automatique 2 vantaux pour un passage large, fluide et confortable. Parfaite pour les zones à fort trafic ou les entrées professionnelles, elle allie performance, esthétique et sécurité. Livrée en 8 jours standard (15 jours avec laquage et vitrage), simple à installer.</p>
+            <div class="np-spec-tags">
+              <span class="np-spec-tag">1 200 – 2 400 mm</span>
+              <span class="np-spec-tag">12 j. standard</span>
+              <span class="np-spec-tag">Fort trafic</span>
+              <span class="np-spec-tag neutral">Ouverture symétrique</span>
             </div>
           </div>
-          <div class="mg-top-default mg-top-24px---mbl">
-            <div class="flex-horizontal justify-start gap-small-wrap">
-              <a class="primary-button w-inline-block" href="../product-detail-2-vantaux.html">
-                <div>Voir en détail</div>
-                <div class="item-icon-right icon-right-circle">
-                  <div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
-                      <path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            </div>
+          <div class="np-card-footer">
+            <a class="primary-button w-inline-block" href="../product-detail-2-vantaux.html">
+              <div>Voir en détail</div>
+              <div class="item-icon-right icon-right-circle"><div class="base-icon-font" style="display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+            </a>
           </div>
         </div>
 
         <!-- Porte Télescopique -->
-        <div class="card v6" style="position: relative;">
-          <!-- Badge disponibilité -->
-          <div style="position: absolute; top: 12px; right: 12px; background: #2563eb; color: #ffffff; font-weight: 600; font-size: 12px; padding: 6px 10px; border-radius: 9999px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); z-index: 2;">Disponible fin juin 2026</div>
-          <div>
-            <div class="overflow-hidden title-wrap">
-              <div class="subtitle">Porte télescopique</div>
-            </div>
-            <div class="mg-top-small">
-              <img alt="Porte télescopique SlideX" src="../images/1V-T-GA.png" style="width: 100%; max-height: 350px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;"/>
-              <h3 class="display-9 strong cartepdt">Télescopique</h3>
-              <p class="mg-top-small">Solution optimale pour les espaces restreints nécessitant un large passage. Le système télescopique permet un encombrement réduit tout en offrant un passage généreux. Idéale pour les entrées d'hôpitaux, centres commerciaux et bâtiments publics.</p>
-              
-              <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 8px; border-left: 4px solid #f59e0b;">
-                <h4 style="margin: 0 0 10px 0; color: #1f2937; font-weight: 600;">Caractéristiques :</h4>
-                <ul style="margin: 0; padding-left: 20px; color: #374151;">
-                  <li>Encombrement optimisé</li>
-                  <li>Passage libre maximal</li>
-                  <li>Idéal espaces contraints</li>
-                  <li>Production sur mesure</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="mg-top-default mg-top-24px---mbl">
-            <div class="flex-horizontal justify-start gap-small-wrap">
-              <a class="primary-button w-inline-block" href="../kit-renovation-bientot-disponible.html">
-                <div>Voir en détail</div>
-                <div class="item-icon-right icon-right-circle">
-                  <div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
-                      <path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Kit de Rénovation Porte Sans Cadre -->
         <div class="card v6">
-          <div>
-            <div class="overflow-hidden title-wrap">
-              <div class="subtitle">Kit de rénovation</div>
-            </div>
-            <div class="mg-top-small">
-              <img alt="Kit de rénovation SlideX" src="../images/1V-SF-N.png" style="width: 100%; max-height: 350px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;"/>
-              <h3 class="display-9 strong cartepdt">Kit rénovation</h3>
-              <p class="mg-top-small">Modernisez vos installations existantes avec nos kits de rénovation compatibles toutes marques (Record, Portalp, etc.). Solution économique pour donner une seconde vie à vos portes automatiques. Installation rapide, performance optimisée.</p>
-              
-              <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 8px; border-left: 4px solid #8b5cf6;">
-                <h4 style="margin: 0 0 10px 0; color: #1f2937; font-weight: 600;">Avantages :</h4>
-                <ul style="margin: 0; padding-left: 20px; color: #374151;">
-                  <li>Compatible toutes marques</li>
-                  <li>Économique et écologique</li>
-                  <li>Installation rapide</li>
-                  <li>Performances modernes</li>
-                </ul>
-              </div>
+          <div class="np-card-img">
+            <span class="np-card-badge orange">Télescopique</span>
+            <span class="np-card-badge future" style="left:auto;right:12px;">Disponible fin juin 2026</span>
+            <img alt="Porte télescopique SlideX" src="../images/1V-T-GA.png"/>
+          </div>
+          <div class="np-card-body">
+            <div class="subtitle">Porte télescopique</div>
+            <h3>Télescopique</h3>
+            <p>Solution optimale pour les espaces restreints nécessitant un large passage. Le système télescopique permet un encombrement réduit tout en offrant un passage généreux. Idéale pour les entrées d'hôpitaux, centres commerciaux et bâtiments publics.</p>
+            <div class="np-spec-tags">
+              <span class="np-spec-tag">Encombrement optimisé</span>
+              <span class="np-spec-tag">Passage maximal</span>
+              <span class="np-spec-tag neutral">Sur mesure</span>
             </div>
           </div>
-          <div class="mg-top-default mg-top-24px---mbl">
-            <div class="flex-horizontal justify-start gap-small-wrap">
-              <a class="primary-button w-inline-block" href="../kits-renovation.html">
-                <div>Voir en détail</div>
-                <div class="item-icon-right icon-right-circle">
-                  <div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
-                      <path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            </div>
+          <div class="np-card-footer">
+            <a class="primary-button w-inline-block" href="../kit-renovation-bientot-disponible.html">
+              <div>Voir en détail</div>
+              <div class="item-icon-right icon-right-circle"><div class="base-icon-font" style="display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+            </a>
           </div>
         </div>
 
-        
-
-        <!-- Accessoires et Options -->
+        <!-- Kit de Rénovation -->
         <div class="card v6">
-          <div>
-            <div class="overflow-hidden title-wrap">
-              <div class="subtitle">Accessoires & Options</div>
-            </div>
-            <div class="mg-top-small">
-              <div style="width: 100%; height: 350px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
-                <div style="text-align: center; color: white;">
-                  <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2L2 7V10C2 16 6 20.9 12 22C18 20.9 22 16 22 10V7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <h4 style="margin: 10px 0; font-size: 1.5rem;">Accessoires</h4>
-                </div>
-              </div>
-              <h3 class="display-9 strong cartepdt">Options & Accessoires</h3>
-              <p class="mg-top-small">Personnalisez vos portes avec nos options : détecteurs de sécurité, systèmes d'ouverture sans contact, finitions spéciales, vitrages sur mesure, laquage RAL. Tout pour adapter votre porte à vos besoins spécifiques.</p>
-              
-              <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 8px; border-left: 4px solid #06b6d4;">
-                <h4 style="margin: 0 0 10px 0; color: #1f2937; font-weight: 600;">Options disponibles :</h4>
-                <ul style="margin: 0; padding-left: 20px; color: #374151;">
-                  <li>Détecteurs de sécurité</li>
-                  <li>Ouverture sans contact</li>
-                  <li>Laquage RAL au choix</li>
-                  <li>Vitrages sur mesure</li>
-                </ul>
-              </div>
+          <div class="np-card-img">
+            <span class="np-card-badge purple">Rénovation</span>
+            <img alt="Kit de rénovation SlideX" src="../images/1V-SF-N.png"/>
+          </div>
+          <div class="np-card-body">
+            <div class="subtitle">Kit de rénovation</div>
+            <h3>Kit rénovation</h3>
+            <p>Modernisez vos installations existantes avec nos kits de rénovation compatibles toutes marques (Record, Portalp, etc.). Solution économique pour donner une seconde vie à vos portes automatiques. Installation rapide, performance optimisée.</p>
+            <div class="np-spec-tags">
+              <span class="np-spec-tag">Toutes marques</span>
+              <span class="np-spec-tag">Économique</span>
+              <span class="np-spec-tag neutral">Installation rapide</span>
             </div>
           </div>
-          <div class="mg-top-default mg-top-24px---mbl">
-            <div class="flex-horizontal justify-start gap-small-wrap">
-              <a class="primary-button w-inline-block" href="../connexion-inscription.html">
-                <div>Configurer</div>
-                <div class="item-icon-right icon-right-circle">
-                  <div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
-                      <path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            </div>
+          <div class="np-card-footer">
+            <a class="primary-button w-inline-block" href="../kits-renovation.html">
+              <div>Voir en détail</div>
+              <div class="item-icon-right icon-right-circle"><div class="base-icon-font" style="display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+            </a>
           </div>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <!-- Section CTA -->
-  <section class="section" style="background: #f8fafc; padding-top: 80px !important; padding-bottom: 80px !important;">
-    <div class="w-layout-blockcontainer container-default w-container">
-      <div class="text-center">
-        <h2 class="display-6 strong">Besoin d'aide pour choisir ?</h2>
-        <p class="mg-top-small">Notre équipe technique vous accompagne dans le choix de la solution la plus adaptée à votre projet.</p>
-        <div class="mg-top-default">
-          <div class="flex-horizontal justify-center gap-small-wrap">
+        <!-- Options & Accessoires -->
+        <div class="card v6">
+          <div class="np-card-img" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);">
+            <span class="np-card-badge cyan">Options</span>
+            <div style="display:flex;align-items:center;justify-content:center;height:260px;">
+              <svg width="72" height="72" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.6;">
+                <path d="M12 2L2 7V10C2 16 6 20.9 12 22C18 20.9 22 16 22 10V7L12 2Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M9 12L11 14L15 10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="np-card-body">
+            <div class="subtitle">Accessoires &amp; Options</div>
+            <h3>Options &amp; Accessoires</h3>
+            <p>Personnalisez vos portes avec nos options : détecteurs de sécurité, systèmes d'ouverture sans contact, finitions spéciales, vitrages sur mesure, laquage RAL. Tout pour adapter votre porte à vos besoins spécifiques.</p>
+            <div class="np-spec-tags">
+              <span class="np-spec-tag">Détecteurs sécurité</span>
+              <span class="np-spec-tag">Sans contact</span>
+              <span class="np-spec-tag neutral">Laquage RAL</span>
+              <span class="np-spec-tag neutral">Vitrage sur mesure</span>
+            </div>
+          </div>
+          <div class="np-card-footer">
             <a class="primary-button w-inline-block" href="../connexion-inscription.html">
-              <div>Utiliser le configurateur</div>
-              <div class="item-icon-right icon-right-circle">
-                <div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-              </div>
-            </a>
-            <a class="secondary-button w-inline-block" href="../contact-new.html" style="background: transparent; border: 2px solid #2563eb; color: #2563eb;">
-              <div>Nous contacter</div>
+              <div>Configurer</div>
+              <div class="item-icon-right icon-right-circle"><div class="base-icon-font" style="display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
             </a>
           </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="np-cta">
+    <div class="w-layout-blockcontainer container-default w-container" style="position:relative;z-index:1;">
+      <div style="text-align:center;max-width:580px;margin:0 auto;">
+        <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;color:white;margin-bottom:16px;letter-spacing:-0.3px;">Besoin d'aide pour choisir ?</h2>
+        <p style="color:rgba(255,255,255,0.6);font-size:1rem;margin-bottom:36px;line-height:1.7;">Notre équipe technique vous accompagne dans le choix de la solution la plus adaptée à votre projet.</p>
+        <div class="flex-horizontal justify-center gap-small-wrap">
+          <a class="primary-button w-inline-block" href="../connexion-inscription.html">
+            <div>Utiliser le configurateur</div>
+            <div class="item-icon-right icon-right-circle"><div class="base-icon-font" style="display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+          </a>
+          <a class="np-cta-ghost" href="../contact-new.html">Nous contacter</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Section Support et Garantie -->
-  <section class="section" id="support" style="padding-top: 80px !important; padding-bottom: 80px !important;">
+  <!-- ── Support et Garantie ── -->
+  <section class="section" id="support">
     <div class="w-layout-blockcontainer container-default w-container">
-      <div class="text-center">
+      <div style="text-align:center;margin-bottom:48px;">
         <div class="overflow-hidden title-wrap">
           <div class="subtitle">Support professionnel</div>
         </div>
-        <div class="mg-top-default">
-          <h2 class="display-8 strong">Support et garantie</h2>
-        </div>
-        <div class="mg-top-small">
-          <p>Un accompagnement complet pour la tranquillité de vos projets</p>
-        </div>
+        <h2 class="display-8 strong" style="margin-top:12px;">Support et garantie</h2>
+        <p style="color:#64748b;margin-top:12px;">Un accompagnement complet pour la tranquillité de vos projets</p>
       </div>
 
-      <div class="mg-top-extra-large" style="margin-top: 24px;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-          
-          <!-- Garantie -->
-          <div class="card" style="padding: 20px; text-align: center; border: 1px solid #e2e8f0; border-radius: 12px;">
-            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L2 7V10C2 16 6 20.9 12 22C18 20.9 22 16 22 10V7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <h3 class="display-6 strong" style="margin-bottom: 12px;">Garantie 2 ans</h3>
-            <p style="color: #6b7280; margin-bottom: 15px;">Garantie constructeur complète sur tous les composants. Pièces détachées disponibles et support technique réactif.</p>
-            <ul style="text-align: left; color: #374151; padding-left: 20px;">
-              <li>Motorisation garantie 2 ans</li>
-              <li>Électronique garantie 2 ans</li>
-              <li>Pièces détachées disponibles</li>
-            </ul>
-          </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
 
-          <!-- SAV -->
-          <div class="card" style="padding: 20px; text-align: center; border: 1px solid #e2e8f0; border-radius: 12px;">
-            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 12H18L15 21L9 3L6 12H2" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
-            <h3 class="display-6 strong" style="margin-bottom: 12px;">Service après-vente réactif</h3>
-            <p style="color: #6b7280; margin-bottom: 15px;">Support après-vente rapide avec hotline technique dédiée. Nos experts vous accompagnent en cas de besoin.</p>
-            <ul style="text-align: left; color: #374151; padding-left: 20px;">
-              <li>Hotline technique dédiée</li>
-              <li>Diagnostic à distance</li>
-              <li>Intervention sur site</li>
-              <li>Formation utilisateur incluse</li>
-            </ul>
+        <!-- Garantie -->
+        <div class="np-support-card">
+          <div class="np-support-icon" style="background:#eff6ff;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7V10C2 16 6 20.9 12 22C18 20.9 22 16 22 10V7L12 2Z" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12L11 14L15 10" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-
-          <!-- Formation -->
-          <div class="card" style="padding: 20px; text-align: center; border: 1px solid #e2e8f0; border-radius: 12px;">
-            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22 10V6C22 5.47 21.53 5 21 5H3C2.47 5 2 5.47 2 6V10C2 10.53 2.47 11 3 11H21C21.53 11 22 10.53 22 10Z" stroke="white" stroke-width="2"/>
-                <path d="M6 21V11" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                <path d="M18 21V11" stroke="white" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </div>
-            <h3 class="display-6 strong" style="margin-bottom: 12px;">Formation incluse</h3>
-            <p style="color: #6b7280; margin-bottom: 15px;">Formation complète à l'installation et à l'utilisation. Documentation technique détaillée et support vidéo.</p>
-            <ul style="text-align: left; color: #374151; padding-left: 20px;">
-              <li>Formation installation</li>
-              <li>Guide d'utilisation</li>
-              <li>Vidéos tutoriels</li>
-              <li>Support technique dédié</li>
-            </ul>
-          </div>
+          <h3>Garantie 2 ans</h3>
+          <p>Garantie constructeur complète sur tous les composants. Pièces détachées disponibles et support technique réactif.</p>
+          <ul class="np-support-list">
+            <li>Motorisation garantie 2 ans</li>
+            <li>Électronique garantie 2 ans</li>
+            <li>Pièces détachées disponibles</li>
+          </ul>
         </div>
+
+        <!-- SAV -->
+        <div class="np-support-card">
+          <div class="np-support-icon" style="background:#f0fdf4;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M22 12H18L15 21L9 3L6 12H2" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Service après-vente réactif</h3>
+          <p>Support après-vente rapide avec hotline technique dédiée. Nos experts vous accompagnent en cas de besoin.</p>
+          <ul class="np-support-list">
+            <li>Hotline technique dédiée</li>
+            <li>Diagnostic à distance</li>
+            <li>Intervention sur site</li>
+            <li>Formation utilisateur incluse</li>
+          </ul>
+        </div>
+
+        <!-- Formation -->
+        <div class="np-support-card">
+          <div class="np-support-icon" style="background:#fffbeb;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M22 10V6C22 5.47 21.53 5 21 5H3C2.47 5 2 5.47 2 6V10C2 10.53 2.47 11 3 11H21C21.53 11 22 10.53 22 10Z" stroke="#f59e0b" stroke-width="2"/><path d="M6 21V11" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/><path d="M18 21V11" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Formation incluse</h3>
+          <p>Formation complète à l'installation et à l'utilisation. Documentation technique détaillée et support vidéo.</p>
+          <ul class="np-support-list">
+            <li>Formation installation</li>
+            <li>Guide d'utilisation</li>
+            <li>Vidéos tutoriels</li>
+            <li>Support technique dédié</li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </section>
