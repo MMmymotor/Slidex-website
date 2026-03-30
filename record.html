@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html data-wf-page="record-slidex" data-wf-site="6799d9a3630f757829978f69" lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Records & Chiffres Clés | SlideX - Fabricant Français de Portes Automatiques</title>
+<meta content="Les chiffres qui parlent pour nous : délais de livraison, largeurs extrêmes, installations remarquables. SlideX repousse les limites de la porte automatique piétonne." name="description"/>
+<meta content="Records & Chiffres Clés | SlideX" property="og:title"/>
+<meta content="Les chiffres qui parlent pour nous : délais de livraison, largeurs extrêmes, installations remarquables. SlideX repousse les limites de la porte automatique piétonne." property="og:description"/>
+<meta content="images/Photo-porte-auto.jpg" property="og:image"/>
+<meta content="website" property="og:type"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta name="keywords" content="record porte automatique, livraison express, fabricant français, porte large sur mesure, porte automatique piétonne, SlideX"/>
+<link rel="canonical" href="https://www.slidex.fr/record.html"/>
+<meta content="SlideX" name="generator"/>
+
+<link href="css/normalize.css" rel="stylesheet" type="text/css"/>
+<link href="css/webflow.css" rel="stylesheet" type="text/css"/>
+<link href="css/et-voila.webflow.css" rel="stylesheet" type="text/css"/>
+<link href="css/slidex-custom.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="28263fbc-fd1c-4adc-8204-571acc2440a4";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+<script src="js/includes-loader.js" type="text/javascript"></script>
+
+<style>
+  /* ============================================ */
+  /*   PAGE RECORD — STYLES SPÉCIFIQUES           */
+  /* ============================================ */
+
+  /* ── Hero ── */
+  .rec-hero {
+    position: relative;
+    min-height: 580px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #0f172a;
+  }
+  .rec-hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 60% 50%, rgba(37, 99, 235, 0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 85% 20%, rgba(96, 165, 250, 0.12) 0%, transparent 60%);
+  }
+  /* Grid pattern subtil */
+  .rec-hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .rec-hero-content {
+    position: relative;
+    z-index: 1;
+    color: white;
+    max-width: 700px;
+    padding: 80px 0;
+  }
+  .rec-hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(37, 99, 235, 0.85);
+    backdrop-filter: blur(8px);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    border: 1px solid rgba(96, 165, 250, 0.4);
+  }
+  .rec-hero h1 {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    color: white;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+  }
+  .rec-hero h1 em {
+    color: #60a5fa;
+    font-style: normal;
+  }
+  .rec-hero-desc {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.75;
+    max-width: 520px;
+    margin-bottom: 0;
+  }
+  /* Déco chiffre flottant */
+  .rec-hero-deco {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: clamp(8rem, 16vw, 14rem);
+    font-weight: 900;
+    color: rgba(255,255,255,0.025);
+    line-height: 1;
+    letter-spacing: -4px;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  /* ── Étiquette section ── */
+  .rec-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #2563eb;
+    margin-bottom: 18px;
+  }
+  .rec-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #2563eb;
+    flex-shrink: 0;
+  }
+
+  /* ── Bento records ── */
+  .rec-bento {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+  }
+  .rec-card {
+    border-radius: 20px;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .rec-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  }
+
+  /* Variantes */
+  .rec-card.dark {
+    background: #0f172a;
+    color: white;
+    grid-column: span 8;
+  }
+  .rec-card.blue {
+    background: #2563eb;
+    color: white;
+    grid-column: span 4;
+  }
+  .rec-card.light {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    grid-column: span 4;
+  }
+  .rec-card.accent {
+    background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+    color: white;
+    grid-column: span 4;
+  }
+  .rec-card.wide {
+    grid-column: span 6;
+  }
+  .rec-card.full {
+    grid-column: span 12;
+  }
+
+  .rec-card-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.55;
+    margin-bottom: 20px;
+  }
+  .rec-number {
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 12px;
+  }
+  .rec-card.dark .rec-number { color: #60a5fa; }
+  .rec-card.blue .rec-number { color: white; }
+  .rec-card.light .rec-number { color: #2563eb; }
+  .rec-card.accent .rec-number { color: white; }
+
+  .rec-unit {
+    font-size: 0.65em;
+    font-weight: 600;
+    letter-spacing: 0;
+    opacity: 0.75;
+    vertical-align: super;
+  }
+  .rec-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .rec-card.dark .rec-card-title,
+  .rec-card.blue .rec-card-title,
+  .rec-card.accent .rec-card-title { color: white; }
+  .rec-card.light .rec-card-title { color: #0f172a; }
+
+  .rec-card-desc {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    opacity: 0.7;
+  }
+
+  /* Déco BG chiffre dans la carte */
+  .rec-card-bg-num {
+    position: absolute;
+    right: -10px;
+    bottom: -20px;
+    font-size: 8rem;
+    font-weight: 900;
+    opacity: 0.05;
+    line-height: 1;
+    letter-spacing: -3px;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Badge "Record" */
+  .rec-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(250, 204, 21, 0.15);
+    border: 1px solid rgba(250, 204, 21, 0.4);
+    color: #fbbf24;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+    width: fit-content;
+  }
+  .rec-badge-green {
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    color: #4ade80;
+  }
+
+  /* ── Section délai express ── */
+  .rec-express {
+    background: #0f172a;
+    border-radius: 24px;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .rec-express::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(37,99,235,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .rec-express-title {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 800;
+    color: white;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 20px;
+  }
+  .rec-express-title em { color: #60a5fa; font-style: normal; }
+  .rec-express-desc {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.75;
+    margin-bottom: 0;
+  }
+
+  /* Timeline délai */
+  .rec-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .rec-timeline-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .rec-timeline-step:last-child { border-bottom: none; }
+  .rec-timeline-day {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: rgba(37,99,235,0.2);
+    border: 1px solid rgba(37,99,235,0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .rec-timeline-day-num {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #60a5fa;
+    line-height: 1;
+  }
+  .rec-timeline-day-label {
+    font-size: 9px;
+    color: rgba(255,255,255,0.45);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .rec-timeline-info {
+    padding-top: 6px;
+  }
+  .rec-timeline-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 4px;
+  }
+  .rec-timeline-sub {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.5;
+  }
+
+  /* ── Section installations marquantes ── */
+  .rec-installs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .rec-install-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 32px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .rec-install-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  }
+  .rec-install-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #eff6ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+  .rec-install-stat {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: #2563eb;
+    line-height: 1;
+    letter-spacing: -1px;
+    margin-bottom: 6px;
+  }
+  .rec-install-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 8px;
+  }
+  .rec-install-desc {
+    font-size: 0.82rem;
+    color: #64748b;
+    line-height: 1.6;
+  }
+
+  /* ── CTA dark ── */
+  .rec-cta {
+    background: #0f172a;
+    border-radius: 24px;
+    padding: 80px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .rec-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(37,99,235,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .rec-cta-title {
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    font-weight: 800;
+    color: white;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .rec-cta-desc {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 36px;
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+  .rec-cta-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+  .rec-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #2563eb;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .rec-btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); }
+  .rec-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.08);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .rec-btn-secondary:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+
+  /* ── Scroll reveal ── */
+  .rec-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .rec-reveal.rec-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .rec-reveal-delay-1 { transition-delay: 0.1s; }
+  .rec-reveal-delay-2 { transition-delay: 0.2s; }
+  .rec-reveal-delay-3 { transition-delay: 0.3s; }
+  .rec-reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .rec-bento { grid-template-columns: repeat(6, 1fr); }
+    .rec-card.dark { grid-column: span 6; }
+    .rec-card.blue,
+    .rec-card.light,
+    .rec-card.accent { grid-column: span 3; }
+    .rec-card.wide { grid-column: span 6; }
+    .rec-express { grid-template-columns: 1fr; gap: 40px; }
+    .rec-installs { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .rec-bento { grid-template-columns: 1fr; }
+    .rec-card.dark,
+    .rec-card.blue,
+    .rec-card.light,
+    .rec-card.accent,
+    .rec-card.wide { grid-column: span 1; }
+    .rec-installs { grid-template-columns: 1fr; }
+    .rec-express { padding: 40px 28px; }
+    .rec-cta { padding: 60px 28px; }
+    .rec-hero-deco { display: none; }
+  }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Records & Chiffres Clés SlideX",
+  "description": "Les performances clés de SlideX : délais de livraison, records techniques, installations remarquables. Fabricant français de portes automatiques piétonnes.",
+  "url": "https://www.slidex.fr/record.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "SlideX",
+    "url": "https://www.slidex.fr"
+  }
+}
+</script>
+</head>
+
+<body>
+
+<div id="header-placeholder"></div>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section class="rec-hero">
+  <div class="rec-hero-bg"></div>
+  <div class="rec-hero-deco">12</div>
+  <div class="w-layout-blockcontainer container-default w-container">
+    <div class="rec-hero-content">
+      <div class="rec-hero-tag">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        Performances & chiffres clés
+      </div>
+      <h1>Ce que nos chiffres<br><em>disent à notre place</em></h1>
+      <p class="rec-hero-desc">Délais, dimensions, volumes — voici ce que SlideX produit concrètement, chaque semaine, pour ses installateurs partenaires.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BENTO RECORDS PRINCIPAUX
+══════════════════════════════════════════ -->
+<section class="section" style="background:#f8fafc;">
+  <div class="w-layout-blockcontainer container-default w-container">
+
+    <div style="text-align:center;margin-bottom:56px;" class="rec-reveal">
+      <div class="rec-label" style="justify-content:center;">Les chiffres</div>
+      <h2 style="font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;color:#0f172a;letter-spacing:-0.3px;margin-bottom:0;">En quelques records</h2>
+    </div>
+
+    <div class="rec-bento">
+
+      <!-- Grande carte dark : délai standard -->
+      <div class="rec-card dark rec-reveal rec-reveal-delay-1">
+        <div class="rec-badge">⚡ Délai standard</div>
+        <div class="rec-number">12<span class="rec-unit">j.</span></div>
+        <div class="rec-card-title">Livraison standard</div>
+        <div class="rec-card-desc">De la commande à la livraison sur chantier. Délai garanti sur nos configurations catalogue, sans surcoût ni condition particulière.</div>
+        <div class="rec-card-bg-num">12</div>
+      </div>
+
+      <!-- Carte bleue : délai express -->
+      <div class="rec-card blue rec-reveal rec-reveal-delay-2">
+        <div class="rec-badge rec-badge-green">🚀 Express</div>
+        <div class="rec-number">5<span class="rec-unit">j.</span></div>
+        <div class="rec-card-title">Livraison express</div>
+        <div class="rec-card-desc">Sur stock disponible (finitions noir mat / blanc mat). Option disponible à la commande.</div>
+        <div class="rec-card-bg-num">5</div>
+      </div>
+
+      <!-- Carte light : largeur max -->
+      <div class="rec-card light rec-reveal rec-reveal-delay-1">
+        <div class="rec-card-label">Dimension</div>
+        <div class="rec-number">4<span class="rec-unit">m</span></div>
+        <div class="rec-card-title">Largeur max en 1 vantail</div>
+        <div class="rec-card-desc">Passage libre jusqu'à 4 mètres en configuration 1 vantail standard. Sur mesure au-delà, sur étude.</div>
+      </div>
+
+      <!-- Carte accent : garantie -->
+      <div class="rec-card accent rec-reveal rec-reveal-delay-2">
+        <div class="rec-card-label">Confiance</div>
+        <div class="rec-number">2<span class="rec-unit">ans</span></div>
+        <div class="rec-card-title">Garantie constructeur</div>
+        <div class="rec-card-desc">Pièces et main d'œuvre. Sur l'ensemble de notre gamme, sans exception.</div>
+      </div>
+
+      <!-- Carte light : conformité -->
+      <div class="rec-card light rec-reveal rec-reveal-delay-3">
+        <div class="rec-card-label">Sécurité</div>
+        <div class="rec-number">100<span class="rec-unit">%</span></div>
+        <div class="rec-card-title">EN 16005 & NF P25-362</div>
+        <div class="rec-card-desc">Toutes nos portes sont certifiées CE et conformes aux exigences normatives en vigueur.</div>
+      </div>
+
+      <!-- Carte wide light : vitesse -->
+      <div class="rec-card light wide rec-reveal rec-reveal-delay-1">
+        <div class="rec-card-label">Performance</div>
+        <div class="rec-number">1,2<span class="rec-unit" style="font-size:0.5em;">m/s</span></div>
+        <div class="rec-card-title">Vitesse d'ouverture maximale</div>
+        <div class="rec-card-desc">Sur notre motorisation haut débit — conçue pour les accès à trafic intensif : grandes surfaces, ERP, sites logistiques.</div>
+      </div>
+
+      <!-- Carte wide dark : fabrication -->
+      <div class="rec-card dark wide rec-reveal rec-reveal-delay-2">
+        <div class="rec-badge rec-badge-green">🇫🇷 Fabrication</div>
+        <div class="rec-number">100<span class="rec-unit">%</span></div>
+        <div class="rec-card-title">Assemblé en France</div>
+        <div class="rec-card-desc">Conception, assemblage et contrôle qualité réalisés dans notre atelier français. Traçabilité complète de chaque unité produite.</div>
+        <div class="rec-card-bg-num">FR</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     DÉLAI EXPRESS — DÉTAIL
+══════════════════════════════════════════ -->
+<section class="section">
+  <div class="w-layout-blockcontainer container-default w-container">
+    <div class="rec-express rec-reveal">
+      <div>
+        <div class="rec-label" style="color:#60a5fa;">
+          <span style="background:#60a5fa;"></span>
+          Livraison en 12 jours
+        </div>
+        <h2 class="rec-express-title">12 jours,<br><em>c'est une promesse</em><br>mesurable</h2>
+        <p class="rec-express-desc">Pas un délai indicatif affiché sur une fiche produit. Une moyenne réelle, calculée sur nos commandes livrées. Nous en faisons un engagement — et nous nous organisons en interne pour le tenir.</p>
+      </div>
+
+      <div class="rec-timeline">
+        <div class="rec-timeline-step">
+          <div class="rec-timeline-day">
+            <div class="rec-timeline-day-num">J1</div>
+            <div class="rec-timeline-day-label">Cmd</div>
+          </div>
+          <div class="rec-timeline-info">
+            <div class="rec-timeline-title">Commande validée</div>
+            <div class="rec-timeline-sub">Accusé de réception et lancement atelier dans la journée pour toute commande reçue avant 12h.</div>
+          </div>
+        </div>
+        <div class="rec-timeline-step">
+          <div class="rec-timeline-day">
+            <div class="rec-timeline-day-num">J3</div>
+            <div class="rec-timeline-day-label">Prod.</div>
+          </div>
+          <div class="rec-timeline-info">
+            <div class="rec-timeline-title">Fabrication en cours</div>
+            <div class="rec-timeline-sub">Découpe, laquage, assemblage mécanique et intégration motorisation.</div>
+          </div>
+        </div>
+        <div class="rec-timeline-step">
+          <div class="rec-timeline-day">
+            <div class="rec-timeline-day-num">J10</div>
+            <div class="rec-timeline-day-label">Ctrl</div>
+          </div>
+          <div class="rec-timeline-info">
+            <div class="rec-timeline-title">Contrôle qualité & conditionnement</div>
+            <div class="rec-timeline-sub">Test fonctionnel complet, vérification normes, emballage protecteur avant expédition.</div>
+          </div>
+        </div>
+        <div class="rec-timeline-step">
+          <div class="rec-timeline-day" style="background:rgba(34,197,94,0.15);border-color:rgba(34,197,94,0.4);">
+            <div class="rec-timeline-day-num" style="color:#4ade80;">J12</div>
+            <div class="rec-timeline-day-label">Livré</div>
+          </div>
+          <div class="rec-timeline-info">
+            <div class="rec-timeline-title">Livraison sur chantier</div>
+            <div class="rec-timeline-sub">Expédition en palette ou messagerie express selon format. Suivi de colis communiqué.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     INSTALLATIONS MARQUANTES
+══════════════════════════════════════════ -->
+<section class="section" style="background:#f8fafc;">
+  <div class="w-layout-blockcontainer container-default w-container">
+
+    <div style="max-width:600px;margin-bottom:56px;" class="rec-reveal">
+      <div class="rec-label">Réalisations</div>
+      <h2 style="font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;color:#0f172a;letter-spacing:-0.3px;margin-bottom:16px;">Quelques installations<br>qui sortent du lot</h2>
+      <p style="color:#64748b;line-height:1.75;margin-bottom:0;">Des chantiers que nos partenaires installateurs ont réalisés avec nos produits. Chaque situation est unique — c'est pour ça qu'on fabrique sur mesure.</p>
+    </div>
+
+    <div class="rec-installs">
+
+      <div class="rec-install-card rec-reveal rec-reveal-delay-1">
+        <div class="rec-install-icon">🏪</div>
+        <div class="rec-install-stat">3,8 m</div>
+        <div class="rec-install-title">Passage libre en galerie commerciale</div>
+        <div class="rec-install-desc">Porte 1 vantail XXL en vitrage sécurit, installée à l'entrée principale d'une galerie de centre-ville. Motorisation haut débit, détection large champ.</div>
+      </div>
+
+      <div class="rec-install-card rec-reveal rec-reveal-delay-2">
+        <div class="rec-install-icon">🏥</div>
+        <div class="rec-install-stat">48 h</div>
+        <div class="rec-install-title">Remplacement d'urgence en établissement de santé</div>
+        <div class="rec-install-desc">Motorisation hors service sur accès urgences. Kit de rénovation expédié en 48h, remise en service le lendemain de la livraison.</div>
+      </div>
+
+      <div class="rec-install-card rec-reveal rec-reveal-delay-3">
+        <div class="rec-install-icon">🏭</div>
+        <div class="rec-install-stat">14 u.</div>
+        <div class="rec-install-title">Chantier multi-accès sur site industriel</div>
+        <div class="rec-install-desc">14 portes automatiques piétonnes livrées en deux rotations pour un site logistique en réouverture. Délai global : 3 semaines.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CTA FINAL
+══════════════════════════════════════════ -->
+<section class="section">
+  <div class="w-layout-blockcontainer container-default w-container">
+    <div class="rec-cta rec-reveal">
+      <h2 class="rec-cta-title">Votre prochain chantier<br>mérite ces délais</h2>
+      <p class="rec-cta-desc">Accès tarifs, configurateur et commande en ligne — réservé aux professionnels installateurs.</p>
+      <div class="rec-cta-btns">
+        <a href="connexion-inscription.html" class="rec-btn-primary">
+          Accéder à l'espace pro
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="contact-new.html" class="rec-btn-secondary">
+          Parler à un commercial
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('rec-visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.rec-reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
