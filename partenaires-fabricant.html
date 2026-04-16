@@ -85,23 +85,17 @@
 .pp-section {
   background: #fff;
   padding: 72px 0 80px;
-  min-height: calc(100vh - 72px);
+  border-bottom: 1px solid var(--border);
 }
 
 .pp-container {
-  max-width: 1120px;
+  max-width: 860px;
   margin: 0 auto;
   padding: 0 32px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: center;
 }
 
 .pp-left {
   padding-top: 0;
-  position: sticky;
-  top: 100px;
 }
 
 .pp-badge {
@@ -119,12 +113,13 @@
 }
 
 .pp-left h1 {
-  font-size: clamp(32px, 3.8vw, 52px);
+  font-size: clamp(34px, 4.5vw, 60px);
   font-weight: 800;
   color: var(--dark);
-  line-height: 1.1;
-  margin: 0 0 20px;
-  letter-spacing: -0.5px;
+  line-height: 1.08;
+  margin: 0 0 28px;
+  letter-spacing: -0.8px;
+  max-width: 780px;
 }
 
 .pp-left h1 em {
@@ -133,11 +128,49 @@
 }
 
 .pp-left .pp-intro {
-  font-size: 16px;
+  font-size: 17px;
   color: var(--mid);
   line-height: 1.65;
   margin: 0 0 36px;
-  max-width: 440px;
+  max-width: 620px;
+}
+
+/* Social proof bar */
+.pp-proof-bar {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 0 0 36px;
+}
+
+.pp-proof-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.pp-proof-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+}
+
+.pp-proof-sep {
+  width: 1px;
+  height: 16px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.pp-proof-item span {
+  color: var(--mid);
+  font-weight: 400;
 }
 
 /* Avantage clé */
@@ -719,6 +752,70 @@
   color: rgba(255,255,255,.45);
 }
 
+/* ── SECTION FORMULAIRE STANDALONE ── */
+.pf-section {
+  background: var(--light);
+  padding: 80px 0;
+  border-top: 1px solid var(--border);
+}
+
+.pf-section-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.pf-section-left .lp-label { margin-bottom: 14px; }
+
+.pf-section-left h2 {
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1.15;
+  margin: 0 0 16px;
+  letter-spacing: -0.3px;
+}
+
+.pf-section-left p {
+  font-size: 15px;
+  color: var(--mid);
+  line-height: 1.65;
+  margin: 0 0 28px;
+}
+
+.pf-reassurance {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pf-reassurance-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: #374151;
+  line-height: 1.45;
+}
+
+.pf-reassurance-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.pf-reassurance-check svg { width: 10px; height: 10px; }
+
 /* ── KITS DE RÉNOVATION ── */
 .reno-grid {
   display: grid;
@@ -939,8 +1036,6 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 991px) {
-  .pp-container { grid-template-columns: 1fr; gap: 40px; }
-  .pp-left { position: static; }
   .pp-section { padding: 48px 0 64px; }
   .constat-layout { grid-template-columns: 1fr; }
   .constat-arrow { transform: rotate(90deg); justify-self: center; }
@@ -950,6 +1045,7 @@
   .process-track::before { display: none; }
   .reno-grid { grid-template-columns: 1fr; }
   .reno-callout { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .pf-section-inner { grid-template-columns: 1fr; gap: 40px; }
 }
 
 @media (max-width: 639px) {
@@ -973,99 +1069,45 @@
   <div id="header-placeholder"></div>
 
   <!-- ============================================================
-       HERO — 2 COLONNES
+       HERO — SINGLE COLONNE
        ============================================================ -->
   <section class="pp-section">
     <div class="pp-container">
-
-      <!-- ── GAUCHE ── -->
       <div class="pp-left">
+
         <div class="pp-badge">
-          🏭 Slidex — Fabricant français
+          🏭 Slidex — Fabricant français, Seyssins (38)
         </div>
 
-        <h1>Vous maintenez.<br>Nous fabriquons.<br><em>Gardez vos contrats.</em></h1>
+        <h1>Votre client renouvelle sa porte.<br><em>Qui signe le prochain contrat<br>de maintenance&nbsp;?</em></h1>
 
-        <p class="pp-intro">Sociétés de maintenance de portes automatiques piétonnes — accédez aux tarifs fabricant Slidex, commandez des portes neuves ou des kits de rénovation, et restez l'interlocuteur unique de vos clients.</p>
+        <!-- Social proof -->
+        <div class="pp-proof-bar">
+          <div class="pp-proof-item">
+            <span class="pp-proof-dot"></span>
+            <strong>3 sociétés partenaires actives</strong>
+          </div>
+          <div class="pp-proof-sep"></div>
+          <div class="pp-proof-item">
+            Rhône-Alpes · Var · Gard
+          </div>
+          <div class="pp-proof-sep"></div>
+          <div class="pp-proof-item">
+            Réponse sous 24h
+          </div>
+        </div>
+
+        <p class="pp-intro">Slidex fabrique des portes automatiques piétonnes en Isère. Nous ne posons pas, nous ne signons aucun contrat de maintenance. En devenant partenaire, vous commandez au tarif fabricant et vous restez l'interlocuteur unique de vos clients.</p>
 
         <div class="pp-key-advantage">
           <span class="ka-icon">🔒</span>
           <div>
             <h3>Programme Partenaire à 100 €/mois</h3>
-            <p>Même prix sur toutes nos portes en stock laqué RAL Noir (9005), Blanc (9016) et Gris Anthracite (7016). Fabrication en 12 jours, livraison en sus. Vous installez, vous maintenez.</p>
+            <p>Tarif fixe sur les 3 coloris en stock — RAL 9005, 9016, 7016. Fabrication en 12 jours hors livraison. Engagement annuel, facturé mensuellement.</p>
           </div>
         </div>
+
       </div>
-
-      <!-- ── DROITE : FORMULAIRE WEB3FORMS ── -->
-      <div class="pp-form-card">
-        <div class="pp-form-header">
-          <h2>Demande d'accès partenaire</h2>
-          <div class="fh-sub">Réponse sous 24h · Sans engagement</div>
-        </div>
-
-        <div class="pp-form-body">
-          <form id="pf-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
-
-            <input type="hidden" name="access_key" value="f0d465e3-08fd-43bc-9463-3d381fa5104d"/>
-            <input type="hidden" name="subject" value="Nouvelle demande partenaire maintenance — SlideX"/>
-            <input type="hidden" name="from_name" value="SlideX Partenaires Fabricant"/>
-
-            <div class="pp-form-grid">
-              <div class="pp-form-field">
-                <label for="pf-prenom">Prénom *</label>
-                <input type="text" id="pf-prenom" name="prenom" placeholder="Jean" required/>
-              </div>
-              <div class="pp-form-field">
-                <label for="pf-nom">Nom *</label>
-                <input type="text" id="pf-nom" name="nom" placeholder="Dupont" required/>
-              </div>
-            </div>
-
-            <div class="pp-form-field">
-              <label for="pf-entreprise">Entreprise *</label>
-              <input type="text" id="pf-entreprise" name="entreprise" placeholder="Dupont Maintenance Automatismes" required/>
-            </div>
-
-            <div class="pp-form-grid">
-              <div class="pp-form-field">
-                <label for="pf-telephone">Téléphone *</label>
-                <input type="tel" id="pf-telephone" name="telephone" placeholder="06 12 34 56 78" required/>
-              </div>
-              <div class="pp-form-field">
-                <label for="pf-cp">Code postal *</label>
-                <input type="text" id="pf-cp" name="code_postal" placeholder="69001" required maxlength="5"/>
-              </div>
-            </div>
-
-            <div class="pp-form-field">
-              <label for="pf-portefeuille">Portefeuille de contrats</label>
-              <select id="pf-portefeuille" name="portefeuille_contrats">
-                <option value="" disabled selected>Nombre de contrats actifs…</option>
-                <option value="moins-20">Moins de 20 contrats</option>
-                <option value="20-50">20 à 50 contrats</option>
-                <option value="50-100">50 à 100 contrats</option>
-                <option value="plus-100">Plus de 100 contrats</option>
-              </select>
-            </div>
-
-            <div class="pp-form-field">
-              <label for="pf-message">Contexte (optionnel)</label>
-              <textarea id="pf-message" name="message" placeholder="Votre zone géographique, vos marques maintenues, vos attentes…"></textarea>
-            </div>
-
-            <button type="submit" class="pp-form-submit" id="pf-submit">
-              Accéder au programme partenaire →
-            </button>
-
-            <div class="pp-form-footer">
-              Vos données ne sont pas revendues · Réponse sous 24h
-            </div>
-
-          </form>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -1316,6 +1358,108 @@
   </section>
 
   <!-- ============================================================
+       FORMULAIRE — SECTION DÉDIÉE
+       ============================================================ -->
+  <section class="pf-section" id="formulaire-partenaire">
+    <div class="pf-section-inner">
+
+      <!-- Gauche : argumentaire -->
+      <div class="pf-section-left">
+        <div class="lp-label">Rejoindre le programme</div>
+        <h2>Accédez aux tarifs fabricant en 24h.</h2>
+        <p>Premier échange sans engagement. On regarde ensemble si le partenariat a du sens pour votre activité.</p>
+        <div class="pf-reassurance">
+          <div class="pf-reassurance-item">
+            <div class="pf-reassurance-check"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2.5"><polyline points="1,5 4,8 9,2"/></svg></div>
+            Aucun objectif de volume imposé
+          </div>
+          <div class="pf-reassurance-item">
+            <div class="pf-reassurance-check"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2.5"><polyline points="1,5 4,8 9,2"/></svg></div>
+            Aucune exclusivité de zone
+          </div>
+          <div class="pf-reassurance-item">
+            <div class="pf-reassurance-check"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2.5"><polyline points="1,5 4,8 9,2"/></svg></div>
+            Nous ne signons aucun contrat de maintenance
+          </div>
+          <div class="pf-reassurance-item">
+            <div class="pf-reassurance-check"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2.5"><polyline points="1,5 4,8 9,2"/></svg></div>
+            Vos données ne sont pas revendues
+          </div>
+        </div>
+      </div>
+
+      <!-- Droite : formulaire -->
+      <div class="pp-form-card">
+        <div class="pp-form-header">
+          <h2>Demande d'accès partenaire</h2>
+          <div class="fh-sub">Réponse sous 24h · Sans engagement</div>
+        </div>
+        <div class="pp-form-body">
+          <form id="pf-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+
+            <input type="hidden" name="access_key" value="f0d465e3-08fd-43bc-9463-3d381fa5104d"/>
+            <input type="hidden" name="subject" value="Nouvelle demande partenaire maintenance — SlideX"/>
+            <input type="hidden" name="from_name" value="SlideX Partenaires Fabricant"/>
+
+            <div class="pp-form-grid">
+              <div class="pp-form-field">
+                <label for="pf-prenom">Prénom *</label>
+                <input type="text" id="pf-prenom" name="prenom" placeholder="Jean" required/>
+              </div>
+              <div class="pp-form-field">
+                <label for="pf-nom">Nom *</label>
+                <input type="text" id="pf-nom" name="nom" placeholder="Dupont" required/>
+              </div>
+            </div>
+
+            <div class="pp-form-field">
+              <label for="pf-entreprise">Entreprise *</label>
+              <input type="text" id="pf-entreprise" name="entreprise" placeholder="Dupont Maintenance Automatismes" required/>
+            </div>
+
+            <div class="pp-form-grid">
+              <div class="pp-form-field">
+                <label for="pf-telephone">Téléphone *</label>
+                <input type="tel" id="pf-telephone" name="telephone" placeholder="06 12 34 56 78" required/>
+              </div>
+              <div class="pp-form-field">
+                <label for="pf-cp">Code postal *</label>
+                <input type="text" id="pf-cp" name="code_postal" placeholder="69001" required maxlength="5"/>
+              </div>
+            </div>
+
+            <div class="pp-form-field">
+              <label for="pf-portefeuille">Portefeuille de contrats</label>
+              <select id="pf-portefeuille" name="portefeuille_contrats">
+                <option value="" disabled selected>Nombre de contrats actifs…</option>
+                <option value="moins-20">Moins de 20 contrats</option>
+                <option value="20-50">20 à 50 contrats</option>
+                <option value="50-100">50 à 100 contrats</option>
+                <option value="plus-100">Plus de 100 contrats</option>
+              </select>
+            </div>
+
+            <div class="pp-form-field">
+              <label for="pf-message">Contexte (optionnel)</label>
+              <textarea id="pf-message" name="message" placeholder="Votre zone géographique, vos marques maintenues, vos attentes…"></textarea>
+            </div>
+
+            <button type="submit" class="pp-form-submit" id="pf-submit">
+              Accéder au programme partenaire →
+            </button>
+
+            <div class="pp-form-footer">
+              Vos données ne sont pas revendues · Réponse sous 24h
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
        KITS DE RÉNOVATION
        ============================================================ -->
   <section class="lp-section bg-light">
@@ -1351,7 +1495,7 @@
           <strong>Un automatisme en panne sur un site que vous maintenez ?</strong>
           Demandez un devis kit rénovation — on vous répond sous 2h avec la référence compatible et le prix partenaire.
         </div>
-        <a href="#" class="reno-cta-btn" onclick="window.scrollTo({top:0,behavior:'smooth'}); setTimeout(function(){document.getElementById('pf-prenom').focus();},600); return false;">
+        <a href="#" class="reno-cta-btn" onclick="document.getElementById('formulaire-partenaire').scrollIntoView({behavior:'smooth'}); setTimeout(function(){document.getElementById('pf-prenom').focus();},600); return false;">
           Devis kit rénovation →
         </a>
       </div>
@@ -1364,7 +1508,7 @@
   <section class="cta-final">
     <h2>Protégez vos contrats<br>de maintenance.</h2>
     <p class="cta-sub">Rejoignez le programme partenaire Slidex. Premier échange sans engagement.</p>
-    <a href="#" class="cta-btn" onclick="window.scrollTo({top:0,behavior:'smooth'}); setTimeout(function(){document.getElementById('pf-prenom').focus();},600); return false;">
+    <a href="#" class="cta-btn" onclick="document.getElementById('formulaire-partenaire').scrollIntoView({behavior:'smooth'}); setTimeout(function(){document.getElementById('pf-prenom').focus();},600); return false;">
       Demander l'accès partenaire →
     </a>
     <div class="cta-note">Réponse sous 24h · Sans engagement · Données confidentielles</div>
