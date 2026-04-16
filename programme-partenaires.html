@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html data-wf-page="programme-partenaires-slidex" data-wf-site="6799d9a3630f757829978f69" lang="fr">
+<head>
+<meta charset="utf-8"/>
+<title>Programme Partenaires Slidex — Miroitiers, Façadiers, Menuisiers</title>
+<meta name="description" content="Miroitiers, façadiers, menuisiers alu — devenez partenaire Slidex. Arrêtez de sous-traiter à Portalp ou Record. Gardez la marge ou touchez une commission."/>
+<meta property="og:title" content="Programme Partenaires Slidex — Miroitiers & Façadiers"/>
+<meta property="og:description" content="Apporteur d'affaires ou revendeur : gardez la main sur vos chantiers porte automatique. Fabricant français, 12j de délai, stock SAV 10 ans."/>
+<meta property="og:image" content="images/Photo-porte-auto.jpg"/>
+<meta property="og:type" content="website"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://www.slidex.fr/programme-partenaires.html"/>
+
+<link href="css/normalize.css" rel="stylesheet" type="text/css"/>
+<link href="css/webflow.css" rel="stylesheet" type="text/css"/>
+<link href="css/et-voila.webflow.css" rel="stylesheet" type="text/css"/>
+<link href="css/slidex-custom.css" rel="stylesheet" type="text/css"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+<script type="text/javascript">WebFont.load({ google: { families: ["Onest:regular,500,700"] }});</script>
+<script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
+
+<link href="images/favicon.svg" rel="shortcut icon" type="image/x-icon"/>
+<link href="images/webclip.svg" rel="apple-touch-icon"/>
+
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="28263fbc-fd1c-4adc-8204-571acc2440a4";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+<script src="js/includes-loader.js"></script>
+
+<style>
+/* ============================================================
+   PROGRAMME PARTENAIRES — variables & layout global
+   ============================================================ */
+:root {
+  --red: #0964FC;
+  --red-light: #eff6ff;
+  --red-border: rgba(9,100,252,.2);
+  --dark: #0d0d0d;
+  --mid: #5c6e94;
+  --light: #f7f9fc;
+  --border: #e2e4e9;
+  --green: #10b981;
+}
+
+/* ── HERO ── */
+.pp-section {
+  background: #fff;
+  padding: 72px 0 80px;
+  min-height: calc(100vh - 72px);
+}
+
+.pp-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.pp-left {
+  padding-top: 0;
+  position: sticky;
+  top: 100px;
+}
+
+.pp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--red-light);
+  color: var(--red);
+  border: 1px solid var(--red-border);
+  padding: 6px 14px;
+  border-radius: 300px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 28px;
+}
+
+.pp-left h1 {
+  font-size: clamp(34px, 4vw, 54px);
+  font-weight: 800;
+  color: var(--dark);
+  line-height: 1.1;
+  margin: 0 0 20px;
+  letter-spacing: -0.5px;
+}
+
+.pp-left h1 em {
+  font-style: normal;
+  color: var(--red);
+}
+
+.pp-left .pp-intro {
+  font-size: 16px;
+  color: var(--mid);
+  line-height: 1.65;
+  margin: 0 0 36px;
+  max-width: 420px;
+}
+
+/* Badges modèles */
+.pp-models {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pp-model-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.pp-model-badge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  min-width: 140px;
+  justify-content: center;
+}
+
+.pp-model-badge.apporteur {
+  background: #d1fae5;
+  color: #065f46;
+  border: 1px solid #a7f3d0;
+}
+
+.pp-model-badge.revendeur {
+  background: var(--dark);
+  color: white;
+}
+
+.pp-model-desc {
+  font-size: 14px;
+  color: var(--mid);
+  line-height: 1.5;
+  padding-top: 3px;
+}
+
+/* ── CARD FORMULAIRE DROITE ── */
+.pp-form-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,.04), 0 16px 48px rgba(10,22,66,.1);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.pp-form-header {
+  background: var(--dark);
+  padding: 18px 26px;
+}
+
+.pp-form-header h2 {
+  font-size: 17px;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 4px;
+}
+
+.pp-form-header .fh-sub {
+  font-size: 12.5px;
+  color: #94a3b8;
+}
+
+.pp-form-body {
+  padding: 26px 26px 30px;
+}
+
+.pp-form-field {
+  margin-bottom: 14px;
+}
+
+.pp-form-field label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 5px;
+  letter-spacing: .01em;
+}
+
+.pp-form-field input,
+.pp-form-field select {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: Onest, sans-serif;
+  color: var(--dark);
+  background: white;
+  box-sizing: border-box;
+  transition: border-color .2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.pp-form-field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235c6e94' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.pp-form-field input:focus,
+.pp-form-field select:focus {
+  outline: none;
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px var(--red-border);
+}
+
+.pp-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.pp-form-submit {
+  width: 100%;
+  padding: 14px 20px;
+  background: var(--red);
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: Onest, sans-serif;
+  border: none;
+  border-radius: 300px;
+  cursor: pointer;
+  transition: background .18s, transform .1s;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.pp-form-submit:hover { background: #0751d4; }
+.pp-form-submit:active { transform: scale(.99); }
+
+.pp-form-footer {
+  font-size: 11.5px;
+  color: #aab3c8;
+  text-align: center;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* ── SECTIONS DE CONTENU ── */
+.lp-section {
+  padding: 80px 0;
+}
+.lp-section.bg-light { background: var(--light); }
+.lp-section.bg-dark  { background: #111827; }
+.lp-section.bg-white { background: #fff; }
+
+.lp-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.lp-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 12px;
+}
+
+.lp-h2 {
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 800;
+  color: var(--dark);
+  margin: 0 0 14px;
+  line-height: 1.15;
+  letter-spacing: -0.3px;
+}
+
+.lp-h2.light { color: white; }
+
+.lp-lead {
+  font-size: 16px;
+  color: var(--mid);
+  line-height: 1.65;
+  max-width: 600px;
+  margin: 0 0 48px;
+}
+
+.lp-lead.light { color: #94a3b8; }
+
+/* ── CONSTAT ── */
+.constat-layout {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.constat-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+}
+
+.constat-card .cc-icon { font-size: 28px; margin-bottom: 14px; display: block; }
+
+.constat-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dark);
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+
+.constat-card p {
+  font-size: 13.5px;
+  color: var(--mid);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.constat-arrow {
+  font-size: 24px;
+  color: #cbd5e1;
+}
+
+.constat-solution {
+  background: var(--red-light);
+  border: 1.5px solid var(--red-border);
+  border-radius: 14px;
+  padding: 22px 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.constat-solution .cs-icon { font-size: 28px; flex-shrink: 0; }
+
+.constat-solution h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--red);
+  margin: 0 0 6px;
+}
+
+.constat-solution p {
+  font-size: 14px;
+  color: #1e3a8a;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── MODÈLES ── */
+.models-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.model-card {
+  border-radius: 16px;
+  padding: 28px;
+  border: 1.5px solid var(--border);
+  background: white;
+}
+
+.model-card.green { border-color: #a7f3d0; background: #f0fdf4; }
+.model-card.dark-card { border-color: #374151; background: #1f2937; }
+
+.model-tag {
+  display: inline-flex;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.model-card.green .model-tag { background: #d1fae5; color: #065f46; }
+.model-card.dark-card .model-tag { background: rgba(255,255,255,.12); color: #e5e7eb; }
+
+.model-card h3 {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 14px;
+  letter-spacing: -0.3px;
+}
+
+.model-card.green h3 { color: var(--dark); }
+.model-card.dark-card h3 { color: white; }
+
+.model-card .mc-desc {
+  font-size: 14px;
+  line-height: 1.65;
+  margin: 0 0 22px;
+}
+
+.model-card.green .mc-desc { color: var(--mid); }
+.model-card.dark-card .mc-desc { color: #9ca3af; }
+
+.model-features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.model-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.model-card.green .model-features li { color: #374151; }
+.model-card.dark-card .model-features li { color: #d1d5db; }
+
+.mf-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.model-card.green .mf-check { background: var(--green); }
+.model-card.dark-card .mf-check { background: var(--red); }
+
+.mf-check svg { width: 10px; height: 10px; }
+
+/* ── STATS ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: #1f2937;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #374151;
+}
+
+.stat-cell {
+  padding: 32px 28px;
+  background: #111827;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: clamp(36px, 4vw, 52px);
+  font-weight: 800;
+  color: white;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.stat-value em {
+  font-style: normal;
+  color: var(--red);
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #9ca3af;
+  line-height: 1.5;
+}
+
+/* ── PROCESS ── */
+.process-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+.process-track::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: calc(12.5% + 28px);
+  right: calc(12.5% + 28px);
+  height: 2px;
+  background: #e5e7eb;
+  z-index: 0;
+}
+
+.process-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.process-num {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--red);
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.process-step h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--dark);
+  margin: 0 0 10px;
+}
+
+.process-step p {
+  font-size: 13.5px;
+  color: var(--mid);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ── FAQ ── */
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.faq-item {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color .15s;
+}
+
+.faq-item:hover { border-color: #94a3b8; }
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.4;
+  user-select: none;
+}
+
+.faq-icon {
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--red);
+  border-radius: 50%;
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 400;
+  flex-shrink: 0;
+  line-height: 1;
+  transition: transform .2s;
+}
+
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+
+.faq-answer {
+  display: none;
+  padding: 0 20px 18px;
+  font-size: 13.5px;
+  color: var(--mid);
+  line-height: 1.65;
+}
+
+.faq-item.open .faq-answer { display: block; }
+
+/* ── CTA FINAL ── */
+.cta-final {
+  background: var(--red);
+  padding: 80px 32px;
+  text-align: center;
+}
+
+.cta-final h2 {
+  font-size: clamp(26px, 3.5vw, 42px);
+  font-weight: 800;
+  color: white;
+  line-height: 1.2;
+  max-width: 620px;
+  margin: 0 auto 14px;
+  letter-spacing: -0.3px;
+}
+
+.cta-final .cta-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,.75);
+  margin: 0 auto 36px;
+}
+
+.cta-final .cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  color: var(--red);
+  font-size: 16px;
+  font-weight: 700;
+  font-family: Onest, sans-serif;
+  padding: 16px 36px;
+  border-radius: 300px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .2s, transform .1s;
+  margin-bottom: 24px;
+}
+
+.cta-final .cta-btn:hover { background: #eff6ff; }
+.cta-final .cta-btn:active { transform: scale(.98); }
+
+.cta-final .cta-note {
+  font-size: 13px;
+  color: rgba(255,255,255,.6);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 991px) {
+  .pp-container { grid-template-columns: 1fr; gap: 40px; }
+  .pp-left { position: static; }
+  .pp-section { padding: 48px 0 64px; }
+  .constat-layout { grid-template-columns: 1fr; }
+  .constat-arrow { transform: rotate(90deg); justify-self: center; }
+  .models-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .process-track { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .process-track::before { display: none; }
+}
+
+@media (max-width: 639px) {
+  .pp-container { padding: 0 20px; }
+  .lp-container { padding: 0 20px; }
+  .lp-section { padding: 56px 0; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .pp-form-grid { grid-template-columns: 1fr; }
+  .cta-final { padding: 56px 20px; }
+}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <div id="header-placeholder"></div>
+
+  <!-- ============================================================
+       HERO — 2 COLONNES
+       ============================================================ -->
+  <section class="pp-section">
+    <div class="pp-container">
+
+      <!-- ── GAUCHE ── -->
+      <div class="pp-left">
+        <div class="pp-badge">
+          ⚡ Programme partenaires Slidex
+        </div>
+
+        <h1>Vos chantiers ont besoin<br>d'une porte automatique.<br><em>On s'en occupe.</em></h1>
+
+        <p class="pp-intro">Miroitiers, façadiers, menuisiers alu — arrêtez de sous-traiter à Portalp ou Record. Devenez partenaire Slidex et gardez la main sur vos chantiers.</p>
+
+        <div class="pp-models">
+          <div class="pp-model-row">
+            <span class="pp-model-badge apporteur">Apporteur d'affaires</span>
+            <span class="pp-model-desc">Vous signalez le besoin, on vous reverse une commission</span>
+          </div>
+          <div class="pp-model-row">
+            <span class="pp-model-badge revendeur">Revendeur</span>
+            <span class="pp-model-desc">Vous achetez au prix partenaire, vous revendez avec votre marge</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DROITE : FORMULAIRE ── -->
+      <div class="pp-form-card">
+        <div class="pp-form-header">
+          <h2>Demande de partenariat</h2>
+          <div class="fh-sub">Réponse sous 24h · Sans engagement</div>
+        </div>
+
+        <div class="pp-form-body">
+          <form id="pp-form" novalidate>
+
+            <div class="pp-form-grid">
+              <div class="pp-form-field">
+                <label for="pp-prenom">Prénom</label>
+                <input type="text" id="pp-prenom" name="prenom" placeholder="Jean" required/>
+              </div>
+              <div class="pp-form-field">
+                <label for="pp-nom">Nom</label>
+                <input type="text" id="pp-nom" name="nom" placeholder="Dupont" required/>
+              </div>
+            </div>
+
+            <div class="pp-form-field">
+              <label for="pp-entreprise">Entreprise</label>
+              <input type="text" id="pp-entreprise" name="entreprise" placeholder="Miroiterie Dupont" required/>
+            </div>
+
+            <div class="pp-form-field">
+              <label for="pp-activite">Activité principale</label>
+              <select id="pp-activite" name="activite" required>
+                <option value="" disabled selected>Sélectionnez...</option>
+                <option value="miroitier">Miroitier</option>
+                <option value="facadier">Façadier</option>
+                <option value="menuisier-alu">Menuisier aluminium</option>
+                <option value="serrurier">Serrurier / Métallier</option>
+                <option value="automaticien">Automaticien</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+
+            <div class="pp-form-grid">
+              <div class="pp-form-field">
+                <label for="pp-telephone">Téléphone</label>
+                <input type="tel" id="pp-telephone" name="telephone" placeholder="06 12 34 56" required/>
+              </div>
+              <div class="pp-form-field">
+                <label for="pp-cp">Code postal</label>
+                <input type="text" id="pp-cp" name="code_postal" placeholder="69001" required maxlength="5"/>
+              </div>
+            </div>
+
+            <div class="pp-form-field">
+              <label for="pp-modele">Modèle souhaité</label>
+              <select id="pp-modele" name="modele">
+                <option value="" disabled selected>Sélectionnez...</option>
+                <option value="apporteur">Apporteur d'affaires (commission)</option>
+                <option value="revendeur">Revendeur partenaire (marge)</option>
+                <option value="les-deux">Les deux selon les chantiers</option>
+                <option value="a-definir">À définir ensemble</option>
+              </select>
+            </div>
+
+            <button type="submit" class="pp-form-submit" id="pp-submit">
+              Déposer ma demande de partenariat →
+            </button>
+
+            <div class="pp-form-footer">
+              Vos données ne sont pas revendues · Réponse sous 24h
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       LE CONSTAT
+       ============================================================ -->
+  <section class="lp-section bg-light">
+    <div class="lp-container">
+      <div class="lp-label">Le constat</div>
+      <h2 class="lp-h2">Ce qui se passe aujourd'hui<br>sur vos chantiers</h2>
+
+      <div style="margin-bottom: 32px;"></div>
+
+      <div class="constat-layout">
+        <div class="constat-card">
+          <span class="cc-icon">😤</span>
+          <h3>Vous sous-traitez à Portalp ou Record</h3>
+          <p>Un autre intervenant entre dans votre chantier. Vous perdez le contrôle du planning, de la qualité perçue et de la relation client.</p>
+        </div>
+
+        <div class="constat-arrow">→</div>
+
+        <div class="constat-card">
+          <span class="cc-icon">💸</span>
+          <h3>Vous perdez la marge</h3>
+          <p>La porte automatique représente 800€ à 5 000€ sur un chantier. Vous orientez votre client vers un concurrent qui récupère tout.</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center; margin-bottom: 24px; color: #cbd5e1; font-size: 22px;">↓</div>
+
+      <div class="constat-solution">
+        <span class="cs-icon">🤝</span>
+        <div>
+          <h3>La solution Slidex</h3>
+          <p>Vous restez l'interlocuteur unique de votre client. Nous fabriquons la porte en 12 jours depuis l'Isère. Vous gardez la marge ou touchez une commission. Simple.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COMMENT ÇA MARCHE
+       ============================================================ -->
+  <section class="lp-section bg-white">
+    <div class="lp-container">
+      <div class="lp-label">Comment ça marche</div>
+      <h2 class="lp-h2">Deux modèles,<br>vous choisissez.</h2>
+      <p class="lp-lead">Selon votre activité et vos préférences, vous pouvez fonctionner en apporteur d'affaires ou en revendeur — voire combiner les deux selon les chantiers.</p>
+
+      <div class="models-grid">
+
+        <!-- Apporteur d'affaires -->
+        <div class="model-card green">
+          <div class="model-tag">Apporteur d'affaires</div>
+          <h3>Vous signalez,<br>on s'occupe de tout.</h3>
+          <p class="mc-desc">Vous nous transmettez le contact d'un client qui a besoin d'une porte automatique. On gère la vente, la fabrication, la pose via notre réseau. Vous touchez une commission à la signature.</p>
+          <ul class="model-features">
+            <li>
+              <div class="mf-check"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2.5"><polyline points="1,5 4,8 9,2"/></svg></div>
+              Zéro stock, zéro risque commercial
+            </li>
+            <li>
+              <div class="mf-check"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2.5"><polyline points="1,5 4,8 9,2"/></svg></div>
+              Commission versée à la commande confirmée
+            </li>
+            <li>
+              <div class="mf-check"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2.5"><polyline points="1,5 4,8 9,2"/></svg></div>
+              Idéal si vous ne voulez pas gérer la partie porte auto
+            </li>
+            <li>
+              <div class="mf-check"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2.5"><polyline points="1,5 4,8 9,2"/></svg></div>
+              Vous restez prescripteur de confiance pour votre client
+            </li>
+          </ul>
+        </div>
+
+        <!-- Revendeur -->
+        <div class="model-card dark-card">
+          <div class="model-tag">Revendeur partenaire</div>
+          <h3>Vous achetez,<br>vous revendez avec votre marge.</h3>
+          <p class="mc-desc">Vous commandez la porte au tarif partenaire Slidex et la revendez à votre client avec la marge que vous souhaitez. Vous restez l'unique interlocuteur commercial et technique.</p>
+          <ul class="model-features">
+            <li>
+              <div class="mf-check"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2.5"><polyline points="1,5 4,8 9,2"/></svg></div>
+              Marge maîtrisée par vous
+            </li>
+            <li>
+              <div class="mf-check"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2.5"><polyline points="1,5 4,8 9,2"/></svg></div>
+              Fabrication en 12 jours (15 avec options), livraison en sus
+            </li>
+            <li>
+              <div class="mf-check"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2.5"><polyline points="1,5 4,8 9,2"/></svg></div>
+              Support technique Slidex inclus
+            </li>
+            <li>
+              <div class="mf-check"><svg viewBox="0 0 10 10" fill="none" stroke="white" stroke-width="2.5"><polyline points="1,5 4,8 9,2"/></svg></div>
+              Compatible kits réno toutes marques (Record, Portalp…)
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       POURQUOI SLIDEX — STATS
+       ============================================================ -->
+  <section class="lp-section bg-dark">
+    <div class="lp-container">
+      <div class="lp-label">Pourquoi Slidex</div>
+      <h2 class="lp-h2 light">La différence qui compte<br>sur le terrain</h2>
+      <p class="lp-lead light" style="margin-bottom: 40px;">Un fabricant français qui travaille pour ses partenaires, pas contre eux.</p>
+
+      <div class="stats-grid">
+        <div class="stat-cell">
+          <div class="stat-value">12<em>j</em></div>
+          <div class="stat-label">Délai de fabrication standard<br>15j avec laquage / vitrage</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value"><em>100%</em></div>
+          <div class="stat-label">Production française<br>Seyssins, pied du Vercors</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value">10<em>ans</em></div>
+          <div class="stat-label">Garantie stock SAV<br>pièces disponibles</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-value"><em>∞</em></div>
+          <div class="stat-label">Compatibilité kits réno<br>Record, Portalp, Dormakaba…</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       LE PROCESS — 4 ÉTAPES
+       ============================================================ -->
+  <section class="lp-section bg-white">
+    <div class="lp-container">
+      <div class="lp-label">Le process</div>
+      <h2 class="lp-h2">De la demande à la pose<br>en 4 étapes</h2>
+      <p class="lp-lead">Que vous soyez apporteur d'affaires ou revendeur, voici comment se déroule un chantier Slidex.</p>
+
+      <div class="process-track">
+        <div class="process-step">
+          <div class="process-num">1</div>
+          <h3>Vous nous transmettez le besoin</h3>
+          <p>Dimensions, type de passage, options souhaitées — on vous répond sous 2h.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">2</div>
+          <h3>Devis sous 24h</h3>
+          <p>Prix partenaire + délai confirmé. Vous validez ou transmettez à votre client.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">3</div>
+          <h3>Fabrication en 12 jours</h3>
+          <p>Production dans notre atelier à Seyssins (38). Livraison sur chantier.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-num">4</div>
+          <h3>Pose &amp; SAV</h3>
+          <p>Via votre équipe ou via notre réseau installateurs selon votre choix.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FAQ
+       ============================================================ -->
+  <section class="lp-section bg-light">
+    <div class="lp-container">
+      <div class="lp-label">Vos questions</div>
+      <h2 class="lp-h2">Ce que les partenaires<br>nous demandent souvent</h2>
+      <div style="margin-bottom: 40px;"></div>
+
+      <div class="faq-grid">
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Faut-il une exclusivité de zone ?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">Non, il n'y a aucune exclusivité imposée ni aucun engagement de chiffre d'affaires. Vous travaillez avec nous quand vous avez un besoin, sans contrainte.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Quelle est la commission apporteur d'affaires ?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">La commission est définie au cas par cas selon le projet, et versée dès la commande confirmée. On vous précise le montant exact dès votre demande de partenariat.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Vous livrez partout en France ?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">Oui, nous livrons sur toute la France métropolitaine. Le délai de 12 jours correspond à la fabrication à partir de la validation de commande. La livraison s'y ajoute selon votre région.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Proposez-vous une formation technique ?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">Oui. Pour les revendeurs qui souhaitent assurer la pose, nous proposons une formation à Seyssins (38) ou en visio. Nos documentations techniques sont aussi disponibles en ligne.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Et pour la rénovation de portes existantes ?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">Nous fabriquons des kits de rénovation compatibles Record, Portalp, Dormakaba, GEZE… Idéal pour vos chantiers de remplacement sans modification de la menuiserie existante.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Quel délai pour être opérationnel en tant que partenaire ?
+            <span class="faq-icon">+</span>
+          </div>
+          <div class="faq-answer">En général moins d'une semaine. Après votre demande, on vous rappelle sous 24h pour un premier échange, puis on formalise l'accord et vous accédez aux tarifs partenaires.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA FINAL
+       ============================================================ -->
+  <section class="cta-final">
+    <h2>Prêt à arrêter de sous-traiter<br>vos portes automatiques&nbsp;?</h2>
+    <p class="cta-sub">Rejoignez les partenaires Slidex en France. Premier échange sans engagement.</p>
+    <a href="#" class="cta-btn" onclick="window.scrollTo({top:0,behavior:'smooth'}); setTimeout(function(){document.getElementById('pp-prenom').focus();},600); return false;">
+      Déposer ma demande de partenariat →
+    </a>
+    <div class="cta-note">Réponse sous 24h · Sans engagement · Données confidentielles</div>
+  </section>
+
+  <div id="footer-placeholder"></div>
+
+</div>
+
+<script>
+// ── FAQ accordion
+document.querySelectorAll('.faq-item').forEach(function(item) {
+  item.querySelector('.faq-question').addEventListener('click', function() {
+    var isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// ── Formulaire
+document.getElementById('pp-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  var prenom     = document.getElementById('pp-prenom').value.trim();
+  var nom        = document.getElementById('pp-nom').value.trim();
+  var entreprise = document.getElementById('pp-entreprise').value.trim();
+  var activite   = document.getElementById('pp-activite').value;
+  var telephone  = document.getElementById('pp-telephone').value.trim();
+  var cp         = document.getElementById('pp-cp').value.trim();
+  var modele     = document.getElementById('pp-modele').value;
+
+  if (!prenom || !nom || !entreprise || !activite || !telephone || !cp) {
+    alert('Merci de remplir tous les champs obligatoires.');
+    return;
+  }
+
+  var btn = document.getElementById('pp-submit');
+  btn.disabled = true;
+  btn.textContent = 'Envoi en cours…';
+
+  var SUPABASE_URL = 'https://whdlbdsmmlnqpccnrkfq.supabase.co';
+  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndoZGxiZHNtbWxucXBjY25ya2ZxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzkzNjc2ODcsImV4cCI6MjA1NDk0MzY4N30.u_0mFVwnLjxxMUZ9YKaYWFkYc1VZTfOAqjyRmgcM3VM';
+
+  fetch(SUPABASE_URL + '/rest/v1/partenaires_demandes', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify({
+      prenom: prenom,
+      nom: nom,
+      entreprise: entreprise,
+      activite: activite,
+      telephone: telephone,
+      code_postal: cp,
+      modele: modele || null,
+      source: 'programme-partenaires'
+    })
+  })
+  .then(function() {
+    window.location.href = 'merci.html';
+  })
+  .catch(function() {
+    window.location.href = 'merci.html';
+  });
+});
+</script>
+
+</body>
+</html>
