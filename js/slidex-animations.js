@@ -86,7 +86,80 @@
 	}
 })();
 
-	// Simple slider controller for product detail sliders
+// Widget production — données pseudo-aléatoires, seed toutes les 3 jours
+(function(){
+  function hash32(n) {
+    n = (Math.imul(n ^ (n >>> 16), 0x45d9f3b) | 0);
+    n = (Math.imul(n ^ (n >>> 16), 0x45d9f3b) | 0);
+    return (n ^ (n >>> 16)) >>> 0;
+  }
+
+  function injectProdWidget() {
+    if (document.querySelector('.prod-widget')) return;
+
+    // Seed qui change tous les 3 jours
+    var seed = Math.floor(Date.now() / (3 * 24 * 60 * 60 * 1000));
+    var h = hash32(seed);
+
+    // Portes en fabrication : 8-14
+    var doors = 8 + (h % 7);
+
+    // Délais selon charge
+    var delayLaque, delayRAL, valClass;
+    if (doors <= 10) {
+      delayLaque = 12; delayRAL = 17; valClass = 'ok';
+    } else if (doors <= 12) {
+      delayLaque = 14; delayRAL = 19; valClass = 'warn';
+    } else {
+      delayLaque = 16; delayRAL = 21; valClass = 'hot';
+    }
+
+    // Prochaine expédition : tous les 2 jours ouvrés depuis ref
+    var ref = new Date(2026, 0, 5); // lun. 5 jan 2026
+    var today = new Date(); today.setHours(0,0,0,0); ref.setHours(0,0,0,0);
+    var diff = Math.round((today - ref) / 86400000);
+    var next = new Date(ref.getTime() + (Math.floor(diff / 2) + 1) * 2 * 86400000);
+    while (next.getDay() === 0 || next.getDay() === 6) next.setDate(next.getDate() + 1);
+    var jours  = ['dim.','lun.','mar.','mer.','jeu.','ven.','sam.'];
+    var mois   = ['jan','fév','mar','avr','mai','juin','juil','août','sep','oct','nov','déc'];
+    var shipLabel = jours[next.getDay()] + ' ' + next.getDate() + ' ' + mois[next.getMonth()];
+
+    // Construction du widget
+    var widget = document.createElement('div');
+    widget.className = 'prod-widget';
+    widget.innerHTML =
+      '<div class="prod-widget-inner">' +
+        '<div class="prod-widget-item">' +
+          '<span class="prod-dot"></span>' +
+          '<span class="prod-item-label">En fabrication </span>' +
+          '<span class="prod-item-val">' + doors + ' porte' + (doors > 1 ? 's' : '') + '</span>' +
+        '</div>' +
+        '<div class="prod-widget-item">' +
+          '<span class="prod-item-label">Prochaine exp. </span>' +
+          '<span class="prod-item-val">' + shipLabel + '</span>' +
+        '</div>' +
+        '<div class="prod-widget-item">' +
+          '<span class="prod-item-label">Laqués stock </span>' +
+          '<span class="prod-item-val ' + valClass + '">' + delayLaque + ' j fab</span>' +
+        '</div>' +
+        '<div class="prod-widget-item">' +
+          '<span class="prod-item-label">RAL sur devis </span>' +
+          '<span class="prod-item-val ' + valClass + '">' + delayRAL + ' j fab</span>' +
+        '</div>' +
+      '</div>';
+
+    document.body.appendChild(widget);
+    document.body.classList.add('has-prod-widget');
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectProdWidget);
+  } else {
+    injectProdWidget();
+  }
+})();
+
+// Simple slider controller for product detail sliders
 	(function(){
 		function initSlider(root){
 			if (!root) return;

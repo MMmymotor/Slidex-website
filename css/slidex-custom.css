@@ -549,6 +549,71 @@
 
 /* Offset page content when banner is present */
 body.has-top-banner { padding-top: 25px !important; }
+body.has-top-banner.has-prod-widget { padding-top: 65px !important; }
+
+/* ── WIDGET PRODUCTION ── */
+.prod-widget {
+  position: fixed;
+  top: 25px;
+  left: 0;
+  right: 0;
+  z-index: 1090;
+  height: 40px;
+  background: #0d1117;
+  border-bottom: 1px solid #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prod-widget-inner {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  font-size: 12px;
+  font-family: 'Onest', system-ui, sans-serif;
+}
+
+.prod-widget-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 20px;
+  border-right: 1px solid #1e293b;
+}
+
+.prod-widget-item:last-child { border-right: none; }
+
+.prod-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  flex-shrink: 0;
+  animation: prodPulse 2s ease-in-out infinite;
+}
+
+@keyframes prodPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .4; }
+}
+
+.prod-item-label {
+  color: #64748b;
+  white-space: nowrap;
+}
+
+.prod-item-val {
+  color: #f1f5f9;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.prod-item-val.ok   { color: #10b981; }
+.prod-item-val.warn { color: #f59e0b; }
+.prod-item-val.hot  { color: #ef4444; }
+
+@media (max-width: 767px) { .prod-widget { display: none; } }
 
 /* When banner is present, ensure header content starts right below */
 .header-wrapper.w-nav .top-banner + .container-default {
