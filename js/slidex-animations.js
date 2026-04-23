@@ -139,12 +139,13 @@
           '<span class="prod-item-val">' + shipLabel + '</span>' +
         '</div>' +
         '<div class="prod-widget-item">' +
-          '<span class="prod-item-label">Laqués stock </span>' +
-          '<span class="prod-item-val ' + valClass + '">' + delayLaque + ' j fab</span>' +
+          '<span class="prod-item-label">Coloris stock — prête en </span>' +
+          '<span class="prod-item-val ' + valClass + '">' + delayLaque + ' j</span>' +
         '</div>' +
         '<div class="prod-widget-item">' +
-          '<span class="prod-item-label">RAL sur devis </span>' +
-          '<span class="prod-item-val ' + valClass + '">' + delayRAL + ' j fab</span>' +
+          '<span class="prod-item-label">RAL sur devis — prête en </span>' +
+          '<span class="prod-item-val ' + valClass + '">' + delayRAL + ' j</span>' +
+          '<span class="prod-item-label"> *hors livraison</span>' +
         '</div>' +
       '</div>';
 
