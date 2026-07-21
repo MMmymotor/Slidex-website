@@ -97,6 +97,26 @@
   function injectProdWidget() {
     if (document.querySelector('.prod-widget')) return;
 
+    // Fermeture estivale : du 8 au 24 août 2026 inclus, reprise le 25 août
+    var closureStart = new Date(2026, 7, 8);
+    var closureEnd   = new Date(2026, 7, 25);
+    var now = new Date();
+    if (now >= closureStart && now < closureEnd) {
+      var closureWidget = document.createElement('div');
+      closureWidget.className = 'prod-widget prod-widget-closure';
+      closureWidget.innerHTML =
+        '<div class="prod-widget-inner">' +
+          '<div class="prod-widget-item">' +
+            '<span class="prod-dot prod-dot-closure"></span>' +
+            '<span class="prod-item-label">Fermeture estivale </span>' +
+            '<span class="prod-item-val">Atelier de fabrication fermé du 8 au 24 août — reprise le 25 août</span>' +
+          '</div>' +
+        '</div>';
+      document.body.appendChild(closureWidget);
+      document.body.classList.add('has-prod-widget', 'has-prod-widget-closure');
+      return;
+    }
+
     // Seed qui change tous les 3 jours
     var seed = Math.floor(Date.now() / (3 * 24 * 60 * 60 * 1000));
     var h = hash32(seed);

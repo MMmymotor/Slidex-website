@@ -615,6 +615,34 @@ body.has-top-banner.has-prod-widget { padding-top: 65px !important; }
 
 @media (max-width: 767px) { .prod-widget { display: none; } }
 
+/* ── WIDGET PRODUCTION — fermeture estivale ── */
+.prod-dot.prod-dot-closure { background: #f59e0b; }
+
+.prod-widget.prod-widget-closure {
+  height: auto;
+  min-height: 40px;
+  padding: 8px 16px;
+}
+
+.prod-widget.prod-widget-closure .prod-widget-inner {
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  gap: 4px;
+  row-gap: 2px;
+}
+
+.prod-widget.prod-widget-closure .prod-widget-item {
+  border-right: none;
+  padding: 0;
+  white-space: normal;
+}
+
+@media (max-width: 767px) {
+  .prod-widget.prod-widget-closure { display: flex; }
+  body.has-prod-widget-closure.has-top-banner { padding-top: 90px !important; }
+}
+
 /* When banner is present, ensure header content starts right below */
 .header-wrapper.w-nav .top-banner + .container-default {
   margin-top: 0 !important;
