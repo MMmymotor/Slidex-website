@@ -157,7 +157,7 @@
   --components--cards--border-radius--br-regular: var(--globals--border-radius--br-default);
   --components--cards--border-color--br-color-secondary: var(--globals--border-color--border-3);
   --components--cards--border-radius--br-small: var(--globals--border-radius--br-small);
-  --core--colors--primary--100: #0964fc;
+  --core--colors--primary--100: #2563eb;
   --components--badges--paddings--pd-regular: var(--globals--paddings--pd-extra-small);
   --components--badges--gaps--pd-regular: var(--globals--gaps--gap-small);
   --components--badges--border-radius--br-small: var(--core--border-radius--br-size-3);
