@@ -485,6 +485,12 @@
   }
 }
 
+/* Hero video: bias the cover-crop toward the top on desktop so the door
+   frame isn't sliced by a dead-center crop (mirrors the mobile/tablet fix) */
+.fit-cover._w-h-100.hero-v3---image {
+  object-position: 50% 20% !important;
+}
+
 /*   BACK TO BLOG LINK STYLE */
 /* ========================= */
 
