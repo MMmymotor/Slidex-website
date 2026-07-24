@@ -1310,31 +1310,34 @@ select.input-field {
 }
 
 .testimonial-slider .slider-slide {
-  padding: 8px 64px 56px !important;
+  padding: 8px 64px 48px !important;
   box-sizing: border-box !important;
   flex-direction: column !important;
+  align-items: stretch !important;
 }
 
 .testimonial-quote {
   text-align: center !important;
+  width: 100% !important;
   max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .testimonial-quote-mark {
   font-family: Georgia, 'Times New Roman', serif !important;
-  font-size: 64px !important;
+  font-size: 44px !important;
   line-height: 1 !important;
   color: #2563eb !important;
   opacity: 0.18 !important;
-  margin-bottom: 4px !important;
+  margin-bottom: 0 !important;
 }
 
 .testimonial-quote-text {
-  font-size: 22px !important;
+  font-size: 20px !important;
   line-height: 1.5 !important;
   font-style: italic !important;
   color: #0f172a !important;
-  margin-bottom: 28px !important;
+  margin-bottom: 20px !important;
 }
 
 .testimonial-author {
