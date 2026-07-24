@@ -491,6 +491,12 @@
   object-position: 50% 20% !important;
 }
 
+/* Hero text panel: now a single content block (contact block removed),
+   so center it in the tall card instead of pinning it to the top */
+.card-v3-hero---content {
+  justify-content: center !important;
+}
+
 /*   BACK TO BLOG LINK STYLE */
 /* ========================= */
 
