@@ -1268,3 +1268,88 @@ select.input-field {
   margin-left: auto !important;
   margin-right: auto !important;
 }
+
+/* ========================= */
+/*    CARROUSEL TÉMOIGNAGES  */
+/* ========================= */
+
+.testimonial-video-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: #64748b !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+
+.testimonial-video-link:hover {
+  color: #2563eb !important;
+}
+
+.testimonial-video-link-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 24px !important;
+  height: 24px !important;
+  border-radius: 50% !important;
+  background: #2563eb !important;
+  color: #fff !important;
+  font-size: 10px !important;
+  flex-shrink: 0 !important;
+}
+
+.testimonial-slider {
+  position: relative !important;
+  overflow: hidden !important;
+  max-width: 720px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.testimonial-slider .slider-slide {
+  padding: 8px 64px 56px !important;
+  box-sizing: border-box !important;
+  flex-direction: column !important;
+}
+
+.testimonial-quote {
+  text-align: center !important;
+  max-width: 100% !important;
+}
+
+.testimonial-quote-mark {
+  font-family: Georgia, 'Times New Roman', serif !important;
+  font-size: 64px !important;
+  line-height: 1 !important;
+  color: #2563eb !important;
+  opacity: 0.18 !important;
+  margin-bottom: 4px !important;
+}
+
+.testimonial-quote-text {
+  font-size: 22px !important;
+  line-height: 1.5 !important;
+  font-style: italic !important;
+  color: #0f172a !important;
+  margin-bottom: 28px !important;
+}
+
+.testimonial-author {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  text-align: left !important;
+}
+
+@media (max-width: 767px) {
+  .testimonial-slider .slider-slide {
+    padding: 8px 40px 56px !important;
+  }
+  .testimonial-quote-text {
+    font-size: 18px !important;
+  }
+}

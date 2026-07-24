@@ -243,7 +243,7 @@
 		}
 
 		function initAllSliders(){
-			document.querySelectorAll('.product-slider').forEach(initSlider);
+			document.querySelectorAll('.product-slider, .testimonial-slider').forEach(initSlider);
 		}
 		if (document.readyState === 'loading') {
 			document.addEventListener('DOMContentLoaded', initAllSliders);
