@@ -88,14 +88,43 @@
 
 // Widget production — données pseudo-aléatoires, seed toutes les 3 jours
 (function(){
+  var DISMISS_KEY = 'slx_prod_widget_dismissed';
+
   function hash32(n) {
     n = (Math.imul(n ^ (n >>> 16), 0x45d9f3b) | 0);
     n = (Math.imul(n ^ (n >>> 16), 0x45d9f3b) | 0);
     return (n ^ (n >>> 16)) >>> 0;
   }
 
+  function closeIconHtml() {
+    return '<button type="button" class="prod-widget-close" aria-label="Fermer">' +
+      '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+      '<path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>' +
+      '</svg></button>';
+  }
+
+  function bindDismiss(widget, extraClass) {
+    var btn = widget.querySelector('.prod-widget-close');
+    if (!btn) return;
+    btn.addEventListener('click', function(){
+      widget.remove();
+      document.body.classList.remove('has-prod-widget');
+      if (extraClass) document.body.classList.remove(extraClass);
+      document.body.style.paddingBottom = '';
+      try { localStorage.setItem(DISMISS_KEY, '1'); } catch(e) {}
+    });
+  }
+
+  function setBodyBottomOffset(widget) {
+    // Measure after paint so wrapped/multi-line content is accounted for
+    requestAnimationFrame(function(){
+      document.body.style.paddingBottom = widget.offsetHeight + 'px';
+    });
+  }
+
   function injectProdWidget() {
     if (document.querySelector('.prod-widget')) return;
+    try { if (localStorage.getItem(DISMISS_KEY) === '1') return; } catch(e) {}
 
     // Fermeture estivale : du 8 au 24 août 2026 inclus, reprise le 25 août
     var closureStart = new Date(2026, 7, 8);
@@ -111,9 +140,12 @@
             '<span class="prod-item-label">Fermeture estivale </span>' +
             '<span class="prod-item-val">Atelier de fabrication fermé du 8 au 24 août — reprise le 25 août</span>' +
           '</div>' +
-        '</div>';
+        '</div>' +
+        closeIconHtml();
       document.body.appendChild(closureWidget);
       document.body.classList.add('has-prod-widget', 'has-prod-widget-closure');
+      setBodyBottomOffset(closureWidget);
+      bindDismiss(closureWidget, 'has-prod-widget-closure');
       return;
     }
 
@@ -142,7 +174,7 @@
     while (next.getDay() === 0 || next.getDay() === 6) next.setDate(next.getDate() + 1);
     var jours  = ['dim.','lun.','mar.','mer.','jeu.','ven.','sam.'];
     var mois   = ['jan','fév','mar','avr','mai','juin','juil','août','sep','oct','nov','déc'];
-    var shipLabel = jours[next.getDay()] + ' ' + next.getDate() + ' ' + mois[next.getMonth()];
+    var shipLabel = jours[next.getDay()] + ' ' + next.getDate() + ' ' + mois[next.getMonth()];
 
     // Construction du widget
     var widget = document.createElement('div');
@@ -151,26 +183,29 @@
       '<div class="prod-widget-inner">' +
         '<div class="prod-widget-item">' +
           '<span class="prod-dot"></span>' +
-          '<span class="prod-item-label">En fabrication </span>' +
-          '<span class="prod-item-val">' + doors + ' porte' + (doors > 1 ? 's' : '') + '</span>' +
+          '<span class="prod-item-label">En fabrication </span>' +
+          '<span class="prod-item-val">' + doors + ' porte' + (doors > 1 ? 's' : '') + '</span>' +
         '</div>' +
         '<div class="prod-widget-item">' +
-          '<span class="prod-item-label">Prochaine exp. </span>' +
+          '<span class="prod-item-label">Prochaine exp. </span>' +
           '<span class="prod-item-val">' + shipLabel + '</span>' +
         '</div>' +
         '<div class="prod-widget-item">' +
           '<span class="prod-item-label">Coloris stock — prête en </span>' +
-          '<span class="prod-item-val ' + valClass + '">' + delayLaque + ' j</span>' +
+          '<span class="prod-item-val ' + valClass + '">' + delayLaque + ' j</span>' +
         '</div>' +
         '<div class="prod-widget-item">' +
           '<span class="prod-item-label">RAL sur devis — prête en </span>' +
-          '<span class="prod-item-val ' + valClass + '">' + delayRAL + ' j</span>' +
+          '<span class="prod-item-val ' + valClass + '">' + delayRAL + ' j</span>' +
           '<span class="prod-item-label"> *hors livraison</span>' +
         '</div>' +
-      '</div>';
+      '</div>' +
+      closeIconHtml();
 
     document.body.appendChild(widget);
     document.body.classList.add('has-prod-widget');
+    setBodyBottomOffset(widget);
+    bindDismiss(widget, null);
   }
 
   if (document.readyState === 'loading') {
