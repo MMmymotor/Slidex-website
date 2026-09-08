@@ -581,6 +581,36 @@
       line-height: 1.6 !important;
       color: #64748b !important;
     }
+
+    /* ── Section configurateur en ligne ── */
+    .cfg__inner { max-width: 900px; }
+    .cfg__kicker {
+      margin: 0 0 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+    .cfg__title {
+      margin: 0;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      line-height: 1.03;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #0f172a;
+    }
+    .cfg__lead {
+      margin: 26px 0 0;
+      max-width: 42ch;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: #475569;
+    }
+    .cfg__cta { margin-top: 34px; }
+    @media (max-width: 767px) {
+      .cfg__title { font-size: clamp(2.2rem, 10vw, 3rem); }
+    }
   </style>
 
   <!-- Google Maps API -->
@@ -889,6 +919,28 @@ Disponible décembre 2026
 
 <div class="mg-top-medium mg-top-32px---mbl">
 <div class="divider"></div>
+</div>
+</div>
+</section>
+<section class="section cfg">
+<div class="w-layout-blockcontainer container-default w-container">
+<div class="cfg__inner">
+<p class="cfg__kicker">Votre porte, en quelques clics</p>
+<h2 class="cfg__title">À vos mesures.<br/>En quelques minutes.</h2>
+<p class="cfg__lead">Configurez votre porte, visualisez votre projet et obtenez votre prix instantanément.</p>
+<div class="cfg__cta">
+<a class="primary-button w-inline-block" href="connexion-inscription.html">
+<div>Configurer ma porte</div>
+<div class="item-icon-right icon-right-circle">
+<div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
+    <path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
+</div>
+</a>
+</div>
 </div>
 </div>
 </section>
