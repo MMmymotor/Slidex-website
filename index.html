@@ -218,69 +218,117 @@
     /* ── Bloc délai « 12 jours » (carte navy) ── */
     .delai { background: #ffffff; }
     .delai__card {
+      position: relative;
+      overflow: hidden;
       max-width: 960px;
       margin: 0 auto;
-      padding: clamp(40px, 6vw, 72px) clamp(24px, 5vw, 64px);
+      padding: clamp(44px, 6vw, 76px) clamp(24px, 5vw, 72px);
       border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
       background: #0f1b3d;
       color: #ffffff;
       text-align: center;
+      box-shadow: 0 44px 90px -48px rgba(15, 27, 61, 0.55);
     }
+    .delai__card::before {
+      content: "";
+      position: absolute;
+      top: -38%;
+      left: 50%;
+      width: 700px;
+      max-width: 120%;
+      height: 440px;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.30) 0%, rgba(37, 99, 235, 0) 70%);
+      pointer-events: none;
+    }
+    .delai__card > * { position: relative; }
     .delai__eyebrow {
-      margin: 0 0 24px;
+      margin: 0 0 22px;
       font-size: 0.8rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255, 255, 255, 0.62);
     }
     .delai__big {
       margin: 0;
-      font-size: clamp(3rem, 8vw, 5rem);
+      font-size: clamp(3.25rem, 9vw, 5.5rem);
       font-weight: 800;
       letter-spacing: -0.04em;
       line-height: 1;
     }
+    .delai__big .delai__dot { color: #3b82f6; }
     .delai__sub {
-      margin: 12px 0 0;
+      margin: 14px 0 0;
       font-size: clamp(1.4rem, 3.5vw, 2rem);
       font-weight: 500;
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba(255, 255, 255, 0.72);
     }
     .delai__body {
-      margin: 28px auto 0;
+      margin: 26px auto 0;
       max-width: 46ch;
       font-size: 0.95rem;
       line-height: 1.7;
-      color: rgba(255, 255, 255, 0.68);
+      color: rgba(255, 255, 255, 0.66);
     }
     .delai__body p { margin: 0; }
-    .delai__cta { margin-top: 32px; display: flex; justify-content: center; }
+    .delai__cta { margin-top: 34px; display: flex; justify-content: center; }
     .delai__btn.primary-button {
       background: #ffffff !important;
       border-color: #ffffff !important;
       color: #2563eb !important;
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28) !important;
+      box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.6) !important;
     }
-    .delai__timeline { margin-top: 40px; }
-    .delai__steps {
-      margin: 0;
-      font-size: 0.8rem;
+
+    .delai__timeline { margin-top: 44px; }
+    .delai__steps,
+    .delai__days {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
       font-weight: 600;
       color: rgba(255, 255, 255, 0.7);
     }
-    .delai__track {
+    .delai__line {
+      position: relative;
       display: flex;
       justify-content: space-between;
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: rgba(255, 255, 255, 0.85);
+      align-items: center;
+      margin: 14px 2px 10px;
     }
+    .delai__line::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      height: 2px;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.16);
+    }
+    .delai__line i {
+      position: relative;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #ffffff;
+    }
+    .delai__line i:first-child,
+    .delai__line i:last-child {
+      width: 12px;
+      height: 12px;
+      background: #3b82f6;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.22);
+    }
+    .delai__days {
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
     @media (max-width: 767px) {
       .delai__card { border-radius: 20px; }
+      .delai__steps { font-size: 0.68rem; }
     }
   </style>
 
@@ -380,7 +428,7 @@
 <div class="w-layout-blockcontainer container-default w-container">
 <div class="delai__card">
 <p class="delai__eyebrow">Délai express</p>
-<p class="delai__big">12 jours.</p>
+<p class="delai__big">12 jours<span class="delai__dot">.</span></p>
 <p class="delai__sub">Pas 6 semaines</p>
 <div class="delai__body">
 <p>Parce qu'un chantier n'attend pas.<br/>Votre porte est fabriquée et expédiée en 12 jours ouvrés.<sup>*</sup></p>
@@ -391,8 +439,9 @@
 </a>
 </div>
 <div class="delai__timeline">
-<p class="delai__steps">Commande &nbsp;·&nbsp; Fabrication &nbsp;·&nbsp; Contrôle &nbsp;·&nbsp; Expédition</p>
-<div class="delai__track"><span>J+0</span><span>J+12</span></div>
+<div class="delai__steps"><span>Commande</span><span>Fabrication</span><span>Contrôle</span><span>Expédition</span></div>
+<div class="delai__line"><i></i><i></i><i></i><i></i></div>
+<div class="delai__days"><span>J+0</span><span>J+12</span></div>
 </div>
 </div>
 </div>
