@@ -527,10 +527,17 @@
       line-height: 1.7;
       color: #64748b;
     }
-    .gamme .slidex-grid-3 { margin-top: 44px; }
-    .gamme .slidex-grid-3 .card.v6 { width: calc(50% - 1rem) !important; }
+    .gamme .hl { margin-top: 44px; }
+    .hl--cards .hl__track { padding-inline: 4px; }
+    .hl--cards .hl__slide {
+      flex: 0 0 clamp(280px, 44%, 500px);
+      aspect-ratio: auto;
+      overflow: visible;
+      background: transparent;
+      border-radius: 0;
+    }
     @media (max-width: 767px) {
-      .gamme .slidex-grid-3 .card.v6 { width: 100% !important; }
+      .hl--cards .hl__slide { flex-basis: 86%; aspect-ratio: auto; }
     }
     .gamme .card.v6 {
       border: 1px solid #e8edf5 !important;
@@ -743,7 +750,10 @@
 <h2 class="gamme__title">Nos portes piétonnes</h2>
 <p class="gamme__lead">Portes automatiques piétonnes SlideX pour commerces, ERP et espaces professionnels : installation rapide, fonctionnement silencieux, compatibles PMR. Un vantail, deux vantaux ou télescopique, plus les kits de rénovation toutes marques.</p>
 </div>
-<div class="slidex-grid-3">            <div class="card v6">
+<div class="hl hl--cards">
+<div class="hl__viewport">
+<div class="hl__track">
+<div class="card v6 hl__slide">
 <div>
 <div class="overflow-hidden title-wrap">
 <div class="subtitle" data-w-id="35e4a64a-ed39-f8f6-3a23-7f3c3f143064">Porte automatique 1 vantail</div>
@@ -770,7 +780,7 @@
 </div>
 </div>
 </div>
-<div class="card v6">
+<div class="card v6 hl__slide">
 <div>
 <div>
 <div class="overflow-hidden title-wrap">
@@ -802,7 +812,7 @@
 </div>
 </div>
 </div>
-<div class="card v6" style="position: relative;">
+<div class="card v6 hl__slide" style="position: relative;">
 <div style="position: absolute; top: 16px; right: 16px; z-index: 10; background: #9a3412; color: white; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
 Disponible décembre 2026
 </div>
@@ -833,7 +843,7 @@ Disponible décembre 2026
 </div>
 </div>
 </div>
-<div class="card v6">
+<div class="card v6 hl__slide">
       <div>
         <div class="overflow-hidden title-wrap">
           <div class="subtitle" data-w-id="35e4a64a-ed39-f8f6-3a23-7f3c3f143064">Accessoires & rénovation</div>
@@ -859,7 +869,22 @@ Disponible décembre 2026
           </a>
         </div>
       </div>
-    </div>
+    
+</div>
+</div>
+<div class="hl__controls">
+<button class="hl__playpause" type="button" data-state="playing" aria-label="Pause">
+<svg class="hl__ic-pause" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" width="3" height="12" rx="1"/><rect x="7.5" width="3" height="12" rx="1"/></svg>
+<svg class="hl__ic-play" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>
+</button>
+<div class="hl__progress">
+<button class="hl__seg" type="button" aria-label="Aller au produit 1"></button>
+<button class="hl__seg" type="button" aria-label="Aller au produit 2"></button>
+<button class="hl__seg" type="button" aria-label="Aller au produit 3"></button>
+<button class="hl__seg" type="button" aria-label="Aller au produit 4"></button>
+</div>
+</div>
+</div>
 </div>
 
 <div class="mg-top-medium mg-top-32px---mbl">
@@ -2260,10 +2285,8 @@ window.gm_authFailure = function() {
 })();
 </script>
 <script>
-/* Slider « Points forts » — autoplay + pause + segments */
-(function () {
-  var root = document.querySelector('.hl');
-  if (!root) return;
+/* Slider façon Apple — autoplay + pause + segments (instances multiples) */
+Array.prototype.forEach.call(document.querySelectorAll('.hl'), function (root) {
   var viewport = root.querySelector('.hl__viewport');
   var slides = Array.prototype.slice.call(root.querySelectorAll('.hl__slide'));
   var segs = Array.prototype.slice.call(root.querySelectorAll('.hl__seg'));
@@ -2339,7 +2362,7 @@ window.gm_authFailure = function() {
 
   render();
   if (reduce) pause(); else play();
-})();
+});
 </script>
 </body>
 </html>
