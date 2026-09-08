@@ -1,4 +1,15 @@
 /* ========================= */
+/*    TYPOGRAPHIE SITEWIDE    */
+/* ========================= */
+/* Passage à Helvetica Neue : on réécrit les variables de police du thème
+   Webflow. --core--font-family--headlines pointe déjà sur primary-font,
+   donc titres + corps suivent. (Chargement Google Fonts Onest retiré des pages.) */
+:root {
+  --core--font-family--primary-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --core--font-family--secondary-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* ========================= */
 /*    GRILLE PRODUITS 3 COL  */
 /* ========================= */
 
@@ -607,7 +618,7 @@ body.has-top-banner { padding-top: 25px !important; }
   align-items: center;
   gap: 0;
   font-size: 12px;
-  font-family: 'Onest', system-ui, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .prod-widget-item {
