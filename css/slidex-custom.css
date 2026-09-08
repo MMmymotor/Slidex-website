@@ -594,13 +594,25 @@
 }
 
 /* ========================= */
-/*    HOVER BOUTONS           */
+/*    BOUTONS                 */
 /* ========================= */
-/* Pas d'effet de scale au survol : juste une légère baisse d'opacité. */
+/* Largeur : le bouton épouse son texte au lieu de remplir la colonne. */
 .primary-button,
 .secondary-button {
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 100%;
   transition: opacity 0.15s ease !important;
 }
+/* Boutons de formulaire : on garde le comportement pleine largeur d'origine. */
+.primary-button.form-button-v1,
+.primary-button.form-button-v2,
+.primary-button.form-primary-button,
+.primary-button.full-width,
+.secondary-button.full-width {
+  width: 100%;
+}
+/* Pas d'effet de scale au survol : juste une légère baisse d'opacité. */
 .primary-button:hover,
 .secondary-button:hover {
   transform: none !important;

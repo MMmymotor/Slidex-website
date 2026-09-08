@@ -214,6 +214,74 @@
     @media (max-width: 767px) {
       .manifesto__title { font-size: clamp(2.1rem, 9vw, 2.75rem); }
     }
+
+    /* ── Bloc délai « 12 jours » (carte navy) ── */
+    .delai { background: #ffffff; }
+    .delai__card {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: clamp(40px, 6vw, 72px) clamp(24px, 5vw, 64px);
+      border-radius: 28px;
+      background: #0f1b3d;
+      color: #ffffff;
+      text-align: center;
+    }
+    .delai__eyebrow {
+      margin: 0 0 24px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .delai__big {
+      margin: 0;
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .delai__sub {
+      margin: 12px 0 0;
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .delai__body {
+      margin: 28px auto 0;
+      max-width: 46ch;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.68);
+    }
+    .delai__body p { margin: 0; }
+    .delai__cta { margin-top: 32px; display: flex; justify-content: center; }
+    .delai__btn.primary-button {
+      background: #ffffff !important;
+      border-color: #ffffff !important;
+      color: #2563eb !important;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28) !important;
+    }
+    .delai__timeline { margin-top: 40px; }
+    .delai__steps {
+      margin: 0;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .delai__track {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    @media (max-width: 767px) {
+      .delai__card { border-radius: 20px; }
+    }
   </style>
 
   <!-- Google Maps API -->
@@ -304,6 +372,27 @@
 </div>
 </div>
 </a>
+</div>
+</div>
+</div>
+</section>
+<section class="section delai">
+<div class="w-layout-blockcontainer container-default w-container">
+<div class="delai__card">
+<p class="delai__eyebrow">Délai express</p>
+<p class="delai__big">12 jours.</p>
+<p class="delai__sub">Pas 6 semaines</p>
+<div class="delai__body">
+<p>Parce qu'un chantier n'attend pas.<br/>Votre porte est fabriquée et expédiée en 12 jours ouvrés.<sup>*</sup></p>
+</div>
+<div class="delai__cta">
+<a class="primary-button w-inline-block delai__btn" href="partenaires-fabricant.html">
+<div>Découvrir notre fabrication</div>
+</a>
+</div>
+<div class="delai__timeline">
+<p class="delai__steps">Commande &nbsp;·&nbsp; Fabrication &nbsp;·&nbsp; Contrôle &nbsp;·&nbsp; Expédition</p>
+<div class="delai__track"><span>J+0</span><span>J+12</span></div>
 </div>
 </div>
 </div>
