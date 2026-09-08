@@ -413,19 +413,34 @@
       left: 0;
       right: 0;
       bottom: 0;
-      padding: clamp(24px, 4vw, 44px);
+      padding: clamp(26px, 4vw, 48px);
       color: #ffffff;
-      background: linear-gradient(to top, rgba(10, 15, 30, 0.42) 0%, rgba(10, 15, 30, 0) 72%);
+      background: linear-gradient(to top, rgba(10, 15, 30, 0.62) 0%, rgba(10, 15, 30, 0.28) 45%, rgba(10, 15, 30, 0) 88%);
     }
-    .hl__lead {
-      margin: 0;
-      max-width: 30ch;
-      font-size: clamp(1.1rem, 2vw, 1.5rem);
+    .hl__kicker {
+      margin: 0 0 10px;
+      font-size: 0.8rem;
       font-weight: 600;
-      line-height: 1.35;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.01em;
+      color: rgba(255, 255, 255, 0.72);
     }
-    .hl__lead sup { font-size: 0.6em; }
+    .hl__head {
+      margin: 0;
+      max-width: 22ch;
+      font-size: clamp(1.4rem, 2.6vw, 2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    .hl__sub {
+      margin: 12px 0 0;
+      max-width: 42ch;
+      font-size: 0.95rem;
+      font-weight: 400;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.82);
+    }
+    .hl__sub sup { font-size: 0.7em; }
 
     .hl__controls {
       display: flex;
@@ -606,25 +621,33 @@
 </section>
 <section class="section hl">
 <div class="w-layout-blockcontainer container-default w-container">
-<h2 class="hl__title">Points forts.</h2>
+<h2 class="hl__title">Tout est pensé pour la pose.</h2>
 </div>
 <div class="hl__viewport">
 <ol class="hl__track">
 <li class="hl__slide">
 <div class="hl__media"><span class="hl__ph">Visuel 1</span></div>
-<div class="hl__copy"><p class="hl__lead">Premier point fort,<br/>résumé en une phrase courte.<sup>1</sup></p></div>
+<div class="hl__copy">
+<p class="hl__kicker">01 — Pré-câblée en usine</p>
+<p class="hl__head">Brancher. Régler. C'est prêt.</p>
+<p class="hl__sub">L'électronique arrive montée et pré-câblée.<br/>Moins de temps passé sur chantier.</p>
+</div>
 </li>
 <li class="hl__slide">
 <div class="hl__media"><span class="hl__ph">Visuel 2</span></div>
-<div class="hl__copy"><p class="hl__lead">Deuxième point fort,<br/>résumé en une phrase courte.</p></div>
+<div class="hl__copy">
+<p class="hl__kicker">02 — Joint portefeuille</p>
+<p class="hl__head">Le vitrage, simplement.</p>
+<p class="hl__sub">Un système pensé pour faciliter la mise en place du vitrage et obtenir une finition propre.<br/>Simple à poser. Simple à remplacer.</p>
+</div>
 </li>
 <li class="hl__slide">
 <div class="hl__media"><span class="hl__ph">Visuel 3</span></div>
-<div class="hl__copy"><p class="hl__lead">Troisième point fort,<br/>résumé en une phrase courte.</p></div>
-</li>
-<li class="hl__slide">
-<div class="hl__media"><span class="hl__ph">Visuel 4</span></div>
-<div class="hl__copy"><p class="hl__lead">Quatrième point fort,<br/>résumé en une phrase courte.</p></div>
+<div class="hl__copy">
+<p class="hl__kicker">03 — Emballage pensé pour la pose</p>
+<p class="hl__head">Déballer. Sortir. Poser.</p>
+<p class="hl__sub">Les vantaux sont protégés et rangés verticalement pour limiter les manipulations.<br/>Moins de manutention. Moins de risques. Plus vite posé.</p>
+</div>
 </li>
 </ol>
 </div>
@@ -638,7 +661,6 @@
 <button class="hl__seg" type="button" aria-label="Aller au point fort 1"></button>
 <button class="hl__seg" type="button" aria-label="Aller au point fort 2"></button>
 <button class="hl__seg" type="button" aria-label="Aller au point fort 3"></button>
-<button class="hl__seg" type="button" aria-label="Aller au point fort 4"></button>
 </div>
 </div>
 </div>
