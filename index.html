@@ -79,6 +79,98 @@
     #google-map { width: 100%; height: 500px; border-radius: 8px; }
     @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(249,115,22,0.7);} 70% { box-shadow: 0 0 0 10px rgba(249,115,22,0);} 100% { box-shadow: 0 0 0 0 rgba(249,115,22,0);} }
     @media screen and (max-width: 768px) { .network-map-wrapper { padding: 15px; } #google-map { height: 400px; } }
+
+    /* ── Héro page d'accueil (refonte) ── */
+    .hero-home { background: #ffffff; overflow: hidden; }
+    .hero-home > .container-default { padding-top: 72px; padding-bottom: 88px; }
+    .hero-home__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+      gap: clamp(32px, 5vw, 72px);
+      align-items: center;
+    }
+    .hero-home__content { max-width: 560px; }
+    .hero-home__eyebrow {
+      margin: 0 0 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #64748b;
+    }
+    .hero-home__title {
+      margin: 0;
+      font-size: clamp(2.75rem, 7vw, 5rem);
+      line-height: 1.02;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #0f172a;
+      text-wrap: balance;
+    }
+    .hero-home__title span { display: block; color: #2563eb; }
+    .hero-home__lead {
+      margin: 28px 0 0;
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: #475569;
+      max-width: 32ch;
+    }
+    .hero-home__cta { margin-top: 32px; }
+    .hero-home__stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin: 48px 0 0;
+      padding: 28px 0 0;
+      border-top: 1px solid #e8edf5;
+    }
+    .hero-home__stat dt {
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #0f172a;
+    }
+    .hero-home__stat dd { margin: 4px 0 0; font-size: 0.85rem; color: #64748b; }
+    .hero-home__media {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3.4;
+      background: linear-gradient(160deg, #f1f5f9 0%, #fbfcfe 58%, #eef4ff 100%);
+      box-shadow: 0 30px 60px -24px rgba(15, 23, 42, 0.18);
+    }
+    .hero-home__media img,
+    .hero-home__media-fallback,
+    .hero-home__media-fallback video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .hero-home__media img { padding: 24px; }
+    .hero-home__media-fallback[hidden] { display: none; }
+    .hero-home__media-fallback video { object-fit: cover; object-position: 50% 20%; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-home__content, .hero-home__media {
+        animation: heroRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+      .hero-home__media { animation-delay: 0.08s; }
+      @keyframes heroRise {
+        from { opacity: 0; transform: translateY(16px); }
+        to { opacity: 1; transform: none; }
+      }
+    }
+
+    @media (max-width: 991px) {
+      .hero-home__grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-home__content { max-width: none; }
+      .hero-home__media { aspect-ratio: 16 / 10; order: -1; }
+    }
+    @media (max-width: 767px) {
+      .hero-home > .container-default { padding-top: 40px; padding-bottom: 56px; }
+      .hero-home__title { font-size: clamp(2.5rem, 11vw, 3.25rem); }
+      .hero-home__stats { gap: 24px 32px; }
+    }
   </style>
 
   <!-- Google Maps API -->
@@ -108,25 +200,16 @@
 <div class="page-wrapper">
 <div id="header-placeholder"></div>
 
-<section class="section hero hero-v3">
-<div class="w-layout-blockcontainer container-default desktop w-container">
-<div class="w-layout-grid grid-2-columns hero-v3-grid">
-<div class="card v3-hero">
-<div class="card-v3-hero---content">
-<div class="inner-container _500px---mbl">
-<div class="inner-container _600px---tablet">
-<div class="overflow-hidden title-wrap">
-<h1 class="display-10 strong text-light" data-w-id="680dac81-fd9b-aac3-0ea2-a8593e07b9e7"><span class="break-word---mbp">La porte automatique des pros</span></h1>
-<p class="text-light" style="font-size: 18px; margin-top: 16px; margin-bottom: 24px; font-style: italic; opacity: 0.9; text-align: left;">Fabriqué au pied du Vercors - Produit en 12 jours (15 jours avec options)</p>
-</div>
-<div class="inner-container _526px">
-<p class="text-neutral" data-w-id="680dac81-fd9b-aac3-0ea2-a8593e07b9ea" style="">✅ Simple à installer  <br/>✅ Rapide - Produit en 12 jours standard (15 jours avec options laquage/vitrage)  <br/>✅ Service technique dédié <br/></p>
-</div>
-</div>
-<div class="mg-top-default mg-top-24px---mbl">
-<div class="buttons-row left" data-w-id="11ab70ed-983d-aad8-b91b-5563c700ec0e" style="">
+<section class="section hero hero-home">
+<div class="w-layout-blockcontainer container-default w-container">
+<div class="hero-home__grid">
+<div class="hero-home__content">
+<p class="hero-home__eyebrow">Exclusivement pour les professionnels</p>
+<h1 class="hero-home__title">La porte automatique <span>des pros</span></h1>
+<p class="hero-home__lead">Conçue et fabriquée au pied du Vercors. Simple à installer. Prête en 12 jours.</p>
+<div class="hero-home__cta">
 <a class="primary-button w-inline-block" href="connexion-inscription.html" id="w-node-e9da5fd6-ab44-5b2f-81ad-6e5f36bfab9c-36bfab9c">
-<div>Accèder au configurateur</div>
+<div>Configurer ma porte</div>
 <div class="item-icon-right icon-right-circle">
 <div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -137,11 +220,18 @@
 </div>
 </a>
 </div>
+<dl class="hero-home__stats">
+<div class="hero-home__stat"><dt>12 jours</dt><dd>Délais de fabrication</dd></div>
+<div class="hero-home__stat"><dt>Simple</dt><dd>À installer</dd></div>
+<div class="hero-home__stat"><dt>France</dt><dd>Conçue et fabriquée</dd></div>
+</dl>
+</div>
+<div class="hero-home__media">
+<img src="images/hero-porte.png" alt="Porte automatique piétonne coulissante SlideX pour professionnels" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+<div class="hero-home__media-fallback" hidden>
+<video class="fit-cover" autoplay muted loop playsinline poster="images/Porte-auto.webp" aria-label="Porte automatique piétonne SlideX - Solution professionnelle"><source src="images/videoporteautohero.mp4" type="video/mp4"></video>
 </div>
 </div>
-</div>
-</div>
-<div class="image-main"><video class="fit-cover _w-h-100 hero-v3---image" data-w-id="f7f42abc-c359-e325-87bc-7bb4f025c1a0" autoplay muted loop playsinline poster="images/Porte-auto.webp" aria-label="Porte automatique piétonne SlideX - Solution professionnelle" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1.1, 1.1, 1.001) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1.1, 1.1, 1.001) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1.1, 1.1, 1.001) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1.1, 1.1, 1.001) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform-style:preserve-3d;"><source src="images/videoporteautohero.mp4" type="video/mp4"></video></div>
 </div>
 </div>
 </section>
