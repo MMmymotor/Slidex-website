@@ -594,6 +594,20 @@
 }
 
 /* ========================= */
+/*    HOVER BOUTONS           */
+/* ========================= */
+/* Pas d'effet de scale au survol : juste une légère baisse d'opacité. */
+.primary-button,
+.secondary-button {
+  transition: opacity 0.15s ease !important;
+}
+.primary-button:hover,
+.secondary-button:hover {
+  transform: none !important;
+  opacity: 0.88 !important;
+}
+
+/* ========================= */
 /*    SITEWIDE SECTION PADDING */
 /* ========================= */
 /* Default all generic sections to 80px, unless a page overrides or it's a hero variant */
