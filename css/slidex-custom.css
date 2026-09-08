@@ -456,6 +456,132 @@
 }
 
 /* ========================= */
+/*    SITE HEADER (refonte)   */
+/* ========================= */
+.site-header.header-wrapper.w-nav {
+  position: relative !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid #eef1f6 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.site-header .container-default {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.site-header__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  min-height: 76px;
+}
+.site-header__logo {
+  flex-shrink: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #0f172a;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-header__logo span { color: #2563eb; }
+
+.site-header__nav.w-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto;
+}
+.site-header__links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.site-header__links li { margin: 0; }
+.site-header__link {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #334155;
+  text-decoration: none;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.site-header__link:hover { background: #f1f5f9; color: #0f172a; }
+.site-header__link:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.site-header__cta--mobile { display: none; }
+.site-header .hamburger-menu.w-nav-button {
+  display: none;
+  padding: 8px;
+  background: transparent;
+}
+.site-header .hamburger-menu-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.site-header .hamburger-menu-line {
+  width: 24px;
+  height: 2px;
+  border-radius: 2px;
+  background: #0f172a;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+@media (max-width: 991px) {
+  .site-header__nav.w-nav-menu { display: none !important; }
+  .site-header__nav.w-nav-menu.w--open {
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+    padding: 16px !important;
+    background: #ffffff !important;
+    border-top: 1px solid #eef1f6 !important;
+    box-shadow: 0 16px 40px rgba(2, 6, 23, 0.10) !important;
+    z-index: 900 !important;
+  }
+  .site-header__nav.w-nav-menu.w--open .site-header__links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+  }
+  .site-header__nav.w-nav-menu.w--open .site-header__link {
+    padding: 12px 14px;
+    font-size: 1rem;
+  }
+  .site-header__cta--mobile {
+    display: inline-flex;
+    justify-content: center;
+    margin-top: 8px;
+  }
+  .site-header__cta { display: none; }
+  .site-header .hamburger-menu.w-nav-button { display: block; }
+}
+
+/* ========================= */
 /*    SITEWIDE SECTION PADDING */
 /* ========================= */
 /* Default all generic sections to 80px, unless a page overrides or it's a hero variant */
