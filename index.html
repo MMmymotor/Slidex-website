@@ -174,6 +174,46 @@
       .hero-home__title { font-size: clamp(2.5rem, 11vw, 3.25rem); }
       .hero-home__stats { gap: 24px 32px; }
     }
+
+    /* ── Manifeste « Nous fabriquons. Vous installez. » ── */
+    .manifesto { background: #ffffff; }
+    .manifesto__inner { max-width: 780px; }
+    .manifesto__eyebrow {
+      margin: 0 0 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #64748b;
+    }
+    .manifesto__title {
+      margin: 0;
+      font-size: clamp(2.5rem, 6vw, 4.25rem);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #0f172a;
+    }
+    .manifesto__list {
+      list-style: none;
+      margin: 32px 0 0;
+      padding: 0;
+      font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+      line-height: 1.5;
+      color: #334155;
+    }
+    .manifesto__list .is-strong { font-weight: 800; color: #0f172a; }
+    .manifesto__body {
+      margin-top: 28px;
+      max-width: 48ch;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #64748b;
+    }
+    .manifesto__body p { margin: 0; }
+    .manifesto__body p + p { margin-top: 14px; }
+    .manifesto__cta { margin-top: 32px; }
+    @media (max-width: 767px) {
+      .manifesto__title { font-size: clamp(2.1rem, 9vw, 2.75rem); }
+    }
   </style>
 
   <!-- Google Maps API -->
@@ -234,6 +274,36 @@
 <div class="hero-home__media-fallback" hidden>
 <video class="fit-cover" autoplay muted loop playsinline poster="images/Porte-auto.webp" aria-label="Porte automatique piétonne SlideX - Solution professionnelle"><source src="images/videoporteautohero.mp4" type="video/mp4"></video>
 </div>
+</div>
+</div>
+</div>
+</section>
+<section class="section manifesto">
+<div class="w-layout-blockcontainer container-default w-container">
+<div class="manifesto__inner">
+<p class="manifesto__eyebrow">Un partenariat clair</p>
+<h2 class="manifesto__title">Nous fabriquons.<br/>Vous installez.</h2>
+<ul class="manifesto__list">
+<li>Votre chantier</li>
+<li>Votre maintenance</li>
+<li class="is-strong">Votre client</li>
+</ul>
+<div class="manifesto__body">
+<p>SlideX reste fabricant.<br/>Nous ne posons pas. Nous ne prenons pas vos contrats de maintenance.</p>
+<p>Jamais en concurrence avec vous.</p>
+</div>
+<div class="manifesto__cta">
+<a class="primary-button w-inline-block" href="partenaires-fabricant.html">
+<div>Découvrir notre vision</div>
+<div class="item-icon-right icon-right-circle">
+<div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
+    <path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
+</div>
+</a>
 </div>
 </div>
 </div>
