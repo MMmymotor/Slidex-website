@@ -503,6 +503,64 @@
     @media (max-width: 767px) {
       .hl__slide { flex-basis: 86%; aspect-ratio: 4 / 5; }
     }
+
+    /* ── Section « Notre gamme » ── */
+    .gamme__head { max-width: 760px; }
+    .gamme__kicker {
+      margin: 0 0 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #64748b;
+    }
+    .gamme__title {
+      margin: 0;
+      font-size: clamp(2.25rem, 5vw, 3.5rem);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: #0f172a;
+    }
+    .gamme__lead {
+      margin: 20px 0 0;
+      max-width: 62ch;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #64748b;
+    }
+    .gamme .slidex-grid-3 { margin-top: 44px; }
+    .gamme .card.v6 {
+      border: 1px solid #e8edf5 !important;
+      border-radius: 20px !important;
+      padding: 20px !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+    }
+    .gamme .card.v6:hover {
+      transform: translateY(-4px) !important;
+      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.09) !important;
+      border-color: #c7d7f7 !important;
+    }
+    .gamme .card.v6 img { border-radius: 14px !important; }
+    .gamme .card.v6 .subtitle {
+      font-size: 0.72rem !important;
+      letter-spacing: 0.08em !important;
+      text-transform: uppercase !important;
+      font-weight: 700 !important;
+      color: #2563eb !important;
+    }
+    .gamme .card.v6 h2,
+    .gamme .card.v6 .display-9 {
+      margin: 14px 0 8px !important;
+      font-size: 1.3rem !important;
+      font-weight: 800 !important;
+      letter-spacing: -0.02em !important;
+      color: #0f172a !important;
+    }
+    .gamme .card.v6 p {
+      font-size: 0.9rem !important;
+      line-height: 1.6 !important;
+      color: #64748b !important;
+    }
   </style>
 
   <!-- Google Maps API -->
@@ -665,26 +723,12 @@
 </div>
 </div>
 </section>
-<section class="section">
+<section class="section gamme">
 <div class="w-layout-blockcontainer container-default w-container">
-<div class="text-center---tablet">
-<div class="flex-horizontal space-between-align-bottom title-and-paragraph">
-<div class="width-100-tablet">
-<div class="overflow-hidden title-wrap">
-<div class="subtitle" data-w-id="35e4a64a-ed39-f8f6-3a23-7f3c3f143064">Nos portes piétonnes automatiques & kits de renovations</div>
-</div>
-<div class="mg-top-default">
-<div class="overflow-hidden">
-<h2 class="display-10 strong" data-w-id="7ed1ddbf-1319-ddc4-5059-fa6e299f07c8">Nos portes piétonnes</h2>
-</div>
-</div>
-</div>
-<div class="inner-container _528px _100-tablet width-100-tablet">
-<div class="inner-container _528px---tablet center">
-<p data-w-id="7ed1ddbf-1319-ddc4-5059-fa6e299f07cc">Découvrez nos portes piétonnes automatiques Slidex, idéales pour les commerces, ERP et espaces professionnels. Installation rapide, design moderne, fonctionnement silencieux et compatible PMR. Nos portes automatiques un vantail ou deux vantaux offrent une ouverture fluide et sécurisée. Slidex, la solution simple et rapide pour vos portes piétonnes automatiques.</p>
-</div>
-</div>
-</div>
+<div class="gamme__head">
+<p class="gamme__kicker">Notre gamme</p>
+<h2 class="gamme__title">Nos portes piétonnes</h2>
+<p class="gamme__lead">Portes automatiques piétonnes SlideX pour commerces, ERP et espaces professionnels : installation rapide, fonctionnement silencieux, compatibles PMR. Un vantail, deux vantaux ou télescopique, plus les kits de rénovation toutes marques.</p>
 </div>
 <div class="slidex-grid-3">            <div class="card v6">
 <div>
