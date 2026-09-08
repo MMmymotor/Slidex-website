@@ -307,9 +307,50 @@
       height: 14px;
       background: #3b82f6;
     }
+    .delai__fill {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 0;
+      height: 2px;
+      transform: translateY(-50%);
+      background: #3b82f6;
+    }
+    .delai__runner {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 12px;
+      height: 12px;
+      margin-left: -6px;
+      border-radius: 50%;
+      background: #3b82f6;
+      transform: translateY(-50%);
+      opacity: 0;
+    }
     .delai__days {
       font-weight: 700;
       color: rgba(255, 255, 255, 0.92);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .delai__fill { animation: delaiFill 4.2s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+      .delai__runner { animation: delaiRun 4.2s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+      @keyframes delaiFill {
+        0%, 6% { width: 0; opacity: 1; }
+        52% { width: 100%; opacity: 1; }
+        82% { width: 100%; opacity: 1; }
+        94% { width: 100%; opacity: 0; }
+        100% { width: 0; opacity: 0; }
+      }
+      @keyframes delaiRun {
+        0% { left: 0; opacity: 0; }
+        8% { left: 0; opacity: 1; }
+        52% { left: 100%; opacity: 1; }
+        82% { left: 100%; opacity: 1; }
+        94% { left: 100%; opacity: 0; }
+        100% { left: 0; opacity: 0; }
+      }
     }
 
     @media (max-width: 767px) {
@@ -426,7 +467,7 @@
 </div>
 <div class="delai__timeline">
 <div class="delai__steps"><span>Commande</span><span>Fabrication</span><span>Contrôle</span><span>Expédition</span></div>
-<div class="delai__line"><i></i><i></i><i></i><i></i></div>
+<div class="delai__line"><span class="delai__fill"></span><span class="delai__runner"></span><i></i><i></i><i></i><i></i></div>
 <div class="delai__days"><span>J+0</span><span>J+12</span></div>
 </div>
 </div>
