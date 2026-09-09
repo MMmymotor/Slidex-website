@@ -1474,29 +1474,6 @@ select.input-field {
   line-height: 1.6;
   color: #64748b;
 }
-.tm__video {
-  display: inline-flex !important;
-  align-items: center;
-  gap: 12px;
-  margin-top: 28px;
-  color: #2563eb !important;
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-decoration: none !important;
-}
-.tm__video:hover { text-decoration: underline !important; }
-.tm__video-ic {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: #2563eb;
-  color: #fff;
-  font-size: 11px;
-  flex-shrink: 0;
-}
 
 /* Carrousel */
 .tm .testimonial-slider {
