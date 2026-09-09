@@ -583,7 +583,32 @@
     }
 
     /* ── Section configurateur en ligne ── */
-    .cfg__inner { max-width: 900px; }
+    .cfg__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+      gap: clamp(32px, 5vw, 72px);
+      align-items: center;
+    }
+    .cfg__inner { max-width: 560px; }
+    .cfg__media {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3.6;
+      background: linear-gradient(160deg, #f1f5f9 0%, #fbfcfe 58%, #eef4ff 100%);
+      box-shadow: 0 30px 60px -24px rgba(15, 23, 42, 0.18);
+    }
+    .cfg__media img,
+    .cfg__media-fallback {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .cfg__media-fallback { display: grid; place-items: center; }
+    .cfg__media-fallback[hidden] { display: none; }
+    .cfg__media-fallback svg { opacity: 0.38; }
     .cfg__kicker {
       margin: 0 0 20px;
       font-size: 0.8rem;
@@ -608,6 +633,11 @@
       color: #475569;
     }
     .cfg__cta { margin-top: 34px; }
+    @media (max-width: 991px) {
+      .cfg__grid { grid-template-columns: 1fr; gap: 40px; }
+      .cfg__inner { max-width: none; }
+      .cfg__media { aspect-ratio: 16 / 10; }
+    }
     @media (max-width: 767px) {
       .cfg__title { font-size: clamp(2.2rem, 10vw, 3rem); }
     }
@@ -924,6 +954,7 @@ Disponible décembre 2026
 </section>
 <section class="section cfg">
 <div class="w-layout-blockcontainer container-default w-container">
+<div class="cfg__grid">
 <div class="cfg__inner">
 <p class="cfg__kicker">Votre porte, en quelques clics</p>
 <h2 class="cfg__title">À vos mesures.<br/>En quelques minutes.</h2>
@@ -940,6 +971,13 @@ Disponible décembre 2026
 </div>
 </div>
 </a>
+</div>
+</div>
+<div class="cfg__media">
+<img src="images/configurateur.jpg" alt="Le configurateur en ligne SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+<div class="cfg__media-fallback" hidden>
+<svg width="72" height="72" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="14" rx="2" stroke="#0f172a" stroke-width="1.5"/><path d="M8 21h8M12 18v3" stroke="#0f172a" stroke-width="1.5" stroke-linecap="round"/><path d="M6 9l3 3-3 3M13 15h5" stroke="#0f172a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</div>
 </div>
 </div>
 </div>
@@ -1070,114 +1108,6 @@ Disponible décembre 2026
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section class="section">
-<div class="w-layout-blockcontainer container-default w-container">
-<div class="text-center---mbl">
-<div class="flex-horizontal space-between-align-bottom gap-default-wrap">
-<div class="width-100-mbl">
-<div class="inner-container _480px _100-mbl">
-<div class="inner-container _400px---tablet _100-mbl">
-<div class="inner-container _400px---mbl center">
-<div class="overflow-hidden title-wrap">
-<div class="subtitle" data-w-id="35e4a64a-ed39-f8f6-3a23-7f3c3f143064">Comment ça fonctionne ?</div>
-</div>
-<div class="mg-top-default">
-<div class="overflow-hidden title-wrap">
-<h2 class="display-9 strong" data-w-id="09da52a1-50bc-6258-094d-cd7f727c4a04">Un process simple et rapide, conçu pour les pros</h2>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="mg-top-extra-large">
-<div class="card steps-main">
-<div class="w-layout-grid grid-2-columns card-steps-grid">
-<div class="inner-container _440px _100-tablet">
-<div class="w-layout-grid grid-1-column gap-row-extra-large steps-items-grid">
-<div>
-<div class="flex-horizontal justify-start justify-center-mbl" data-w-id="9c58883b-9e3a-e4b4-6b82-fb8e0eb2ae0a">
-<div class="badge small" id="w-node-_01cf1822-d35c-b844-1917-cd2f856a2d50-856a2d50">
-<div>Etape 01</div>
-</div>
-</div>
-<div class="mg-top-small">
-<div class="overflow-hidden title-wrap">
-<h3 class="display-7 strong" data-w-id="9c58883b-9e3a-e4b4-6b82-fb8e0eb2ae0d">Inscription &amp; validation</h3>
-</div>
-</div>
-<div class="mg-top-extra-small">
-<p data-w-id="9c58883b-9e3a-e4b4-6b82-fb8e0eb2ae0f"><em>Créez votre compte professionnel en quelques clics pour accéder à notre configurateur et à nos tarifs pros.
-👉 Pour garantir que nous travaillons uniquement avec des installateurs professionnels, chaque demande est vérifiée et validée manuellement par notre équipe.</em></p>
-</div>
-</div>
-<div>
-<div class="flex-horizontal justify-start justify-center-mbl" data-w-id="9c58883b-9e3a-e4b4-6b82-fb8e0eb2ae0a">
-<div class="badge small" id="w-node-_01cf1822-d35c-b844-1917-cd2f856a2d50-856a2d50">
-<div>Etape 02</div>
-</div>
-</div>
-<div class="mg-top-small">
-<div class="overflow-hidden title-wrap">
-<h3 class="display-7 strong" data-w-id="9c58883b-9e3a-e4b4-6b82-fb8e0eb2ae0d"><strong>Configurez votre porte </strong></h3>
-</div>
-</div>
-<div class="mg-top-extra-small">
-<p data-w-id="9c58883b-9e3a-e4b4-6b82-fb8e0eb2ae0f"><em>Utilisez notre configurateur en ligne pour choisir les dimensions et options adaptées</em></p>
-</div>
-</div>
-<div>
-<div class="flex-horizontal justify-start justify-center-mbl" data-w-id="9c58883b-9e3a-e4b4-6b82-fb8e0eb2ae0a">
-<div class="badge small" id="w-node-_01cf1822-d35c-b844-1917-cd2f856a2d50-856a2d50">
-<div>Etape 03</div>
-</div>
-</div>
-<div class="mg-top-small">
-<div class="overflow-hidden title-wrap">
-<h3 class="display-7 strong" data-w-id="9c58883b-9e3a-e4b4-6b82-fb8e0eb2ae0d">Personnalisez votre porte</h3>
-</div>
-</div>
-<div class="mg-top-extra-small">
-<p data-w-id="9c58883b-9e3a-e4b4-6b82-fb8e0eb2ae0f">Choisissez chaque détail de votre porte coulissante :
-👉 type de vitrage (clair, feuilleté…), coloris du profilé, couleur des joints, nombre de vantaux, et bien plus.
-Notre configurateur vous permet de créer une porte parfaitement adaptée à votre projet.</p>
-</div>
-</div>
-<div>
-<div class="flex-horizontal justify-start justify-center-mbl" data-w-id="9c58883b-9e3a-e4b4-6b82-fb8e0eb2ae0a">
-<div class="badge small" id="w-node-_01cf1822-d35c-b844-1917-cd2f856a2d50-856a2d50">
-<div>Etape 04</div>
-</div>
-</div>
-<div class="mg-top-small">
-<div class="overflow-hidden title-wrap">
-<h3 class="display-7 strong" data-w-id="9c58883b-9e3a-e4b4-6b82-fb8e0eb2ae0d">Installez </h3>
-</div>
-</div>
-<div class="mg-top-extra-small">
-<p data-w-id="9c58883b-9e3a-e4b4-6b82-fb8e0eb2ae0f"><em>Recevez votre porte et procédez à l'installation avec notre documentation technique complète.</em></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="half-bg-right steps-half-bg" data-w-id="18c17215-129c-1234-9bb5-ac17196e2dd9" style=""><img alt="Configurateur mobile pour portes automatiques" class="image steps-half" loading="eager" src="images/Photoiphone.png"/></div>
-<div class="br-container process-br-container" data-w-id="a09d137d-668b-c663-0aab-77c32297ca1c" style="">
-<a class="primary-button w-inline-block" href="connexion-inscription.html" id="w-node-e9da5fd6-ab44-5b2f-81ad-6e5f36bfab9c-36bfab9c">
-<div>Configurer votre porte</div>
-<div class="item-icon-right icon-right-circle">
-<div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-</div>
-</a>
-<div class="br-shape process-br-shape-top-right"><img alt="BR Bottom Right Image - Homerepair X Webflow Template" class="fit-cover _w-h-100" src="images/br-bottom-right-image-homerepair-x-webflow-template.svg"/></div>
-<div class="br-shape process-br-shape-bottom-left"><img alt="BR Bottom Right Image - Homerepair X Webflow Template" class="fit-cover _w-h-100" src="images/br-bottom-right-image-homerepair-x-webflow-template.svg"/></div>
 </div>
 </div>
 </div>
