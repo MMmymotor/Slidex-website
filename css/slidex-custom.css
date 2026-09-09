@@ -1491,13 +1491,15 @@ select.input-field {
 .tm .slider-track { height: auto !important; }
 .tm .testimonial-slider .slider-slide {
   display: grid !important;
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 44px);
   align-items: stretch;
-  padding: 0 !important;
+  padding: clamp(16px, 2.4vw, 26px) !important;
   background: #ffffff;
-  min-height: 460px;
+  min-height: 480px;
 }
 .tm__photo {
+  border-radius: 16px;
   background: #dbe4f3 url("../images/temoignage-installateur.jpg") center / cover no-repeat;
 }
 .tm .testimonial-quote {
@@ -1505,16 +1507,16 @@ select.input-field {
   flex-direction: column;
   justify-content: center;
   text-align: left !important;
-  padding: clamp(32px, 4vw, 56px) !important;
+  padding: clamp(14px, 2vw, 28px) clamp(14px, 2vw, 28px) clamp(14px, 2vw, 28px) 4px !important;
   width: auto !important;
   max-width: none !important;
 }
 .tm .testimonial-quote-mark {
   font-family: Georgia, 'Times New Roman', serif !important;
-  font-size: 64px !important;
+  font-size: 72px !important;
   line-height: 0.5 !important;
-  color: #2563eb !important;
-  opacity: 0.22 !important;
+  color: #a9c0ee !important;
+  opacity: 1 !important;
   margin: 0 0 14px !important;
 }
 .tm .testimonial-quote-text {
@@ -1522,9 +1524,9 @@ select.input-field {
   font-size: clamp(1.15rem, 1.7vw, 1.55rem) !important;
   line-height: 1.4 !important;
   font-weight: 600 !important;
-  letter-spacing: -0.01em !important;
+  letter-spacing: -0.015em !important;
   color: #0f1b3d !important;
-  margin: 0 0 24px !important;
+  margin: 0 0 22px !important;
 }
 .tm .testimonial-author {
   display: flex !important;
@@ -1538,25 +1540,44 @@ select.input-field {
 }
 .tm .testimonial-author .display-4 { font-size: 1rem !important; font-weight: 700 !important; color: #0f1b3d !important; }
 .tm .testimonial-author .display-3 { font-size: 0.85rem !important; color: #64748b !important; }
+.tm__author-id { flex: 1 1 auto; min-width: 0; }
+.tm__badge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+.tm__badge::before {
+  content: "";
+  width: 36px;
+  height: 1px;
+  background: #dbe1ea;
+}
 
-/* Flèches */
+/* Flèches (hors carte) */
 .tm .slider-arrow {
   position: absolute !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
-  width: 44px !important;
-  height: 44px !important;
+  width: 46px !important;
+  height: 46px !important;
   border-radius: 50% !important;
   background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.10) !important;
+  border: 1px solid #e8edf5 !important;
+  box-shadow: 0 8px 22px rgba(2, 6, 23, 0.12) !important;
   display: grid !important;
   place-items: center !important;
   cursor: pointer;
-  z-index: 3;
+  z-index: 4;
 }
-.tm .slider-prev { left: 12px !important; }
-.tm .slider-next { right: 12px !important; }
+.tm .slider-prev { left: -26px !important; }
+.tm .slider-next { right: -26px !important; }
 
 /* Puces */
 .tm .slider-dots {
