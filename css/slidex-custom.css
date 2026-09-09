@@ -1601,11 +1601,6 @@ select.input-field {
 
 .tm__cta { text-align: center; }
 .tm__cta .buttons-row { justify-content: center; }
-.tm__cta-note {
-  margin: 16px 0 0;
-  font-size: 0.85rem;
-  color: #94a3b8;
-}
 
 @media (max-width: 767px) {
   .tm .testimonial-slider { max-width: 100% !important; }
