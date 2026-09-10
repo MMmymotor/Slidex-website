@@ -762,59 +762,88 @@
   color: #e5e7eb;
 }
 
-/* ── PROCESS ── */
-.process-track {
+/* ── PROCESS / COMMENT ÇA MARCHE ── */
+.lp-container--wide { max-width: 1080px; }
+.lp-h2 em { font-style: normal; color: var(--blue); }
+
+.mm-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-  position: relative;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 48px;
+  align-items: start;
 }
-
-.process-track::before {
-  content: '';
+.mm-steps { list-style: none; margin: 0; padding: 0; }
+.mm-step {
+  position: relative;
+  padding: 0 0 26px 30px;
+}
+.mm-step::before {
+  content: "";
   position: absolute;
-  top: 26px;
-  left: 10%;
-  right: 10%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--blue), #06b6d4);
-  z-index: 0;
+  left: 11px;
+  top: 6px;
+  bottom: -6px;
+  width: 2px;
+  background: var(--border);
 }
-
-.process-step {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  padding: 0 16px;
-}
-
-.process-num {
-  width: 52px;
-  height: 52px;
+.mm-step:last-child { padding-bottom: 0; }
+.mm-step:last-child::before { display: none; }
+.mm-num {
+  position: absolute;
+  left: 0;
+  top: -2px;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
   border-radius: 50%;
   background: var(--blue);
-  color: white;
-  font-size: 20px;
+  color: #fff;
+  font-size: 11px;
   font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 20px;
+  letter-spacing: -0.02em;
 }
-
-.process-step h3 {
+.mm-step h3 {
+  margin: 0 0 6px;
   font-size: 15px;
   font-weight: 700;
   color: var(--dark);
-  margin: 0 0 8px;
   line-height: 1.3;
 }
-
-.process-step p {
-  font-size: 13px;
-  color: var(--mid);
-  line-height: 1.55;
+.mm-step p {
   margin: 0;
+  font-size: 13.5px;
+  color: var(--mid);
+  line-height: 1.6;
+}
+
+.mm-visual { position: sticky; top: 24px; }
+.mm-shot {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f1f5f9;
+  aspect-ratio: 4 / 3;
+  margin-bottom: 18px;
+}
+.mm-shot img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.mm-shot-ph {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.mm-shot-ph[hidden] { display: none; }
+
+@media (max-width: 860px) {
+  .mm-grid { grid-template-columns: 1fr; gap: 32px; }
+  .mm-visual { position: static; }
 }
 
 /* ── FAQ ── */
@@ -1447,31 +1476,45 @@
        LE PROCESS — 4 ÉTAPES
        ============================================================ -->
   <section class="lp-section bg-white">
-    <div class="lp-container">
+    <div class="lp-container lp-container--wide">
       <div class="lp-label">Comment ça marche</div>
-      <h2 class="lp-h2">De la demande de devis<br>à la reprise du contrat</h2>
-      <p class="lp-lead">Un processus pensé pour les sociétés de maintenance qui connaissent déjà leur site.</p>
+      <h2 class="lp-h2">Vous nous donnez les dimensions.<br><em>On s'occupe du reste.</em></h2>
+      <p class="lp-lead" style="margin-bottom: 12px;">Commander une porte automatique piétonne sur mesure ne devrait pas demander des semaines d'échanges. Vous nous transmettez les caractéristiques du chantier, nous vous accompagnons dans la configuration puis lançons la fabrication dans notre atelier de Seyssins.</p>
+      <p class="lp-lead" style="margin-bottom: 44px;">Votre porte est livrée préparée, pré-câblée et documentée, prête à être installée par vos techniciens.</p>
 
-      <div class="process-track">
-        <div class="process-step">
-          <div class="process-num">1</div>
-          <h3>Vous nous transmettez le besoin</h3>
-          <p>Dimensions, type de passage, coloris. On vous répond sous 2h ouvrées avec le prix partenaire.</p>
-        </div>
-        <div class="process-step">
-          <div class="process-num">2</div>
-          <h3>Commande confirmée</h3>
-          <p>Bon de commande, acompte. Fabrication lancée immédiatement dans notre atelier à Seyssins (38).</p>
-        </div>
-        <div class="process-step">
-          <div class="process-num">3</div>
-          <h3>Fabrication en 12 jours</h3>
-          <p>Production dans notre atelier à Seyssins (38). La porte est ensuite livrée sur site ou en dépôt selon votre organisation. Documentation technique fournie.</p>
-        </div>
-        <div class="process-step">
-          <div class="process-num">4</div>
-          <h3>Pose, mise en service &amp; contrat</h3>
-          <p>Votre équipe installe et signe le contrat de maintenance. Nous restons disponibles pour le support technique.</p>
+      <div class="mm-grid">
+        <ol class="mm-steps">
+          <li class="mm-step">
+            <span class="mm-num">01</span>
+            <h3>Configurez votre porte</h3>
+            <p>Dimensions, type de passage, vantaux, coloris et options. Configuration en ligne ou avec notre équipe.</p>
+          </li>
+          <li class="mm-step">
+            <span class="mm-num">02</span>
+            <h3>Validez votre commande</h3>
+            <p>Vous recevez votre chiffrage professionnel et validez la configuration avant mise en fabrication.</p>
+          </li>
+          <li class="mm-step">
+            <span class="mm-num">03</span>
+            <h3>Fabrication en 12 jours</h3>
+            <p>Votre porte automatique est fabriquée et contrôlée dans notre atelier en Isère.</p>
+          </li>
+          <li class="mm-step">
+            <span class="mm-num">04</span>
+            <h3>Vous installez</h3>
+            <p>La porte arrive préparée pour le chantier. Votre équipe réalise la pose, la mise en service et conserve la relation client.</p>
+          </li>
+        </ol>
+
+        <div class="mm-visual">
+          <div class="mm-shot">
+            <img src="images/configurateur-partenaires.jpg" alt="Le configurateur en ligne SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+            <div class="mm-shot-ph" hidden>Capture du configurateur SlideX</div>
+          </div>
+          <a class="pp-btn pp-btn--primary" href="connexion-inscription.html">
+            Configurer une porte
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
         </div>
       </div>
     </div>
