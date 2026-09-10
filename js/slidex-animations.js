@@ -1,50 +1,53 @@
 // Global UI helpers for SlideX
+// Menu burger : gestion 100% déléguée (le header est injecté en JS après coup,
+// donc pas de binding direct). Capture phase pour passer devant Webflow w-nav.
 (function() {
-	function initBurger() {
-		var header = document.querySelector('.header-wrapper.w-nav');
-		if (!header) return;
-		var btn = header.querySelector('.w-nav-button');
-		var menu = header.querySelector('.w-nav-menu');
-		if (!btn || !menu) return;
+	var OPEN = 'is-nav-open';
 
-		// idempotent binding
-		if (btn.__slxBound) return;
-		btn.__slxBound = true;
+	function header() { return document.querySelector('.site-header'); }
+	function close() {
+		var h = header();
+		if (h) h.classList.remove(OPEN);
+	}
+	function setExpanded(isOpen) {
+		var btn = document.querySelector('.site-header .hamburger-menu, .site-header .w-nav-button');
+		if (btn) btn.setAttribute('aria-expanded', String(isOpen));
+	}
 
-		var open = false;
-		function setOpen(state) {
-			open = state;
-			btn.classList.toggle('w--open', open);
-			menu.classList.toggle('w--open', open);
-			btn.setAttribute('aria-expanded', String(open));
+	document.addEventListener('click', function(e) {
+		var h = header();
+		if (!h) return;
+
+		var toggle = e.target.closest('.hamburger-menu, .w-nav-button');
+		if (toggle && h.contains(toggle)) {
+			e.preventDefault();
+			e.stopPropagation();
+			h.classList.toggle(OPEN);
+			setExpanded(h.classList.contains(OPEN));
+			return;
 		}
 
-		btn.addEventListener('click', function(e){
-			e.stopPropagation();
-			setOpen(!open);
-		});
+		if (!h.classList.contains(OPEN)) return;
 
-		document.addEventListener('click', function(e){
-			if (!open) return;
-			if (!menu.contains(e.target) && !btn.contains(e.target)) {
-				setOpen(false);
-			}
-		});
+		// clic sur un lien du menu -> on ferme et on laisse la navigation suivre
+		if (e.target.closest('.site-header__nav a')) { close(); setExpanded(false); return; }
 
-		document.addEventListener('keydown', function(e){
-			if (e.key === 'Escape' && open) setOpen(false);
-		});
+		// clic en dehors du menu -> on ferme
+		if (!e.target.closest('.site-header__nav')) { close(); setExpanded(false); }
+	}, true);
 
-		var mq = window.matchMedia('(min-width: 992px)');
-		function handleResize(ev){ if (ev.matches) setOpen(false); }
-		mq.addEventListener ? mq.addEventListener('change', handleResize) : mq.addListener(handleResize);
-	}
+	document.addEventListener('keydown', function(e) {
+		if (e.key === 'Escape') { close(); setExpanded(false); return; }
+		if ((e.key === 'Enter' || e.key === ' ') && e.target.closest && e.target.closest('.site-header .hamburger-menu, .site-header .w-nav-button')) {
+			e.preventDefault();
+			var h = header();
+			if (h) { h.classList.toggle(OPEN); setExpanded(h.classList.contains(OPEN)); }
+		}
+	});
 
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', initBurger);
-	} else {
-		initBurger();
-	}
+	var mq = window.matchMedia('(min-width: 992px)');
+	function onWide(ev) { if (ev.matches) { close(); setExpanded(false); } }
+	mq.addEventListener ? mq.addEventListener('change', onWide) : mq.addListener(onWide);
 })();
 
 // Sitewide top banner injection

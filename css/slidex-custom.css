@@ -409,55 +409,10 @@
 }
 
 /* ========================= */
-/*    MOBILE NAV / BURGER     */
-/* ========================= */
-
-/* Ensure the header is the positioning context for the dropdown menu */
-.header-wrapper.w-nav {
-  position: relative !important;
-}
-
-/* Make the menu appear when toggled open on tablet/mobile */
-@media screen and (max-width: 991px) {
-  .w-nav-menu.w--open {
-    display: block !important;
-    position: absolute !important;
-    top: 100% !important;
-    left: 0 !important;
-    right: 0 !important;
-    background: #ffffff !important;
-    padding: 12px 16px !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08) !important;
-    z-index: 1000 !important;
-  }
-
-  /* Stack menu items vertically when open */
-  .w-nav-menu.w--open .list-nav-menu {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 8px !important;
-  }
-
-  /* Be explicit that the burger is visible on mobile */
-  .w-nav-button {
-    display: block !important;
-  }
-}
-
-/* Optional: small visual cue for burger state */
-.w-nav-button.w--open .hamburger-menu-line.middle {
-  opacity: 0.0 !important;
-}
-.w-nav-button.w--open .hamburger-menu-line.top {
-  transform: translateY(6px) rotate(45deg) !important;
-}
-.w-nav-button.w--open .hamburger-menu-line.bottom {
-  transform: translateY(-6px) rotate(-45deg) !important;
-}
-
-/* ========================= */
 /*    SITE HEADER (refonte)   */
 /* ========================= */
+/* Header = contexte de positionnement du menu déroulant mobile */
+.header-wrapper.w-nav { position: relative !important; }
 .site-header.header-wrapper.w-nav {
   position: relative !important;
   background: #ffffff !important;
@@ -556,31 +511,36 @@
   background: #0f172a;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
+/* Burger animé en croix quand le menu est ouvert */
+.site-header.is-nav-open .hamburger-menu-line.middle { opacity: 0; }
+.site-header.is-nav-open .hamburger-menu-line.top { transform: translateY(7px) rotate(45deg); }
+.site-header.is-nav-open .hamburger-menu-line.bottom { transform: translateY(-7px) rotate(-45deg); }
 
 @media (max-width: 991px) {
-  .site-header__nav.w-nav-menu { display: none !important; }
-  .site-header__nav.w-nav-menu.w--open {
-    display: flex !important;
+  /* Le menu w-nav de Webflow est neutralisé : on pilote tout via .is-nav-open */
+  .site-header__nav.w-nav-menu {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 16px;
     flex-direction: column;
     align-items: stretch;
     gap: 6px;
-    position: absolute !important;
-    top: 100% !important;
-    left: 0 !important;
-    right: 0 !important;
-    margin: 0 !important;
-    padding: 16px !important;
-    background: #ffffff !important;
-    border-top: 1px solid #eef1f6 !important;
-    box-shadow: 0 16px 40px rgba(2, 6, 23, 0.10) !important;
-    z-index: 900 !important;
+    background: #ffffff;
+    border-top: 1px solid #eef1f6;
+    box-shadow: 0 16px 40px rgba(2, 6, 23, 0.10);
+    z-index: 900;
   }
-  .site-header__nav.w-nav-menu.w--open .site-header__links {
+  .site-header.is-nav-open .site-header__nav.w-nav-menu { display: flex !important; }
+  .site-header__nav .site-header__links {
     flex-direction: column;
     align-items: stretch;
     gap: 4px;
   }
-  .site-header__nav.w-nav-menu.w--open .site-header__link {
+  .site-header__nav .site-header__link {
     padding: 12px 14px;
     font-size: 1rem;
   }
