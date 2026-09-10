@@ -112,13 +112,22 @@
   margin-bottom: 28px;
 }
 
+.pp-kicker {
+  margin: 0 0 18px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
 .pp-left h1 {
-  font-size: clamp(28px, 3.2vw, 46px);
+  font-size: clamp(30px, 3.6vw, 50px);
   font-weight: 800;
   color: var(--dark);
-  line-height: 1.1;
+  line-height: 1.08;
   margin: 0 0 24px;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.02em;
 }
 
 .pp-left h1 em {
@@ -130,8 +139,67 @@
   font-size: 15.5px;
   color: var(--mid);
   line-height: 1.65;
+  margin: 0 0 12px;
+  max-width: 490px;
+}
+
+.pp-claim {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--dark);
   margin: 0 0 32px;
-  max-width: 480px;
+  max-width: 490px;
+}
+.pp-claim strong { color: var(--blue); }
+
+.pp-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 0 0 36px;
+}
+.pp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 26px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background .18s ease, border-color .18s ease, color .18s ease, opacity .18s ease;
+}
+.pp-btn--primary { background: var(--blue); color: #fff; }
+.pp-btn--primary:hover { background: #0752d4; color: #fff; text-decoration: none; }
+.pp-btn--ghost { background: #fff; color: var(--dark); border: 1.5px solid var(--border); }
+.pp-btn--ghost:hover { border-color: var(--blue); color: var(--blue); text-decoration: none; }
+
+.pp-proofs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 28px;
+}
+.pp-proofs li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.4;
+}
+.pp-proofs li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--green);
+  font-weight: 800;
+}
+@media (max-width: 640px) {
+  .pp-proofs { grid-template-columns: 1fr; }
 }
 
 /* Image hero */
@@ -1136,37 +1204,27 @@
       <!-- ── GAUCHE : texte ── -->
       <div class="pp-left">
 
-        <div class="pp-badge">
-          🏭 Slidex — Fabricant français, Seyssins (38)
+        <p class="pp-kicker">Portes automatiques pour les professionnels</p>
+
+        <h1>Posez vous-même les portes neuves.<br><em>Gardez vos contrats de maintenance.</em></h1>
+
+        <p class="pp-intro">SlideX conçoit et fabrique en Isère des portes automatiques piétonnes pour les professionnels de la maintenance, de l'installation et de la fermeture.</p>
+        <p class="pp-claim">Nous fabriquons. Vous installez. <strong>Votre client reste votre client.</strong></p>
+
+        <div class="pp-cta-row">
+          <a class="pp-btn pp-btn--primary" href="#formulaire-partenaire" onclick="document.getElementById('formulaire-partenaire').scrollIntoView({behavior:'smooth'}); setTimeout(function(){var f=document.getElementById('pf-prenom'); if(f) f.focus();},600); return false;">
+            Obtenir mes tarifs pros
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="pp-btn pp-btn--ghost" href="nos-produits/index.html">Découvrir les portes SlideX</a>
         </div>
 
-        <h1>Posez vous-même les portes neuves.<br>Gardez le contrat.<br><em>On fabrique, vous installez.</em></h1>
-
-        <!-- Social proof -->
-        <div class="pp-proof-bar">
-          <div class="pp-proof-item">
-            <span class="pp-proof-dot"></span>
-            <strong>40 sociétés partenaires actives</strong>
-          </div>
-          <div class="pp-proof-sep"></div>
-          <div class="pp-proof-item">
-            Toute la France
-          </div>
-          <div class="pp-proof-sep"></div>
-          <div class="pp-proof-item">
-            Réponse sous 24h
-          </div>
-        </div>
-
-        <p class="pp-intro">Slidex fabrique des portes automatiques piétonnes en Isère. Nous ne posons pas, nous ne signons aucun contrat de maintenance. En devenant partenaire, vous commandez au tarif fabricant et vous restez l'interlocuteur unique de vos clients.</p>
-
-        <div class="pp-key-advantage">
-          <span class="ka-icon">🔒</span>
-          <div>
-            <h3>Programme Partenaire à 100 €/mois</h3>
-            <p>Tarif fixe sur les 3 coloris en stock — RAL 9005, 9016, 7016. Fabrication en 12 jours hors livraison. Engagement annuel, facturé mensuellement.</p>
-          </div>
-        </div>
+        <ul class="pp-proofs">
+          <li>Fabrication en 12 jours</li>
+          <li>Support technique fabricant</li>
+          <li>Pièces SAV disponibles 10 ans</li>
+          <li>Aucun contrat de maintenance repris</li>
+        </ul>
 
       </div>
 
