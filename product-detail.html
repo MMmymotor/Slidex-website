@@ -258,79 +258,6 @@
   .pd-panel-visual { order: -1; }
 }
 
-/* ── Installation : "Pensée pour être posée simplement" ── */
-.pd-install-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  gap: clamp(32px, 6vw, 72px);
-  align-items: center;
-}
-.pd-install-eyebrow {
-  margin: 0 0 16px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #2563eb;
-}
-.pd-install-title {
-  margin: 0;
-  font-size: clamp(1.8rem, 3vw, 2.3rem);
-  font-weight: 800;
-  line-height: 1.18;
-  letter-spacing: -0.02em;
-  color: #0f172a;
-}
-.pd-install-desc {
-  margin: 16px 0 0;
-  max-width: 44ch;
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: #64748b;
-}
-.pd-install-list {
-  list-style: none;
-  margin: 28px 0 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.pd-install-list li {
-  padding-left: 20px;
-  position: relative;
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: #374151;
-}
-.pd-install-list li::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 8px;
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: #2563eb;
-}
-.pd-install-list li strong { color: #0f172a; }
-.pd-install-visual {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  border-radius: 24px;
-  overflow: hidden;
-  background: #f5f5f7;
-}
-.pd-install-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.pd-install-visual-ph {
-  position: absolute; inset: 0;
-  display: grid; place-items: center;
-  font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-  color: #b6b6be; text-align: center; padding: 24px;
-}
-.pd-install-visual-ph[hidden] { display: none; }
-@media (max-width: 900px) {
-  .pd-install-grid { grid-template-columns: 1fr; }
-}
-
 /* ── Accessoires compatibles ── */
 .pd-accessories { padding-bottom: 0 !important; }
 .pd-accessories-kicker {
@@ -683,29 +610,6 @@
 </div>
 </section>
 
-<!-- INSTALLATION SECTION -->
-<section class="section pd-install">
-<div class="w-layout-blockcontainer container-default w-container">
-<div class="pd-install-grid">
-<div>
-<p class="pd-install-eyebrow">Installation</p>
-<h2 class="pd-install-title">Pensée pour être posée simplement.</h2>
-<p class="pd-install-desc">Chaque porte sort de notre atelier prête à recevoir : pas d'improvisation sur chantier, pas de mauvaise surprise pour votre équipe.</p>
-<ul class="pd-install-list">
-<li><strong>Pré-câblée</strong> — l'armoire de commande est raccordée et testée en atelier.</li>
-<li><strong>Pré-réglée</strong> — vitesses, temporisations et détection sont ajustées avant expédition.</li>
-<li><strong>Pré-montée</strong> — le cadre et les profilés arrivent assemblés, prêts à fixer.</li>
-<li><strong>Documentée</strong> — notice d'installation et fiche technique fournies avec chaque porte.</li>
-</ul>
-</div>
-<div class="pd-install-visual">
-<img src="images/installation-chantier.jpg" alt="Installation d'une porte automatique SlideX sur chantier" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
-<div class="pd-install-visual-ph" hidden>Photo chantier /<br/>détail produit</div>
-</div>
-</div>
-</div>
-</section>
-
 <!-- SECTION "DE PLUS PRÈS" - GRILLE STATIQUE -->
 <section class="section de-plus-pres-section" style="padding: 80px 0 160px 0; background: rgb(26, 31, 42) !important; overflow: hidden;">
 <div class="w-layout-blockcontainer container-default w-container">
@@ -769,6 +673,63 @@
 </div>
 </div>
 
+</div>
+</div>
+</section>
+
+<!-- INSTALLATION SECTION (même slider .hl que la page d'accueil) -->
+<section class="section hl" id="installation">
+<div class="w-layout-blockcontainer container-default w-container">
+<h2 class="hl__title">Pensée pour être posée simplement.</h2>
+</div>
+<div class="hl__viewport">
+<ol class="hl__track">
+<li class="hl__slide">
+<div class="hl__media"><span class="hl__ph">Photo pré-câblage</span></div>
+<div class="hl__copy">
+<p class="hl__kicker">01 — Pré-câblée</p>
+<p class="hl__head">L'armoire de commande, déjà raccordée.</p>
+<p class="hl__sub">Le câblage est réalisé et testé en atelier avant expédition.<br/>Moins de temps passé sur chantier.</p>
+</div>
+</li>
+<li class="hl__slide">
+<div class="hl__media"><span class="hl__ph">Photo réglages usine</span></div>
+<div class="hl__copy">
+<p class="hl__kicker">02 — Pré-réglée</p>
+<p class="hl__head">Vitesses et détection, déjà calibrées.</p>
+<p class="hl__sub">Temporisations et détection sont ajustées avant expédition.<br/>Prête à l'usage dès la pose.</p>
+</div>
+</li>
+<li class="hl__slide">
+<div class="hl__media"><span class="hl__ph">Photo cadre pré-monté</span></div>
+<div class="hl__copy">
+<p class="hl__kicker">03 — Pré-montée</p>
+<p class="hl__head">Le cadre arrive assemblé.</p>
+<p class="hl__sub">Profilés et vantail sont livrés montés, prêts à fixer.<br/>Moins de manipulation sur site.</p>
+</div>
+</li>
+<li class="hl__slide">
+<div class="hl__media"><span class="hl__ph">Photo documentation fournie</span></div>
+<div class="hl__copy">
+<p class="hl__kicker">04 — Documentée</p>
+<p class="hl__head">Tout est expliqué, noir sur blanc.</p>
+<p class="hl__sub">Notice d'installation et fiche technique fournies avec chaque porte.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="w-layout-blockcontainer container-default w-container">
+<div class="hl__controls">
+<button class="hl__playpause" type="button" data-state="playing" aria-label="Pause">
+<svg class="hl__ic-pause" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" width="3" height="12" rx="1"/><rect x="7.5" width="3" height="12" rx="1"/></svg>
+<svg class="hl__ic-play" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>
+</button>
+<div class="hl__progress">
+<button class="hl__seg" type="button" aria-label="Aller à l'étape 1"></button>
+<button class="hl__seg" type="button" aria-label="Aller à l'étape 2"></button>
+<button class="hl__seg" type="button" aria-label="Aller à l'étape 3"></button>
+<button class="hl__seg" type="button" aria-label="Aller à l'étape 4"></button>
+</div>
 </div>
 </div>
 </section>
