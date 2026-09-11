@@ -302,10 +302,30 @@
 .pd-spec-value { margin: 0; font-size: 0.9rem; color: #64748b; font-variant-numeric: tabular-nums; text-align: right; }
 
 /* ── Vitrage disponible ── */
-.pd-glazing-list { display: flex; flex-direction: column; border-top: 1px solid #e8edf5; }
-.pd-glazing-row { padding: 18px 2px; border-bottom: 1px solid #e8edf5; }
-.pd-glazing-title { margin: 0 0 6px; font-size: 0.92rem; font-weight: 700; color: #0f172a; }
-.pd-glazing-desc { margin: 0; font-size: 0.88rem; line-height: 1.6; color: #64748b; }
+.pd-glazing-lead { margin: 0 0 20px; font-size: 0.9rem; color: #64748b; }
+.pd-glazing-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 620px; }
+.pd-glazing-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.pd-glazing-chip:hover { border-color: #c7d7f7; }
+.pd-glazing-chip[aria-pressed="true"] { border-color: #2563eb; box-shadow: 0 0 0 1px #2563eb; }
+.pd-glazing-chip-name { font-size: 0.88rem; font-weight: 700; color: #0f172a; }
+.pd-glazing-chip[aria-pressed="true"] .pd-glazing-chip-name { color: #2563eb; }
+.pd-glazing-chip-value { font-size: 0.78rem; color: #64748b; }
+@media (max-width: 640px) {
+  .pd-glazing-options { grid-template-columns: repeat(2, 1fr); }
+}
 
 /* ── Avis Google : compacté sur cette page (3 avis max) ── */
 #google-reviews-placeholder .gr__card:nth-child(n+4) { display: none; }
@@ -554,19 +574,24 @@
 
 <!-- DIMENSIONS -->
 <div class="pd-tabpanel" data-panel="dimensions">
-<div class="pd-glazing-list">
-<div class="pd-glazing-row">
-<p class="pd-glazing-title">Vitrage 44.2</p>
-<p class="pd-glazing-desc">Verre feuilleté standard, adapté aux usages courants en commerce et bureaux.</p>
-</div>
-<div class="pd-glazing-row">
-<p class="pd-glazing-title">Vitrage 55.2</p>
-<p class="pd-glazing-desc">Verre feuilleté renforcé, pour une sécurité et une résistance accrues.</p>
-</div>
-<div class="pd-glazing-row">
-<p class="pd-glazing-title">Double vitrage isolant</p>
-<p class="pd-glazing-desc">Isolation thermique et acoustique renforcée, recommandé pour les entrées exposées.</p>
-</div>
+<p class="pd-glazing-lead">Choisissez le vitrage adapté à votre projet.</p>
+<div class="pd-glazing-options" role="radiogroup" aria-label="Types de vitrage disponibles">
+<button type="button" class="pd-glazing-chip" role="radio" aria-pressed="true" aria-checked="true">
+<span class="pd-glazing-chip-name">Feuilleté 44.2</span>
+<span class="pd-glazing-chip-value">8,8 mm</span>
+</button>
+<button type="button" class="pd-glazing-chip" role="radio" aria-pressed="false" aria-checked="false">
+<span class="pd-glazing-chip-name">Feuilleté 55.2</span>
+<span class="pd-glazing-chip-value">10,9 mm</span>
+</button>
+<button type="button" class="pd-glazing-chip" role="radio" aria-pressed="false" aria-checked="false">
+<span class="pd-glazing-chip-name">Double vitrage</span>
+<span class="pd-glazing-chip-value">15 mm</span>
+</button>
+<button type="button" class="pd-glazing-chip" role="radio" aria-pressed="false" aria-checked="false">
+<span class="pd-glazing-chip-name">SP10</span>
+<span class="pd-glazing-chip-value">10 mm</span>
+</button>
 </div>
 </div>
 
@@ -1114,6 +1139,20 @@ document.querySelectorAll('.pd-tab').forEach(function(tab) {
     document.querySelectorAll('.pd-tabpanel').forEach(function(p) { p.removeAttribute('data-active'); });
     tab.setAttribute('aria-selected', 'true');
     document.querySelector('.pd-tabpanel[data-panel="' + tab.dataset.tab + '"]').setAttribute('data-active', '');
+  });
+});
+
+// Sélecteur de vitrage (onglet Vitrage disponible)
+document.querySelectorAll('.pd-glazing-options').forEach(function(group) {
+  group.addEventListener('click', function(e) {
+    const chip = e.target.closest('.pd-glazing-chip');
+    if (!chip) return;
+    group.querySelectorAll('.pd-glazing-chip').forEach(function(c) {
+      c.setAttribute('aria-pressed', 'false');
+      c.setAttribute('aria-checked', 'false');
+    });
+    chip.setAttribute('aria-pressed', 'true');
+    chip.setAttribute('aria-checked', 'true');
   });
 });
 
