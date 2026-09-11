@@ -319,54 +319,6 @@
 }
 .np-cta-ghost:hover { background: rgba(255,255,255,0.14); color: white; }
 
-/* ── Section support ── */
-.np-support-card {
-  background: white;
-  border: 1px solid #e8edf5;
-  border-radius: 16px;
-  padding: 32px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-}
-.np-support-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.08);
-  border-color: #c7d7f7;
-}
-.np-support-icon {
-  width: 52px; height: 52px;
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 20px;
-}
-.np-support-card h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 10px;
-}
-.np-support-card p {
-  font-size: 0.875rem;
-  color: #64748b;
-  line-height: 1.7;
-  margin-bottom: 16px;
-}
-.np-support-list {
-  list-style: none;
-  padding: 0; margin: 0;
-  display: flex; flex-direction: column; gap: 8px;
-}
-.np-support-list li {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 0.82rem; color: #374151; font-weight: 500;
-}
-.np-support-list li::before {
-  content: '';
-  display: block; flex-shrink: 0;
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: #2563eb;
-}
-
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .np-header-grid { grid-template-columns: 1fr; }
@@ -526,66 +478,6 @@
     </div>
   </section>
 
-  <!-- ── Support et Garantie ── -->
-  <section class="section" id="support">
-    <div class="w-layout-blockcontainer container-default w-container">
-      <div style="text-align:center;margin-bottom:48px;">
-        <div class="overflow-hidden title-wrap">
-          <div class="subtitle">Support professionnel</div>
-        </div>
-        <h2 class="display-8 strong" style="margin-top:12px;">Support et garantie</h2>
-        <p style="color:#64748b;margin-top:12px;">Un accompagnement complet pour la tranquillité de vos projets</p>
-      </div>
-
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;">
-
-        <!-- Garantie -->
-        <div class="np-support-card">
-          <div class="np-support-icon" style="background:#eff6ff;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7V10C2 16 6 20.9 12 22C18 20.9 22 16 22 10V7L12 2Z" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12L11 14L15 10" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h3>Garantie 2 ans</h3>
-          <p>Garantie constructeur complète sur tous les composants. Pièces détachées disponibles et support technique réactif.</p>
-          <ul class="np-support-list">
-            <li>Motorisation garantie 2 ans</li>
-            <li>Électronique garantie 2 ans</li>
-            <li>Pièces détachées disponibles</li>
-          </ul>
-        </div>
-
-        <!-- SAV -->
-        <div class="np-support-card">
-          <div class="np-support-icon" style="background:#f0fdf4;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M22 12H18L15 21L9 3L6 12H2" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h3>Service après-vente réactif</h3>
-          <p>Support après-vente rapide avec hotline technique dédiée. Nos experts vous accompagnent en cas de besoin.</p>
-          <ul class="np-support-list">
-            <li>Hotline technique dédiée</li>
-            <li>Diagnostic à distance</li>
-            <li>Intervention sur site</li>
-            <li>Formation utilisateur incluse</li>
-          </ul>
-        </div>
-
-        <!-- Formation -->
-        <div class="np-support-card">
-          <div class="np-support-icon" style="background:#fffbeb;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M22 10V6C22 5.47 21.53 5 21 5H3C2.47 5 2 5.47 2 6V10C2 10.53 2.47 11 3 11H21C21.53 11 22 10.53 22 10Z" stroke="#f59e0b" stroke-width="2"/><path d="M6 21V11" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/><path d="M18 21V11" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <h3>Formation incluse</h3>
-          <p>Formation complète à l'installation et à l'utilisation. Documentation technique détaillée et support vidéo.</p>
-          <ul class="np-support-list">
-            <li>Formation installation</li>
-            <li>Guide d'utilisation</li>
-            <li>Vidéos tutoriels</li>
-            <li>Support technique dédié</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
 
 </div>
 
