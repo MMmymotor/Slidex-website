@@ -177,78 +177,7 @@
   color: #64748b;
 }
 
-.np-solutions-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  align-items: stretch;
-}
-.np-sol-side { display: flex; flex-direction: column; gap: 24px; }
-
-.np-sol-card {
-  display: flex;
-  flex-direction: column;
-  background: #ffffff;
-  border: 1px solid #e8edf5;
-  border-radius: 20px;
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-}
-.np-sol-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 24px 48px -20px rgba(2, 6, 23, 0.14);
-  border-color: #c7d7f7;
-}
-
-.np-sol-card--main .np-sol-media { background: #f8fafc; aspect-ratio: 4 / 3.2; }
-.np-sol-card--main .np-sol-media img { width: 100%; height: 100%; object-fit: contain; padding: 32px; }
-.np-sol-card--main .np-sol-body { padding: 32px 36px 36px; }
-.np-sol-card--main h3 { font-size: clamp(1.4rem, 2.2vw, 1.8rem); }
-
-.np-sol-side .np-sol-card { flex-direction: row; flex: 1; }
-.np-sol-side .np-sol-media { position: relative; flex: 0 0 38%; background: #f8fafc; }
-.np-sol-side .np-sol-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 18px; }
-.np-sol-side .np-sol-body { flex: 1; min-width: 0; padding: 24px 26px; display: flex; flex-direction: column; justify-content: center; }
-.np-sol-side h3 { font-size: 1.1rem; }
-
-.np-sol-num {
-  display: inline-block;
-  margin-bottom: 8px;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  color: #94a3b8;
-}
-.np-sol-card h3 { margin: 0 0 6px; font-weight: 800; letter-spacing: -0.01em; color: #0f172a; }
-.np-sol-tag { margin: 0 0 10px; font-weight: 700; color: #2563eb; font-size: 0.92rem; }
-.np-sol-desc { margin: 0 0 16px; font-size: 0.9rem; line-height: 1.6; color: #64748b; }
-.np-sol-link { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: #2563eb; font-size: 0.9rem; }
-.np-sol-link svg { transition: transform 0.2s ease; }
-.np-sol-card:hover .np-sol-link svg { transform: translateX(3px); }
-
-.np-sol-ph {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  padding: 8px;
-  text-align: center;
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  color: rgba(255, 255, 255, 0.4);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.np-sol-ph[hidden] { display: none; }
-
-@media (max-width: 860px) {
-  .np-solutions-grid { grid-template-columns: 1fr; }
-  .np-sol-side .np-sol-card { flex-direction: column; }
-  .np-sol-side .np-sol-media { flex-basis: auto; aspect-ratio: 4 / 3; }
-}
+#gamme .hl { margin-top: 44px; }
 
 /* ── Section CTA ── */
 .np-cta {
@@ -398,57 +327,59 @@
         <h2 class="np-solutions-title">Une solution pour chaque chantier.</h2>
         <p class="np-solutions-lead">Installation neuve, rénovation d'un équipement existant ou automatisation d'une porte battante&nbsp;: choisissez la solution adaptée à votre chantier.</p>
       </div>
+    </div>
 
-      <div class="np-solutions-grid">
-
-        <a class="np-sol-card np-sol-card--main" href="../porte-automatique-coulissante.html">
-          <div class="np-sol-media">
-            <img src="../images/2V-SF-GA.png" alt="Portes automatiques coulissantes SlideX"/>
+    <div class="hl hl--duo">
+      <div class="hl__viewport">
+        <ol class="hl__track">
+          <li class="hl__slide">
+            <div class="hl__media"><span class="hl__ph">Photo porte coulissante en situation</span></div>
+            <div class="hl__copy">
+              <p class="hl__kicker">Portes coulissantes</p>
+              <p class="hl__head">Portes automatiques coulissantes</p>
+              <p class="hl__sub">1 vantail, 2 vantaux ou télescopique.</p>
+              <div class="hl__actions">
+                <a class="hl__btn hl__btn--ghost" href="../porte-automatique-coulissante.html">Découvrir</a>
+                <a class="hl__btn hl__btn--primary" href="../connexion-inscription.html">Configurer</a>
+              </div>
+            </div>
+          </li>
+          <li class="hl__slide">
+            <div class="hl__media"><span class="hl__ph">Photo rénovation / automatisme</span></div>
+            <div class="hl__copy">
+              <p class="hl__kicker">Rénovation</p>
+              <p class="hl__head">Kits de rénovation</p>
+              <p class="hl__sub">Gardez la porte. Remplacez l'automatisme.</p>
+              <div class="hl__actions">
+                <a class="hl__btn hl__btn--primary" href="../kits-renovation.html">Découvrir les kits</a>
+              </div>
+            </div>
+          </li>
+          <li class="hl__slide">
+            <div class="hl__media"><span class="hl__ph">Photo ouvre-porte battant en situation</span></div>
+            <div class="hl__copy">
+              <p class="hl__kicker">Portes battantes</p>
+              <p class="hl__head">Ouvre-portes automatiques</p>
+              <p class="hl__sub">Automatisez simplement une porte existante.</p>
+              <div class="hl__actions">
+                <a class="hl__btn hl__btn--primary" href="../ouvre-porte-automatique-battante.html">Découvrir</a>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <div class="w-layout-blockcontainer container-default w-container">
+        <div class="hl__controls">
+          <button class="hl__playpause" type="button" data-state="playing" aria-label="Pause">
+            <svg class="hl__ic-pause" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" width="3" height="12" rx="1"/><rect x="7.5" width="3" height="12" rx="1"/></svg>
+            <svg class="hl__ic-play" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>
+          </button>
+          <div class="hl__progress">
+            <button class="hl__seg" type="button" aria-label="Aller à la solution 1"></button>
+            <button class="hl__seg" type="button" aria-label="Aller à la solution 2"></button>
+            <button class="hl__seg" type="button" aria-label="Aller à la solution 3"></button>
           </div>
-          <div class="np-sol-body">
-            <span class="np-sol-num">01</span>
-            <h3>Portes automatiques coulissantes</h3>
-            <p class="np-sol-tag">Pour les installations neuves.</p>
-            <p class="np-sol-desc">1 vantail, 2 vantaux ou télescopique. Portes fabriquées sur mesure, pré-câblées et prêtes à poser.</p>
-            <span class="np-sol-link">Découvrir les portes
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </div>
-        </a>
-
-        <div class="np-sol-side">
-          <a class="np-sol-card" href="../kits-renovation.html">
-            <div class="np-sol-media">
-              <img src="../images/1V-SF-N.png" alt="Kits de rénovation SlideX"/>
-            </div>
-            <div class="np-sol-body">
-              <span class="np-sol-num">02</span>
-              <h3>Kits de rénovation</h3>
-              <p class="np-sol-tag">Gardez la porte. Remplacez l'automatisme.</p>
-              <p class="np-sol-desc">Des kits conçus pour moderniser les installations existantes sans remplacer toute la menuiserie. Compatibles avec les principales marques du marché.</p>
-              <span class="np-sol-link">Découvrir les kits rénovation
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </div>
-          </a>
-
-          <a class="np-sol-card" href="../ouvre-porte-automatique-battante.html">
-            <div class="np-sol-media">
-              <img src="../images/go-in-350.png" alt="Ouvre-portes automatiques pour portes battantes SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
-              <div class="np-sol-ph" hidden>Visuel ouvre-porte battant</div>
-            </div>
-            <div class="np-sol-body">
-              <span class="np-sol-num">03</span>
-              <h3>Ouvre-portes battants</h3>
-              <p class="np-sol-tag">Automatisez une porte existante.</p>
-              <p class="np-sol-desc">Une solution compacte pour motoriser les portes battantes piétonnes, adaptée notamment aux commerces, bureaux et bâtiments recevant du public.</p>
-              <span class="np-sol-link">Découvrir les ouvre-portes
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </span>
-            </div>
-          </a>
         </div>
-
       </div>
     </div>
   </section>

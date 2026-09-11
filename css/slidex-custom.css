@@ -1978,3 +1978,33 @@ select.input-field {
 }
 
 
+
+/* ── Actions (boutons) dans une carte .hl ── */
+.hl__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+.hl__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.18s ease, opacity 0.18s ease;
+}
+.hl__btn--primary { background: #2563eb; color: #ffffff; }
+.hl__btn--primary:hover { background: #1d4ed8; color: #ffffff; }
+.hl__btn--ghost { background: #ffffff; color: #0f172a; }
+.hl__btn--ghost:hover { opacity: 0.88; }
+
+/* ── Variante « duo » : 2 cartes visibles + la 3e au scroll ── */
+.hl--duo .hl__slide { flex: 0 0 clamp(280px, 48%, 640px); }
+@media (max-width: 767px) {
+  .hl--duo .hl__slide { flex-basis: 86%; }
+}
