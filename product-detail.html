@@ -78,49 +78,92 @@
 }
 .pd-link:hover { border-color: #0f172a; }
 
-.pd-hero-includes {
+/* ── Inclus de série / Options : tuiles façon IKEA ── */
+.pd-features {
   margin-top: 56px;
-  padding: 40px 0;
+  padding-top: 40px;
   border-top: 1px solid #e8edf5;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
-.pd-hero-includes-label {
-  margin: 0 0 16px;
+.pd-features-label {
+  margin: 0 0 18px;
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #94a3b8;
 }
-.pd-hero-includes-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.pd-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: 24px 16px;
+}
+.pd-feature {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-.pd-hero-includes-list li {
-  display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  color: #374151;
+  width: 100%;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
 }
-.pd-hero-includes-list li::before {
-  content: '';
-  flex-shrink: 0;
-  margin-top: 7px;
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: #2563eb;
+.pd-feature-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  color: #0f172a;
+}
+.pd-feature-icon svg { width: 26px; height: 26px; }
+.pd-feature-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #0f172a;
+}
+.pd-feature[aria-expanded="true"] .pd-feature-name,
+.pd-feature[aria-expanded="true"] .pd-feature-icon { color: #2563eb; }
+.pd-feature-tip {
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  z-index: 5;
+  width: 240px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 16px 32px -12px rgba(2, 6, 23, 0.16);
+}
+.pd-feature[aria-expanded="true"] .pd-feature-tip { display: block; }
+.pd-feature-tip strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+.pd-feature-tip span {
+  display: block;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: #64748b;
 }
 @media (max-width: 900px) {
   .pd-hero-grid { grid-template-columns: 1fr; }
-  .pd-hero-includes { grid-template-columns: 1fr; gap: 28px; }
+}
+@media (max-width: 640px) {
+  .pd-features-grid { grid-template-columns: repeat(3, 1fr); }
+  .pd-feature-tip { width: 220px; }
 }
 
 /* ── L'essentiel en un coup d'œil ── */
@@ -406,25 +449,74 @@
 </div>
 </div>
 
-<!-- Inclus de série / Options -->
-<div class="pd-hero-includes">
+<!-- Inclus de série / Options : tuiles façon IKEA -->
+<div class="pd-features">
 <div>
-<p class="pd-hero-includes-label">Inclus de série</p>
-<ul class="pd-hero-includes-list">
-<li>Kit moteur, avec ou sans verrou SlideX 500</li>
-<li>BBG vert sonore et lumineux, sélecteur de fonction</li>
-<li>Aluminium anodisé naturel, profilé coulissant</li>
-<li>Pré-monté en atelier pour une pose rapide</li>
-</ul>
+<p class="pd-features-label">Inclus de série</p>
+<div class="pd-features-grid">
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="9" rx="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><circle cx="12" cy="12.5" r="1.5"/></svg></span>
+<span class="pd-feature-name">Pré-monté</span>
+<span class="pd-feature-tip"><strong>Pré-monté en atelier</strong><span>Cadre et profilés arrivent assemblés, pour une pose rapide et sans surprise sur chantier.</span></span>
+</button>
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg></span>
+<span class="pd-feature-name">Anodisé naturel</span>
+<span class="pd-feature-tip"><strong>Aluminium anodisé naturel</strong><span>Finition d'origine sur tous les profilés : protection durable et aspect premium, avec ou sans RAL.</span></span>
+</button>
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a5 5 0 0 1 5 5v3l1.5 3h-13L7 12V9a5 5 0 0 1 5-5z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg></span>
+<span class="pd-feature-name">BBG sonore</span>
+<span class="pd-feature-tip"><strong>BBG vert sonore et lumineux</strong><span>Signal sonore et lumineux à l'ouverture, pour une utilisation sûre au quotidien.</span></span>
+</button>
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="1.6" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="7" cy="17" r="1.6" fill="currentColor" stroke="none"/></svg></span>
+<span class="pd-feature-name">Sélecteur de fonction</span>
+<span class="pd-feature-tip"><strong>Sélecteur de fonction</strong><span>Choisissez le mode d'ouverture (automatique, sortie seule, fermé) directement sur site.</span></span>
+</button>
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+<span class="pd-feature-name">Verrou compatible</span>
+<span class="pd-feature-tip"><strong>Kit moteur avec ou sans verrou</strong><span>Compatible avec le verrou SlideX 500, au choix selon vos besoins de sécurisation.</span></span>
+</button>
+
 </div>
+</div>
+
 <div>
-<p class="pd-hero-includes-label">Options disponibles</p>
-<ul class="pd-hero-includes-list">
-<li>Vitrage 44.2, 55.2 ou double vitrage isolant</li>
-<li>Avec ou sans fixe, avec ou sans porteur</li>
-<li>Laquage RAL personnalisé</li>
-<li>Contrôle d'accès intégré</li>
-</ul>
+<p class="pd-features-label">Options disponibles</p>
+<div class="pd-features-grid">
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h16M12 4v16"/></svg></span>
+<span class="pd-feature-name">Vitrage</span>
+<span class="pd-feature-tip"><strong>Vitrage au choix</strong><span>44.2, 55.2 ou double vitrage isolant, selon les contraintes thermiques et acoustiques du projet.</span></span>
+</button>
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="8" height="14" rx="1"/><rect x="13" y="5" width="8" height="14" rx="1"/></svg></span>
+<span class="pd-feature-name">Fixe / porteur</span>
+<span class="pd-feature-tip"><strong>Avec ou sans fixe / porteur</strong><span>Complétez votre porte avec une partie fixe ou un élément porteur selon la configuration du passage.</span></span>
+</button>
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8 12a1.4 1.4 0 1 0 2.8 0 1.4 1.4 0 0 0-2.8 0z" fill="currentColor" stroke="none"/><path d="M13 8.5a1.2 1.2 0 1 0 2.4 0 1.2 1.2 0 0 0-2.4 0z" fill="currentColor" stroke="none"/><path d="M13.5 15a1.2 1.2 0 1 0 2.4 0 1.2 1.2 0 0 0-2.4 0z" fill="currentColor" stroke="none"/></svg></span>
+<span class="pd-feature-name">Laquage RAL</span>
+<span class="pd-feature-tip"><strong>Laquage RAL personnalisé</strong><span>Un coloris RAL au choix pour intégrer la porte à votre façade ou votre charte graphique.</span></span>
+</button>
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="M6 17c0-2 1.5-3 3-3s3 1 3 3"/><path d="M14 9h4M14 13h4"/></svg></span>
+<span class="pd-feature-name">Contrôle d'accès</span>
+<span class="pd-feature-tip"><strong>Contrôle d'accès intégré</strong><span>Badge RFID, code ou biométrie&nbsp;: l'intégration se fait directement sur l'armoire de commande.</span></span>
+</button>
+
+</div>
 </div>
 </div>
 </div>
@@ -982,6 +1074,18 @@ document.addEventListener('DOMContentLoaded', function() {
     startX = null;
     currentX = null;
   });
+});
+
+// Tuiles "Inclus de série / Options" façon IKEA : tooltip au clic
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.pd-feature');
+  document.querySelectorAll('.pd-feature[aria-expanded="true"]').forEach(function(el) {
+    if (el !== btn) el.setAttribute('aria-expanded', 'false');
+  });
+  if (btn) {
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+  }
 });
 
 // FAQ Accordion Functionality
