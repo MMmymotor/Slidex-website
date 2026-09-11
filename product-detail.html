@@ -237,24 +237,13 @@
 .pd-info-box .pd-accordion-body { padding: 0 18px 18px; }
 .pd-accordion-trigger[aria-expanded="true"] + .pd-accordion-body { display: block; }
 
-/* Dimensions */
-.pd-dim-grid { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 48px; align-items: start; }
-.pd-dim-box { border: 1px solid #e8edf5; border-radius: 12px; overflow: hidden; }
-.pd-dim-box-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; font-size: 0.88rem; font-weight: 700; color: #0f172a; border-bottom: 1px solid #e8edf5; }
-.pd-dim-table { display: grid; grid-template-columns: 1fr 1fr; }
-.pd-dim-cell { padding: 18px; border-bottom: 1px solid #e8edf5; }
-.pd-dim-cell:nth-child(odd) { border-right: 1px solid #e8edf5; }
-.pd-dim-cell:nth-last-child(-n+2) { border-bottom: 0; }
-.pd-dim-label { margin: 0 0 6px; font-size: 0.8rem; font-weight: 700; color: #0f172a; }
-.pd-dim-value { margin: 0; font-size: 0.88rem; color: #64748b; font-variant-numeric: tabular-nums; }
-
 /* Ce qui est inclus */
 .pd-included-list { list-style: none; margin: 0; padding: 0; max-width: 520px; border-top: 1px solid #e8edf5; }
 .pd-included-list li { display: flex; align-items: center; gap: 16px; padding: 16px 2px; border-bottom: 1px solid #e8edf5; font-size: 0.9rem; color: #0f172a; }
 .pd-included-qty { flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: #eef2fb; color: #2563eb; display: grid; place-items: center; font-size: 0.78rem; font-weight: 700; }
 
 @media (max-width: 860px) {
-  .pd-panel-grid, .pd-desc-grid, .pd-dim-grid { grid-template-columns: 1fr; }
+  .pd-panel-grid, .pd-desc-grid { grid-template-columns: 1fr; }
   .pd-panel-visual { order: -1; }
 }
 
@@ -311,6 +300,12 @@
 .pd-spec-row { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 16px 2px; border-bottom: 1px solid #e8edf5; }
 .pd-spec-label { margin: 0; font-size: 0.9rem; font-weight: 600; color: #0f172a; }
 .pd-spec-value { margin: 0; font-size: 0.9rem; color: #64748b; font-variant-numeric: tabular-nums; text-align: right; }
+
+/* ── Vitrage disponible ── */
+.pd-glazing-list { display: flex; flex-direction: column; border-top: 1px solid #e8edf5; }
+.pd-glazing-row { padding: 18px 2px; border-bottom: 1px solid #e8edf5; }
+.pd-glazing-title { margin: 0 0 6px; font-size: 0.92rem; font-weight: 700; color: #0f172a; }
+.pd-glazing-desc { margin: 0; font-size: 0.88rem; line-height: 1.6; color: #64748b; }
 
 /* ── Avis Google : compacté sur cette page (3 avis max) ── */
 #google-reviews-placeholder .gr__card:nth-child(n+4) { display: none; }
@@ -421,7 +416,7 @@
 <div class="pd-tabs" role="tablist">
 <button class="pd-tab" role="tab" aria-selected="true" data-tab="apercu">Aperçu</button>
 <button class="pd-tab" role="tab" aria-selected="false" data-tab="description">Description produit</button>
-<button class="pd-tab" role="tab" aria-selected="false" data-tab="dimensions">Dimensions</button>
+<button class="pd-tab" role="tab" aria-selected="false" data-tab="dimensions">Vitrage disponible</button>
 <button class="pd-tab" role="tab" aria-selected="false" data-tab="caracteristiques">Caractéristiques</button>
 <button class="pd-tab" role="tab" aria-selected="false" data-tab="documentation">Documentation</button>
 <button class="pd-tab" role="tab" aria-selected="false" data-tab="inclus">Ce qui est inclus</button>
@@ -451,7 +446,7 @@
 
 <button type="button" class="pd-feature" aria-expanded="false">
 <span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a5 5 0 0 1 5 5v3l1.5 3h-13L7 12V9a5 5 0 0 1 5-5z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg></span>
-<span class="pd-feature-name">BBG sonore</span>
+<span class="pd-feature-name">BBG sonore et lumineux</span>
 <span class="pd-feature-tip"><strong>BBG vert sonore et lumineux</strong><span>Signal sonore et lumineux à l'ouverture, pour une utilisation sûre au quotidien.</span></span>
 </button>
 
@@ -559,22 +554,18 @@
 
 <!-- DIMENSIONS -->
 <div class="pd-tabpanel" data-panel="dimensions">
-<div class="pd-dim-grid">
-<div class="pd-panel-visual">
-<span class="pd-panel-visual-ph">Photo produit<br/>1 vantail</span>
+<div class="pd-glazing-list">
+<div class="pd-glazing-row">
+<p class="pd-glazing-title">Vitrage 44.2</p>
+<p class="pd-glazing-desc">Verre feuilleté standard, adapté aux usages courants en commerce et bureaux.</p>
 </div>
-<div class="pd-dim-box">
-<div class="pd-dim-box-head">Dimensions
-<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(180deg)"><path d="M6 9l6 6 6-6"/></svg>
+<div class="pd-glazing-row">
+<p class="pd-glazing-title">Vitrage 55.2</p>
+<p class="pd-glazing-desc">Verre feuilleté renforcé, pour une sécurité et une résistance accrues.</p>
 </div>
-<div class="pd-dim-table">
-<div class="pd-dim-cell"><p class="pd-dim-label">Passage libre</p><p class="pd-dim-value">400 – 1400 mm</p></div>
-<div class="pd-dim-cell"><p class="pd-dim-label">Hauteur</p><p class="pd-dim-value">jusqu'à 2800 mm</p></div>
-<div class="pd-dim-cell"><p class="pd-dim-label">Poids max. vantail</p><p class="pd-dim-value">150 kg</p></div>
-<div class="pd-dim-cell"><p class="pd-dim-label">Vitrage disponible</p><p class="pd-dim-value">44.2, 55.2 ou double vitrage</p></div>
-<div class="pd-dim-cell"><p class="pd-dim-label">Norme de sécurité</p><p class="pd-dim-value">EN 16005</p></div>
-<div class="pd-dim-cell"><p class="pd-dim-label">Fabrication</p><p class="pd-dim-value">12 jours</p></div>
-</div>
+<div class="pd-glazing-row">
+<p class="pd-glazing-title">Double vitrage isolant</p>
+<p class="pd-glazing-desc">Isolation thermique et acoustique renforcée, recommandé pour les entrées exposées.</p>
 </div>
 </div>
 </div>
@@ -582,6 +573,9 @@
 <!-- CARACTÉRISTIQUES -->
 <div class="pd-tabpanel" data-panel="caracteristiques">
 <div class="pd-spec-list">
+<div class="pd-spec-row"><p class="pd-spec-label">Passage libre</p><p class="pd-spec-value">400 – 1400 mm</p></div>
+<div class="pd-spec-row"><p class="pd-spec-label">Hauteur</p><p class="pd-spec-value">jusqu'à 2800 mm</p></div>
+<div class="pd-spec-row"><p class="pd-spec-label">Poids max. vantail</p><p class="pd-spec-value">150 kg</p></div>
 <div class="pd-spec-row"><p class="pd-spec-label">Vitesse d'ouverture</p><p class="pd-spec-value">20 – 40 cm/s</p></div>
 <div class="pd-spec-row"><p class="pd-spec-label">Temps d'ouverture</p><p class="pd-spec-value">réglable de 1 à 20 s</p></div>
 <div class="pd-spec-row"><p class="pd-spec-label">Cycles garantis</p><p class="pd-spec-value">2 000 000 (TÜV)</p></div>
@@ -590,6 +584,7 @@
 <div class="pd-spec-row"><p class="pd-spec-label">Arrêt d'urgence</p><p class="pd-spec-value">BBG sonore et lumineux</p></div>
 <div class="pd-spec-row"><p class="pd-spec-label">Anti-panique</p><p class="pd-spec-value">débrayage manuel</p></div>
 <div class="pd-spec-row"><p class="pd-spec-label">Norme de sécurité</p><p class="pd-spec-value">EN 16005</p></div>
+<div class="pd-spec-row"><p class="pd-spec-label">Fabrication</p><p class="pd-spec-value">12 jours</p></div>
 </div>
 </div>
 
@@ -646,11 +641,11 @@
 <section class="section de-plus-pres-section" style="padding: 80px 0 160px 0; background: rgb(26, 31, 42) !important; overflow: hidden;">
 <div class="w-layout-blockcontainer container-default w-container">
 <!-- Header Section -->
-<div class="text-center" style="margin-bottom: 60px;">
+<div style="margin-bottom: 60px; text-align: left;">
 <div class="overflow-hidden title-wrap">
 <h2 class="display-9 strong text-light" style="color: #f8fafc; margin-bottom: 16px;">De plus près.</h2>
 </div>
-<p style="color: #94a3b8; font-size: 18px; max-width: 600px; margin: 0 auto;">Découvrez les points forts exclusifs de notre porte automatique SlideX qui font la différence sur le marché français.</p>
+<p style="color: #94a3b8; font-size: 18px; max-width: 600px; margin: 0;">Découvrez les points forts exclusifs de notre porte automatique SlideX qui font la différence sur le marché français.</p>
 </div>
 </div>
 
