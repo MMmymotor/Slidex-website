@@ -270,3 +270,83 @@
 		}
 	})();
 
+
+
+/* Slider façon Apple — autoplay + pause + segments (instances multiples) */
+Array.prototype.forEach.call(document.querySelectorAll('.hl'), function (root) {
+  var viewport = root.querySelector('.hl__viewport');
+  var slides = Array.prototype.slice.call(root.querySelectorAll('.hl__slide'));
+  var segs = Array.prototype.slice.call(root.querySelectorAll('.hl__seg'));
+  var btn = root.querySelector('.hl__playpause');
+  if (!viewport || !slides.length || !segs.length || !btn) return;
+
+  var DUR = 5000;
+  root.style.setProperty('--hl-dur', (DUR / 1000) + 's');
+  var idx = 0, timer = null, playing = false, inView = false, scrollT = null;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function render() {
+    segs.forEach(function (s, k) {
+      s.classList.remove('is-active', 'is-done');
+      if (k < idx) s.classList.add('is-done');
+    });
+    var cur = segs[idx];
+    void cur.offsetWidth; /* reflow : relance la transition de remplissage */
+    if (playing) cur.classList.add('is-active');
+    else cur.classList.add('is-done');
+  }
+  function go(n, smooth) {
+    idx = (n + slides.length) % slides.length;
+    slides[idx].scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', inline: 'center', block: 'nearest' });
+    render();
+  }
+  function schedule() {
+    clearTimeout(timer);
+    if (playing && inView) timer = setTimeout(function () { go(idx + 1, true); schedule(); }, DUR);
+  }
+  function play() {
+    playing = true;
+    btn.dataset.state = 'playing';
+    btn.setAttribute('aria-label', 'Pause');
+    render();
+    schedule();
+  }
+  function pause() {
+    playing = false;
+    btn.dataset.state = 'paused';
+    btn.setAttribute('aria-label', 'Lecture');
+    clearTimeout(timer);
+    render();
+  }
+
+  btn.addEventListener('click', function () { playing ? pause() : play(); });
+  segs.forEach(function (s, k) {
+    s.addEventListener('click', function () { go(k, true); schedule(); });
+  });
+
+  viewport.addEventListener('scroll', function () {
+    clearTimeout(scrollT);
+    scrollT = setTimeout(function () {
+      var c = viewport.getBoundingClientRect();
+      var cx = c.left + c.width / 2, best = 0, bd = Infinity;
+      slides.forEach(function (sl, k) {
+        var r = sl.getBoundingClientRect();
+        var d = Math.abs(r.left + r.width / 2 - cx);
+        if (d < bd) { bd = d; best = k; }
+      });
+      if (best !== idx) { idx = best; render(); schedule(); }
+    }, 120);
+  }, { passive: true });
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) {
+      inView = es[0].isIntersecting && es[0].intersectionRatio > 0.4;
+      schedule();
+    }, { threshold: [0, 0.4, 1] }).observe(root);
+  } else {
+    inView = true;
+  }
+
+  render();
+  if (reduce) pause(); else play();
+});
