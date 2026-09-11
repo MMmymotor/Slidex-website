@@ -279,56 +279,32 @@
 }
 .pd-accessories .hl { margin-top: 40px; }
 
-/* ── Documentation technique (décluttée) ── */
-.pd-doc-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.pd-doc-card {
-  background: #ffffff;
+/* ── Documentation : liste simple ── */
+.pd-doc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  max-width: 640px;
+  background: #e8edf5;
   border: 1px solid #e8edf5;
-  border-radius: 16px;
-  padding: 28px;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  border-radius: 12px;
+  overflow: hidden;
 }
-.pd-doc-card:hover { border-color: #c7d7f7; transform: translateY(-2px); }
-.pd-doc-icon {
-  width: 44px; height: 44px;
-  border-radius: 10px;
-  display: grid; place-items: center;
-  margin-bottom: 20px;
-  background: #eff6ff;
-}
-.pd-doc-card h3 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin: 0 0 10px;
-}
-.pd-doc-card p {
-  font-size: 0.875rem;
-  color: #64748b;
-  line-height: 1.6;
-  margin: 0 0 18px;
-}
-.pd-doc-meta {
-  font-size: 0.78rem;
-  color: #94a3b8;
-  margin-bottom: 18px;
-}
-.pd-doc-btn {
-  display: inline-flex;
+.pd-doc-row {
+  display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #2563eb;
+  gap: 14px;
+  padding: 18px 20px;
+  background: #ffffff;
   text-decoration: none;
+  color: inherit;
 }
-.pd-doc-btn:hover { text-decoration: underline; }
+.pd-doc-row:hover { background: #f8fafc; }
+.pd-doc-row-icon { flex-shrink: 0; width: 22px; height: 22px; color: #0f172a; }
+.pd-doc-row-body { flex: 1; min-width: 0; }
+.pd-doc-row-title { margin: 0; font-size: 0.92rem; font-weight: 700; color: #0f172a; }
+.pd-doc-row-meta { margin: 3px 0 0; font-size: 0.8rem; color: #64748b; }
+.pd-doc-row-ext { flex-shrink: 0; color: #94a3b8; }
 
 /* ── Avis Google : compacté sur cette page (3 avis max) ── */
 #google-reviews-placeholder .gr__card:nth-child(n+4) { display: none; }
@@ -616,48 +592,34 @@
 
 <!-- DOCUMENTATION -->
 <div class="pd-tabpanel" data-panel="documentation">
-<div class="pd-doc-grid">
+<div class="pd-doc-list">
 
-<div class="pd-doc-card">
-<div class="pd-doc-icon">
-<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14 2V8H20" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16 13H8" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16 17H8" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-</div>
-<h3>Fiche technique</h3>
-<p>Spécifications complètes, dimensions, performances et caractéristiques techniques.</p>
-<div class="pd-doc-meta">PDF · 2,4 Mo · Français</div>
-<a href="#" class="pd-doc-btn">Télécharger →</a>
-</div>
+<a href="#" class="pd-doc-row">
+<span class="pd-doc-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="100%" height="100%"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/><path d="M14 2v6h6"/></svg></span>
+<span class="pd-doc-row-body">
+<p class="pd-doc-row-title">Fiche technique</p>
+<p class="pd-doc-row-meta">PDF · 2,4 Mo · Français</p>
+</span>
+<span class="pd-doc-row-ext"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg></span>
+</a>
 
-<div class="pd-doc-card">
-<div class="pd-doc-icon">
-<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M9 12L11 14L15 10" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-</div>
-<h3>Notice d'installation</h3>
-<p>Guide pas-à-pas illustré pour une installation conforme et sécurisée par vos équipes.</p>
-<div class="pd-doc-meta">PDF · 3,8 Mo</div>
-<a href="#" class="pd-doc-btn">Télécharger →</a>
-</div>
+<a href="#" class="pd-doc-row">
+<span class="pd-doc-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="100%" height="100%"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span>
+<span class="pd-doc-row-body">
+<p class="pd-doc-row-title">Notice d'installation</p>
+<p class="pd-doc-row-meta">PDF · 3,8 Mo</p>
+</span>
+<span class="pd-doc-row-ext"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg></span>
+</a>
 
-<div class="pd-doc-card">
-<div class="pd-doc-icon">
-<svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 15C15.866 15 19 11.866 19 8C19 4.13401 15.866 1 12 1C8.13401 1 5 4.13401 5 8C5 11.866 8.13401 15 12 15Z" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8.21 13.89L7 23L12 20L17 23L15.79 13.88" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-</div>
-<h3>Certificats de conformité</h3>
-<p>CE, EN 16005, certifications TÜV et attestations de conformité réglementaire.</p>
-<div class="pd-doc-meta">PDF · 1,2 Mo</div>
-<a href="#" class="pd-doc-btn">Télécharger →</a>
-</div>
+<a href="#" class="pd-doc-row">
+<span class="pd-doc-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="100%" height="100%"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.6L7 22l5-3 5 3-1.2-8.4"/></svg></span>
+<span class="pd-doc-row-body">
+<p class="pd-doc-row-title">Certificats de conformité</p>
+<p class="pd-doc-row-meta">PDF · 1,2 Mo · CE, EN 16005, TÜV</p>
+</span>
+<span class="pd-doc-row-ext"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg></span>
+</a>
 
 </div>
 </div>
