@@ -855,6 +855,80 @@
   .mm-visual { position: static; }
 }
 
+/* ── SUPPORT TECHNIQUE ── */
+.support-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 48px;
+  align-items: start;
+  margin-top: 20px;
+}
+.support-proofs {
+  list-style: none;
+  margin: 32px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.support-proofs h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--dark);
+}
+.support-proofs p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--mid);
+  line-height: 1.6;
+}
+.support-visual {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: #f1f5f9;
+  aspect-ratio: 4 / 5;
+}
+.support-visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.support-visual-ph {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.support-visual-ph[hidden] { display: none; }
+
+.support-statement {
+  margin: 44px auto 0;
+  max-width: 760px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--dark);
+  text-align: center;
+}
+.support-statement strong { color: var(--blue); }
+
+@media (max-width: 860px) {
+  .support-grid { grid-template-columns: 1fr; gap: 32px; }
+  .support-visual { aspect-ratio: 16 / 10; order: -1; }
+}
+
 /* ── FAQ ── */
 .faq-grid {
   display: grid;
@@ -1626,6 +1700,44 @@
     </div>
   </section>
 
+  <!-- ============================================================
+       SUPPORT TECHNIQUE
+       ============================================================ -->
+  <section class="lp-section bg-white">
+    <div class="lp-container lp-container--wide">
+      <div class="lp-label">Support technique</div>
+
+      <div class="support-grid">
+        <div class="support-text">
+          <h2 class="lp-h2">Vous êtes sur le chantier.<br><em>Nous sommes derrière vous.</em></h2>
+          <p class="lp-lead" style="margin-bottom: 12px;">Installer soi-même une porte automatique ne veut pas dire être seul. Nos techniciens accompagnent les installateurs SlideX avant, pendant et après la mise en service.</p>
+          <p class="lp-lead" style="margin-bottom: 0;">Une question de câblage, un réglage, un diagnostic ou une pièce à identifier&nbsp;: vous échangez directement avec une équipe qui connaît le produit.</p>
+
+          <ul class="support-proofs">
+            <li>
+              <h3>Support technique direct</h3>
+              <p>Un interlocuteur qui connaît réellement la porte et son automatisme.</p>
+            </li>
+            <li>
+              <h3>Diagnostic à distance</h3>
+              <p>Photos, vidéos, appel&nbsp;: on vous aide à identifier rapidement l'origine du problème.</p>
+            </li>
+            <li>
+              <h3>Pièces disponibles 10 ans</h3>
+              <p>Les composants SAV restent disponibles pour maintenir les installations dans le temps.</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="support-visual">
+          <img src="images/support-technique-partenaires.jpg" alt="Technicien SlideX au support technique" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+          <div class="support-visual-ph" hidden>Photo d'un technicien SlideX</div>
+        </div>
+      </div>
+
+      <p class="support-statement">Notre objectif n'est pas d'envoyer un technicien chez votre client. <strong>C'est d'aider le vôtre à résoudre le problème.</strong></p>
+    </div>
+  </section>
 
   <!-- ============================================================
        FAQ
