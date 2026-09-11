@@ -166,42 +166,96 @@
   .pd-feature-tip { width: 220px; }
 }
 
-/* ── L'essentiel en un coup d'œil ── */
-.pd-stats { background: #f8fafc; }
-.pd-stats-title {
-  margin: 0 0 40px;
-  text-align: center;
-  font-size: clamp(1.5rem, 2.6vw, 2rem);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: #0f172a;
+/* ── Fiche produit à onglets (façon IKEA) ── */
+.pd-panel-section { background: #f8fafc; padding: 56px 0; }
+.pd-panel {
+  background: #ffffff;
+  border: 1px solid #e8edf5;
+  border-radius: 14px;
+  overflow: hidden;
 }
-.pd-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+.pd-tabs {
+  display: flex;
+  gap: 32px;
+  padding: 0 28px;
+  border-bottom: 1px solid #e8edf5;
+  overflow-x: auto;
 }
-.pd-stat {
-  text-align: center;
-  padding: 8px 12px;
-  border-left: 1px solid #e2e8f0;
-}
-.pd-stat:first-child { border-left: 0; }
-.pd-stat-value {
-  font-size: clamp(1.25rem, 2vw, 1.6rem);
-  font-weight: 800;
-  color: #0f172a;
-  letter-spacing: -0.01em;
-}
-.pd-stat-label {
-  margin-top: 8px;
-  font-size: 0.8rem;
+.pd-tab {
+  appearance: none;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 20px 0 16px;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
   color: #64748b;
+  cursor: pointer;
+  white-space: nowrap;
 }
-@media (max-width: 900px) {
-  .pd-stats-grid { grid-template-columns: repeat(2, 1fr); row-gap: 28px; }
-  .pd-stat { border-left: 0; border-top: 1px solid #e2e8f0; padding-top: 20px; }
-  .pd-stat:nth-child(-n+2) { border-top: 0; }
-  .pd-stat:last-child { grid-column: span 2; }
+.pd-tab:hover { color: #0f172a; }
+.pd-tab[aria-selected="true"] { color: #0f172a; font-weight: 700; border-bottom-color: #0f172a; }
+.pd-tabpanel { display: none; padding: 36px 28px 44px; }
+.pd-tabpanel[data-active] { display: block; }
+
+.pd-panel-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 48px; align-items: start; }
+.pd-panel-grid .pd-features { margin-top: 0; padding-top: 0; border-top: 0; }
+.pd-panel-visual { position: relative; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: #f2f2f4; display: grid; place-items: center; }
+.pd-panel-visual-ph { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #b6b6be; text-align: center; padding: 20px; }
+
+/* Description produit */
+.pd-desc-grid { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 48px; align-items: start; }
+.pd-desc-grid p { margin: 0 0 20px; font-size: 0.95rem; line-height: 1.7; color: #0f172a; max-width: 62ch; }
+.pd-desc-more { font-size: 0.88rem; font-weight: 600; color: #0f172a; text-decoration: underline; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit; }
+.pd-info-box { border: 1px solid #e8edf5; border-radius: 12px; overflow: hidden; }
+
+/* Accordéons (En savoir plus / Bon à savoir) */
+.pd-more-label { margin: 26px 0 14px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; color: #94a3b8; }
+.pd-accordion { border-top: 1px solid #e8edf5; }
+.pd-accordion-item { border-bottom: 1px solid #e8edf5; }
+.pd-info-box .pd-accordion-item:last-child { border-bottom: 0; }
+.pd-accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: none;
+  border: 0;
+  padding: 16px 2px;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0f172a;
+  cursor: pointer;
+}
+.pd-info-box .pd-accordion-trigger { padding: 16px 18px; }
+.pd-chev { transition: transform 0.18s ease; flex-shrink: 0; color: #94a3b8; }
+.pd-accordion-trigger[aria-expanded="true"] .pd-chev { transform: rotate(180deg); }
+.pd-accordion-body { display: none; padding: 0 2px 18px; font-size: 0.85rem; line-height: 1.65; color: #64748b; }
+.pd-info-box .pd-accordion-body { padding: 0 18px 18px; }
+.pd-accordion-trigger[aria-expanded="true"] + .pd-accordion-body { display: block; }
+
+/* Dimensions */
+.pd-dim-grid { display: grid; grid-template-columns: minmax(0, 1fr) 420px; gap: 48px; align-items: start; }
+.pd-dim-box { border: 1px solid #e8edf5; border-radius: 12px; overflow: hidden; }
+.pd-dim-box-head { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px; font-size: 0.88rem; font-weight: 700; color: #0f172a; border-bottom: 1px solid #e8edf5; }
+.pd-dim-table { display: grid; grid-template-columns: 1fr 1fr; }
+.pd-dim-cell { padding: 18px; border-bottom: 1px solid #e8edf5; }
+.pd-dim-cell:nth-child(odd) { border-right: 1px solid #e8edf5; }
+.pd-dim-cell:nth-last-child(-n+2) { border-bottom: 0; }
+.pd-dim-label { margin: 0 0 6px; font-size: 0.8rem; font-weight: 700; color: #0f172a; }
+.pd-dim-value { margin: 0; font-size: 0.88rem; color: #64748b; font-variant-numeric: tabular-nums; }
+
+/* Ce qui est inclus */
+.pd-included-list { list-style: none; margin: 0; padding: 0; max-width: 520px; border-top: 1px solid #e8edf5; }
+.pd-included-list li { display: flex; align-items: center; gap: 16px; padding: 16px 2px; border-bottom: 1px solid #e8edf5; font-size: 0.9rem; color: #0f172a; }
+.pd-included-qty { flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: #eef2fb; color: #2563eb; display: grid; place-items: center; font-size: 0.78rem; font-weight: 700; }
+
+@media (max-width: 860px) {
+  .pd-panel-grid, .pd-desc-grid, .pd-dim-grid { grid-template-columns: 1fr; }
+  .pd-panel-visual { order: -1; }
 }
 
 /* ── Installation : "Pensée pour être posée simplement" ── */
@@ -444,12 +498,29 @@
 <div>Configurer ma porte</div>
 <div class="item-icon-right icon-right-circle"><div class="base-icon-font" style="display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
 </a>
-<a class="pd-link" href="#chiffres">Voir les caractéristiques ↓</a>
+<a class="pd-link" href="#fiche-produit">Voir les caractéristiques ↓</a>
 </div>
 </div>
+</div>
+</div>
+</section>
+
+<!-- FICHE PRODUIT À ONGLETS (façon IKEA) -->
+<section class="section pd-panel-section" id="fiche-produit">
+<div class="w-layout-blockcontainer container-default w-container">
+<div class="pd-panel">
+<div class="pd-tabs" role="tablist">
+<button class="pd-tab" role="tab" aria-selected="true" data-tab="apercu">Aperçu</button>
+<button class="pd-tab" role="tab" aria-selected="false" data-tab="description">Description produit</button>
+<button class="pd-tab" role="tab" aria-selected="false" data-tab="dimensions">Dimensions</button>
+<button class="pd-tab" role="tab" aria-selected="false" data-tab="inclus">Ce qui est inclus</button>
 </div>
 
-<!-- Inclus de série / Options : tuiles façon IKEA -->
+<!-- APERÇU -->
+<div class="pd-tabpanel" data-panel="apercu" data-active>
+<div class="pd-panel-grid">
+<div>
+
 <div class="pd-features">
 <div>
 <p class="pd-features-label">Inclus de série</p>
@@ -519,19 +590,95 @@
 </div>
 </div>
 </div>
-</div>
-</section>
 
-<!-- PRODUCT SPECIFICATIONS SECTION -->
-<section class="section pd-stats" id="chiffres">
-<div class="w-layout-blockcontainer container-default w-container">
-<h2 class="pd-stats-title">L'essentiel en un coup d'œil</h2>
-<div class="pd-stats-grid">
-<div class="pd-stat"><div class="pd-stat-value">400–1400 mm</div><div class="pd-stat-label">Passage libre</div></div>
-<div class="pd-stat"><div class="pd-stat-value">150 kg</div><div class="pd-stat-label">Poids max. vantail</div></div>
-<div class="pd-stat"><div class="pd-stat-value">&lt; 45 dB</div><div class="pd-stat-label">Niveau sonore</div></div>
-<div class="pd-stat"><div class="pd-stat-value">EN 16005</div><div class="pd-stat-label">Norme de sécurité</div></div>
-<div class="pd-stat"><div class="pd-stat-value">12 jours</div><div class="pd-stat-label">Fabrication</div></div>
+<p class="pd-more-label">En savoir plus</p>
+<div class="pd-accordion">
+<div class="pd-accordion-item">
+<button class="pd-accordion-trigger" aria-expanded="false">Matériaux et entretien
+<svg class="pd-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+<div class="pd-accordion-body">Cadre en aluminium anodisé naturel. Nettoyage à l'eau savonneuse, sans produit abrasif. Profilés coulissants garantis 10 ans contre la corrosion.</div>
+</div>
+<div class="pd-accordion-item">
+<button class="pd-accordion-trigger" aria-expanded="false">Montage et documents
+<svg class="pd-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+<div class="pd-accordion-body">Notice d'installation et fiche technique fournies avec chaque porte. Pose réalisée par votre installateur — SlideX ne réalise pas la pose.</div>
+</div>
+</div>
+
+</div>
+<div class="pd-panel-visual">
+<span class="pd-panel-visual-ph">Photo produit<br/>1 vantail</span>
+</div>
+</div>
+</div>
+
+<!-- DESCRIPTION PRODUIT -->
+<div class="pd-tabpanel" data-panel="description">
+<div class="pd-desc-grid">
+<div>
+<p>La porte piétonne automatique 1 vantail est la solution idéale pour les espaces restreints ou les zones de passage simple. Elle permet une ouverture fluide, sécurisée et silencieuse, parfaitement adaptée aux commerces, bureaux, établissements de santé ou halls d'immeuble.</p>
+<p id="pd-desc-more-1" hidden>Son cadre en aluminium anodisé naturel, ses profilés coulissants haut de gamme, et son pré-montage en atelier garantissent une pose rapide et propre, sans mauvaise surprise sur chantier.</p>
+<p id="pd-desc-more-2" hidden>Le type de vitrage est personnalisable selon vos besoins&nbsp;: vitrage clair, feuilleté de sécurité ou double vitrage isolant.</p>
+<button class="pd-desc-more" id="pd-desc-more-btn" type="button">Afficher plus</button>
+</div>
+<div class="pd-info-box">
+<div class="pd-accordion-item">
+<button class="pd-accordion-trigger" aria-expanded="false">Bon à savoir
+<svg class="pd-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+<div class="pd-accordion-body">Fabrication standard en 12 jours ouvrés, 15 jours avec laquage ou vitrage. Compatible PMR (norme EN 16005).</div>
+</div>
+<div class="pd-accordion-item">
+<button class="pd-accordion-trigger" aria-expanded="false">Matériaux et entretien
+<svg class="pd-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+<div class="pd-accordion-body">Aluminium anodisé naturel. Vitrage 44.2, 55.2 ou double vitrage isolant au choix. Nettoyage à l'eau savonneuse.</div>
+</div>
+<div class="pd-accordion-item">
+<button class="pd-accordion-trigger" aria-expanded="false">Montage et documents
+<svg class="pd-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+<div class="pd-accordion-body">Notice d'installation, fiche technique et certificats de conformité fournis avec chaque porte.</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- DIMENSIONS -->
+<div class="pd-tabpanel" data-panel="dimensions">
+<div class="pd-dim-grid">
+<div class="pd-panel-visual">
+<span class="pd-panel-visual-ph">Photo produit<br/>1 vantail</span>
+</div>
+<div class="pd-dim-box">
+<div class="pd-dim-box-head">Dimensions
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(180deg)"><path d="M6 9l6 6 6-6"/></svg>
+</div>
+<div class="pd-dim-table">
+<div class="pd-dim-cell"><p class="pd-dim-label">Passage libre</p><p class="pd-dim-value">400 – 1400 mm</p></div>
+<div class="pd-dim-cell"><p class="pd-dim-label">Hauteur</p><p class="pd-dim-value">jusqu'à 2800 mm</p></div>
+<div class="pd-dim-cell"><p class="pd-dim-label">Poids max. vantail</p><p class="pd-dim-value">150 kg</p></div>
+<div class="pd-dim-cell"><p class="pd-dim-label">Épaisseur verre</p><p class="pd-dim-value">44.2 / 55.2 mm</p></div>
+<div class="pd-dim-cell"><p class="pd-dim-label">Norme de sécurité</p><p class="pd-dim-value">EN 16005</p></div>
+<div class="pd-dim-cell"><p class="pd-dim-label">Fabrication</p><p class="pd-dim-value">12 jours</p></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- CE QUI EST INCLUS -->
+<div class="pd-tabpanel" data-panel="inclus">
+<ul class="pd-included-list">
+<li><span class="pd-included-qty">1×</span> Vantail coulissant motorisé</li>
+<li><span class="pd-included-qty">1×</span> Kit moteur SlideX (avec ou sans verrou 500)</li>
+<li><span class="pd-included-qty">1×</span> BBG vert sonore et lumineux</li>
+<li><span class="pd-included-qty">1×</span> Sélecteur de fonction</li>
+<li><span class="pd-included-qty">1×</span> Notice d'installation et fiche technique</li>
+</ul>
+</div>
+
 </div>
 </div>
 </section>
@@ -914,7 +1061,7 @@
 </div>
 <div class="mg-top-small">
 <div class="inner-container _570px _100-tablet">
-<p class="text-neutral" data-w-id="c77e67a1-94a7-3067-f428-a93efd96fb19">SlideX conçoit et fabrique vos portes piétonnes automatiques en Isère. Configurez votre projet en ligne ou demandez à être rappelé par notre équipe technique.
+<p class="text-neutral" data-w-id="c77e67a1-94a7-3067-f428-a93efd96fb19">SlideX conçoit et fabrique vos portes piétonnes automatiques en Isère. Configurez votre projet en ligne ou demandez à être rappelé par notre équipe technique.</p>
 </div>
 </div>
 <div class="mg-top-80px mg-top-32px---mbl">
@@ -1087,6 +1234,34 @@ document.addEventListener('click', function(e) {
     btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
   }
 });
+
+// Fiche produit à onglets (façon IKEA)
+document.querySelectorAll('.pd-tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.pd-tab').forEach(function(t) { t.setAttribute('aria-selected', 'false'); });
+    document.querySelectorAll('.pd-tabpanel').forEach(function(p) { p.removeAttribute('data-active'); });
+    tab.setAttribute('aria-selected', 'true');
+    document.querySelector('.pd-tabpanel[data-panel="' + tab.dataset.tab + '"]').setAttribute('data-active', '');
+  });
+});
+
+// Accordéons de la fiche produit (En savoir plus / Bon à savoir)
+document.querySelectorAll('.pd-accordion-trigger').forEach(function(trigger) {
+  trigger.addEventListener('click', function() {
+    const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+    trigger.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+  });
+});
+
+// "Afficher plus" dans l'onglet Description produit
+var pdDescMoreBtn = document.getElementById('pd-desc-more-btn');
+if (pdDescMoreBtn) {
+  pdDescMoreBtn.addEventListener('click', function() {
+    document.getElementById('pd-desc-more-1').hidden = false;
+    document.getElementById('pd-desc-more-2').hidden = false;
+    pdDescMoreBtn.remove();
+  });
+}
 
 // FAQ Accordion Functionality
 function toggleFaq(element) {
