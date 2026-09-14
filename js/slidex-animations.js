@@ -284,6 +284,7 @@ Array.prototype.forEach.call(document.querySelectorAll('.hl'), function (root) {
   root.style.setProperty('--hl-dur', (DUR / 1000) + 's');
   var idx = 0, timer = null, playing = false, inView = false, scrollT = null;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var suppressScroll = false, suppressT = null;
 
   function render() {
     segs.forEach(function (s, k) {
@@ -297,6 +298,12 @@ Array.prototype.forEach.call(document.querySelectorAll('.hl'), function (root) {
   }
   function go(n, smooth) {
     idx = (n + slides.length) % slides.length;
+    /* Ignore le recalcul du scroll-listener pendant l'animation du scroll
+       programmatique, sinon il écrase idx en pleine course (scrollIntoView
+       smooth prend ~300-500ms) et il fallait cliquer plusieurs fois. */
+    suppressScroll = true;
+    clearTimeout(suppressT);
+    suppressT = setTimeout(function () { suppressScroll = false; }, 600);
     slides[idx].scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', inline: 'center', block: 'nearest' });
     render();
   }
@@ -327,6 +334,7 @@ Array.prototype.forEach.call(document.querySelectorAll('.hl'), function (root) {
   viewport.addEventListener('scroll', function () {
     clearTimeout(scrollT);
     scrollT = setTimeout(function () {
+      if (suppressScroll) return;
       var c = viewport.getBoundingClientRect();
       var cx = c.left + c.width / 2, best = 0, bd = Infinity;
       slides.forEach(function (sl, k) {
