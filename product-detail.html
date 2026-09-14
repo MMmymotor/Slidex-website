@@ -28,6 +28,18 @@
 <link href="images/favicon.svg" rel="shortcut icon" type="image/x-icon"/>
 <link href="images/webclip.svg" rel="apple-touch-icon"/>
 <style>
+/* Le carrousel photo du hero utilise un track à 500% et des slides à
+   20% chacune (5 photos) pour un défilement en pourcentage classique.
+   La règle partagée .slider-slide { min-width:100% !important } (dans
+   slidex-custom.css, pensée pour le slider témoignages où chaque slide
+   = 100% du track) écrasait sinon ce 20% et forçait chaque slide à
+   faire 5x la largeur voulue — d'où le décalage erratique au clic.
+   Sélecteur à 2 classes = spécificité supérieure à la règle générique. */
+.product-slider .slider-slide {
+  width: 20% !important;
+  min-width: 20% !important;
+}
+
 /* ── Hero produit ── */
 .pd-hero { padding: 48px 0 0; }
 .pd-hero-grid {
@@ -989,101 +1001,15 @@
 </div>
 <script crossorigin="anonymous" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6799d9a3630f757829978f69" type="text/javascript"></script>
 
-<!-- Product Slider Script -->
+<!-- Le carrousel photo du hero (.product-slider) est géré par le
+     contrôleur partagé initSlider()/initAllSliders() dans
+     js/slidex-animations.js. Un second script ici dupliquait sa propre
+     logique (avec un calcul de largeur en % ou en pixels différent et
+     son propre compteur d'index) et entrait en conflit avec lui : les
+     deux géraient les mêmes clics/points indépendamment, d'où le
+     décalage erratique observé. Supprimé — voir slidex-animations.js
+     pour la logique du slider. -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const slides = document.querySelectorAll('.slider-slide');
-  const dots = document.querySelectorAll('.slider-dot');
-  const prevBtn = document.querySelector('.slider-prev');
-  const nextBtn = document.querySelector('.slider-next');
-  const sliderTrack = document.querySelector('.slider-track');
-  
-  let currentSlide = 0;
-  const totalSlides = slides.length;
-
-  function updateSlider() {
-    // Update slider position
-    // On mesure la largeur réelle d'une slide en pixels plutôt que de
-    // recalculer un pourcentage relatif à la largeur du track (500%) :
-    // les pourcentages de translateX se basent sur la largeur du track
-    // lui-même, et sa largeur réellement rendue dépend de la résolution
-    // flexbox (le track est un enfant flex sans flex-shrink:0), ce qui
-    // rendait le calcul en % peu fiable. Le pixel mesuré est toujours juste.
-    const slideWidth = slides[0].getBoundingClientRect().width;
-    sliderTrack.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-    
-    // Update dots
-    dots.forEach((dot, index) => {
-      if (index === currentSlide) {
-        dot.style.background = '#2563eb';
-        dot.classList.add('active');
-      } else {
-        dot.style.background = 'rgba(255,255,255,0.6)';
-        dot.classList.remove('active');
-      }
-    });
-  }
-
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateSlider();
-  }
-
-  function prevSlide() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    updateSlider();
-  }
-
-  function goToSlide(index) {
-    currentSlide = index;
-    updateSlider();
-  }
-
-  // Event listeners
-  nextBtn.addEventListener('click', nextSlide);
-  prevBtn.addEventListener('click', prevSlide);
-
-  // Dot navigation
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => goToSlide(index));
-  });
-
-  // Auto-slide (optional - commented out for now)
-  // setInterval(() => {
-  //   nextSlide();
-  // }, 5000);
-
-  // Touch/swipe support
-  let startX = null;
-  let currentX = null;
-  
-  sliderTrack.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-  });
-
-  sliderTrack.addEventListener('touchmove', (e) => {
-    if (!startX) return;
-    currentX = e.touches[0].clientX;
-  });
-
-  sliderTrack.addEventListener('touchend', () => {
-    if (!startX || !currentX) return;
-    
-    const diffX = startX - currentX;
-    
-    if (Math.abs(diffX) > 50) { // Minimum swipe distance
-      if (diffX > 0) {
-        nextSlide();
-      } else {
-        prevSlide();
-      }
-    }
-    
-    startX = null;
-    currentX = null;
-  });
-});
-
 // Tuiles "Inclus de série / Options" façon IKEA : tooltip au clic
 document.addEventListener('click', function(e) {
   const btn = e.target.closest('.pd-feature');
