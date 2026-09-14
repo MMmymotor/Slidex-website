@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8"/>
   <title>Kit rénovation porte automatique toutes marques | SlideX</title>
-  <meta name="description" content="Kits de rénovation porte automatique compatibles Record, Portalp, Dormakaba, GEZE, CITEC, SOFTICA. Remplacement motorisation sans changer le cadre. Expédition 72 h."/>
+  <meta name="description" content="Kits de rénovation porte automatique compatibles Record, Portalp, Dormakaba, Gilgen, Manusa, SOFTICA. Remplacement motorisation sans changer le cadre. Expédition 72 h."/>
   <meta property="og:title" content="Kit rénovation porte automatique toutes marques | SlideX"/>
-  <meta property="og:description" content="Kits rénovation porte automatique compatibles Record, Portalp, Dormakaba, GEZE, CITEC, SOFTICA. Motorisation remplacée sans toucher au cadre. Expédition 72 h."/>
+  <meta property="og:description" content="Kits rénovation porte automatique compatibles Record, Portalp, Dormakaba, Gilgen, Manusa, SOFTICA. Motorisation remplacée sans toucher au cadre. Expédition 72 h."/>
   <meta property="og:image" content="https://www.slidex.fr/images/Photo-porte-auto.jpg"/>
   <meta property="og:url" content="https://www.slidex.fr/kits-renovation.html"/>
   <meta property="twitter:title" content="Kit rénovation porte automatique | SlideX"/>
-  <meta property="twitter:description" content="Kits rénovation compatibles toutes marques : Record, Portalp, Dormakaba, GEZE, CITEC, SOFTICA. Expédition 72 h."/>
+  <meta property="twitter:description" content="Kits rénovation compatibles toutes marques : Record, Portalp, Dormakaba, Gilgen, Manusa, SOFTICA. Expédition 72 h."/>
   <meta property="twitter:image" content="https://www.slidex.fr/images/Photo-porte-auto.jpg"/>
   <meta property="og:type" content="website"/>
   <meta name="twitter:card" content="summary_large_image"/>
   <meta property="og:locale" content="fr_FR"/>
   <meta property="og:site_name" content="SlideX"/>
-  <meta name="keywords" content="kit rénovation porte automatique, rénovation Record, rénovation Portalp, rénovation Dormakaba, rénovation GEZE, rénovation CITEC, rénovation SOFTICA, kit remplacement porte automatique, compatible toutes marques, économique, écologique"/>
+  <meta name="keywords" content="kit rénovation porte automatique, rénovation Record, rénovation Portalp, rénovation Dormakaba, rénovation Gilgen, rénovation Manusa, rénovation SOFTICA, kit remplacement porte automatique, compatible toutes marques, économique, écologique"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="generator" content="SlideX"/>
   <meta name="robots" content="index, follow"/>
@@ -36,108 +36,230 @@
 
   <!-- Styles personnalisés -->
   <style>
-    .kit-brand-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      margin-top: 48px;
-    }
-    .kit-brand-card {
-      background: white;
-      border-radius: 12px;
+    /* ── Hero ── */
+    .np-header {
+      background: linear-gradient(135deg, #0f172a 0%, #162444 100%);
+      padding: 56px 0 52px;
+      position: relative;
       overflow: hidden;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      transition: all 0.3s ease;
     }
-    .kit-brand-card:hover {
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      transform: translateY(-4px);
+    .np-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0; right: 0;
+      height: 40px;
+      background: white;
+      clip-path: ellipse(55% 100% at 50% 100%);
     }
-    .brand-banner {
-      height: 200px;
+    .kr-hero { max-width: 640px; }
+    .np-header-kicker {
+      margin: 0 0 18px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7db0fb;
+    }
+    .np-header-title {
+      margin: 0;
+      color: #fff;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+    .np-header-desc {
+      max-width: 560px;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin: 18px 0 0;
+    }
+    .np-header-cta { margin-top: 28px; }
+
+    .kr-hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: 40px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .kr-hero-stat-value {
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .kr-hero-stat-label {
+      margin-top: 4px;
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* ── Compatibilité : cards marques ── */
+    .kr-brands-head { max-width: 640px; margin: 0 0 44px; }
+    .kr-eyebrow {
+      margin: 0 0 14px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #2563eb;
+    }
+    .kr-title {
+      margin: 0;
+      font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: #0f172a;
+    }
+    .kr-lead {
+      margin: 14px 0 0;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: #64748b;
+    }
+    .kr-brand-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .kr-brand-card {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e8edf5;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #ffffff;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .kr-brand-card:hover { border-color: #c7d7f7; transform: translateY(-2px); }
+    .kr-brand-photo {
+      position: relative;
+      height: 140px;
+      background: #f5f5f7;
+      display: grid;
+      place-items: center;
+    }
+    .kr-brand-photo img { width: 100%; height: 100%; object-fit: contain; padding: 20px; }
+    .kr-brand-photo-ph {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #b6b6be;
+    }
+    .kr-brand-photo-ph[hidden] { display: none; }
+    .kr-brand-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+    .kr-brand-name-row { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+    .kr-brand-name { margin: 0; font-size: 1.15rem; font-weight: 800; color: #0f172a; }
+    .kr-brand-soon {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: #475569;
+      background: #f1f5f9;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+    .kr-brand-desc { margin: 0 0 18px; font-size: 0.88rem; line-height: 1.6; color: #64748b; }
+    .kr-brand-list-label {
+      margin: 0 0 10px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #94a3b8;
+    }
+    .kr-brand-list { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+    .kr-brand-list li {
       display: flex;
       align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 2.5rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
+      gap: 10px;
+      font-size: 0.85rem;
+      color: #374151;
     }
-    .brand-banner.record { background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); }
-    .brand-banner.portalp { background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); }
-    .brand-banner.dormakaba { background: linear-gradient(135deg, #059669 0%, #047857 100%); }
-    .brand-banner.geze { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
-    .brand-banner.citec { background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); }
-    .brand-banner.softica { background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); }
-    .brand-content {
-      padding: 32px;
+    .kr-brand-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #2563eb;
     }
-    .brand-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 16px;
-      color: #1e293b;
-    }
-    .brand-description {
-      color: #64748b;
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-    .compatibility-list {
-      margin-bottom: 24px;
-    }
-    .compatibility-list h4 {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: #475569;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .compatibility-list ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .compatibility-list li {
-      padding: 8px 0;
-      color: #64748b;
-      display: flex;
+    .kr-brand-cta {
+      margin-top: auto;
+      display: inline-flex;
       align-items: center;
       gap: 8px;
-    }
-    .compatibility-list li:before {
-      content: "✓";
-      color: #10b981;
-      font-weight: bold;
-    }
-    .advantages-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 32px;
-      margin-top: 48px;
-    }
-    .advantage-card {
-      text-align: center;
-      padding: 32px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    }
-    .advantage-icon {
-      font-size: 3rem;
-      margin-bottom: 16px;
-    }
-    .advantage-title {
-      font-size: 1.25rem;
+      font-size: 0.88rem;
       font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 12px;
+      color: #2563eb;
+      text-decoration: none;
     }
-    .advantage-description {
-      color: #64748b;
-      line-height: 1.6;
+    .kr-brand-cta:hover { text-decoration: underline; }
+
+    /* ── Avantages ── */
+    .kr-advantages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .kr-advantage-card {
+      border: 1px solid #e8edf5;
+      border-radius: 16px;
+      padding: 28px;
+      background: #ffffff;
+    }
+    .kr-advantage-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: #eff6ff;
+      display: grid;
+      place-items: center;
+      color: #2563eb;
+      margin-bottom: 20px;
+    }
+    .kr-advantage-title { margin: 0 0 10px; font-size: 1.05rem; font-weight: 700; color: #0f172a; }
+    .kr-advantage-desc { margin: 0; font-size: 0.88rem; line-height: 1.65; color: #64748b; }
+
+    /* ── Section CTA ── */
+    .np-cta {
+      background: linear-gradient(135deg, #0a0f1e 0%, #0f1f3d 100%);
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .np-cta::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 350px;
+      background: radial-gradient(ellipse, rgba(37,99,235,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .np-cta-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: white;
+      padding: 13px 26px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .np-cta-ghost:hover { background: rgba(255,255,255,0.14); color: white; }
+
+    @media (max-width: 767px) {
+      .np-header { padding: 40px 0 48px; }
+      .kr-hero-stats { grid-template-columns: repeat(3, 1fr); gap: 20px; }
     }
   </style>
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="28263fbc-fd1c-4adc-8204-571acc2440a4";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
@@ -148,173 +270,200 @@
 <div class="page-wrapper">
 <div id="header-placeholder"></div>
 
-<!-- Hero Section -->
-<section class="section hero-v2 pd-top-large pd-bottom-large" style="background: #ffffff;">
-<div class="container-default w-container">
-<div class="inner-container _588px---mbl center">
-<div class="inner-container _630px---mbl center" style="max-width: 800px;">
-<div class="text-center">
-<div class="overflow-hidden">
-<h1 class="display-3 mid" data-w-id="hero-title" style="margin-bottom: 16px; font-size: 3.5rem; font-weight: 600; line-height: 1.1; color: #1d1d1f; letter-spacing: -0.015em;">
-Kits de Rénovation<br/>
-Compatible Toutes Marques
-</h1>
-</div>
-<div class="overflow-hidden">
-<div class="mg-bottom-small mg-bottom-16px---mbl">
-<p class="mg-bottom-0" data-w-id="hero-subtitle" style="font-size: 1.25rem; color: #86868b; line-height: 1.5; max-width: 650px; margin: 0 auto 48px; font-weight: 400;">
-Modernisez vos installations Record, Portalp, Dormakaba, GEZE, CITEC et SOFTICA. Solution économique et rapide.
-</p>
-</div>
+<!-- ── Hero ── -->
+<div class="np-header">
+  <div class="w-layout-blockcontainer container-default w-container">
+    <div class="kr-hero">
+      <p class="np-header-kicker">Rénovation</p>
+      <h1 class="np-header-title">Kits de rénovation compatibles toutes marques.</h1>
+      <p class="np-header-desc">Modernisez vos installations Record, Portalp, Dormakaba, Gilgen, Manusa et SOFTICA sans changer le cadre ni les vantaux&nbsp;: une solution économique et rapide, expédiée sous 72&nbsp;h.</p>
+      <div class="np-header-cta">
+        <a class="primary-button w-inline-block" href="mailto:hello@slidex.fr?subject=Demande de devis - Kit de rénovation&body=Bonjour,%0D%0A%0D%0AJe souhaite obtenir un devis pour un kit de rénovation compatible avec mon installation.%0D%0A%0D%0ACordialement">
+          <div>Demander un devis</div>
+          <div class="item-icon-right icon-right-circle">
+            <div class="base-icon-font" style="display:flex;align-items:center;justify-content:center;">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="kr-hero-stats">
+        <div>
+          <div class="kr-hero-stat-value">60%</div>
+          <div class="kr-hero-stat-label">d'économies</div>
+        </div>
+        <div>
+          <div class="kr-hero-stat-value">72h</div>
+          <div class="kr-hero-stat-label">Expédition</div>
+        </div>
+        <div>
+          <div class="kr-hero-stat-value">6</div>
+          <div class="kr-hero-stat-label">Marques compatibles</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="mg-top-default mg-top-24px---mbl">
-<div class="button-wrapper center" style="gap: 16px;">
-<a class="primary-button medium-button w-button" href="mailto:hello@slidex.fr?subject=Demande de devis - Kit de rénovation&body=Bonjour,%0D%0A%0D%0AJe souhaite obtenir un devis pour un kit de rénovation compatible avec mon installation.%0D%0A%0D%0ACordialement" style="background: #2563eb; border: none; padding: 14px 32px; font-size: 1rem; font-weight: 500; border-radius: 24px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: none; width: auto; display: inline-block;">Demander un devis</a>
-</div>
-</div>
+<!-- ── Compatibilité : cards marques ── -->
+<section class="section">
+<div class="w-layout-blockcontainer container-default w-container">
+  <div class="kr-brands-head">
+    <p class="kr-eyebrow">Compatibilité</p>
+    <h2 class="kr-title">Compatible avec les grandes marques du marché.</h2>
+    <p class="kr-lead">Nos kits de rénovation s'adaptent aux systèmes existants des principaux fabricants du marché.</p>
+  </div>
 
-<div style="margin-top: 80px; padding-top: 64px; border-top: 1px solid #f5f5f7;">
-<div style="display: flex; justify-content: center; align-items: center; gap: 64px; flex-wrap: wrap;">
-<div style="text-align: center;">
-<div style="font-size: 3rem; font-weight: 600; color: #1d1d1f; margin-bottom: 4px; letter-spacing: -0.02em;">60%</div>
-<div style="font-size: 0.875rem; color: #86868b; font-weight: 400;">d'économies</div>
-</div>
-<div style="text-align: center;">
-<div style="font-size: 3rem; font-weight: 600; color: #1d1d1f; margin-bottom: 4px; letter-spacing: -0.02em;">48h</div>
-<div style="font-size: 0.875rem; color: #86868b; font-weight: 400;">Livraison</div>
-</div>
-<div style="text-align: center;">
-<div style="font-size: 3rem; font-weight: 600; color: #1d1d1f; margin-bottom: 4px; letter-spacing: -0.02em;">6</div>
-<div style="font-size: 0.875rem; color: #86868b; font-weight: 400;">Marques</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+  <div class="kr-brand-grid">
+
+    <!-- Record -->
+    <div class="kr-brand-card">
+      <div class="kr-brand-photo">
+        <img src="images/kit-record.jpg" alt="Kit de rénovation Record SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+        <span class="kr-brand-photo-ph" hidden>Record</span>
+      </div>
+      <div class="kr-brand-body">
+        <div class="kr-brand-name-row"><p class="kr-brand-name">Kit Record</p></div>
+        <p class="kr-brand-desc">Remplacez la motorisation de vos portes Record STA et Vercor SAGA sans toucher au cadre ni aux vantaux. Kit prêt à poser, conforme EN&nbsp;16005.</p>
+        <p class="kr-brand-list-label">Compatible avec</p>
+        <ul class="kr-brand-list">
+          <li>Record STA 20/21</li>
+          <li>Record STA 16/17</li>
+          <li>Vercor SAGA</li>
+          <li>Vercor SAGA EASY</li>
+        </ul>
+        <a class="kr-brand-cta" href="kits-renovation/record.html">Voir le kit →</a>
+      </div>
+    </div>
+
+    <!-- Portalp -->
+    <div class="kr-brand-card">
+      <div class="kr-brand-photo">
+        <img src="images/kit-portalp.jpg" alt="Kit de rénovation Portalp SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+        <span class="kr-brand-photo-ph" hidden>Portalp</span>
+      </div>
+      <div class="kr-brand-body">
+        <div class="kr-brand-name-row">
+          <p class="kr-brand-name">Kit Portalp</p>
+          <span class="kr-brand-soon">Bientôt disponible</span>
+        </div>
+        <p class="kr-brand-desc">Nos équipes développent un kit de rénovation compatible avec vos installations Portalp. Contactez-nous pour être informé de sa disponibilité.</p>
+        <a class="kr-brand-cta" href="mailto:hello@slidex.fr?subject=Demande d'information - Kit de rénovation Portalp&body=Bonjour,%0D%0A%0D%0AJe souhaite être informé de la disponibilité du kit de rénovation Portalp.%0D%0A%0D%0ACordialement">Me tenir informé →</a>
+      </div>
+    </div>
+
+    <!-- Dormakaba -->
+    <div class="kr-brand-card">
+      <div class="kr-brand-photo">
+        <img src="images/kit-dormakaba.jpg" alt="Kit de rénovation Dormakaba SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+        <span class="kr-brand-photo-ph" hidden>Dormakaba</span>
+      </div>
+      <div class="kr-brand-body">
+        <div class="kr-brand-name-row"><p class="kr-brand-name">Kit Dormakaba</p></div>
+        <p class="kr-brand-desc">Solutions de rénovation pour les portes Dormakaba (ex-Dorma). Compatibilité garantie avec les principaux modèles.</p>
+        <p class="kr-brand-list-label">Compatible avec</p>
+        <ul class="kr-brand-list">
+          <li>Dormakaba ES 200</li>
+          <li>Dormakaba ACL 150</li>
+        </ul>
+        <a class="kr-brand-cta" href="mailto:hello@slidex.fr?subject=Demande de devis - Kit de rénovation Dormakaba&body=Bonjour,%0D%0A%0D%0AJe souhaite obtenir un devis pour un kit de rénovation Dormakaba.%0D%0A%0D%0ACordialement">Demander un devis →</a>
+      </div>
+    </div>
+
+    <!-- Gilgen -->
+    <div class="kr-brand-card">
+      <div class="kr-brand-photo">
+        <img src="images/kit-gilgen.jpg" alt="Kit de rénovation Gilgen SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+        <span class="kr-brand-photo-ph" hidden>Gilgen</span>
+      </div>
+      <div class="kr-brand-body">
+        <div class="kr-brand-name-row"><p class="kr-brand-name">Kit Gilgen</p></div>
+        <p class="kr-brand-desc">Kits de rénovation spécialement conçus pour les portes automatiques Gilgen. Modernisation rapide et efficace.</p>
+        <p class="kr-brand-list-label">Compatible avec</p>
+        <ul class="kr-brand-list">
+          <li>Gilgen SLA</li>
+          <li>Gilgen SLX</li>
+        </ul>
+        <a class="kr-brand-cta" href="mailto:hello@slidex.fr?subject=Demande de devis - Kit de rénovation Gilgen&body=Bonjour,%0D%0A%0D%0AJe souhaite obtenir un devis pour un kit de rénovation Gilgen.%0D%0A%0D%0ACordialement">Demander un devis →</a>
+      </div>
+    </div>
+
+    <!-- Manusa -->
+    <div class="kr-brand-card">
+      <div class="kr-brand-photo">
+        <img src="images/kit-manusa.jpg" alt="Kit de rénovation Manusa SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+        <span class="kr-brand-photo-ph" hidden>Manusa</span>
+      </div>
+      <div class="kr-brand-body">
+        <div class="kr-brand-name-row">
+          <p class="kr-brand-name">Kit Manusa</p>
+          <span class="kr-brand-soon">Bientôt disponible</span>
+        </div>
+        <p class="kr-brand-desc">Nos équipes développent un kit de rénovation compatible avec vos installations Manusa. Contactez-nous pour être informé de sa disponibilité.</p>
+        <a class="kr-brand-cta" href="mailto:hello@slidex.fr?subject=Demande d'information - Kit de rénovation Manusa&body=Bonjour,%0D%0A%0D%0AJe souhaite être informé de la disponibilité du kit de rénovation Manusa.%0D%0A%0D%0ACordialement">Me tenir informé →</a>
+      </div>
+    </div>
+
+    <!-- SOFTICA -->
+    <div class="kr-brand-card">
+      <div class="kr-brand-photo">
+        <img src="images/kit-softica.jpg" alt="Kit de rénovation SOFTICA SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+        <span class="kr-brand-photo-ph" hidden>SOFTICA</span>
+      </div>
+      <div class="kr-brand-body">
+        <div class="kr-brand-name-row"><p class="kr-brand-name">Kit SOFTICA</p></div>
+        <p class="kr-brand-desc">Kit de rénovation compatible avec vos installations SOFTICA, dont le modèle OPTIMA 100. Remplacez la motorisation sans changer le cadre ni les vantaux. Conforme EN&nbsp;16005, documentation fournie.</p>
+        <a class="kr-brand-cta" href="kits-renovation/softica.html">Voir le kit →</a>
+      </div>
+    </div>
+
+  </div>
 </div>
 </section>
 
-<!-- Brand Cards Section -->
-<section class="section pd-top-large pd-bottom-large">
-<div class="container-default w-container">
-<div class="text-center mg-bottom-medium">
-<h2 class="display-4 mid">Compatible avec Toutes les Grandes Marques</h2>
-<p style="color: #64748b; font-size: 1.125rem; margin-top: 16px;">Nos kits de rénovation s'adaptent aux systèmes existants des principaux fabricants du marché</p>
-</div>
+<!-- ── Avantages ── -->
+<section class="section" style="background: #f8fafc;">
+<div class="w-layout-blockcontainer container-default w-container">
+  <div class="kr-brands-head">
+    <p class="kr-eyebrow">Avantages</p>
+    <h2 class="kr-title">Pourquoi choisir un kit de rénovation ?</h2>
+  </div>
 
-<div class="kit-brand-grid">
-<!-- Card Record -->
-<div class="kit-brand-card">
-<div class="brand-banner record">RECORD</div>
-<div class="brand-content">
-<h3 class="brand-title">Kit Record</h3>
-<p class="brand-description">Remplacez la motorisation de vos portes Record STA et Vercor SAGA sans toucher au cadre ni aux vantaux. Kit prêt à poser, conforme EN16005.</p>
-<div class="compatibility-list">
-<h4>Compatible avec :</h4>
-<ul>
-<li>Record STA 20/21</li>
-<li>Record STA 16/17</li>
-<li>Vercor SAGA</li>
-<li>Vercor SAGA EASY</li>
-</ul>
-</div>
-<a class="primary-button small-button w-button" href="kits-renovation/record.html" style="width: auto; display: inline-block; padding: 12px 28px;">Voir le kit</a>
-</div>
-</div>
-
-<!-- Card Portalp -->
-<div class="kit-brand-card">
-<div class="brand-banner portalp">PORTALP</div>
-<div class="brand-content">
-<h3 class="brand-title">Kit Portalp <span style="font-size: 0.875rem; font-weight: 400; color: #64748b; margin-left: 8px;">(Bientôt disponible)</span></h3>
-<p class="brand-description">Nos équipes travaillent d'arrache-pied pour développer des kits de rénovation compatibles avec vos installations Portalp. Contactez-nous pour être informé de la disponibilité.</p>
-<a class="primary-button small-button w-button" href="mailto:hello@slidex.fr?subject=Demande d'information - Kit de rénovation Portalp&body=Bonjour,%0D%0A%0D%0AJe souhaite être informé de la disponibilité du kit de rénovation Portalp.%0D%0A%0D%0ACordialement" style="width: auto; display: inline-block; padding: 12px 28px;">Me tenir informé</a>
-</div>
-</div>
-
-<!-- Card Dormakaba -->
-<div class="kit-brand-card">
-<div class="brand-banner dormakaba">DORMAKABA</div>
-<div class="brand-content">
-<h3 class="brand-title">Kit Dormakaba</h3>
-<p class="brand-description">Solutions de rénovation pour les portes Dormakaba (ex-Dorma). Compatibilité garantie avec les principaux modèles.</p>
-<div class="compatibility-list">
-<h4>Compatible avec :</h4>
-<ul>
-<li>Dormakaba ES 200</li>
-<li>Dormakaba ACL 150</li>
-</ul>
-</div>
-<a class="primary-button small-button w-button" href="mailto:hello@slidex.fr?subject=Demande de devis - Kit de rénovation Dormakaba&body=Bonjour,%0D%0A%0D%0AJe souhaite obtenir un devis pour un kit de rénovation Dormakaba.%0D%0A%0D%0ACordialement" style="width: auto; display: inline-block; padding: 12px 28px;">Demander un devis</a>
-</div>
-</div>
-
-<!-- Card Gilgen -->
-<div class="kit-brand-card">
-<div class="brand-banner geze">GILGEN</div>
-<div class="brand-content">
-<h3 class="brand-title">Kit Gilgen</h3>
-<p class="brand-description">Kits de rénovation spécialement conçus pour les portes automatiques Gilgen. Modernisation rapide et efficace.</p>
-<div class="compatibility-list">
-<h4>Compatible avec :</h4>
-<ul>
-<li>Gilgen SLA</li>
-<li>Gilgen SLX</li>
-</ul>
-</div>
-<a class="primary-button small-button w-button" href="mailto:hello@slidex.fr?subject=Demande de devis - Kit de rénovation Gilgen&body=Bonjour,%0D%0A%0D%0AJe souhaite obtenir un devis pour un kit de rénovation Gilgen.%0D%0A%0D%0ACordialement" style="width: auto; display: inline-block; padding: 12px 28px;">Demander un devis</a>
-</div>
-</div>
-
-<!-- Card Manusa -->
-<div class="kit-brand-card">
-<div class="brand-banner citec">MANUSA</div>
-<div class="brand-content">
-<h3 class="brand-title">Kit Manusa <span style="font-size: 0.875rem; font-weight: 400; color: #64748b; margin-left: 8px;">(Bientôt disponible)</span></h3>
-<p class="brand-description">Nos équipes travaillent d'arrache-pied pour développer des kits de rénovation compatibles avec vos installations Manusa. Contactez-nous pour être informé de la disponibilité.</p>
-<a class="primary-button small-button w-button" href="mailto:hello@slidex.fr?subject=Demande d'information - Kit de rénovation Manusa&body=Bonjour,%0D%0A%0D%0AJe souhaite être informé de la disponibilité du kit de rénovation Manusa.%0D%0A%0D%0ACordialement" style="width: auto; display: inline-block; padding: 12px 28px;">Me tenir informé</a>
-</div>
-</div>
-
-<!-- Card SOFTICA -->
-<div class="kit-brand-card">
-<div class="brand-banner softica">SOFTICA</div>
-<div class="brand-content">
-<h3 class="brand-title">Kit SOFTICA</h3>
-<p class="brand-description">Kit de rénovation compatible avec vos installations SOFTICA, dont le modèle OPTIMA 100. Remplacez la motorisation sans changer le cadre ni les vantaux. Conforme normes EN16005, documentation fournie.</p>
-<a class="primary-button small-button w-button" href="kits-renovation/softica.html" style="width: auto; display: inline-block; padding: 12px 28px;">Voir le kit</a>
-</div>
-</div>
-</div>
+  <div class="kr-advantages-grid">
+    <div class="kr-advantage-card">
+      <div class="kr-advantage-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="7" r="2.2"/><circle cx="17" cy="17" r="2.2"/><path d="M18 6L6 18"/></svg></div>
+      <h3 class="kr-advantage-title">Économique</h3>
+      <p class="kr-advantage-desc">Jusqu'à 60% moins cher qu'un remplacement complet. Conservez votre structure existante et ne changez que les éléments nécessaires.</p>
+    </div>
+    <div class="kr-advantage-card">
+      <div class="kr-advantage-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z"/></svg></div>
+      <h3 class="kr-advantage-title">Installation rapide</h3>
+      <p class="kr-advantage-desc">Expédition sous 72&nbsp;h — kit en stock, sans délai de production. Installation en quelques heures, sans gros travaux.</p>
+    </div>
+    <div class="kr-advantage-card">
+      <div class="kr-advantage-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3C7 3 4 7 4 11c0 6.5 8 10 8 10s8-3.5 8-10c0-4-3-8-8-8z"/><path d="M9 12c1.5-3.5 4-5.5 7-6.5"/></svg></div>
+      <h3 class="kr-advantage-title">Écologique</h3>
+      <p class="kr-advantage-desc">Réduisez votre empreinte carbone en réutilisant les structures existantes. Une démarche responsable et durable.</p>
+    </div>
+  </div>
 </div>
 </section>
 
-<!-- Advantages Section -->
-<section class="section pd-top-large pd-bottom-large" style="background: #f8fafc;">
-<div class="container-default w-container">
-<div class="text-center mg-bottom-medium">
-<h2 class="display-4 mid">Pourquoi Choisir un Kit de Rénovation ?</h2>
-</div>
-
-<div class="advantages-grid">
-<div class="advantage-card">
-<h3 class="advantage-title" style="font-weight: 700;">Économique</h3>
-<p class="advantage-description">Jusqu'à 60% moins cher qu'un remplacement complet. Conservez votre structure existante et ne changez que les éléments nécessaires.</p>
-</div>
-
-<div class="advantage-card">
-<h3 class="advantage-title" style="font-weight: 700;">Installation Rapide</h3>
-<p class="advantage-description">Expédition sous 72 h — kit en stock, sans délai de production. Installation en quelques heures sans gros travaux. Minimisez les perturbations de votre activité.</p>
-</div>
-
-<div class="advantage-card">
-<h3 class="advantage-title" style="font-weight: 700;">Écologique</h3>
-<p class="advantage-description">Réduisez votre empreinte carbone en réutilisant les structures existantes. Une démarche responsable et durable.</p>
-</div>
-</div>
-</div>
+<!-- ── CTA ── -->
+<section class="np-cta">
+  <div class="w-layout-blockcontainer container-default w-container" style="position:relative;z-index:1;">
+    <div style="text-align:center;max-width:580px;margin:0 auto;">
+      <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;color:white;margin-bottom:16px;letter-spacing:-0.3px;">Une installation à moderniser ?</h2>
+      <p style="color:rgba(255,255,255,0.6);font-size:1rem;margin-bottom:36px;line-height:1.7;">Dites-nous quelle marque équipe votre porte, on vous confirme la compatibilité et les délais.</p>
+      <div class="flex-horizontal justify-center gap-small-wrap">
+        <a class="primary-button w-inline-block" href="mailto:hello@slidex.fr?subject=Demande de devis - Kit de rénovation&body=Bonjour,%0D%0A%0D%0AJe souhaite obtenir un devis pour un kit de rénovation compatible avec mon installation.%0D%0A%0D%0ACordialement">
+          <div>Demander un devis</div>
+          <div class="item-icon-right icon-right-circle"><div class="base-icon-font" style="display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        </a>
+        <a class="np-cta-ghost" href="contact-new.html">Nous contacter</a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- Footer -->
