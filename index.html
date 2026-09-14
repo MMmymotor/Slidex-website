@@ -387,59 +387,22 @@
       line-height: 1.7;
       color: #64748b;
     }
-    .gamme .hl { margin-top: 44px; }
-    .hl--cards .hl__track { padding-inline: 4px; }
-    .hl--cards .hl__slide {
-      flex: 0 0 clamp(280px, 44%, 500px);
-      aspect-ratio: auto;
-      overflow: visible;
-      background: transparent;
-      border-radius: 0;
+    .gamme .np-solutions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 44px;
     }
-    @media (max-width: 767px) {
-      .hl--cards .hl__slide { flex-basis: 86%; aspect-ratio: auto; }
+    .gamme .np-solutions-card {
+      position: relative;
+      aspect-ratio: 10 / 7;
+      border-radius: 24px;
+      overflow: hidden;
+      background: #f2f2f4;
     }
-    .gamme .card.v6 {
-      border: 1px solid #e8edf5 !important;
-      border-radius: 20px !important;
-      padding: 20px !important;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
-    }
-    .gamme .card.v6:hover {
-      transform: translateY(-4px) !important;
-      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.09) !important;
-      border-color: #c7d7f7 !important;
-    }
-    .gamme .card.v6 img {
-      width: 100% !important;
-      height: 220px !important;
-      max-height: none !important;
-      object-fit: contain !important;
-      background: #f6f8fb !important;
-      padding: 16px !important;
-      border-radius: 14px !important;
-      margin-bottom: 14px !important;
-    }
-    .gamme .card.v6 .subtitle {
-      font-size: 0.72rem !important;
-      letter-spacing: 0.08em !important;
-      text-transform: uppercase !important;
-      font-weight: 700 !important;
-      color: #2563eb !important;
-    }
-    .gamme .card.v6 h2,
-    .gamme .card.v6 .display-9 {
-      margin: 14px 0 8px !important;
-      font-size: 1.3rem !important;
-      font-weight: 800 !important;
-      letter-spacing: -0.02em !important;
-      color: #0f172a !important;
-    }
-    .gamme .card.v6 p {
-      font-size: 0.9rem !important;
-      line-height: 1.6 !important;
-      color: #64748b !important;
+    @media (max-width: 900px) {
+      .gamme .np-solutions-grid { grid-template-columns: 1fr; }
+      .gamme .np-solutions-card { aspect-ratio: 4 / 3; }
     }
 
     /* ── Section configurateur en ligne ── */
@@ -667,141 +630,41 @@
 <div class="w-layout-blockcontainer container-default w-container">
 <div class="gamme__head">
 <p class="gamme__kicker">Notre gamme</p>
-<h2 class="gamme__title">Nos portes piétonnes</h2>
-<p class="gamme__lead">Portes automatiques piétonnes SlideX pour commerces, ERP et espaces professionnels : installation rapide, fonctionnement silencieux, compatibles PMR. Un vantail, deux vantaux ou télescopique, plus les kits de rénovation toutes marques.</p>
+<h2 class="gamme__title">Une solution pour chaque chantier.</h2>
+<p class="gamme__lead">Installation neuve, rénovation d'un équipement existant ou automatisation d'une porte battante&nbsp;: découvrez la solution adaptée à votre projet.</p>
 </div>
-<div class="hl hl--cards">
-<div class="hl__viewport">
-<div class="hl__track">
-<div class="card v6 hl__slide">
-<div>
-<div class="overflow-hidden title-wrap">
-<div class="subtitle" data-w-id="35e4a64a-ed39-f8f6-3a23-7f3c3f143064">Porte automatique 1 vantail</div>
-</div>
-<div class="mg-top-small">
-<img alt="Un vantail" src="images/1V-SF-GA.webp" loading="lazy" style="width: 100%; max-height: 350px; object-fit: cover; border-radius: 8px;"/>
-<h2 class="display-9 strong cartepdt" data-w-id="e66531e1-4bdd-4448-9832-d0ca4d3de34f">Un vantail</h2>
-<p class="mg-top-small" data-w-id="e66531e1-4bdd-4448-9832-d0ca4d3de351">Optez pour notre porte piétonne automatique 1 vantail, idéale pour les espaces restreints et les entrées simples. Compacte, fiable et facile à installer, elle garantit une ouverture fluide, un accès sécurisé et un design discret. Produite en 12j, prête à poser.</p>
-</div>
-</div>
-<div class="mg-top-default mg-top-24px---mbl">
-<div class="flex-horizontal justify-start gap-small-wrap" data-w-id="e66531e1-4bdd-4448-9832-d0ca4d3de353">
-<a class="primary-button w-inline-block" href="product-detail.html" id="w-node-e9da5fd6-ab44-5b2f-81ad-6e5f36bfab9c-36bfab9c">
-<div>Voir en détail</div>
-<div class="item-icon-right icon-right-circle">
-<div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
-    <path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</div>
-</div>
-</a>
+<div class="np-solutions-grid">
+<div class="np-solutions-card">
+<div class="hl__media"><span class="hl__ph">Photo porte coulissante en situation</span></div>
+<div class="hl__copy">
+<p class="hl__kicker">Portes coulissantes</p>
+<p class="hl__head">Portes automatiques coulissantes</p>
+<p class="hl__sub">1 vantail, 2 vantaux ou télescopique.</p>
+<div class="hl__actions">
+<a class="hl__btn hl__btn--ghost" href="porte-automatique-coulissante.html">Découvrir</a>
+<a class="hl__btn hl__btn--primary" href="connexion-inscription.html">Configurer</a>
 </div>
 </div>
 </div>
-<div class="card v6 hl__slide">
-<div>
-<div>
-<div class="overflow-hidden title-wrap">
-<div class="subtitle" data-w-id="35e4a64a-ed39-f8f6-3a23-7f3c3f143064">Porte automatique deux vantaux</div>
-</div>
-</div>
-<div class="mg-top-small">
-<div class="overflow-hidden title-wrap"><img alt="2 vantaux" src="images/2V-SF-GA.webp" loading="lazy" style="width: 100%; max-height: 350px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;"/>
-<h2 class="display-9 strong cartepdt" data-w-id="e66531e1-4bdd-4448-9832-d0ca4d3de34f">Deux vantaux</h2>
-</div>
-</div>
-<div class="inner-container _640px">
-<p class="mg-top-small" data-w-id="e66531e1-4bdd-4448-9832-d0ca4d3de351">Choisissez notre porte piétonne automatique 2 vantaux pour un passage large, fluide et confortable. Parfaite pour les zones à fort trafic ou les entrées professionnelles, elle allie performance, esthétique et sécurité. Produite en 12 jours (15 jours avec options), simple à installer, elle s’adapte à tous vos projets.</p>
-</div>
-</div>
-<div class="mg-top-default mg-top-24px---mbl">
-<div class="flex-horizontal justify-start gap-small-wrap" data-w-id="e66531e1-4bdd-4448-9832-d0ca4d3de353">
-<a class="primary-button w-inline-block" href="product-detail-2-vantaux.html" id="w-node-e9da5fd6-ab44-5b2f-81ad-6e5f36bfab9c-36bfab9c">
-<div>Voir en détail</div>
-<div class="item-icon-right icon-right-circle">
-<div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
-    <path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</div>
-</div>
-</a>
+<div class="np-solutions-card">
+<div class="hl__media"><span class="hl__ph">Photo rénovation / automatisme</span></div>
+<div class="hl__copy">
+<p class="hl__kicker">Rénovation</p>
+<p class="hl__head">Kits de rénovation</p>
+<p class="hl__sub">Gardez la porte. Remplacez l'automatisme.</p>
+<div class="hl__actions">
+<a class="hl__btn hl__btn--primary" href="kits-renovation.html">Découvrir les kits</a>
 </div>
 </div>
 </div>
-<div class="card v6 hl__slide" style="position: relative;">
-<div style="position: absolute; top: 16px; right: 16px; z-index: 10; background: #9a3412; color: white; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; white-space: nowrap; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
-Disponible décembre 2026
-</div>
-<div>
-<div>
-<div class="overflow-hidden title-wrap">
-<div class="subtitle" data-w-id="35e4a64a-ed39-f8f6-3a23-7f3c3f143064">Porte téléscopique</div>
-</div>
-<div class="mg-top-small">
-<img alt="Porte téléscopique" src="images/1V-T-GA.webp" loading="lazy" style="width: 100%; max-height: 350px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;"/>
-<h2 class="display-9 strong cartepdt" data-w-id="e66531e1-4bdd-4448-9832-d0ca4d3de34f">Porte téléscopique</h2>
-<p class="mg-top-small" data-w-id="e66531e1-4bdd-4448-9832-d0ca4d3de351">Porte piétonne automatique télescopique idéale pour les passages larges dans les espaces restreints. Grâce à son système multi-vantaux coulissants, elle maximise l’ouverture utile tout en conservant un encombrement minimal. Parfaite pour les commerces, bâtiments publics ou établissements de santé. Compatible avec les systèmes de détection standard. Disponible à partir de décembre 2026.</p>
-</div>
-</div>
-<div class="mg-top-default mg-top-24px---mbl">
-<div class="flex-horizontal justify-start gap-small-wrap" data-w-id="e66531e1-4bdd-4448-9832-d0ca4d3de353">
-<a class="primary-button w-inline-block" href="telescopique-bientot-disponible.html" id="w-node-e9da5fd6-ab44-5b2f-81ad-6e5f36bfab9c-36bfab9c">
-<div>Voir en détail</div>
-<div class="item-icon-right icon-right-circle">
-<div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
-    <path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-</div></div>
-</a>
-</div>
-</div>
-</div>
-</div>
-<div class="card v6 hl__slide">
-      <div>
-        <div class="overflow-hidden title-wrap">
-          <div class="subtitle" data-w-id="35e4a64a-ed39-f8f6-3a23-7f3c3f143064">Accessoires & rénovation</div>
-        </div>
-        <div class="mg-top-small">
-          <img alt="Kits de rénovation" src="images/Kit_reno_pub.png" style="width: 100%; max-height: 350px; object-fit: cover; border-radius: 8px;"/>
-          <h2 class="display-9 strong cartepdt" data-w-id="e66531e1-4bdd-4448-9832-d0ca4d3de34f">Nos kits de rénovation</h2>
-          <p class="mg-top-small" data-w-id="e66531e1-4bdd-4448-9832-d0ca4d3de351">Remplacez facilement vos anciennes motorisations toutes marques (Record, Portalp, Dormakaba…) grâce à nos kits compatibles et prêts à poser.</p>
-        </div>
-      </div>
-      <div class="mg-top-default mg-top-24px---mbl">
-        <div class="flex-horizontal justify-start gap-small-wrap" data-w-id="e66531e1-4bdd-4448-9832-d0ca4d3de353">
-          <a class="primary-button w-inline-block" href="kits-renovation.html" id="w-node-e9da5fd6-ab44-5b2f-81ad-6e5f36bfab9c-36bfab9c">
-            <div>Voir en détail</div>
-            <div class="item-icon-right icon-right-circle">
-              <div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    
-</div>
-</div>
-<div class="hl__controls">
-<button class="hl__playpause" type="button" data-state="playing" aria-label="Pause">
-<svg class="hl__ic-pause" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" width="3" height="12" rx="1"/><rect x="7.5" width="3" height="12" rx="1"/></svg>
-<svg class="hl__ic-play" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>
-</button>
-<div class="hl__progress">
-<button class="hl__seg" type="button" aria-label="Aller au produit 1"></button>
-<button class="hl__seg" type="button" aria-label="Aller au produit 2"></button>
-<button class="hl__seg" type="button" aria-label="Aller au produit 3"></button>
-<button class="hl__seg" type="button" aria-label="Aller au produit 4"></button>
+<div class="np-solutions-card">
+<div class="hl__media"><span class="hl__ph">Photo ouvre-porte battant en situation</span></div>
+<div class="hl__copy">
+<p class="hl__kicker">Portes battantes</p>
+<p class="hl__head">Ouvre-portes automatiques</p>
+<p class="hl__sub">Automatisez simplement une porte existante.</p>
+<div class="hl__actions">
+<a class="hl__btn hl__btn--primary" href="ouvre-porte-automatique-battante.html">Découvrir</a>
 </div>
 </div>
 </div>
