@@ -1003,7 +1003,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function updateSlider() {
     // Update slider position
-    sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+    // Le track fait 500% (totalSlides x 100%) de large : le pourcentage de
+    // translateX est relatif à la largeur du track lui-même, pas à celle
+    // du viewport. Il faut donc décaler de (100 / totalSlides)% par slide,
+    // pas de 100% (qui décalait 5x trop loin et sortait le track du cadre).
+    sliderTrack.style.transform = `translateX(-${currentSlide * (100 / totalSlides)}%)`;
     
     // Update dots
     dots.forEach((dot, index) => {
