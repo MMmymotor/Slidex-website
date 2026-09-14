@@ -217,7 +217,6 @@
 /* Description produit */
 .pd-desc-grid { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 48px; align-items: start; }
 .pd-desc-grid p { margin: 0 0 20px; font-size: 0.95rem; line-height: 1.7; color: #0f172a; max-width: 62ch; }
-.pd-desc-more { font-size: 0.88rem; font-weight: 600; color: #0f172a; text-decoration: underline; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit; }
 .pd-info-box { border: 1px solid #e8edf5; border-radius: 12px; overflow: hidden; }
 
 /* Accordéons (Bon à savoir) */
@@ -537,9 +536,8 @@
 <div class="pd-desc-grid">
 <div>
 <p>La porte piétonne automatique 1 vantail est la solution idéale pour les espaces restreints ou les zones de passage simple. Elle permet une ouverture fluide, sécurisée et silencieuse, parfaitement adaptée aux commerces, bureaux, établissements de santé ou halls d'immeuble.</p>
-<p id="pd-desc-more-1" hidden>Son cadre en aluminium anodisé naturel, ses profilés coulissants haut de gamme, et son pré-montage en atelier garantissent une pose rapide et propre, sans mauvaise surprise sur chantier.</p>
-<p id="pd-desc-more-2" hidden>Le type de vitrage est personnalisable selon vos besoins&nbsp;: vitrage clair, feuilleté de sécurité ou double vitrage isolant.</p>
-<button class="pd-desc-more" id="pd-desc-more-btn" type="button">Afficher plus</button>
+<p>Son cadre en aluminium anodisé naturel, ses profilés coulissants haut de gamme, et son pré-montage en atelier garantissent une pose rapide et propre, sans mauvaise surprise sur chantier.</p>
+<p>Le type de vitrage est personnalisable selon vos besoins&nbsp;: vitrage clair, feuilleté de sécurité ou double vitrage isolant.</p>
 </div>
 <div class="pd-info-box">
 <div class="pd-accordion-item">
@@ -692,6 +690,17 @@
 </div>
 </div>
 </li>
+<li class="hl__slide">
+<div class="hl__media"><span class="hl__ph">Photo profil de réception</span></div>
+<div class="hl__copy">
+<p class="hl__kicker">04 — Profil de réception</p>
+<p class="hl__head">Une réception nette, sans jeu.</p>
+<p class="hl__sub">Profil dédié qui réceptionne le vantail en position ouverte, pour un alignement précis et une finition soignée.</p>
+<div class="hl__actions">
+<button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('profil-reception-popup')">En savoir plus</button>
+</div>
+</div>
+</li>
 </ol>
 </div>
 <div class="w-layout-blockcontainer container-default w-container">
@@ -704,6 +713,7 @@
 <button class="hl__seg" type="button" aria-label="Aller au point fort 1"></button>
 <button class="hl__seg" type="button" aria-label="Aller au point fort 2"></button>
 <button class="hl__seg" type="button" aria-label="Aller au point fort 3"></button>
+<button class="hl__seg" type="button" aria-label="Aller au point fort 4"></button>
 </div>
 </div>
 </div>
@@ -784,6 +794,32 @@
       
       <p style="margin-bottom: 0;"><strong>Solution complète</strong><br>
       Installation simple, maintenance réduite et effet garanti. Une solution élégante et fonctionnelle qui valorise votre bâtiment 24h/24.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Popup Profil de réception -->
+<div id="profil-reception-popup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
+  <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s ease;">
+    <button onclick="closePopup('profil-reception-popup')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease;">×</button>
+
+    <div style="text-align: center; margin-bottom: 30px;">
+      <h2 style="color: #1a1a1a; font-size: 28px; font-weight: 700; margin-bottom: 10px;">Profil de réception</h2>
+      <p style="color: #666; font-size: 16px; margin: 0;">Une réception précise, pensée pour durer</p>
+    </div>
+
+    <div style="color: #333; line-height: 1.6; font-size: 16px;">
+      <p style="margin-bottom: 20px;"><strong>Alignement précis</strong><br>
+      Le profil de réception guide et arrête le vantail en position ouverte, sans jeu ni à-coup.</p>
+
+      <p style="margin-bottom: 20px;"><strong>Finition soignée</strong><br>
+      Assorti à la finition du cadre (anodisé naturel ou RAL), il s'intègre discrètement à votre façade.</p>
+
+      <p style="margin-bottom: 20px;"><strong>Confort d'usage</strong><br>
+      Amortit la fin de course du vantail pour un fonctionnement silencieux et durable.</p>
+
+      <p style="margin-bottom: 0;"><strong>Compatible toutes configurations</strong><br>
+      Disponible pour les portes 1 vantail, 2 vantaux et télescopiques.</p>
     </div>
   </div>
 </div>
@@ -1065,16 +1101,6 @@ document.querySelectorAll('.pd-accordion-trigger').forEach(function(trigger) {
     trigger.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
   });
 });
-
-// "Afficher plus" dans l'onglet Description produit
-var pdDescMoreBtn = document.getElementById('pd-desc-more-btn');
-if (pdDescMoreBtn) {
-  pdDescMoreBtn.addEventListener('click', function() {
-    document.getElementById('pd-desc-more-1').hidden = false;
-    document.getElementById('pd-desc-more-2').hidden = false;
-    pdDescMoreBtn.remove();
-  });
-}
 
 // FAQ Accordion Functionality
 function toggleFaq(element) {
