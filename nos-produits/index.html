@@ -60,12 +60,7 @@
   background: white;
   clip-path: ellipse(55% 100% at 50% 100%);
 }
-.np-header-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 40px;
-  align-items: center;
-}
+.np-header-text { max-width: 680px; }
 .np-header-kicker {
   margin: 0 0 18px;
   font-size: 0.8rem;
@@ -115,41 +110,6 @@
   color: rgba(255, 255, 255, 0.4);
   letter-spacing: 0.01em;
 }
-
-/* Composition visuelle : 3 produits détourés, fond navy */
-.np-header-visual {
-  position: relative;
-  min-height: 380px;
-}
-.np-header-shot {
-  position: absolute;
-  filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.45));
-}
-.np-header-shot img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-.np-header-shot--main { width: 58%; height: 100%; left: 0; top: 0; z-index: 3; }
-.np-header-shot--reno { width: 32%; height: 54%; right: 6%; top: 2%; z-index: 2; transform: rotate(2deg); }
-.np-header-shot--battant { width: 28%; height: 44%; right: 0; bottom: 0; z-index: 1; transform: rotate(-3deg); }
-.np-header-shot-ph {
-  height: 100%;
-  display: grid;
-  place-items: center;
-  padding: 10px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  color: rgba(255, 255, 255, 0.35);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  line-height: 1.4;
-}
-.np-header-shot-ph[hidden] { display: none; }
 
 /* ── Bloc « Nos solutions » : 3 grandes cartes ── */
 .np-solutions-head { max-width: 1040px; margin: 0 0 48px; text-align: left; }
@@ -320,10 +280,6 @@
 .np-cta-ghost:hover { background: rgba(255,255,255,0.14); color: white; }
 
 /* ── Responsive ── */
-@media (max-width: 900px) {
-  .np-header-grid { grid-template-columns: 1fr; }
-  .np-header-visual { min-height: 280px; order: -1; }
-}
 @media (max-width: 767px) {
   .np-header { padding: 40px 0 48px; }
 }
@@ -340,41 +296,26 @@
   <!-- ── En-tête de page ── -->
   <div class="np-header">
     <div class="w-layout-blockcontainer container-default w-container">
-      <div class="np-header-grid">
-        <div class="np-header-text">
-          <p class="np-header-kicker">Solutions d'automatisation pour les professionnels</p>
-          <h1 class="np-header-title">Portes automatiques, rénovation et motorisation.</h1>
-          <p class="np-header-desc">SlideX conçoit et fabrique des solutions d'automatisation pour les professionnels&nbsp;: portes piétonnes coulissantes, kits de rénovation, motorisations pour portes battantes et accessoires.</p>
-          <p class="np-header-desc">Du neuf à la rénovation, des solutions pensées pour être simples à commander, rapides à installer et faciles à maintenir.</p>
-          <div class="np-header-cta">
-            <a class="np-header-btn-ghost" href="#gamme">
-              Découvrir nos solutions
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2v9M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-            <a class="primary-button w-inline-block" href="../connexion-inscription.html">
-              <div>Configurer une porte</div>
-              <div class="item-icon-right icon-right-circle">
-                <div class="base-icon-font" style="display:flex;align-items:center;justify-content:center;">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </div>
+      <div class="np-header-text">
+        <p class="np-header-kicker">Solutions d'automatisation pour les professionnels</p>
+        <h1 class="np-header-title">Portes automatiques, rénovation et motorisation.</h1>
+        <p class="np-header-desc">SlideX conçoit et fabrique des solutions d'automatisation pour les professionnels&nbsp;: portes piétonnes coulissantes, kits de rénovation, motorisations pour portes battantes et accessoires.</p>
+        <p class="np-header-desc">Du neuf à la rénovation, des solutions pensées pour être simples à commander, rapides à installer et faciles à maintenir.</p>
+        <div class="np-header-cta">
+          <a class="np-header-btn-ghost" href="#gamme">
+            Découvrir nos solutions
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2v9M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="primary-button w-inline-block" href="../connexion-inscription.html">
+            <div>Configurer une porte</div>
+            <div class="item-icon-right icon-right-circle">
+              <div class="base-icon-font" style="display:flex;align-items:center;justify-content:center;">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </div>
-            </a>
-          </div>
-          <p class="np-header-proof">Fabrication française · Support technique dédié · Pièces SAV 10 ans</p>
+            </div>
+          </a>
         </div>
-
-        <div class="np-header-visual">
-          <div class="np-header-shot np-header-shot--main">
-            <img src="../images/2V-SF-GA.png" alt="Porte automatique 2 vantaux SlideX"/>
-          </div>
-          <div class="np-header-shot np-header-shot--reno">
-            <img src="../images/1V-SF-N.png" alt="Kit de rénovation SlideX"/>
-          </div>
-          <div class="np-header-shot np-header-shot--battant">
-            <img src="../images/go-in-350.png" alt="Opérateur de porte battante SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
-            <div class="np-header-shot-ph" hidden>Visuel opérateur<br/>de porte battante</div>
-          </div>
-        </div>
+        <p class="np-header-proof">Fabrication française · Support technique dédié · Pièces SAV 10 ans</p>
       </div>
     </div>
   </div>
