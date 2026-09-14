@@ -1,0 +1,6 @@
+# Redirections 301 — pages supprimées lors du tri du site
+Redirect 301 /porte-automatique-prix.html https://www.slidex.fr/connexion-inscription.html
+Redirect 301 /a-propos.html https://www.slidex.fr/
+Redirect 301 /urgence-panne.html https://www.slidex.fr/contact-new.html
+Redirect 301 /diagnostic-video.html https://www.slidex.fr/
+Redirect 301 /configurer-2-minutes.html https://www.slidex.fr/connexion-inscription.html
