@@ -75,11 +75,11 @@
   line-height: 1.7;
   margin: 18px 0 0;
 }
-.np-header-cta { margin-top: 28px; }
 
 /* ── Intro éditoriale ── */
 .acc-intro-title {
   margin: 0;
+  max-width: 640px;
   font-size: clamp(1.5rem, 2.8vw, 2.1rem);
   font-weight: 800;
   line-height: 1.3;
@@ -88,6 +88,7 @@
 }
 .acc-intro-sub {
   margin: 14px 0 0;
+  max-width: 640px;
   font-size: 1rem;
   line-height: 1.6;
   color: #64748b;
@@ -130,23 +131,40 @@
   padding: 6px 12px;
   border-radius: 100px;
 }
-.acc-tile-grid {
+.acc-card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 32px 28px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
 }
-.acc-tile { display: flex; flex-direction: column; gap: 14px; }
-.acc-tile-icon {
-  width: 44px; height: 44px;
-  border-radius: 10px;
-  background: #eff6ff;
+.acc-card {
+  border: 1px solid #e8edf5;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #ffffff;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.acc-card:hover { border-color: #c7d7f7; transform: translateY(-2px); }
+.acc-card-photo {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #f5f5f7;
   display: grid;
   place-items: center;
-  color: #2563eb;
 }
-.acc-tile-icon svg { width: 22px; height: 22px; }
-.acc-tile-name { margin: 0; font-size: 1rem; font-weight: 700; color: #0f172a; }
-.acc-tile-desc { margin: 0; font-size: 0.88rem; line-height: 1.6; color: #64748b; }
+.acc-card-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.acc-card-photo-ph {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b6b6be;
+  text-align: center;
+  padding: 16px;
+}
+.acc-card-photo-ph[hidden] { display: none; }
+.acc-card-body { padding: 20px; }
+.acc-card-name { margin: 0; font-size: 1rem; font-weight: 700; color: #0f172a; }
+.acc-card-desc { margin: 8px 0 0; font-size: 0.88rem; line-height: 1.6; color: #64748b; }
 
 /* ── Section CTA ── */
 .np-cta {
@@ -202,23 +220,13 @@
         <p class="np-header-kicker">Accessoires</p>
         <h1 class="np-header-title">Accessoires pour portes automatiques.</h1>
         <p class="np-header-desc">Radars de détection, contrôles d'accès, quincaillerie et dispositifs de réouverture de secours&nbsp;: équipez vos portes automatiques SlideX selon les besoins de votre chantier.</p>
-        <div class="np-header-cta">
-          <a class="primary-button w-inline-block" href="connexion-inscription.html">
-            <div>Configurer ma porte</div>
-            <div class="item-icon-right icon-right-circle">
-              <div class="base-icon-font" style="display:flex;align-items:center;justify-content:center;">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-            </div>
-          </a>
-        </div>
       </div>
     </div>
   </div>
 
   <!-- ── Intro éditoriale ── -->
   <section class="section" style="padding-bottom:0;">
-    <div class="w-layout-blockcontainer container-default w-container" style="max-width:640px;">
+    <div class="w-layout-blockcontainer container-default w-container">
       <p class="acc-intro-title">Quatre familles d'accessoires pour compléter votre installation.</p>
       <p class="acc-intro-sub">Compatibles avec l'ensemble de nos portes coulissantes et de nos ouvre-portes battants.</p>
     </div>
@@ -232,21 +240,36 @@
         <h2 class="acc-category-title">Radars</h2>
         <p class="acc-category-lead">Pour une ouverture fluide et sécurisée, adaptée à chaque configuration de passage.</p>
       </div>
-      <div class="acc-tile-grid">
-        <div class="acc-tile">
-          <span class="acc-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="20" r="1.4" fill="currentColor" stroke="none"/><path d="M8 16.5a6 6 0 0 1 8 0"/><path d="M5 13a10 10 0 0 1 14 0"/></svg></span>
-          <p class="acc-tile-name">Radar bi-technologie</p>
-          <p class="acc-tile-desc">Combine infrarouge et micro-ondes pour détecter l'approche des usagers, y compris les personnes à mobilité réduite.</p>
+      <div class="acc-card-grid">
+        <div class="acc-card">
+          <div class="acc-card-photo">
+            <img src="images/accessoire-radar-bi-technologie.jpg" alt="Radar bi-technologie SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+            <span class="acc-card-photo-ph" hidden>Photo radar<br/>bi-technologie</span>
+          </div>
+          <div class="acc-card-body">
+            <p class="acc-card-name">Radar bi-technologie</p>
+            <p class="acc-card-desc">Combine infrarouge et micro-ondes pour détecter l'approche des usagers, y compris les personnes à mobilité réduite.</p>
+          </div>
         </div>
-        <div class="acc-tile">
-          <span class="acc-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="20" r="1.4" fill="currentColor" stroke="none"/><path d="M8 16.5a6 6 0 0 1 8 0"/><path d="M5 13a10 10 0 0 1 14 0"/></svg></span>
-          <p class="acc-tile-name">Radar de linteau</p>
-          <p class="acc-tile-desc">Installation au-dessus de la porte, zone de détection réglable selon la configuration du passage.</p>
+        <div class="acc-card">
+          <div class="acc-card-photo">
+            <img src="images/accessoire-radar-linteau.jpg" alt="Radar de linteau SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+            <span class="acc-card-photo-ph" hidden>Photo radar<br/>de linteau</span>
+          </div>
+          <div class="acc-card-body">
+            <p class="acc-card-name">Radar de linteau</p>
+            <p class="acc-card-desc">Installation au-dessus de la porte, zone de détection réglable selon la configuration du passage.</p>
+          </div>
         </div>
-        <div class="acc-tile">
-          <span class="acc-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="3" height="16" rx="1"/><rect x="17" y="4" width="3" height="16" rx="1"/><path d="M9 12h6" stroke-dasharray="2 2"/></svg></span>
-          <p class="acc-tile-name">Cellule de sécurité</p>
-          <p class="acc-tile-desc">Barrière infrarouge qui protège la zone de fermeture et évite tout contact avec le vantail en mouvement.</p>
+        <div class="acc-card">
+          <div class="acc-card-photo">
+            <img src="images/accessoire-cellule-securite.jpg" alt="Cellule de sécurité SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+            <span class="acc-card-photo-ph" hidden>Photo cellule<br/>de sécurité</span>
+          </div>
+          <div class="acc-card-body">
+            <p class="acc-card-name">Cellule de sécurité</p>
+            <p class="acc-card-desc">Barrière infrarouge qui protège la zone de fermeture et évite tout contact avec le vantail en mouvement.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -260,21 +283,36 @@
         <h2 class="acc-category-title">Contrôles d'accès</h2>
         <p class="acc-category-lead">Limitez l'accès à votre porte selon vos besoins de sécurité.</p>
       </div>
-      <div class="acc-tile-grid">
-        <div class="acc-tile">
-          <span class="acc-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><path d="M13 10h5M13 14h5"/></svg></span>
-          <p class="acc-tile-name">Lecteur de badge RFID</p>
-          <p class="acc-tile-desc">Autorise l'ouverture par badge ou carte, avec gestion multi-utilisateurs.</p>
+      <div class="acc-card-grid">
+        <div class="acc-card">
+          <div class="acc-card-photo">
+            <img src="images/accessoire-badge-rfid.jpg" alt="Lecteur de badge RFID SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+            <span class="acc-card-photo-ph" hidden>Photo lecteur<br/>de badge RFID</span>
+          </div>
+          <div class="acc-card-body">
+            <p class="acc-card-name">Lecteur de badge RFID</p>
+            <p class="acc-card-desc">Autorise l'ouverture par badge ou carte, avec gestion multi-utilisateurs.</p>
+          </div>
         </div>
-        <div class="acc-tile">
-          <span class="acc-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="9" cy="8.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="8.5" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="8.5" r="1" fill="currentColor" stroke="none"/><circle cx="9" cy="12.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="12.5" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="12.5" r="1" fill="currentColor" stroke="none"/></svg></span>
-          <p class="acc-tile-name">Clavier à code</p>
-          <p class="acc-tile-desc">Ouverture par code numérique, sans matériel supplémentaire à distribuer aux usagers.</p>
+        <div class="acc-card">
+          <div class="acc-card-photo">
+            <img src="images/accessoire-clavier-code.jpg" alt="Clavier à code SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+            <span class="acc-card-photo-ph" hidden>Photo clavier<br/>à code</span>
+          </div>
+          <div class="acc-card-body">
+            <p class="acc-card-name">Clavier à code</p>
+            <p class="acc-card-desc">Ouverture par code numérique, sans matériel supplémentaire à distribuer aux usagers.</p>
+          </div>
         </div>
-        <div class="acc-tile">
-          <span class="acc-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12a5 5 0 0 1 10 0"/><path d="M9 12a3 3 0 0 1 6 0"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/><path d="M12 15v5"/></svg></span>
-          <p class="acc-tile-name">Bouton sans contact</p>
-          <p class="acc-tile-desc">Déclenche l'ouverture sans contact physique, pour plus d'hygiène sur les zones à fort passage.</p>
+        <div class="acc-card">
+          <div class="acc-card-photo">
+            <img src="images/accessoire-bouton-sans-contact.jpg" alt="Bouton sans contact SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+            <span class="acc-card-photo-ph" hidden>Photo bouton<br/>sans contact</span>
+          </div>
+          <div class="acc-card-body">
+            <p class="acc-card-name">Bouton sans contact</p>
+            <p class="acc-card-desc">Déclenche l'ouverture sans contact physique, pour plus d'hygiène sur les zones à fort passage.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -288,26 +326,46 @@
         <h2 class="acc-category-title">Quincaillerie</h2>
         <p class="acc-category-lead">Les composants qui équipent et sécurisent votre porte au quotidien.</p>
       </div>
-      <div class="acc-tile-grid">
-        <div class="acc-tile">
-          <span class="acc-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
-          <p class="acc-tile-name">Verrou électromagnétique SlideX 500</p>
-          <p class="acc-tile-desc">Sécurise la porte en dehors des horaires d'ouverture, avec ou sans motorisation.</p>
+      <div class="acc-card-grid">
+        <div class="acc-card">
+          <div class="acc-card-photo">
+            <img src="images/accessoire-verrou-electromagnetique.jpg" alt="Verrou électromagnétique SlideX 500" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+            <span class="acc-card-photo-ph" hidden>Photo verrou<br/>électromagnétique</span>
+          </div>
+          <div class="acc-card-body">
+            <p class="acc-card-name">Verrou électromagnétique SlideX 500</p>
+            <p class="acc-card-desc">Sécurise la porte en dehors des horaires d'ouverture, avec ou sans motorisation.</p>
+          </div>
         </div>
-        <div class="acc-tile">
-          <span class="acc-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="15" width="18" height="4" rx="2"/><circle cx="9" cy="17" r="1.3" fill="currentColor" stroke="none"/><circle cx="15" cy="17" r="1.3" fill="currentColor" stroke="none"/><path d="M12 15V6"/></svg></span>
-          <p class="acc-tile-name">Rail de guidage encastré au sol</p>
-          <p class="acc-tile-desc">Guide invisible une fois la porte fermée, pour une finition au ras du sol sans seuil apparent.</p>
+        <div class="acc-card">
+          <div class="acc-card-photo">
+            <img src="images/accessoire-rail-guidage-sol.jpg" alt="Rail de guidage encastré au sol SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+            <span class="acc-card-photo-ph" hidden>Photo rail de<br/>guidage au sol</span>
+          </div>
+          <div class="acc-card-body">
+            <p class="acc-card-name">Rail de guidage encastré au sol</p>
+            <p class="acc-card-desc">Guide invisible une fois la porte fermée, pour une finition au ras du sol sans seuil apparent.</p>
+          </div>
         </div>
-        <div class="acc-tile">
-          <span class="acc-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="1.6" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="7" cy="17" r="1.6" fill="currentColor" stroke="none"/></svg></span>
-          <p class="acc-tile-name">Sélecteur de fonction</p>
-          <p class="acc-tile-desc">Choisissez le mode d'ouverture (automatique, sortie seule, fermé) directement sur site.</p>
+        <div class="acc-card">
+          <div class="acc-card-photo">
+            <img src="images/accessoire-selecteur-fonction.jpg" alt="Sélecteur de fonction SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+            <span class="acc-card-photo-ph" hidden>Photo sélecteur<br/>de fonction</span>
+          </div>
+          <div class="acc-card-body">
+            <p class="acc-card-name">Sélecteur de fonction</p>
+            <p class="acc-card-desc">Choisissez le mode d'ouverture (automatique, sortie seule, fermé) directement sur site.</p>
+          </div>
         </div>
-        <div class="acc-tile">
-          <span class="acc-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a5 5 0 0 1 5 5v3l1.5 3h-13L7 12V9a5 5 0 0 1 5-5z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg></span>
-          <p class="acc-tile-name">BBG sonore et lumineux</p>
-          <p class="acc-tile-desc">Signal sonore et lumineux à l'ouverture, pour une utilisation sûre au quotidien.</p>
+        <div class="acc-card">
+          <div class="acc-card-photo">
+            <img src="images/accessoire-bbg-sonore.jpg" alt="BBG sonore et lumineux SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+            <span class="acc-card-photo-ph" hidden>Photo BBG sonore<br/>et lumineux</span>
+          </div>
+          <div class="acc-card-body">
+            <p class="acc-card-name">BBG sonore et lumineux</p>
+            <p class="acc-card-desc">Signal sonore et lumineux à l'ouverture, pour une utilisation sûre au quotidien.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -322,16 +380,26 @@
         <p class="acc-category-lead">En cas de coupure de courant, la porte doit pouvoir s'ouvrir&nbsp;: un équipement obligatoire sur les portes piétonnes automatiques.</p>
         <p class="acc-note">Obligatoire sur porte piétonne automatique</p>
       </div>
-      <div class="acc-tile-grid">
-        <div class="acc-tile">
-          <span class="acc-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h2l2-5 3 10 3-10 3 10 2-5h2"/></svg></span>
-          <p class="acc-tile-name">Sandow de rappel mécanique</p>
-          <p class="acc-tile-desc">Ouvre automatiquement la porte en cas de coupure de courant, sans intervention manuelle.</p>
+      <div class="acc-card-grid">
+        <div class="acc-card">
+          <div class="acc-card-photo">
+            <img src="images/accessoire-sandow-rappel.jpg" alt="Sandow de rappel mécanique SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+            <span class="acc-card-photo-ph" hidden>Photo sandow<br/>de rappel</span>
+          </div>
+          <div class="acc-card-body">
+            <p class="acc-card-name">Sandow de rappel mécanique</p>
+            <p class="acc-card-desc">Ouvre automatiquement la porte en cas de coupure de courant, sans intervention manuelle.</p>
+          </div>
         </div>
-        <div class="acc-tile">
-          <span class="acc-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="18" height="10" rx="2"/><path d="M20 10v4" stroke-width="2.5"/><path d="M8 10v4M12 10v4"/></svg></span>
-          <p class="acc-tile-name">Batterie de secours</p>
-          <p class="acc-tile-desc">Maintient l'alimentation de la motorisation le temps nécessaire à l'évacuation.</p>
+        <div class="acc-card">
+          <div class="acc-card-photo">
+            <img src="images/accessoire-batterie-secours.jpg" alt="Batterie de secours SlideX" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+            <span class="acc-card-photo-ph" hidden>Photo batterie<br/>de secours</span>
+          </div>
+          <div class="acc-card-body">
+            <p class="acc-card-name">Batterie de secours</p>
+            <p class="acc-card-desc">Maintient l'alimentation de la motorisation le temps nécessaire à l'évacuation.</p>
+          </div>
         </div>
       </div>
     </div>
