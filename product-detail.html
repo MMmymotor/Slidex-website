@@ -80,9 +80,6 @@
 
 /* ── Inclus de série / Options : tuiles façon IKEA ── */
 .pd-features {
-  margin-top: 56px;
-  padding-top: 40px;
-  border-top: 1px solid #e8edf5;
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -199,20 +196,13 @@
 .pd-tabpanel { display: none; padding: 36px 28px 44px; }
 .pd-tabpanel[data-active] { display: block; }
 
-.pd-panel-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 48px; align-items: start; }
-.pd-panel-grid .pd-features { margin-top: 0; padding-top: 0; border-top: 0; }
-.pd-panel-visual { position: relative; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: #f2f2f4; display: grid; place-items: center; }
-.pd-panel-visual-ph { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #b6b6be; text-align: center; padding: 20px; }
-
 /* Description produit */
 .pd-desc-grid { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 48px; align-items: start; }
 .pd-desc-grid p { margin: 0 0 20px; font-size: 0.95rem; line-height: 1.7; color: #0f172a; max-width: 62ch; }
 .pd-desc-more { font-size: 0.88rem; font-weight: 600; color: #0f172a; text-decoration: underline; background: none; border: 0; padding: 0; cursor: pointer; font-family: inherit; }
 .pd-info-box { border: 1px solid #e8edf5; border-radius: 12px; overflow: hidden; }
 
-/* Accordéons (En savoir plus / Bon à savoir) */
-.pd-more-label { margin: 26px 0 14px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; color: #94a3b8; }
-.pd-accordion { border-top: 1px solid #e8edf5; }
+/* Accordéons (Bon à savoir) */
 .pd-accordion-item { border-bottom: 1px solid #e8edf5; }
 .pd-info-box .pd-accordion-item:last-child { border-bottom: 0; }
 .pd-accordion-trigger {
@@ -237,14 +227,8 @@
 .pd-info-box .pd-accordion-body { padding: 0 18px 18px; }
 .pd-accordion-trigger[aria-expanded="true"] + .pd-accordion-body { display: block; }
 
-/* Ce qui est inclus */
-.pd-included-list { list-style: none; margin: 0; padding: 0; max-width: 520px; border-top: 1px solid #e8edf5; }
-.pd-included-list li { display: flex; align-items: center; gap: 16px; padding: 16px 2px; border-bottom: 1px solid #e8edf5; font-size: 0.9rem; color: #0f172a; }
-.pd-included-qty { flex-shrink: 0; width: 30px; height: 30px; border-radius: 50%; background: #eef2fb; color: #2563eb; display: grid; place-items: center; font-size: 0.78rem; font-weight: 700; }
-
 @media (max-width: 860px) {
-  .pd-panel-grid, .pd-desc-grid { grid-template-columns: 1fr; }
-  .pd-panel-visual { order: -1; }
+  .pd-desc-grid { grid-template-columns: 1fr; }
 }
 
 /* ── Accessoires compatibles ── */
@@ -439,12 +423,10 @@
 <button class="pd-tab" role="tab" aria-selected="false" data-tab="dimensions">Vitrage disponible</button>
 <button class="pd-tab" role="tab" aria-selected="false" data-tab="caracteristiques">Caractéristiques</button>
 <button class="pd-tab" role="tab" aria-selected="false" data-tab="documentation">Documentation</button>
-<button class="pd-tab" role="tab" aria-selected="false" data-tab="inclus">Ce qui est inclus</button>
 </div>
 
 <!-- APERÇU -->
 <div class="pd-tabpanel" data-panel="apercu" data-active>
-<div class="pd-panel-grid">
 <div>
 
 <div class="pd-features">
@@ -523,20 +505,6 @@
 </div>
 </div>
 
-<p class="pd-more-label">En savoir plus</p>
-<div class="pd-accordion">
-<div class="pd-accordion-item">
-<button class="pd-accordion-trigger" aria-expanded="false">Matériaux et entretien
-<svg class="pd-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-</button>
-<div class="pd-accordion-body">Cadre en aluminium anodisé naturel. Nettoyage à l'eau savonneuse, sans produit abrasif. Profilés coulissants garantis 10 ans contre la corrosion.</div>
-</div>
-</div>
-
-</div>
-<div class="pd-panel-visual">
-<span class="pd-panel-visual-ph">Photo produit<br/>1 vantail</span>
-</div>
 </div>
 </div>
 
@@ -647,17 +615,6 @@
 </div>
 </div>
 
-<!-- CE QUI EST INCLUS -->
-<div class="pd-tabpanel" data-panel="inclus">
-<ul class="pd-included-list">
-<li><span class="pd-included-qty">1×</span> Vantail coulissant motorisé</li>
-<li><span class="pd-included-qty">1×</span> Kit moteur SlideX (avec ou sans verrou 500)</li>
-<li><span class="pd-included-qty">1×</span> BBG vert sonore et lumineux</li>
-<li><span class="pd-included-qty">1×</span> Sélecteur de fonction</li>
-<li><span class="pd-included-qty">1×</span> Notice d'installation et fiche technique</li>
-</ul>
-</div>
-
 </div>
 </div>
 </section>
@@ -705,7 +662,7 @@
 <div class="hl__copy">
 <p class="hl__kicker">03 — Éclairage LED intégré</p>
 <p class="hl__head">La lumière, invisible jusqu'au soir.</p>
-<p class="hl__sub">Bandeau LED intégré directement dans la poutre pour un rendu discret et élégant. Disponible en avril 2026.</p>
+<p class="hl__sub">Bandeau LED intégré directement dans la poutre pour un rendu discret et élégant. Disponible début 2027.</p>
 <div class="hl__actions">
 <button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('led-popup')">En savoir plus</button>
 </div>
