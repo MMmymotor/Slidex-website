@@ -39,6 +39,12 @@
   width: 20% !important;
   min-width: 20% !important;
 }
+/* État par défaut (non actif) des points de progression : la couleur
+   active vient de .slider-dot.active (slidex-custom.css) ; sans cette
+   base, les points hérités du markup gardaient un fond bleu figé en
+   inline (jamais retiré au clic), ce qui donnait l'impression que
+   l'indicateur ne bougeait pas. */
+.product-slider .slider-dot { background: rgba(255, 255, 255, 0.6); }
 
 /* ── Hero produit ── */
 .pd-hero { padding: 48px 0 0; }
@@ -364,23 +370,23 @@
 <div class="slider-track" style="display: flex; flex-shrink: 0; transition: transform 0.3s ease; width: 500%; height: 100%;">
 <!-- Slide 1 -->
 <div class="slider-slide active" style="width: 20%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 0;">
-<img alt="Porte automatique 1 vantail SlideX - Vue principale" src="images/SlideX_1200x800.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"/>
+<img alt="Porte automatique 1 vantail SlideX - Vue principale" src="images/SlideX_1200x800.png" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;"/>
 </div>
 <!-- Slide 2 -->
 <div class="slider-slide" style="width: 20%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 0;">
-<img alt="Porte automatique 1 vantail SlideX - Version noire" src="images/SlideX_1200x800_Noir.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"/>
+<img alt="Porte automatique 1 vantail SlideX - Version noire" src="images/SlideX_1200x800_Noir.png" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;"/>
 </div>
 <!-- Slide 3 -->
 <div class="slider-slide" style="width: 20%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 0;">
-<img alt="Porte automatique 1 vantail SlideX - Version blanche" src="images/SlideX_1200x800_Blanc.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"/>
+<img alt="Porte automatique 1 vantail SlideX - Version blanche" src="images/SlideX_1200x800_Blanc.png" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;"/>
 </div>
 <!-- Slide 4 -->
 <div class="slider-slide" style="width: 20%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 0;">
-<img alt="Porte automatique 1 vantail SlideX - Joint bleu" src="images/SlideX_1200x800_JB.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"/>
+<img alt="Porte automatique 1 vantail SlideX - Joint bleu" src="images/SlideX_1200x800_JB.png" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;"/>
 </div>
 <!-- Slide 5 -->
 <div class="slider-slide" style="width: 20%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 0;">
-<img alt="Porte automatique 1 vantail SlideX - Joint noir" src="images/SlideX_1200x800_JN.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"/>
+<img alt="Porte automatique 1 vantail SlideX - Joint noir" src="images/SlideX_1200x800_JN.png" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;"/>
 </div>
 </div>
 </div>
@@ -399,11 +405,11 @@
 
 <!-- Dots Navigation -->
 <div class="slider-dots" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10;">
-<button class="slider-dot active" data-slide="0" style="width: 12px; height: 12px; border-radius: 50%; border: none; background: #2563eb; cursor: pointer; transition: all 0.3s ease;"></button>
-<button class="slider-dot" data-slide="1" style="width: 12px; height: 12px; border-radius: 50%; border: none; background: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.3s ease;"></button>
-<button class="slider-dot" data-slide="2" style="width: 12px; height: 12px; border-radius: 50%; border: none; background: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.3s ease;"></button>
-<button class="slider-dot" data-slide="3" style="width: 12px; height: 12px; border-radius: 50%; border: none; background: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.3s ease;"></button>
-<button class="slider-dot" data-slide="4" style="width: 12px; height: 12px; border-radius: 50%; border: none; background: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.3s ease;"></button>
+<button class="slider-dot active" data-slide="0" aria-label="Photo 1"></button>
+<button class="slider-dot" data-slide="1" aria-label="Photo 2"></button>
+<button class="slider-dot" data-slide="2" aria-label="Photo 3"></button>
+<button class="slider-dot" data-slide="3" aria-label="Photo 4"></button>
+<button class="slider-dot" data-slide="4" aria-label="Photo 5"></button>
 </div>
 </div>
 </div>
