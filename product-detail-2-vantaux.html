@@ -27,43 +27,365 @@
 <script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
 <link href="images/favicon.svg" rel="shortcut icon" type="image/x-icon"/>
 <link href="images/webclip.svg" rel="apple-touch-icon"/>
+<style>
+/* Le carrousel photo du hero utilise un track à 500% et des slides à
+   20% chacune (5 photos) pour un défilement en pourcentage classique.
+   La règle partagée .slider-slide { min-width:100% !important } (dans
+   slidex-custom.css, pensée pour le slider témoignages où chaque slide
+   = 100% du track) écrasait sinon ce 20% et forçait chaque slide à
+   faire 5x la largeur voulue — d'où le décalage erratique au clic.
+   Sélecteur à 2 classes = spécificité supérieure à la règle générique. */
+.product-slider .slider-slide {
+  width: 20% !important;
+  min-width: 20% !important;
+}
+/* État par défaut (non actif) des points de progression : la couleur
+   active vient de .slider-dot.active (slidex-custom.css) ; sans cette
+   base, les points hérités du markup gardaient un fond bleu figé en
+   inline (jamais retiré au clic), ce qui donnait l'impression que
+   l'indicateur ne bougeait pas. */
+.product-slider .slider-dot { background: rgba(255, 255, 255, 0.6); }
+
+/* ── Hero produit ── */
+.pd-hero { padding: 48px 0 0; }
+.pd-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+}
+.pd-hero-kicker {
+  margin: 0 0 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2563eb;
+}
+.pd-hero-title {
+  margin: 0;
+  font-size: clamp(1.9rem, 3.4vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+}
+.pd-hero-promise {
+  margin: 16px 0 0;
+  max-width: 40ch;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #64748b;
+}
+.pd-hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin-top: 30px;
+}
+.pd-link {
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: #0f172a;
+  text-decoration: none;
+  border-bottom: 1px solid #cbd5e1;
+  padding-bottom: 2px;
+  transition: border-color 0.2s ease;
+}
+.pd-link:hover { border-color: #0f172a; }
+
+/* ── Inclus de série / Options : tuiles façon IKEA ── */
+.pd-features {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.pd-features-label {
+  margin: 0 0 18px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+.pd-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: 24px 16px;
+}
+.pd-feature {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
+}
+.pd-feature-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  color: #0f172a;
+}
+.pd-feature-icon svg { width: 26px; height: 26px; }
+.pd-feature-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #0f172a;
+}
+.pd-feature[aria-expanded="true"] .pd-feature-name,
+.pd-feature[aria-expanded="true"] .pd-feature-icon { color: #2563eb; }
+.pd-feature-tip {
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 0;
+  z-index: 5;
+  width: 240px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 16px 32px -12px rgba(2, 6, 23, 0.16);
+}
+.pd-feature[aria-expanded="true"] .pd-feature-tip { display: block; }
+.pd-feature-tip strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+.pd-feature-tip span {
+  display: block;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: #64748b;
+}
+@media (max-width: 900px) {
+  .pd-hero-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .pd-features-grid { grid-template-columns: repeat(3, 1fr); }
+  .pd-feature-tip { width: 220px; }
+}
+
+/* ── Fiche produit à onglets (façon IKEA) ── */
+.pd-panel-section { background: #f8fafc; padding: 56px 0; }
+.pd-panel {
+  background: #ffffff;
+  border: 1px solid #e8edf5;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.pd-tabs {
+  display: flex;
+  gap: 32px;
+  padding: 0 28px;
+  border-bottom: 1px solid #e8edf5;
+  overflow-x: auto;
+}
+.pd-tab {
+  appearance: none;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 20px 0 16px;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.pd-tab:hover { color: #0f172a; }
+.pd-tab[aria-selected="true"] { color: #0f172a; font-weight: 700; border-bottom-color: #0f172a; }
+.pd-tabpanel { display: none; padding: 36px 28px 44px; }
+.pd-tabpanel[data-active] { display: block; }
+
+/* Description produit */
+.pd-desc-grid { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 48px; align-items: start; }
+.pd-desc-grid p { margin: 0 0 20px; font-size: 0.95rem; line-height: 1.7; color: #0f172a; max-width: 62ch; }
+.pd-info-box { border: 1px solid #e8edf5; border-radius: 12px; overflow: hidden; }
+
+/* Accordéons (Bon à savoir) */
+.pd-accordion-item { border-bottom: 1px solid #e8edf5; }
+.pd-info-box .pd-accordion-item:last-child { border-bottom: 0; }
+.pd-accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: none;
+  border: 0;
+  padding: 16px 2px;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #0f172a;
+  cursor: pointer;
+}
+.pd-info-box .pd-accordion-trigger { padding: 16px 18px; }
+.pd-chev { transition: transform 0.18s ease; flex-shrink: 0; color: #94a3b8; }
+.pd-accordion-trigger[aria-expanded="true"] .pd-chev { transform: rotate(180deg); }
+.pd-accordion-body { display: none; padding: 0 2px 18px; font-size: 0.85rem; line-height: 1.65; color: #64748b; }
+.pd-info-box .pd-accordion-body { padding: 0 18px 18px; }
+.pd-accordion-trigger[aria-expanded="true"] + .pd-accordion-body { display: block; }
+
+@media (max-width: 860px) {
+  .pd-desc-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Accessoires compatibles ── */
+.pd-accessories { padding-bottom: 0 !important; }
+.pd-accessories-kicker {
+  margin: 0 0 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2563eb;
+}
+.pd-accessories-title {
+  margin: 0;
+  max-width: 620px;
+  font-size: clamp(1.6rem, 2.8vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+.pd-accessories .hl { margin-top: 40px; }
+
+/* ── Documentation : liste simple ── */
+.pd-doc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  max-width: 640px;
+  background: #e8edf5;
+  border: 1px solid #e8edf5;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.pd-doc-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  background: #ffffff;
+  text-decoration: none;
+  color: inherit;
+}
+.pd-doc-row:hover { background: #f8fafc; }
+.pd-doc-row-icon { flex-shrink: 0; width: 22px; height: 22px; color: #0f172a; }
+.pd-doc-row-body { flex: 1; min-width: 0; }
+.pd-doc-row-title { margin: 0; font-size: 0.92rem; font-weight: 700; color: #0f172a; }
+.pd-doc-row-meta { margin: 3px 0 0; font-size: 0.8rem; color: #64748b; }
+.pd-doc-row-ext { flex-shrink: 0; color: #94a3b8; }
+
+/* ── Caractéristiques : liste pleine largeur ── */
+.pd-spec-list { display: flex; flex-direction: column; border-top: 1px solid #e8edf5; }
+.pd-spec-row { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 16px 2px; border-bottom: 1px solid #e8edf5; }
+.pd-spec-label { margin: 0; font-size: 0.9rem; font-weight: 600; color: #0f172a; }
+.pd-spec-value { margin: 0; font-size: 0.9rem; color: #64748b; font-variant-numeric: tabular-nums; text-align: right; }
+
+/* ── Vitrage disponible ── */
+.pd-glazing-lead { margin: 0 0 20px; font-size: 0.9rem; color: #64748b; }
+.pd-glazing-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 620px; }
+.pd-glazing-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 14px 16px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.pd-glazing-chip:hover { border-color: #c7d7f7; }
+.pd-glazing-chip[aria-pressed="true"] { border-color: #2563eb; box-shadow: 0 0 0 1px #2563eb; }
+.pd-glazing-chip-name { font-size: 0.88rem; font-weight: 700; color: #0f172a; }
+.pd-glazing-chip[aria-pressed="true"] .pd-glazing-chip-name { color: #2563eb; }
+.pd-glazing-chip-value { font-size: 0.78rem; color: #64748b; }
+@media (max-width: 640px) {
+  .pd-glazing-options { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Avis Google : compacté sur cette page (3 avis max) ── */
+#google-reviews-placeholder .gr__card:nth-child(n+4) { display: none; }
+
+/* ── CTA final ── */
+.pd-cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: white;
+  padding: 13px 26px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+.pd-cta-ghost:hover { background: rgba(255,255,255,0.14); color: white; }
+.pd-cta-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+</style>
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="28263fbc-fd1c-4adc-8204-571acc2440a4";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
 <script src="js/includes-loader.js" type="text/javascript"></script>
 </head>
-<body class="page-product-2v">
+<body>
 <div class="page-wrapper">
 <div id="header-placeholder"></div>
 
 <!-- PRODUCT DETAIL SECTION -->
-<section class="section product-detail-section" style="padding: 80px 0;">
+<section class="section pd-hero">
 <div class="w-layout-blockcontainer container-default w-container">
-<div class="w-layout-grid grid-2-columns product-detail-grid" style="grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;">
+<div class="pd-hero-grid">
 <!-- Image Section -->
 <div class="product-image-container">
 <div class="product-slider" style="position: relative; background: #f4f4f4; border-radius: 12px; padding: 20px; height: 600px; overflow: hidden;">
 <!-- Slides Container -->
 <div class="slider-container" style="position: relative; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-<div class="slider-track" style="display: flex; transition: transform 0.3s ease; width: 500%; height: 100%;">
+<div class="slider-track" style="display: flex; flex-shrink: 0; transition: transform 0.3s ease; width: 500%; height: 100%;">
 <!-- Slide 1 -->
 <div class="slider-slide active" style="width: 20%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 0;">
-<img alt="Porte automatique 2 vantaux SlideX - Vue principale" src="images/SlideX_1200x800.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"/>
+<img alt="Porte automatique 2 vantaux SlideX - Vue principale" src="images/2V-SF-GA.png" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;"/>
 </div>
 <!-- Slide 2 -->
 <div class="slider-slide" style="width: 20%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 0;">
-<img alt="Porte automatique 2 vantaux SlideX - Version noire" src="images/SlideX_1200x800_Noir.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"/>
+<img alt="Porte automatique 2 vantaux SlideX - Version noire" src="images/SlideX_1200x800_Noir.png" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;"/>
 </div>
 <!-- Slide 3 -->
 <div class="slider-slide" style="width: 20%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 0;">
-<img alt="Porte automatique 2 vantaux SlideX - Version blanche" src="images/SlideX_1200x800_Blanc.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"/>
+<img alt="Porte automatique 2 vantaux SlideX - Version blanche" src="images/SlideX_1200x800_Blanc.png" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;"/>
 </div>
 <!-- Slide 4 -->
 <div class="slider-slide" style="width: 20%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 0;">
-<img alt="Porte automatique 2 vantaux SlideX - Joint bleu" src="images/SlideX_1200x800_JB.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"/>
+<img alt="Porte automatique 2 vantaux SlideX - Joint bleu" src="images/SlideX_1200x800_JB.png" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;"/>
 </div>
 <!-- Slide 5 -->
 <div class="slider-slide" style="width: 20%; height: 100%; flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 0;">
-<img alt="Porte automatique 2 vantaux SlideX - Joint noir" src="images/SlideX_1200x800_JN.png" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;"/>
+<img alt="Porte automatique 2 vantaux SlideX - Joint noir" src="images/SlideX_1200x800_JN.png" style="width: 100%; height: 100%; object-fit: contain; border-radius: 8px;"/>
 </div>
 </div>
 </div>
@@ -82,111 +404,233 @@
 
 <!-- Dots Navigation -->
 <div class="slider-dots" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10;">
-<button class="slider-dot active" data-slide="0" style="width: 12px; height: 12px; border-radius: 50%; border: none; background: #2563eb; cursor: pointer; transition: all 0.3s ease;"></button>
-<button class="slider-dot" data-slide="1" style="width: 12px; height: 12px; border-radius: 50%; border: none; background: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.3s ease;"></button>
-<button class="slider-dot" data-slide="2" style="width: 12px; height: 12px; border-radius: 50%; border: none; background: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.3s ease;"></button>
-<button class="slider-dot" data-slide="3" style="width: 12px; height: 12px; border-radius: 50%; border: none; background: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.3s ease;"></button>
-<button class="slider-dot" data-slide="4" style="width: 12px; height: 12px; border-radius: 50%; border: none; background: rgba(255,255,255,0.6); cursor: pointer; transition: all 0.3s ease;"></button>
+<button class="slider-dot active" data-slide="0" aria-label="Photo 1"></button>
+<button class="slider-dot" data-slide="1" aria-label="Photo 2"></button>
+<button class="slider-dot" data-slide="2" aria-label="Photo 3"></button>
+<button class="slider-dot" data-slide="3" aria-label="Photo 4"></button>
+<button class="slider-dot" data-slide="4" aria-label="Photo 5"></button>
 </div>
 </div>
 </div>
 
 <!-- Product Info Section -->
-<div class="product-info-container">
-<div class="product-title-section" style="margin-bottom: 30px;">
-<h1 class="display-7 strong" style="margin-bottom: 20px; color: #1e293b;">Porte automatique 2 vantaux</h1>
-<div class="product-breadcrumb" style="margin-bottom: 20px;">
-<p style="color: #64748b; font-size: 14px;">La porte piétonne automatique 2 vantaux est idéale pour les entrées larges et les zones à fort trafic. Son ouverture <strong>symétrique</strong> assure un passage confortable, fluide et sécurisé, parfaitement adaptée aux commerces, établissements de santé, hôtels ou bâtiments publics.
-
-Sa structure en aluminium anodisé naturel, ses profilés coulissants haut de gamme et son <strong>pré-montage en atelier</strong> garantissent une pose rapide et propre, sans mauvaise surprise sur chantier.
-
-Le type de vitrage est personnalisable selon vos besoins : vitrage clair, feuilleté de sécurité ou double vitrage isolant.</p>
-</div>
-
-<!-- Spécifications techniques intégrées -->
-<div style="background: #f8fafc; border-radius: 12px; padding: 24px; margin-top: 20px;">
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
-<!-- Inclus de série -->
-<div>
-<h4 style="color: #1e293b; font-size: 16px; font-weight: 700; margin-bottom: 12px;">✅ Inclus de série</h4>
-<ul style="list-style: none; padding: 0; margin: 0; color: #475569; font-size: 13px; line-height: 1.5;">
-<li style="margin-bottom: 6px;">• Kit moteur avec ou sans verrou Slidex 500</li>
-<li style="margin-bottom: 6px;">• BBG Vert sonore et lumineux</li>
-<li style="margin-bottom: 6px;">• Sélecteur de fonction</li>
-<li style="margin-bottom: 6px;">• Aluminium anodisé naturel</li>
-<li style="margin-bottom: 6px;">• Profilé coulissant aluminium</li>
-<li style="margin-bottom: 6px;">• Pré-monté pour une pose rapide</li>
-</ul>
-</div>
-
-<!-- Options -->
-<div>
-<h4 style="color: #1e293b; font-size: 16px; font-weight: 700; margin-bottom: 12px;">⚙️ Options disponibles</h4>
-<ul style="list-style: none; padding: 0; margin: 0; color: #475569; font-size: 13px; line-height: 1.5;">
-<li style="margin-bottom: 6px;">• Avec ou sans vitrage (44.2 ; 55.2 ou double vitrage au choix)</li>
-<li style="margin-bottom: 6px;">• Avec ou sans fixe</li>
-<li style="margin-bottom: 6px;">• Avec ou sans porteur</li>
-<li style="margin-bottom: 6px;">• Laquage RAL personnalisé</li>
-<li style="margin-bottom: 6px;">• Contrôle d'accès intégré</li>
-<li style="margin-bottom: 6px;">• Livraison 12 jours standard (15 jours avec options)</li>
- </ul>
-</div>
-</div>
-</div>
-</div>
-
-<div class="product-actions-section">
-<a class="primary-button large w-inline-block" href="connexion-inscription.html" style="width: 100%; text-align: center; padding: 16px 24px; font-size: 16px; font-weight: 600; background: #2563eb; color: white; border-radius: 8px; text-decoration: none; display: block;">
+<div class="pd-hero-copy">
+<p class="pd-hero-kicker">Porte automatique coulissante</p>
+<h1 class="pd-hero-title">Porte automatique 2 vantaux</h1>
+<p class="pd-hero-promise">Large passage et pré-câblée en atelier, prête à poser en 12 jours.</p>
+<div class="pd-hero-actions">
+<a class="primary-button w-inline-block" href="connexion-inscription.html">
 <div>Configurer ma porte</div>
+<div class="item-icon-right icon-right-circle"><div class="base-icon-font" style="display:flex;align-items:center;justify-content:center;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
 </a>
+<a class="pd-link" href="#fiche-produit">Voir les caractéristiques ↓</a>
 </div>
 </div>
 </div>
 </div>
 </section>
 
-<!-- PRODUCT SPECIFICATIONS SECTION -->
-<section class="section product-specifications-section" style="padding: 60px 0; background: #f8fafc;">
+<!-- FICHE PRODUIT À ONGLETS (façon IKEA) -->
+<section class="section pd-panel-section" id="fiche-produit">
 <div class="w-layout-blockcontainer container-default w-container">
-<div class="specifications-header" style="margin-bottom: 40px; text-align: center;">
-<h2 class="display-9 strong" style="margin-bottom: 20px;">L'essentiel en un coup d'oeil</h2>
-<div style="max-width: 900px; margin: 0 auto;">
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
-
-<!-- Dimensions -->
-<div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-<h3 style="color: #1e293b; font-size: 18px; font-weight: 700; margin-bottom: 16px;">Dimensions</h3>
-<ul style="list-style: none; padding: 0; margin: 0; color: #475569; line-height: 1.6; font-size: 14px;">
-<li style="margin-bottom: 8px;"><strong>Passage libre :</strong> 1200 à 2400 mm</li>
-<li style="margin-bottom: 8px;"><strong>Hauteur :</strong> Jusqu'à 2800 mm</li>
-<li style="margin-bottom: 8px;"><strong>Épaisseur verre :</strong> 44.2 ; 55.2 mm et SP10</li>
-<li style="margin-bottom: 8px;"><strong>Poids max vantail :</strong> 150 kg</li>
-</ul>
+<div class="pd-panel">
+<div class="pd-tabs" role="tablist">
+<button class="pd-tab" role="tab" aria-selected="true" data-tab="apercu">Aperçu</button>
+<button class="pd-tab" role="tab" aria-selected="false" data-tab="description">Description produit</button>
+<button class="pd-tab" role="tab" aria-selected="false" data-tab="dimensions">Vitrage disponible</button>
+<button class="pd-tab" role="tab" aria-selected="false" data-tab="caracteristiques">Caractéristiques</button>
+<button class="pd-tab" role="tab" aria-selected="false" data-tab="documentation">Documentation</button>
 </div>
 
-<!-- Performance -->
-<div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-<h3 style="color: #1e293b; font-size: 18px; font-weight: 700; margin-bottom: 16px;">Performance</h3>
-<ul style="list-style: none; padding: 0; margin: 0; color: #475569; line-height: 1.6; font-size: 14px;">
-<li style="margin-bottom: 8px;"><strong>Vitesse ouverture :</strong> 20-40 cm/s</li>
-<li style="margin-bottom: 8px;"><strong>Temps ouverture :</strong> Réglable 1-20s</li>
-<li style="margin-bottom: 8px;"><strong>Cycles garantis :</strong> 2M (TÜV)</li>
-<li style="margin-bottom: 8px;"><strong>Bruit :</strong> &lt; 45 dB</li>
-</ul>
+<!-- APERÇU -->
+<div class="pd-tabpanel" data-panel="apercu" data-active>
+<div>
+
+<div class="pd-features">
+<div>
+<p class="pd-features-label">Inclus de série</p>
+<div class="pd-features-grid">
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="9" rx="2"/><path d="M8 8V6a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><circle cx="12" cy="12.5" r="1.5"/></svg></span>
+<span class="pd-feature-name">Pré-monté</span>
+<span class="pd-feature-tip"><strong>Pré-monté en atelier</strong><span>Cadre et profilés arrivent assemblés, pour une pose rapide et sans surprise sur chantier.</span></span>
+</button>
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9.5 12l1.8 1.8L15 10"/></svg></span>
+<span class="pd-feature-name">Anodisé naturel</span>
+<span class="pd-feature-tip"><strong>Aluminium anodisé naturel</strong><span>Finition d'origine sur tous les profilés : protection durable et aspect premium, avec ou sans RAL.</span></span>
+</button>
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a5 5 0 0 1 5 5v3l1.5 3h-13L7 12V9a5 5 0 0 1 5-5z"/><path d="M10 19a2 2 0 0 0 4 0"/></svg></span>
+<span class="pd-feature-name">BBG sonore et lumineux</span>
+<span class="pd-feature-tip"><strong>BBG vert sonore et lumineux</strong><span>Signal sonore et lumineux à l'ouverture, pour une utilisation sûre au quotidien.</span></span>
+</button>
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="1.6" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1.6" fill="currentColor" stroke="none"/><circle cx="7" cy="17" r="1.6" fill="currentColor" stroke="none"/></svg></span>
+<span class="pd-feature-name">Sélecteur de fonction</span>
+<span class="pd-feature-tip"><strong>Sélecteur de fonction</strong><span>Choisissez le mode d'ouverture (automatique, sortie seule, fermé) directement sur site.</span></span>
+</button>
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+<span class="pd-feature-name">Verrou compatible</span>
+<span class="pd-feature-tip"><strong>Kit moteur avec ou sans verrou</strong><span>Compatible avec le verrou SlideX 500, au choix selon vos besoins de sécurisation.</span></span>
+</button>
+
+</div>
 </div>
 
-<!-- Sécurité -->
-<div style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-<h3 style="color: #1e293b; font-size: 18px; font-weight: 700; margin-bottom: 16px;">Sécurité</h3>
-<ul style="list-style: none; padding: 0; margin: 0; color: #475569; line-height: 1.6; font-size: 14px;">
-<li style="margin-bottom: 8px;"><strong>Norme :</strong> EN 16005</li>
-<li style="margin-bottom: 8px;"><strong>Détection :</strong> Radar bi technologie</li>
-<li style="margin-bottom: 8px;"><strong>Arrêt urgence :</strong> BBG vert sonore et lumineux</li>
-<li style="margin-bottom: 8px;"><strong>Anti-panique :</strong> Débrayage manuel</li>
-</ul>
+<div>
+<p class="pd-features-label">Options disponibles</p>
+<div class="pd-features-grid">
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h16M12 4v16"/></svg></span>
+<span class="pd-feature-name">Vitrage</span>
+<span class="pd-feature-tip"><strong>Vitrage au choix</strong><span>44.2, 55.2 ou double vitrage isolant, selon les contraintes thermiques et acoustiques du projet.</span></span>
+</button>
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="8" height="14" rx="1"/><rect x="13" y="5" width="8" height="14" rx="1"/></svg></span>
+<span class="pd-feature-name">Fixe / porteur</span>
+<span class="pd-feature-tip"><strong>Avec ou sans fixe / porteur</strong><span>Complétez votre porte avec une partie fixe ou un élément porteur selon la configuration du passage.</span></span>
+</button>
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M8 12a1.4 1.4 0 1 0 2.8 0 1.4 1.4 0 0 0-2.8 0z" fill="currentColor" stroke="none"/><path d="M13 8.5a1.2 1.2 0 1 0 2.4 0 1.2 1.2 0 0 0-2.4 0z" fill="currentColor" stroke="none"/><path d="M13.5 15a1.2 1.2 0 1 0 2.4 0 1.2 1.2 0 0 0-2.4 0z" fill="currentColor" stroke="none"/></svg></span>
+<span class="pd-feature-name">Laquage RAL</span>
+<span class="pd-feature-tip"><strong>Laquage RAL personnalisé</strong><span>Un coloris RAL au choix pour intégrer la porte à votre façade ou votre charte graphique.</span></span>
+</button>
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="M6 17c0-2 1.5-3 3-3s3 1 3 3"/><path d="M14 9h4M14 13h4"/></svg></span>
+<span class="pd-feature-name">Contrôle d'accès</span>
+<span class="pd-feature-tip"><strong>Contrôle d'accès intégré</strong><span>Badge RFID, code ou biométrie&nbsp;: l'intégration se fait directement sur l'armoire de commande.</span></span>
+</button>
+
+<button type="button" class="pd-feature" aria-expanded="false">
+<span class="pd-feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="15" width="18" height="4" rx="2"/><circle cx="9" cy="17" r="1.3" fill="currentColor" stroke="none"/><circle cx="15" cy="17" r="1.3" fill="currentColor" stroke="none"/><path d="M12 15V6"/></svg></span>
+<span class="pd-feature-name">Rail encastré au sol</span>
+<span class="pd-feature-tip"><strong>Rail encastré au sol</strong><span>Guide de sol encastré, invisible une fois la porte fermée, pour une finition au ras du sol sans seuil apparent.</span></span>
+</button>
+
+</div>
+</div>
 </div>
 
 </div>
+</div>
+
+<!-- DESCRIPTION PRODUIT -->
+<div class="pd-tabpanel" data-panel="description">
+<div class="pd-desc-grid">
+<div>
+<p>La porte piétonne automatique 2 vantaux est idéale pour les entrées larges et les zones à fort trafic. Son ouverture symétrique assure un passage confortable, fluide et sécurisé, parfaitement adaptée aux commerces, établissements de santé, hôtels ou bâtiments publics.</p>
+<p>Sa structure en aluminium anodisé naturel, ses profilés coulissants haut de gamme et son pré-montage en atelier garantissent une pose rapide et propre, sans mauvaise surprise sur chantier.</p>
+<p>Le type de vitrage est personnalisable selon vos besoins&nbsp;: vitrage clair, feuilleté de sécurité ou double vitrage isolant.</p>
+</div>
+<div class="pd-info-box">
+<div class="pd-accordion-item">
+<button class="pd-accordion-trigger" aria-expanded="false">Bon à savoir
+<svg class="pd-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+<div class="pd-accordion-body">Fabrication standard en 12 jours ouvrés, 15 jours avec laquage ou vitrage. Compatible PMR (norme EN 16005).</div>
+</div>
+<div class="pd-accordion-item">
+<button class="pd-accordion-trigger" aria-expanded="false">Matériaux et entretien
+<svg class="pd-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+<div class="pd-accordion-body">Aluminium anodisé naturel. Vitrage 44.2, 55.2 ou double vitrage isolant au choix. Nettoyage à l'eau savonneuse.</div>
+</div>
+<div class="pd-accordion-item">
+<button class="pd-accordion-trigger" aria-expanded="false">Montage et documents
+<svg class="pd-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+<div class="pd-accordion-body">Notice d'installation, fiche technique et certificats de conformité fournis avec chaque porte.</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- DIMENSIONS -->
+<div class="pd-tabpanel" data-panel="dimensions">
+<p class="pd-glazing-lead">Choisissez le vitrage adapté à votre projet.</p>
+<div class="pd-glazing-options" role="radiogroup" aria-label="Types de vitrage disponibles">
+<button type="button" class="pd-glazing-chip" role="radio" aria-pressed="true" aria-checked="true">
+<span class="pd-glazing-chip-name">Feuilleté 44.2</span>
+<span class="pd-glazing-chip-value">8,8 mm</span>
+</button>
+<button type="button" class="pd-glazing-chip" role="radio" aria-pressed="false" aria-checked="false">
+<span class="pd-glazing-chip-name">Feuilleté 55.2</span>
+<span class="pd-glazing-chip-value">10,9 mm</span>
+</button>
+<button type="button" class="pd-glazing-chip" role="radio" aria-pressed="false" aria-checked="false">
+<span class="pd-glazing-chip-name">Double vitrage</span>
+<span class="pd-glazing-chip-value">15 mm</span>
+</button>
+<button type="button" class="pd-glazing-chip" role="radio" aria-pressed="false" aria-checked="false">
+<span class="pd-glazing-chip-name">SP10</span>
+<span class="pd-glazing-chip-value">10 mm</span>
+</button>
+</div>
+</div>
+
+<!-- CARACTÉRISTIQUES -->
+<div class="pd-tabpanel" data-panel="caracteristiques">
+<div class="pd-spec-list">
+<div class="pd-spec-row"><p class="pd-spec-label">Passage libre</p><p class="pd-spec-value">1200 – 2400 mm</p></div>
+<div class="pd-spec-row"><p class="pd-spec-label">Hauteur</p><p class="pd-spec-value">jusqu'à 2800 mm</p></div>
+<div class="pd-spec-row"><p class="pd-spec-label">Poids max. vantail</p><p class="pd-spec-value">150 kg</p></div>
+<div class="pd-spec-row"><p class="pd-spec-label">Vitesse d'ouverture</p><p class="pd-spec-value">20 – 40 cm/s</p></div>
+<div class="pd-spec-row"><p class="pd-spec-label">Temps d'ouverture</p><p class="pd-spec-value">réglable de 1 à 20 s</p></div>
+<div class="pd-spec-row"><p class="pd-spec-label">Cycles garantis</p><p class="pd-spec-value">2 000 000 (TÜV)</p></div>
+<div class="pd-spec-row"><p class="pd-spec-label">Niveau sonore</p><p class="pd-spec-value">&lt; 45 dB</p></div>
+<div class="pd-spec-row"><p class="pd-spec-label">Détection</p><p class="pd-spec-value">radar bi-technologie</p></div>
+<div class="pd-spec-row"><p class="pd-spec-label">Arrêt d'urgence</p><p class="pd-spec-value">BBG sonore et lumineux</p></div>
+<div class="pd-spec-row"><p class="pd-spec-label">Anti-panique</p><p class="pd-spec-value">débrayage manuel</p></div>
+<div class="pd-spec-row"><p class="pd-spec-label">Norme de sécurité</p><p class="pd-spec-value">EN 16005</p></div>
+<div class="pd-spec-row"><p class="pd-spec-label">Fabrication</p><p class="pd-spec-value">12 jours</p></div>
+</div>
+</div>
+
+<!-- DOCUMENTATION -->
+<div class="pd-tabpanel" data-panel="documentation">
+<div class="pd-doc-list">
+
+<a href="#" class="pd-doc-row">
+<span class="pd-doc-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="100%" height="100%"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/><path d="M14 2v6h6"/></svg></span>
+<span class="pd-doc-row-body">
+<p class="pd-doc-row-title">Fiche technique</p>
+<p class="pd-doc-row-meta">PDF · 2,4 Mo · Français</p>
+</span>
+<span class="pd-doc-row-ext"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg></span>
+</a>
+
+<a href="#" class="pd-doc-row">
+<span class="pd-doc-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="100%" height="100%"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span>
+<span class="pd-doc-row-body">
+<p class="pd-doc-row-title">Notice d'installation</p>
+<p class="pd-doc-row-meta">PDF · 3,8 Mo</p>
+</span>
+<span class="pd-doc-row-ext"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg></span>
+</a>
+
+<a href="#" class="pd-doc-row">
+<span class="pd-doc-row-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="100%" height="100%"><circle cx="12" cy="8" r="6"/><path d="M8.2 13.6L7 22l5-3 5 3-1.2-8.4"/></svg></span>
+<span class="pd-doc-row-body">
+<p class="pd-doc-row-title">Certificats de conformité</p>
+<p class="pd-doc-row-meta">PDF · 1,2 Mo · CE, EN 16005, TÜV</p>
+</span>
+<span class="pd-doc-row-ext"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg></span>
+</a>
+
+</div>
+</div>
+
 </div>
 </div>
 </section>
@@ -195,65 +639,77 @@ Le type de vitrage est personnalisable selon vos besoins : vitrage clair, feuill
 <section class="section de-plus-pres-section" style="padding: 80px 0 160px 0; background: rgb(26, 31, 42) !important; overflow: hidden;">
 <div class="w-layout-blockcontainer container-default w-container">
 <!-- Header Section -->
-<div class="text-center" style="margin-bottom: 60px;">
+<div style="margin-bottom: 60px; text-align: left;">
 <div class="overflow-hidden title-wrap">
 <h2 class="display-9 strong text-light" style="color: #f8fafc; margin-bottom: 16px;">De plus près.</h2>
 </div>
-<p style="color: #94a3b8; font-size: 18px; max-width: 600px; margin: 0 auto;">Découvrez les points forts exclusifs de notre porte automatique SlideX qui font la différence sur le marché français.</p>
+<p style="color: #94a3b8; font-size: 18px; max-width: 600px; margin: 0;">Découvrez les points forts exclusifs de notre porte automatique SlideX qui font la différence sur le marché français.</p>
+</div>
 </div>
 
-<!-- Grille Style Apple - Grande Image + Petit Texte -->
-<div class="detail-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto;">
-
-<!-- Card 1 - Anodisé de série -->
-<div class="detail-card" style="position: relative; border-radius: 24px; overflow: hidden; background: #1e1e1e; height: 520px; transition: transform 0.3s ease;">
-<img src="images/SlideX anodisé.png" alt="Anodisé de série SlideX" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;"/>
-<div style="position: absolute; top: 20px; left: 20px; right: 20px; z-index: 2;">
-<div style="padding: 12px 16px;">
-<h3 style="font-size: 18px; font-weight: 600; margin: 0; color: #ffffff;">Anodisé de série</h3>
-<p style="font-size: 13px; color: #e2e8f0; margin: 4px 0 0 0; line-height: 1.3;">Finition anodisée d'origine sur tous nos profilés aluminium. Une protection durable et un aspect premium garantis, avec ou sans traitement RAL personnalisé.</p>
+<!-- Même slider .hl que la page d'accueil -->
+<div class="hl">
+<div class="hl__viewport">
+<ol class="hl__track">
+<li class="hl__slide">
+<div class="hl__media" style="background-image:url('images/SlideX anodisé.png');"></div>
+<div class="hl__copy">
+<p class="hl__kicker">01 — Anodisé de série</p>
+<p class="hl__head">Une finition premium, sans surcoût.</p>
+<p class="hl__sub">Finition anodisée d'origine sur tous nos profilés aluminium. Protection durable, avec ou sans traitement RAL personnalisé.</p>
+<div class="hl__actions">
+<button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('anodise-popup')">En savoir plus</button>
 </div>
 </div>
-<div style="position: absolute; bottom: 20px; right: 20px; z-index: 2;">
-<button onclick="openPopup('anodise-popup')" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.2); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.background='#2563eb'; this.querySelector('span').style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.querySelector('span').style.color='white';">
-<span style="color: white; font-size: 18px; transition: color 0.3s ease;">+</span>
+</li>
+<li class="hl__slide">
+<div class="hl__media" style="background-image:url('images/SlideX_Jointclair.png');"></div>
+<div class="hl__copy">
+<p class="hl__kicker">02 — Joint clair</p>
+<p class="hl__head">Le détail qui change tout.</p>
+<p class="hl__sub">Joint clair assorti aux teintes claires pour un rendu épuré et parfaitement intégré à votre façade.</p>
+<div class="hl__actions">
+<button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('joint-clair-popup')">En savoir plus</button>
+</div>
+</div>
+</li>
+<li class="hl__slide">
+<div class="hl__media" style="background-image:url('images/SlideX_Led.png');"></div>
+<div class="hl__copy">
+<p class="hl__kicker">03 — Éclairage LED intégré</p>
+<p class="hl__head">La lumière, invisible jusqu'au soir.</p>
+<p class="hl__sub">Bandeau LED intégré directement dans la poutre pour un rendu discret et élégant. Disponible début 2027.</p>
+<div class="hl__actions">
+<button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('led-popup')">En savoir plus</button>
+</div>
+</div>
+</li>
+<li class="hl__slide">
+<div class="hl__media"><span class="hl__ph">Photo profil de réception</span></div>
+<div class="hl__copy">
+<p class="hl__kicker">04 — Profil de réception</p>
+<p class="hl__head">Une réception nette, sans jeu.</p>
+<p class="hl__sub">Profil dédié qui réceptionne chaque vantail en position ouverte, pour un alignement précis et une finition soignée.</p>
+<div class="hl__actions">
+<button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('profil-reception-popup')">En savoir plus</button>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="w-layout-blockcontainer container-default w-container">
+<div class="hl__controls">
+<button class="hl__playpause" type="button" data-state="playing" aria-label="Pause">
+<svg class="hl__ic-pause" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" width="3" height="12" rx="1"/><rect x="7.5" width="3" height="12" rx="1"/></svg>
+<svg class="hl__ic-play" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>
 </button>
+<div class="hl__progress">
+<button class="hl__seg" type="button" aria-label="Aller au point fort 1"></button>
+<button class="hl__seg" type="button" aria-label="Aller au point fort 2"></button>
+<button class="hl__seg" type="button" aria-label="Aller au point fort 3"></button>
+<button class="hl__seg" type="button" aria-label="Aller au point fort 4"></button>
 </div>
 </div>
-
-<!-- Card 2 - Joint Clair -->
-<div class="detail-card" style="position: relative; border-radius: 24px; overflow: hidden; background: #1e1e1e; height: 520px; transition: transform 0.3s ease;">
-<img src="images/SlideX_Jointclair.png" alt="Joint clair SlideX" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;"/>
-<div style="position: absolute; top: 20px; left: 20px; right: 20px; z-index: 2;">
-<div style="padding: 12px 16px;">
-<h3 style="font-size: 18px; font-weight: 600; margin: 0; color: #ffffff;">Joint clair</h3>
-<p style="font-size: 13px; color: #e2e8f0; margin: 4px 0 0 0; line-height: 1.3;">Joint clair assorti aux teintes claires pour un rendu épuré et parfaitement intégré à votre façade.</p>
-</div>
-</div>
-<div style="position: absolute; bottom: 20px; right: 20px; z-index: 2;">
-<button onclick="openPopup('joint-clair-popup')" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.2); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.background='#2563eb'; this.querySelector('span').style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.querySelector('span').style.color='white';">
-<span style="color: white; font-size: 18px; transition: color 0.3s ease;">+</span>
-</button>
-</div>
-</div>
-
-<!-- Card 3 - Option LED -->
-<div class="detail-card" style="position: relative; border-radius: 24px; overflow: hidden; background: #1e1e1e; height: 520px; transition: transform 0.3s ease;">
-<div style="position: absolute; bottom: 16px; left: 16px; z-index: 3; background: #f97316; color: white; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">Disponible en Avril 2026</div>
-<img src="images/SlideX_Led.png" alt="Éclairage LED SlideX" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;"/>
-<div style="position: absolute; top: 20px; left: 20px; right: 20px; z-index: 2;">
-<div style="padding: 12px 16px;">
-<h3 style="font-size: 18px; font-weight: 600; margin: 0; color: #ffffff;">Éclairage LED intégré</h3>
-<p style="font-size: 13px; color: #e2e8f0; margin: 4px 0 0 0; line-height: 1.3;">Bandeau LED intégré directement dans la poutre pour un rendu discret et élégant.</p>
-</div>
-</div>
-<div style="position: absolute; bottom: 20px; right: 20px; z-index: 2;">
-<button onclick="openPopup('led-popup')" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.2); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.background='#2563eb'; this.querySelector('span').style.color='white';" onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.querySelector('span').style.color='white';">
-<span style="color: white; font-size: 18px; transition: color 0.3s ease;">+</span>
-</button>
-</div>
-</div>
-
 </div>
 </div>
 </section>
@@ -262,22 +718,22 @@ Le type de vitrage est personnalisable selon vos besoins : vitrage clair, feuill
 <div id="anodise-popup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
   <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s ease;">
     <button onclick="closePopup('anodise-popup')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease;">×</button>
-    
+
     <div style="text-align: center; margin-bottom: 30px;">
       <h2 style="color: #1a1a1a; font-size: 28px; font-weight: 700; margin-bottom: 10px;">Anodisé de série</h2>
       <p style="color: #666; font-size: 16px; margin: 0;">L'avantage économique et esthétique SlideX</p>
     </div>
-    
+
     <div style="color: #333; line-height: 1.6; font-size: 16px;">
       <p style="margin-bottom: 20px;"><strong>Directement prêt à poser</strong><br>
       Nos portes automatiques sortent d'usine avec une finition anodisée impeccable. Pas besoin d'étapes supplémentaires, votre porte est immédiatement belle et protégée.</p>
-      
+
       <p style="margin-bottom: 20px;"><strong>Économie garantie</strong><br>
       Grâce à notre traitement anodisé de série, vous bénéficiez d'une finition premium sans surcoût. Une porte belle = moins chère qu'une finition ajoutée après production.</p>
-      
+
       <p style="margin-bottom: 20px;"><strong>Qualité durable</strong><br>
       L'anodisation protège l'aluminium contre la corrosion et l'usure, tout en conservant un aspect esthétique remarquable dans le temps.</p>
-      
+
       <p style="margin-bottom: 0;"><strong>Avec ou sans RAL</strong><br>
       Vous pouvez garder cette belle finition naturelle ou ajouter une couleur RAL personnalisée selon vos besoins architecturaux.</p>
     </div>
@@ -288,22 +744,22 @@ Le type de vitrage est personnalisable selon vos besoins : vitrage clair, feuill
 <div id="joint-clair-popup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
   <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s ease;">
     <button onclick="closePopup('joint-clair-popup')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease;">×</button>
-    
+
     <div style="text-align: center; margin-bottom: 30px;">
       <h2 style="color: #1a1a1a; font-size: 28px; font-weight: 700; margin-bottom: 10px;">Joint clair</h2>
       <p style="color: #666; font-size: 16px; margin: 0;">L'innovation esthétique exclusive SlideX</p>
     </div>
-    
+
     <div style="color: #333; line-height: 1.6; font-size: 16px;">
       <p style="margin-bottom: 20px;"><strong>Exclusivité mondiale</strong><br>
       SlideX est le seul fabricant français à proposer un joint clair parfaitement assorti aux teintes claires de votre choix.</p>
-      
+
       <p style="margin-bottom: 20px;"><strong>Harmonie parfaite</strong><br>
       Fini les joints noirs disgracieux ! Notre joint clair s'accorde automatiquement avec les RAL clairs pour une intégration architecturale impeccable.</p>
-      
+
       <p style="margin-bottom: 20px;"><strong>Rendu haut de gamme</strong><br>
       Un aspect épuré et discret qui sublime votre façade. La porte semble faire corps avec l'architecture, pour un résultat véritablement premium.</p>
-      
+
       <p style="margin-bottom: 0;"><strong>Intégration parfaite</strong><br>
       Que votre façade soit blanche, beige, grise claire ou toute autre teinte claire, le joint clair s'harmonise naturellement pour un rendu professionnel exceptionnel.</p>
     </div>
@@ -314,241 +770,183 @@ Le type de vitrage est personnalisable selon vos besoins : vitrage clair, feuill
 <div id="led-popup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
   <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s ease;">
     <button onclick="closePopup('led-popup')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease;">×</button>
-    
+
     <div style="text-align: center; margin-bottom: 30px;">
       <h2 style="color: #1a1a1a; font-size: 28px; font-weight: 700; margin-bottom: 10px;">Éclairage LED intégré</h2>
       <p style="color: #666; font-size: 16px; margin: 0;">L'innovation lumineuse qui transforme vos entrées</p>
     </div>
-    
+
     <div style="color: #333; line-height: 1.6; font-size: 16px;">
       <p style="margin-bottom: 20px;"><strong>Innovation unique</strong><br>
       SlideX est le seul fabricant à intégrer directement l'éclairage LED dans le cadre de la porte, sans équipement extérieur visible.</p>
-      
+
       <p style="margin-bottom: 20px;"><strong>Valorisation nocturne</strong><br>
       Dès la tombée de la nuit, votre entrée se transforme en élément architectural remarquable, guidant naturellement les visiteurs.</p>
-      
+
       <p style="margin-bottom: 20px;"><strong>Design épuré</strong><br>
       Fini les projecteurs encombrants ou les spots rajoutés ! L'éclairage est intégré de manière invisible dans le design de la porte.</p>
-      
+
       <p style="margin-bottom: 0;"><strong>Solution complète</strong><br>
       Installation simple, maintenance réduite et effet garanti. Une solution élégante et fonctionnelle qui valorise votre bâtiment 24h/24.</p>
     </div>
   </div>
 </div>
 
-<!-- FAQ SECTION -->
-<section class="section faq-section" style="padding: 80px 0; background: #ffffff;">
+<!-- Popup Profil de réception -->
+<div id="profil-reception-popup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
+  <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s ease;">
+    <button onclick="closePopup('profil-reception-popup')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease;">×</button>
+
+    <div style="text-align: center; margin-bottom: 30px;">
+      <h2 style="color: #1a1a1a; font-size: 28px; font-weight: 700; margin-bottom: 10px;">Profil de réception</h2>
+      <p style="color: #666; font-size: 16px; margin: 0;">Une réception précise, pensée pour durer</p>
+    </div>
+
+    <div style="color: #333; line-height: 1.6; font-size: 16px;">
+      <p style="margin-bottom: 20px;"><strong>Alignement précis</strong><br>
+      Le profil de réception guide et arrête chaque vantail en position ouverte, sans jeu ni à-coup.</p>
+
+      <p style="margin-bottom: 20px;"><strong>Finition soignée</strong><br>
+      Assorti à la finition du cadre (anodisé naturel ou RAL), il s'intègre discrètement à votre façade.</p>
+
+      <p style="margin-bottom: 20px;"><strong>Confort d'usage</strong><br>
+      Amortit la fin de course des vantaux pour un fonctionnement silencieux et durable.</p>
+
+      <p style="margin-bottom: 0;"><strong>Compatible toutes configurations</strong><br>
+      Disponible pour les portes 1 vantail, 2 vantaux et télescopiques.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ACCESSOIRES COMPATIBLES -->
+<section class="section pd-accessories">
 <div class="w-layout-blockcontainer container-default w-container">
-<div class="text-center" style="margin-bottom: 60px;">
-<h2 class="display-9 strong" style="margin-bottom: 20px; color: #1e293b;">Questions fréquentes</h2>
-<p style="color: #64748b; font-size: 18px; max-width: 600px; margin: 0 auto;">Tout ce que vous devez savoir sur notre porte automatique 2 vantaux SlideX</p>
+<p class="pd-accessories-kicker">Accessoires compatibles</p>
+<h2 class="pd-accessories-title">Complétez votre porte selon votre usage.</h2>
 </div>
-
-<div class="faq-container" style="max-width: 800px; margin: 0 auto;">
-
-<!-- FAQ Item 1 -->
-<div class="faq-item" style="border-bottom: 1px solid #e2e8f0; margin-bottom: 24px;">
-<button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; text-align: left; padding: 24px 0; border: none; background: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-<h3 style="margin: 0; color: #1e293b; font-size: 18px; font-weight: 600;">Quelle est la différence avec la concurrence ?</h3>
-<span class="faq-icon" style="color: #2563eb; font-size: 24px; transition: transform 0.3s ease;">+</span>
+<div class="hl hl--duo">
+<div class="hl__viewport">
+<ol class="hl__track">
+<li class="hl__slide">
+<div class="hl__media"><span class="hl__ph">Photo radar de sécurité</span></div>
+<div class="hl__copy">
+<p class="hl__kicker">Sécurité</p>
+<p class="hl__head">Radar de détection bi-technologie</p>
+<p class="hl__sub">Détecte l'approche des usagers pour une ouverture fluide et sécurisée, y compris pour les personnes à mobilité réduite.</p>
+</div>
+</li>
+<li class="hl__slide">
+<div class="hl__media"><span class="hl__ph">Photo verrouillage</span></div>
+<div class="hl__copy">
+<p class="hl__kicker">Verrouillage</p>
+<p class="hl__head">Verrou électromagnétique SlideX 500</p>
+<p class="hl__sub">Sécurise la porte en dehors des horaires d'ouverture, avec ou sans motorisation.</p>
+</div>
+</li>
+<li class="hl__slide">
+<div class="hl__media"><span class="hl__ph">Photo contrôle d'accès</span></div>
+<div class="hl__copy">
+<p class="hl__kicker">Contrôle d'accès</p>
+<p class="hl__head">Badge, code, bouton sans contact</p>
+<p class="hl__sub">Compatible lecteurs RFID, claviers à code et boutons d'ouverture sans contact.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="w-layout-blockcontainer container-default w-container">
+<div class="hl__controls">
+<button class="hl__playpause" type="button" data-state="playing" aria-label="Pause">
+<svg class="hl__ic-pause" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" width="3" height="12" rx="1"/><rect x="7.5" width="3" height="12" rx="1"/></svg>
+<svg class="hl__ic-play" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>
 </button>
-<div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-<div style="padding-bottom: 24px; color: #475569; line-height: 1.6;">
-<p><strong>SlideX by My Motor</strong> est le seul fabricant français de portes automatiques à se concentrer exclusivement sur la fabrication, sans activité de maintenance. Ce choix assumé nous permet d'aller plus loin là où les autres s'arrêtent : sur le produit.</p>
-
-<p>Nous sommes les seuls à avoir véritablement repensé le design des portes automatiques avec l'ajout d'options inédites comme le <strong>joint clair</strong> pour une finition premium, ou le <strong>bandeau LED intégré</strong> pour sublimer chaque projet.</p>
-
-<p>Notre <strong>pré-montage en atelier</strong> garantit une installation rapide et sans surprise, et notre fabrication 100% française nous permet de livrer en <strong>12 jours</strong>, avec un support technique ultra-réactif.</p>
-
-<p>Enfin, grâce à notre programme <strong>"Devenir Fabricant"</strong>, vous pouvez commander directement les profilés aluminium et devenir vous-même fabricant de vos portes automatiques.</p>
+<div class="hl__progress">
+<button class="hl__seg" type="button" aria-label="Aller à l'accessoire 1"></button>
+<button class="hl__seg" type="button" aria-label="Aller à l'accessoire 2"></button>
+<button class="hl__seg" type="button" aria-label="Aller à l'accessoire 3"></button>
 </div>
 </div>
-</div>
-
-<!-- FAQ Item 2 -->
-<div class="faq-item" style="border-bottom: 1px solid #e2e8f0; margin-bottom: 24px;">
-<button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; text-align: left; padding: 24px 0; border: none; background: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-<h3 style="margin: 0; color: #1e293b; font-size: 18px; font-weight: 600;">Quels sont les délais d'installation et de livraison ?</h3>
-<span class="faq-icon" style="color: #2563eb; font-size: 24px; transition: transform 0.3s ease;">+</span>
-</button>
-<div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-<div style="padding-bottom: 24px; color: #475569; line-height: 1.6;">
-<p><strong>Livraison :</strong> 12 jours ouvrés pour les produits standard, 15 jours avec laquage ou vitrage après validation de votre commande<br/>
-<strong>Installation :</strong> une journée en moyenne, réalisée par votre installateur (Slidex ne réalise pas la pose)<br/>
-<strong>Mise en service :</strong> Immédiate grâce au pré-réglage en atelier</p>
-<p>Notre système de pré-montage permet une installation 3x plus rapide que les solutions traditionnelles.</p>
-</div>
-</div>
-</div>
-
-<!-- FAQ Item 3 -->
-<div class="faq-item" style="border-bottom: 1px solid #e2e8f0; margin-bottom: 24px;">
-<button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; text-align: left; padding: 24px 0; border: none; background: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-<h3 style="margin: 0; color: #1e293b; font-size: 18px; font-weight: 600;">Quelle maintenance est nécessaire ?</h3>
-<span class="faq-icon" style="color: #2563eb; font-size: 24px; transition: transform 0.3s ease;">+</span>
-</button>
-<div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-<div style="padding-bottom: 24px; color: #475569; line-height: 1.6;">
-<p><strong>Maintenance préventive :</strong> 2 fois par an obligatoire<br/>
-<strong>Auto-diagnostic :</strong> Système intégré d'alerte en cas de dysfonctionnement<br/>
-<strong>Pièces détachées :</strong> Disponibles pendant 10 ans minimum<br/>
-<strong>Intervention :</strong> Réseau de techniciens agréés sur toute la France</p>
-<p>Le moteur est garanti 2 millions de cycles (certification TÜV).</p>
-</div>
-</div>
-</div>
-
-<!-- FAQ Item 4 -->
-<div class="faq-item" style="border-bottom: 1px solid #e2e8f0; margin-bottom: 24px;">
-<button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; text-align: left; padding: 24px 0; border: none; background: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-<h3 style="margin: 0; color: #1e293b; font-size: 18px; font-weight: 600;">Puis-je intégrer un contrôle d'accès ?</h3>
-<span class="faq-icon" style="color: #2563eb; font-size: 24px; transition: transform 0.3s ease;">+</span>
-</button>
-<div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-<div style="padding-bottom: 24px; color: #475569; line-height: 1.6;">
-<p><strong>Compatible avec :</strong></p>
-<ul style="margin: 8px 0; padding-left: 20px;">
-<li>Lecteurs de badges RFID</li>
-<li>Codes d'accès numériques</li>
-<li>Reconnaissance biométrique</li>
-<li>Contrôle smartphone (Bluetooth/NFC)</li>
-</ul>
-<p>L'intégration se fait directement sur l'armoire de commande, sans modification de la porte.</p>
-</div>
-</div>
-</div>
-
-<!-- FAQ Item 5 -->
-<div class="faq-item" style="border-bottom: 1px solid #e2e8f0; margin-bottom: 24px;">
-<button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; text-align: left; padding: 24px 0; border: none; background: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-<h3 style="margin: 0; color: #1e293b; font-size: 18px; font-weight: 600;">Quelle est la consommation électrique ?</h3>
-<span class="faq-icon" style="color: #2563eb; font-size: 24px; transition: transform 0.3s ease;">+</span>
-</button>
-<div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-<div style="padding-bottom: 24px; color: #475569; line-height: 1.6;">
-<p><strong>En veille :</strong> 5W (équivalent d'une ampoule LED)<br/>
-<strong>En fonctionnement :</strong> 120W pendant 3-5 secondes<br/>
-<strong>Coût annuel :</strong> Environ 15-20€ (usage commercial standard)</p>
-<p>Mode éco intégré qui réduit automatiquement la consommation en période d'inactivité.</p>
-</div>
-</div>
-</div>
-
-<!-- FAQ Item 6 -->
-<div class="faq-item" style="border-bottom: 1px solid #e2e8f0; margin-bottom: 24px;">
-<button class="faq-question" onclick="toggleFAQ(this)" style="width: 100%; text-align: left; padding: 24px 0; border: none; background: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-<h3 style="margin: 0; color: #1e293b; font-size: 18px; font-weight: 600;">La porte est-elle adaptée aux PMR ?</h3>
-<span class="faq-icon" style="color: #2563eb; font-size: 24px; transition: transform 0.3s ease;">+</span>
-</button>
-<div class="faq-answer" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-<div style="padding-bottom: 24px; color: #475569; line-height: 1.6;">
-<p><strong>Conforme :</strong> Norme EN 16005 et réglementation accessibilité<br/>
-<strong>Passage libre :</strong> Jusqu'à 2400mm selon configuration<br/>
-<strong>Temps d'ouverture :</strong> Réglable de 1 à 20 secondes<br/>
-<strong>Force de poussée :</strong> &lt; 5N conforme aux exigences PMR</p>
-<p>Détection radar adaptée aux personnes à mobilité réduite avec zone de détection étendue.</p>
-</div>
-</div>
-</div>
-
 </div>
 </div>
 </section>
 
-<!-- DOCUMENTATION SECTION -->
-<section class="section documentation-section" style="padding: 80px 0; background: #f8fafc;">
+<div id="google-reviews-placeholder"></div>
+
+<!-- FAQ SECTION -->
+<section class="section faq">
 <div class="w-layout-blockcontainer container-default w-container">
-<div class="text-center" style="margin-bottom: 60px;">
-<h2 class="display-9 strong" style="margin-bottom: 20px; color: #1e293b;">Documentation technique</h2>
-<p style="color: #64748b; font-size: 18px; max-width: 600px; margin: 0 auto;">Téléchargez tous les documents nécessaires pour votre projet</p>
+<div class="faq__head">
+<p class="faq__kicker">Foire aux questions</p>
+<h2 class="faq__title">Questions fréquentes</h2>
+<p class="faq__lead">Tout ce que vous devez savoir sur notre porte automatique 2 vantaux SlideX.</p>
+</div>
+<div class="faq-wrapper">
+
+<!-- FAQ Item 1 -->
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">
+<h3 class="display-4 strong">Quelle est la différence avec la concurrence ?</h3>
+<div class="faq-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+</div>
+<div class="faq-answer" style="display: none;">
+<p><strong>SlideX by My Motor</strong> est le seul fabricant français de portes automatiques à se concentrer exclusivement sur la fabrication, sans activité de maintenance. Ce choix assumé nous permet d'aller plus loin là où les autres s'arrêtent&nbsp;: sur le produit.</p>
+<p>Nous sommes les seuls à avoir véritablement repensé le design des portes automatiques avec l'ajout d'options inédites comme le <strong>joint clair</strong> pour une finition premium, ou le <strong>bandeau LED intégré</strong> pour sublimer chaque projet.</p>
+<p>Notre <strong>pré-montage en atelier</strong> garantit une installation rapide et sans surprise, et notre fabrication 100% française nous permet de livrer en <strong>12 jours</strong>, avec un support technique ultra-réactif.</p>
+</div>
 </div>
 
-<div class="documentation-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1000px; margin: 0 auto;">
-
-<!-- Fiche technique -->
-<div class="doc-card" style="background: white; padding: 32px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-<div style="width: 80px; height: 80px; background: linear-gradient(135deg, #2563eb, #1d4ed8); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
-<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14 2V8H20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16 13H8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16 17H8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10 9H9H8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<!-- FAQ Item 2 -->
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">
+<h3 class="display-4 strong">Quels sont les délais d'installation et de livraison ?</h3>
+<div class="faq-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 </div>
-<h3 style="color: #1e293b; font-size: 20px; font-weight: 700; margin-bottom: 12px;">Fiche technique</h3>
-<p style="color: #64748b; font-size: 14px; line-height: 1.6; margin-bottom: 20px;">Spécifications complètes, dimensions, performances et caractéristiques techniques détaillées</p>
-<div style="background: #f1f5f9; padding: 12px; border-radius: 8px; margin-bottom: 20px;">
-<div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #64748b;">
-<span>📄 PDF - 2.4 MB</span>
-<span>🇫🇷 Français</span>
+<div class="faq-answer" style="display: none;">
+<p><strong>Livraison :</strong> 12 jours ouvrés pour les produits standard, 15 jours avec laquage ou vitrage après validation de votre commande.<br/>
+<strong>Installation :</strong> une journée en moyenne, réalisée par votre installateur (SlideX ne réalise pas la pose).<br/>
+<strong>Mise en service :</strong> immédiate grâce au pré-réglage en atelier.</p>
 </div>
-</div>
-<a href="#" class="download-btn" style="display: inline-flex; align-items: center; gap: 8px; background: #2563eb; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; transition: background 0.3s ease;">
-<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-Télécharger
-</a>
 </div>
 
-<!-- Notice d'installation -->
-<div class="doc-card" style="background: white; padding: 32px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-<div style="width: 80px; height: 80px; background: linear-gradient(135deg, #059669, #047857); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
-<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M9 12L11 14L15 10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<!-- FAQ Item 3 -->
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">
+<h3 class="display-4 strong">Quelle maintenance est nécessaire ?</h3>
+<div class="faq-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 </div>
-<h3 style="color: #1e293b; font-size: 20px; font-weight: 700; margin-bottom: 12px;">Notice d'installation</h3>
-<p style="color: #64748b; font-size: 14px; line-height: 1.6; margin-bottom: 20px;">Guide pas-à-pas illustré pour une installation conforme et sécurisée par vos équipes</p>
-<div style="background: #f1f5f9; padding: 12px; border-radius: 8px; margin-bottom: 20px;">
-<div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #64748b;">
-<span>📄 PDF - 3.8 MB</span>
-<span>🔧 Installation</span>
+<div class="faq-answer" style="display: none;">
+<p><strong>Maintenance préventive :</strong> 2 fois par an obligatoire.<br/>
+<strong>Auto-diagnostic :</strong> système intégré d'alerte en cas de dysfonctionnement.<br/>
+<strong>Pièces détachées :</strong> disponibles pendant 10 ans minimum. Le moteur est garanti 2 millions de cycles (certification TÜV).</p>
 </div>
-</div>
-<a href="#" class="download-btn" style="display: inline-flex; align-items: center; gap: 8px; background: #059669; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; transition: background 0.3s ease;">
-<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-Télécharger
-</a>
 </div>
 
-<!-- Certificats de conformité -->
-<div class="doc-card" style="background: white; padding: 32px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-<div style="width: 80px; height: 80px; background: linear-gradient(135deg, #dc2626, #b91c1c); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;">
-<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12 15C15.866 15 19 11.866 19 8C19 4.13401 15.866 1 12 1C8.13401 1 5 4.13401 5 8C5 11.866 8.13401 15 12 15Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8.21 13.89L7 23L12 20L17 23L15.79 13.88" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10 8L12 10L14 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<!-- FAQ Item 4 -->
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">
+<h3 class="display-4 strong">Puis-je intégrer un contrôle d'accès ?</h3>
+<div class="faq-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 </div>
-<h3 style="color: #1e293b; font-size: 20px; font-weight: 700; margin-bottom: 12px;">Certificats conformité</h3>
-<p style="color: #64748b; font-size: 14px; line-height: 1.6; margin-bottom: 20px;">CE, EN 16005, certifications TÜV et attestations de conformité réglementaire</p>
-<div style="background: #f1f5f9; padding: 12px; border-radius: 8px; margin-bottom: 20px;">
-<div style="display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #64748b;">
-<span>📄 PDF - 1.2 MB</span>
-<span>✅ Certifié</span>
+<div class="faq-answer" style="display: none;">
+<p>Compatible avec les lecteurs de badges RFID, les codes d'accès numériques, la reconnaissance biométrique et le contrôle smartphone (Bluetooth/NFC). L'intégration se fait directement sur l'armoire de commande, sans modification de la porte.</p>
 </div>
 </div>
-<a href="#" class="download-btn" style="display: inline-flex; align-items: center; gap: 8px; background: #dc2626; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; transition: background 0.3s ease;">
-<svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-Télécharger
-</a>
+
+<!-- FAQ Item 5 -->
+<div class="faq-item">
+<div class="faq-question" onclick="toggleFaq(this)">
+<h3 class="display-4 strong">La porte est-elle adaptée aux PMR ?</h3>
+<div class="faq-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L12 15L18 9" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+</div>
+<div class="faq-answer" style="display: none;">
+<p><strong>Conforme :</strong> norme EN 16005 et réglementation accessibilité. Passage libre jusqu'à 2400&nbsp;mm selon configuration, temps d'ouverture réglable de 1 à 20 secondes, force de poussée &lt; 5N conforme aux exigences PMR. Détection radar adaptée aux personnes à mobilité réduite avec zone de détection étendue.</p>
+<p><a href="blog/normes-pmr-largeur-passage-900mm.html">En savoir plus&nbsp;: normes PMR et largeur de passage ≥ 900&nbsp;mm</a></p>
+</div>
 </div>
 
 </div>
-
+<div class="faq__more">
+<p>Une autre question&nbsp;? <a href="connexion-inscription.html">Contactez notre équipe</a></p>
+</div>
 </div>
 </section>
 
@@ -562,26 +960,27 @@ Télécharger
 <div class="inner-container _450px---tablet">
 <div class="inner-container _400px---mbl _100-mbp">
 <div class="overflow-hidden title-wrap">
-<div class="subtitle" data-w-id="35e4a64a-ed39-f8f6-3a23-7f3c3f143064">Contactez nous pour vos portes piétonnes</div>
+<div class="subtitle" data-w-id="35e4a64a-ed39-f8f6-3a23-7f3c3f143064">Porte automatique 2 vantaux</div>
 </div>
 <div class="mg-top-small">
 <div class="overflow-hidden title-wrap">
-<h2 class="display-9 strong text-light" data-w-id="c77e67a1-94a7-3067-f428-a93efd96fb16">Et si on fabriquait vos portes automatiques ensemble ?</h2>
+<h2 class="display-9 strong text-light" data-w-id="c77e67a1-94a7-3067-f428-a93efd96fb16">Votre prochaine porte, prête en 12 jours.</h2>
 </div>
 </div>
 <div class="mg-top-small">
 <div class="inner-container _570px _100-tablet">
-<p class="text-neutral" data-w-id="c77e67a1-94a7-3067-f428-a93efd96fb19">Basée au pied du Vercors 🇫🇷, SlideX conçoit et produit des portes piétonnes automatiques pour les professionnels. Fabrication rapide, support réactif et qualité 100 % française.
+<p class="text-neutral" data-w-id="c77e67a1-94a7-3067-f428-a93efd96fb19">SlideX conçoit et fabrique vos portes piétonnes automatiques en Isère. Configurez votre projet en ligne ou demandez à être rappelé par notre équipe technique.</p>
 </div>
 </div>
 <div class="mg-top-80px mg-top-32px---mbl">
-<div class="buttons-row left" data-w-id="c77e67a1-94a7-3067-f428-a93efd96fb1b">
+<div class="buttons-row left pd-cta-actions" data-w-id="c77e67a1-94a7-3067-f428-a93efd96fb1b">
 <a class="primary-button w-inline-block" href="connexion-inscription.html" id="w-node-e9da5fd6-ab44-5b2f-81ad-6e5f36bfab9c-36bfab9c">
-<div>Etre recontacté</div>
+<div>Configurer ma porte</div>
 <div class="item-icon-right icon-right-circle">
 <div class="base-icon-font" style="display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 </div>
 </a>
+<a class="pd-cta-ghost" href="contact-new.html">Être rappelé</a>
 </div>
 </div>
 </div>
@@ -633,9 +1032,10 @@ Télécharger
 </div>
 </div>
 </div>
+</div>
+</div>
 </section>
 
-    <div id="google-reviews-placeholder"></div>
     <div id="footer-placeholder"></div>
 </div>
 <div class="page-load-wrapper _01">
@@ -643,164 +1043,77 @@ Télécharger
 </div>
 <script crossorigin="anonymous" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6799d9a3630f757829978f69" type="text/javascript"></script>
 
-<!-- Product Slider Script -->
+<!-- Le carrousel photo du hero (.product-slider) est géré par le
+     contrôleur partagé initSlider()/initAllSliders() dans
+     js/slidex-animations.js. -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  const slides = document.querySelectorAll('.slider-slide');
-  const dots = document.querySelectorAll('.slider-dot');
-  const prevBtn = document.querySelector('.slider-prev');
-  const nextBtn = document.querySelector('.slider-next');
-  const sliderTrack = document.querySelector('.slider-track');
-  
-  let currentSlide = 0;
-  const totalSlides = slides.length;
+// Tuiles "Inclus de série / Options" façon IKEA : tooltip au clic
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.pd-feature');
+  document.querySelectorAll('.pd-feature[aria-expanded="true"]').forEach(function(el) {
+    if (el !== btn) el.setAttribute('aria-expanded', 'false');
+  });
+  if (btn) {
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+  }
+});
 
-  function updateSlider() {
-    // Update slider position - each slide is 20% of the track width
-    sliderTrack.style.transform = `translateX(-${currentSlide * 20}%)`;
-    
-    // Update dots
-    dots.forEach((dot, index) => {
-      if (index === currentSlide) {
-        dot.style.background = '#2563eb';
-        dot.classList.add('active');
-      } else {
-        dot.style.background = 'rgba(255,255,255,0.6)';
-        dot.classList.remove('active');
-      }
+// Fiche produit à onglets (façon IKEA)
+document.querySelectorAll('.pd-tab').forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.pd-tab').forEach(function(t) { t.setAttribute('aria-selected', 'false'); });
+    document.querySelectorAll('.pd-tabpanel').forEach(function(p) { p.removeAttribute('data-active'); });
+    tab.setAttribute('aria-selected', 'true');
+    document.querySelector('.pd-tabpanel[data-panel="' + tab.dataset.tab + '"]').setAttribute('data-active', '');
+  });
+});
+
+// Sélecteur de vitrage (onglet Vitrage disponible)
+document.querySelectorAll('.pd-glazing-options').forEach(function(group) {
+  group.addEventListener('click', function(e) {
+    const chip = e.target.closest('.pd-glazing-chip');
+    if (!chip) return;
+    group.querySelectorAll('.pd-glazing-chip').forEach(function(c) {
+      c.setAttribute('aria-pressed', 'false');
+      c.setAttribute('aria-checked', 'false');
     });
-  }
-
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateSlider();
-  }
-
-  function prevSlide() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    updateSlider();
-  }
-
-  function goToSlide(index) {
-    currentSlide = index;
-    updateSlider();
-  }
-
-  // Event listeners
-  nextBtn.addEventListener('click', nextSlide);
-  prevBtn.addEventListener('click', prevSlide);
-
-  // Dot navigation
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => goToSlide(index));
+    chip.setAttribute('aria-pressed', 'true');
+    chip.setAttribute('aria-checked', 'true');
   });
+});
 
-  // Auto-slide (optional - commented out for now)
-  // setInterval(() => {
-  //   nextSlide();
-  // }, 5000);
-
-  // Touch/swipe support
-  let startX = null;
-  let currentX = null;
-  
-  sliderTrack.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-  });
-
-  sliderTrack.addEventListener('touchmove', (e) => {
-    if (!startX) return;
-    currentX = e.touches[0].clientX;
-  });
-
-  sliderTrack.addEventListener('touchend', () => {
-    if (!startX || !currentX) return;
-    
-    const diffX = startX - currentX;
-    
-    if (Math.abs(diffX) > 50) { // Minimum swipe distance
-      if (diffX > 0) {
-        nextSlide();
-      } else {
-        prevSlide();
-      }
-    }
-    
-    startX = null;
-    currentX = null;
+// Accordéons de la fiche produit (En savoir plus / Bon à savoir)
+document.querySelectorAll('.pd-accordion-trigger').forEach(function(trigger) {
+  trigger.addEventListener('click', function() {
+    const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+    trigger.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
   });
 });
 
 // FAQ Accordion Functionality
-function toggleFAQ(button) {
-  const faqItem = button.parentElement;
+function toggleFaq(element) {
+  const faqItem = element.parentElement;
   const answer = faqItem.querySelector('.faq-answer');
-  const icon = button.querySelector('.faq-icon');
-  const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
-  
-  // Close all other FAQ items
-  document.querySelectorAll('.faq-item').forEach(item => {
-    if (item !== faqItem) {
-      const otherAnswer = item.querySelector('.faq-answer');
-      const otherIcon = item.querySelector('.faq-icon');
-      otherAnswer.style.maxHeight = '0px';
-      otherIcon.style.transform = 'rotate(0deg)';
-      otherIcon.textContent = '+';
-    }
-  });
-  
-  // Toggle current FAQ item
-  if (isOpen) {
-    answer.style.maxHeight = '0px';
-    icon.style.transform = 'rotate(0deg)';
-    icon.textContent = '+';
+  const icon = element.querySelector('.faq-icon');
+
+  if (answer.style.display === 'none' || answer.style.display === '') {
+    answer.style.display = 'block';
+    icon.style.transform = 'rotate(180deg)';
   } else {
-    answer.style.maxHeight = answer.scrollHeight + 'px';
-    icon.style.transform = 'rotate(45deg)';
-    icon.textContent = '×';
+    answer.style.display = 'none';
+    icon.style.transform = 'rotate(0deg)';
   }
 }
-
-// Documentation Cards Hover Effects
-document.addEventListener('DOMContentLoaded', function() {
-  const docCards = document.querySelectorAll('.doc-card');
-  
-  docCards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
-      this.style.transform = 'translateY(-8px)';
-      this.style.boxShadow = '0 12px 24px rgba(0,0,0,0.15)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-      this.style.transform = 'translateY(0)';
-      this.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
-    });
-  });
-  
-  // Download button hover effects
-  const downloadBtns = document.querySelectorAll('.download-btn');
-  downloadBtns.forEach(btn => {
-    const originalBg = btn.style.background;
-    btn.addEventListener('mouseenter', function() {
-      this.style.opacity = '0.9';
-      this.style.transform = 'scale(1.02)';
-    });
-    
-    btn.addEventListener('mouseleave', function() {
-      this.style.opacity = '1';
-      this.style.transform = 'scale(1)';
-    });
-  });
-});
 
 // Popup functionality
 function openPopup(popupId) {
   const popup = document.getElementById(popupId);
   const popupContent = popup.querySelector('.popup-content');
-  
+
   popup.style.display = 'flex';
   document.body.style.overflow = 'hidden';
-  
+
   // Trigger animation on next frame
   requestAnimationFrame(() => {
     popup.style.opacity = '1';
@@ -811,10 +1124,10 @@ function openPopup(popupId) {
 function closePopup(popupId) {
   const popup = document.getElementById(popupId);
   const popupContent = popup.querySelector('.popup-content');
-  
+
   popup.style.opacity = '0';
   popupContent.style.transform = 'scale(0.9)';
-  
+
   // Wait for animation to complete before hiding
   setTimeout(() => {
     popup.style.display = 'none';
