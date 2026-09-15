@@ -1,0 +1,340 @@
+/* ==========================================================================
+   slidex-brand.css — Feuille d'identité visuelle pour le thème PrestaShop
+   "Slidex Shop", extraite du site institutionnel slidex-fixed.
+
+   ⚠️ EMPLACEMENT : ce fichier est livré ici (templates/) pour respecter la
+   consigne "fichiers prêts à déposer dans /themes/slidex-shop/templates/".
+   En pratique, PrestaShop attend les CSS de thème dans
+   themes/slidex-shop/assets/css/ — voir la TODO en fin de header.tpl et
+   footer.tpl pour l'enregistrer proprement via le hook `actionRegisterStylesheets`
+   du fichier module de thème (ou simplement en le déplaçant et en gardant
+   un <link> direct pour un démarrage rapide).
+
+   Légende :
+   [SITE] = valeur reprise telle quelle du site institutionnel (voir
+            DESIGN-SYSTEM.md pour la source exacte : fichier + ligne)
+   [PS]   = ajout propre à l'intégration PrestaShop (pas de composant
+            institutionnel équivalent)
+   ========================================================================== */
+
+:root {
+  /* ---- [SITE] Couleurs de marque ---- */
+  --slidex-primary: #2563eb;
+  --slidex-primary-hover: #1d4ed8;
+  --slidex-primary-tint: #eef4ff;
+
+  /* ---- [SITE] Navy (hero .np-header, CTA sombre .np-cta) ---- */
+  --slidex-navy-900: #0f172a;   /* titres + 1er ton du gradient hero */
+  --slidex-navy-800: #162444;   /* 2e ton du gradient hero */
+  --slidex-navy-950: #0a0f1e;   /* 1er ton du gradient CTA final (plus sombre) */
+  --slidex-navy-925: #0f1f3d;   /* 2e ton du gradient CTA final */
+
+  /* ---- [SITE] Textes ---- */
+  --slidex-text-heading: #0f172a;
+  --slidex-text-body: #334155;
+  --slidex-text-muted: #64748b;
+  --slidex-text-faint: #94a3b8;
+  --slidex-text-on-dark-strong: rgba(255, 255, 255, 0.85);
+  --slidex-text-on-dark: rgba(255, 255, 255, 0.6);
+  --slidex-text-on-dark-faint: rgba(255, 255, 255, 0.4);
+
+  /* ---- [SITE] Surfaces ---- */
+  --slidex-surface: #ffffff;
+  --slidex-surface-tint: #f8fafc;
+  --slidex-surface-tint-2: #f2f2f4;
+  --slidex-surface-tint-3: #f6f8fb;
+  --slidex-footer-bg: #171717;
+
+  /* ---- [SITE] Bordures ---- */
+  --slidex-border: #e8edf5;
+  --slidex-border-soft: #eef2f7;
+  --slidex-border-header: #eef1f6;
+
+  /* ---- [SITE] Statut produit ponctuel (badge "bientôt disponible") ---- */
+  --slidex-status-amber: #9a3412;
+
+  /* ---- [SITE] Typographie : aucune police externe, système uniquement ---- */
+  --slidex-font-heading: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --slidex-font-body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --slidex-weight-heading: 800;
+  --slidex-weight-medium: 700;
+  --slidex-weight-regular: 400;
+  --slidex-letter-spacing-tight: -0.03em;
+  --slidex-letter-spacing-kicker: 0.1em;
+
+  /* ---- [SITE] Rayons / ombres ---- */
+  --slidex-radius-pill: 300px;
+  --slidex-radius-lg: 24px;
+  --slidex-radius-md: 16px;
+  --slidex-radius-sm: 10px;
+  --slidex-radius-xs: 8px;
+  --slidex-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --slidex-shadow-card-hover: 0 20px 44px rgba(0, 0, 0, 0.09);
+  --slidex-shadow-button: 0 4px 8px 0 rgba(37, 99, 235, 0.2);
+
+  /* ---- [PS] Rythme vertical générique ---- */
+  --slidex-section-padding: 80px;
+}
+
+/* ==========================================================================
+   [SITE] HEADER — repris de css/slidex-custom.css:412-553
+   ========================================================================== */
+.site-header {
+  background: var(--slidex-surface);
+  border-bottom: 1px solid var(--slidex-border-header);
+}
+.site-header__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  min-height: 76px;
+}
+.site-header__logo {
+  flex-shrink: 0;
+  font-family: var(--slidex-font-heading);
+  font-size: 1.35rem;
+  font-weight: var(--slidex-weight-heading);
+  letter-spacing: var(--slidex-letter-spacing-tight);
+  color: var(--slidex-text-heading);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-header__logo span { color: var(--slidex-primary); }
+.site-header__logo-suffix {
+  /* [PS] Suffixe "Shop" pour distinguer la boutique du site institutionnel */
+  color: var(--slidex-text-muted);
+  font-weight: var(--slidex-weight-medium);
+  font-size: 0.85rem;
+}
+.site-header__nav { display: flex; align-items: center; gap: 8px; margin: 0 auto; }
+.site-header__links { display: flex; align-items: center; gap: 4px; list-style: none; margin: 0; padding: 0; }
+.site-header__link {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: var(--slidex-radius-sm);
+  font-size: 0.95rem;
+  font-weight: var(--slidex-weight-medium);
+  color: var(--slidex-text-body);
+  text-decoration: none;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.site-header__link:hover { background: var(--slidex-surface-tint); color: var(--slidex-text-heading); }
+.site-header__link:focus-visible { outline: 2px solid var(--slidex-primary); outline-offset: 2px; }
+.site-header__actions { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.site-header__search { flex-shrink: 0; }
+.site-header__nav1 { display: flex; align-items: center; }
+.site-header__full-width:empty { display: none; }
+
+.hamburger-menu { display: none; padding: 8px; background: transparent; border: 0; cursor: pointer; }
+.hamburger-menu-line { display: block; width: 24px; height: 2px; border-radius: 2px; background: var(--slidex-text-heading); margin: 5px 0; transition: transform 0.2s ease, opacity 0.2s ease; }
+
+@media (max-width: 991px) {
+  .site-header__nav { display: none; }
+  .site-header__cta { display: none; }
+  .hamburger-menu { display: block; }
+}
+
+/* ==========================================================================
+   [SITE] BOUTON PRIMAIRE — repris de css/et-voila.webflow.css:3817
+   ========================================================================== */
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 22px 13px 26px;
+  border: 0;
+  border-radius: var(--slidex-radius-pill);
+  background-color: var(--slidex-primary);
+  box-shadow: var(--slidex-shadow-button);
+  color: #ffffff;
+  font-family: var(--slidex-font-heading);
+  font-size: 0.95rem;
+  font-weight: var(--slidex-weight-medium);
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  width: fit-content;
+  max-width: 100%;
+  transition: opacity 0.15s ease;
+}
+.primary-button:hover { opacity: 0.88; color: #ffffff; }
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border-radius: var(--slidex-radius-pill);
+  border: 1px solid var(--slidex-border);
+  background: transparent;
+  color: var(--slidex-text-heading);
+  font-weight: var(--slidex-weight-medium);
+  text-decoration: none;
+}
+.secondary-button:hover { opacity: 0.88; }
+
+/* ==========================================================================
+   [SITE] FOOTER — repris de includes/footer.html
+   ========================================================================== */
+.slidex-footer { background: var(--slidex-footer-bg); padding: 64px 0 32px; color: rgba(255, 255, 255, 0.7); }
+.slidex-footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+.slidex-footer h4 { color: #ffffff; font-size: 1rem; font-weight: var(--slidex-weight-heading); margin: 0 0 18px; }
+.slidex-footer-tagline { color: rgba(255, 255, 255, 0.6); margin: 8px 0 0; }
+.slidex-footer ul { list-style: none; margin: 0; padding: 0; }
+.slidex-footer li { margin: 0 0 10px; }
+.slidex-footer a { color: rgba(255, 255, 255, 0.7); text-decoration: none; }
+.slidex-footer a:hover { color: #ffffff; }
+.slidex-footer-bottom {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+.slidex-footer-bottom a { color: rgba(255, 255, 255, 0.65); }
+.slidex-footer-social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--slidex-radius-xs);
+  color: #fff;
+}
+@media (max-width: 900px) {
+  .slidex-footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .slidex-footer-grid { grid-template-columns: 1fr; }
+}
+
+/* [PS] Bloc hooks additionnels dans le footer (CMS, moyens de paiement…) */
+.slidex-footer-hooks:empty { display: none; }
+.slidex-footer-hooks { margin-top: 40px; padding-top: 32px; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+
+/* ==========================================================================
+   [SITE] HERO SOMBRE .np-header — repris tel quel (voir DESIGN-SYSTEM.md §6 :
+   ce hero est réellement sombre/navy dans le site, pas "clair")
+   ========================================================================== */
+.np-header {
+  position: relative;
+  overflow: hidden;
+  padding: 56px 0 52px;
+  background: linear-gradient(135deg, var(--slidex-navy-900) 0%, var(--slidex-navy-800) 100%);
+}
+.np-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 40px;
+  background: var(--slidex-surface);
+  clip-path: ellipse(55% 100% at 50% 100%);
+}
+.np-header-kicker {
+  margin: 0 0 18px;
+  font-size: 0.8rem;
+  font-weight: var(--slidex-weight-medium);
+  letter-spacing: var(--slidex-letter-spacing-kicker);
+  text-transform: uppercase;
+  color: #7db0fb;
+}
+.np-header-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(2.1rem, 4vw, 3.25rem);
+  font-weight: var(--slidex-weight-heading);
+  line-height: 1.08;
+  letter-spacing: var(--slidex-letter-spacing-tight);
+}
+.np-header-desc { max-width: 480px; color: var(--slidex-text-on-dark); font-size: 0.95rem; line-height: 1.7; margin: 18px 0 0; }
+.np-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.75);
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  font-weight: var(--slidex-weight-medium);
+}
+
+/* ==========================================================================
+   [SITE] CARTES GAMME/PRODUIT .hl__* — reprises de css/slidex-custom.css:1868-2004
+   ========================================================================== */
+.slidex-card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 44px; }
+.slidex-card { position: relative; aspect-ratio: 10 / 7; border-radius: var(--slidex-radius-lg); overflow: hidden; background: var(--slidex-surface-tint-2); }
+.slidex-card-media { position: absolute; inset: 0; background-size: cover; background-position: center; background-color: var(--slidex-surface-tint-2); }
+.slidex-card-copy {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: clamp(20px, 4vw, 32px);
+  color: #ffffff;
+  background: linear-gradient(to top, rgba(10, 15, 30, 0.62) 0%, rgba(10, 15, 30, 0.28) 45%, rgba(10, 15, 30, 0) 88%);
+}
+.slidex-card-kicker { margin: 0 0 8px; font-size: 0.78rem; font-weight: var(--slidex-weight-medium); color: rgba(255, 255, 255, 0.72); }
+.slidex-card-title { margin: 0 0 6px; font-size: 1.1rem; font-weight: var(--slidex-weight-heading); }
+.slidex-card-sub { margin: 0 0 14px; font-size: 0.88rem; color: rgba(255, 255, 255, 0.85); }
+.slidex-card-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.slidex-btn { display: inline-flex; align-items: center; justify-content: center; padding: 9px 18px; border-radius: var(--slidex-radius-xs); font-size: 0.85rem; font-weight: var(--slidex-weight-medium); text-decoration: none; }
+.slidex-btn--primary { background: var(--slidex-primary); color: #fff; }
+.slidex-btn--primary:hover { background: var(--slidex-primary-hover); color: #fff; }
+.slidex-btn--ghost { background: #fff; color: var(--slidex-text-heading); }
+.slidex-btn--ghost:hover { opacity: 0.88; }
+@media (max-width: 900px) {
+  .slidex-card-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   [SITE] BANDE DE RÉASSURANCE — reprise de kits-renovation.html:81-98
+   Branchée sur le hook natif PrestaShop `displayReassurance` (product.tpl)
+   ========================================================================== */
+.slidex-reassurance {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+  padding: 24px 28px;
+  border-radius: var(--slidex-radius-md);
+  background: linear-gradient(135deg, var(--slidex-navy-900) 0%, var(--slidex-navy-800) 100%);
+}
+.slidex-reassurance-item { text-align: center; }
+.slidex-reassurance-value { font-size: clamp(1.3rem, 2.4vw, 1.7rem); font-weight: var(--slidex-weight-heading); color: #ffffff; }
+.slidex-reassurance-label { margin-top: 4px; font-size: 0.8rem; color: rgba(255, 255, 255, 0.55); }
+
+/* ==========================================================================
+   [SITE] PANNEAU PRODUIT À ONGLETS — repris de product-detail.html
+   (habille les onglets natifs PrestaShop dans product.tpl)
+   ========================================================================== */
+.slidex-panel-section { background: var(--slidex-surface-tint); padding: 56px 0; border-radius: var(--slidex-radius-lg); }
+.slidex-tabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--slidex-border); }
+.slidex-tab {
+  padding: 14px 20px;
+  font-size: 0.92rem;
+  font-weight: var(--slidex-weight-medium);
+  color: var(--slidex-text-muted);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  background: none;
+  border-top: 0; border-left: 0; border-right: 0;
+}
+.slidex-tab:hover { color: var(--slidex-text-heading); }
+.slidex-tab.active,
+.slidex-tab[aria-selected="true"] { color: var(--slidex-text-heading); font-weight: 700; border-bottom-color: var(--slidex-text-heading); }
+.slidex-tabpanel { padding: 28px 4px 8px; }
+.slidex-spec-list { display: flex; flex-direction: column; border-top: 1px solid var(--slidex-border); }
+.slidex-spec-row { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; padding: 14px 2px; border-bottom: 1px solid var(--slidex-border); font-size: 0.92rem; }
+.slidex-spec-row dt { color: var(--slidex-text-heading); font-weight: var(--slidex-weight-medium); }
+.slidex-spec-row dd { margin: 0; color: var(--slidex-text-muted); }
+
+/* ==========================================================================
+   [PS] Rythme vertical générique des sections de la boutique
+   ========================================================================== */
+.slidex-section { padding-top: var(--slidex-section-padding); padding-bottom: var(--slidex-section-padding); }
