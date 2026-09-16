@@ -1063,7 +1063,7 @@
 <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 5.02944 7.02944 1 12 1C16.9706 1 21 5.02944 21 10Z" stroke="currentColor" stroke-width="2"/>
 <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/>
 </svg>
-<span>Disponible 24h/24 et 7j/7</span>
+<span class="selected-city-availability">Disponible 24h/24 et 7j/7</span>
 </div>
 </div>
 </div>
@@ -1263,7 +1263,7 @@ const citiesData = {
         name: 'Siège social - Grenoble',
         description: 'Notre siège social et centre de production. Équipe technique et commerciale à votre service.',
         address: '2 rue Raoul Follereau, 38180 Seyssins',
-        availability: 'Ouvert 24h/24 et 7j/7',
+        availability: 'Lundi–vendredi, 8h–12h et 14h–17h',
         lat: 45.1885,
         lng: 5.7245,
         type: 'headquarters'
@@ -1715,7 +1715,9 @@ function showCityInfo(cityName) {
     selectedCityInfo.style.display = 'block';
     selectedCityInfo.querySelector('.selected-city-name').textContent = cityData.name;
     selectedCityInfo.querySelector('.selected-city-description').textContent = cityData.description;
-    
+    const availabilityEl = selectedCityInfo.querySelector('.selected-city-availability');
+    if (availabilityEl) { availabilityEl.textContent = cityData.availability || ''; }
+
     // Mise à jour des badges
     if (cityBadges) {
         cityBadges.forEach(badge => {
