@@ -447,6 +447,13 @@
       color: #b6b6be;
     }
     .cta-photo-fallback[hidden] { display: none; }
+
+    /* La carte "Devenir partenaire" est calée à droite dans une colonne
+       1.4fr, ce qui masque une bonne partie du sujet/logo sur la photo.
+       On élargit la colonne vide de gauche pour repousser la carte plus
+       à droite et libérer le sujet. */
+    .cta-grid-v2 { grid-template-columns: 1.3fr 1.1fr !important; }
+    .cta-v2---featured-image { object-position: 38% center; }
     .cfg__kicker {
       margin: 0 0 20px;
       font-size: 0.8rem;
