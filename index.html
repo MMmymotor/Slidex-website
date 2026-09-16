@@ -432,6 +432,21 @@
     .cfg__media-fallback { display: grid; place-items: center; }
     .cfg__media-fallback[hidden] { display: none; }
     .cfg__media-fallback svg { opacity: 0.38; }
+
+    /* ── Placeholder photo « Devenir partenaire » ── */
+    .cta-photo-fallback {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: #f2f2f4;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #b6b6be;
+    }
+    .cta-photo-fallback[hidden] { display: none; }
     .cfg__kicker {
       margin: 0 0 20px;
       font-size: 0.8rem;
@@ -709,7 +724,10 @@
 <div class="cta-section v2">
 <div class="w-layout-blockcontainer container-default w-container">
 <div class="cta-picture-v2">
-<div class="image-main _w-h-100"><img alt="Why Us Image - Homerepair X Webflow Template" class="image cover-image cta-v2---featured-image" data-w-id="dc1fda40-a24e-e8eb-4826-6252d0fb0ee0" loading="lazy" src="images/why-us-image-homerepair-x-webflow-template.jpg"/></div>
+<div class="image-main _w-h-100">
+<img alt="Un expert SlideX en intervention" class="image cover-image cta-v2---featured-image" data-w-id="dc1fda40-a24e-e8eb-4826-6252d0fb0ee0" loading="lazy" src="images/Expert_SlideX.jpg" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+<span class="cta-photo-fallback" hidden>Photo expert SlideX</span>
+</div>
 </div>
 <div class="w-layout-blockcontainer container-default _0px---mbl w-container">
 <div class="w-layout-grid grid-2-columns cta-grid-v2">
