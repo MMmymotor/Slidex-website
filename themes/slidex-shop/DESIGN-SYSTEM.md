@@ -362,12 +362,23 @@ concerné ; voici la même liste regroupée pour la vue d'ensemble.
 - [ ] `ps_linklist` → pages CMS obligatoires (voir ci-dessus).
 
 **Vérifications techniques avant mise en prod**
-- [ ] Comparer les chemins d'`{include}` de `product.tpl`
-      (`catalog/_partials/product-images.tpl`, `product-prices.tpl`,
-      `product-add-to-cart.tpl`, `product-tabs.tpl`) avec ceux du thème
-      classic-rocket réellement installé — ils sont corrects pour l'archi
-      standard 1.7.6-1.7.8 mais peuvent différer selon la version exacte
-      (voir l'avertissement en tête de `product.tpl`).
+- [x] ~~Comparer les chemins d'`{include}` de `product.tpl` avec ceux du
+      thème classic-rocket réellement installé~~ — **fait** : contre la
+      vraie liste de fichiers de `templates/catalog/_partials/` de
+      l'install TORQA/My Motor (fournie par l'utilisateur). Correction
+      effectuée : `product-images.tpl` n'existe pas, remplacé par
+      `product-cover-thumbnails.tpl` ; ajout de 7 partials réels dont la
+      première version n'avait pas connaissance (`product-images-modal.tpl`,
+      `product-flags.tpl`, `product-discounts.tpl`, `product-variants.tpl`,
+      `product-customization.tpl`, `product-activation.tpl`,
+      `product-additional-info.tpl`, `product-details.tpl`). Détail complet
+      et nouveau TODO dans le changelog en bas de `product.tpl`.
+- [ ] **Reste à vérifier** (nécessite le contenu des fichiers, pas
+      seulement leur liste — demandé à l'utilisateur) : l'ordre/imbrication
+      réels de ces includes (ex. `product-cover-thumbnails.tpl` inclut-il
+      déjà `product-images-modal.tpl` en interne ?), et si `product.tpl`
+      natif utilise bien `{extends file='page.tpl'}` /
+      `{block name='page_content'}`.
 - [ ] Une fois les déclinaisons de démonstration/produits en place, observer
       le rendu natif du sélecteur de déclinaison PrestaShop dans le
       navigateur et adapter le CSS de `slidex-brand.css` à ses classes

@@ -1,22 +1,30 @@
 {**
  * product.tpl — Thème "Slidex Shop" (PrestaShop 1.7.8, base classic-rocket)
  *
- * ⚠️ À LIRE AVANT DÉPLOIEMENT :
- * Ce fichier suppose l'architecture standard du thème classic-rocket pour
- * PS 1.7.x : héritage de page.tpl via {extends}/{block}, et inclusion des
- * partials natifs catalog/_partials/product-*.tpl pour toute la mécanique
- * fonctionnelle (galerie photo, prix, formulaire d'ajout panier,
- * déclinaisons/combinaisons, disponibilité stock). Ces noms de partials
- * sont ceux documentés pour 1.7.6/1.7.8 ; ils PEUVENT différer légèrement
- * selon la version exacte installée (1.7.8.x vs 8.x). Avant mise en prod :
- * comparer avec le product.tpl réel de ta base classic-rocket
- * (themes/classic-rocket/templates/catalog/product.tpl) et ajuster les
- * chemins d'include si besoin — c'est signalé à chaque {include}.
+ * ⚠️ MIS À JOUR contre la vraie liste de fichiers de templates/catalog/_partials/
+ * de l'installation TORQA/My Motor en prod (fournie par l'utilisateur,
+ * voir le changelog en bas de fichier). Les chemins d'{include} ci-dessous
+ * correspondent à des fichiers RÉELLEMENT PRÉSENTS sur cette install.
  *
- * Le principe volontaire ici : on NE réimplémente RIEN de la logique
- * native (panier, stock, déclinaisons, avis) — on inclut les partials
- * d'origine tels quels et on habille seulement la mise en page/les
- * couleurs/la typo avec l'identité slidex-brand.css, comme demandé.
+ * Ce qui reste NON vérifié (je n'ai que la LISTE des fichiers, pas leur
+ * CONTENU — je ne connais donc pas l'imbrication exacte native, par ex.
+ * si product-add-to-cart.tpl inclut déjà lui-même product-variants.tpl) :
+ *   - L'ordre/l'imbrication réels de ces partials dans le product.tpl natif
+ *     du thème (certains s'incluent peut-être déjà entre eux).
+ *   - Le pattern exact d'héritage ({extends}/{block}) de product.tpl —
+ *     supposé par analogie avec l'archi standard classic-rocket, non confirmé
+ *     pour CETTE install.
+ *   - Si product-additional-info.tpl déclenche déjà lui-même le hook
+ *     displayProductAdditionalInfo (probable vu son nom) — voir le choix
+ *     fait plus bas et le changelog.
+ * → Voir la liste de vérifications en fin de fichier et la demande de
+ *   fichiers complémentaires (contenu de product.tpl + product-add-to-cart.tpl
+ *   natifs) dans la réponse qui accompagne cette mise à jour.
+ *
+ * Principe inchangé : on NE réimplémente RIEN de la logique native (panier,
+ * stock, déclinaisons, avis) — on inclut les partials d'origine tels quels
+ * et on habille seulement la mise en page/les couleurs/la typo avec
+ * slidex-brand.css.
  *
  * Légende :
  *   [SITE] = mise en page / classes reprises du site institutionnel
@@ -29,15 +37,27 @@
 {block name='page_content'}
   <div id="product" class="product-detail slidex-section" itemscope itemtype="http://schema.org/Product">
 
-    {* [PS] Hook natif : contenu additionnel avant la fiche produit
-            (ex. bandeau promo produit). Ne pas retirer. *}
-    {hook h='displayProductAdditionalInfo' product=$product}
+    {* [PS] Bandeau de flags produit natif (nouveau, promo, rupture…).
+            Fichier réel : product-flags.tpl. Habituellement positionné en
+            overlay sur la galerie — à vérifier visuellement une fois le
+            rendu natif observé (peut nécessiter d'être déplacé DANS
+            .slidex-product-gallery plutôt qu'au-dessus). *}
+    {include file='catalog/_partials/product-flags.tpl'}
 
     <div class="slidex-product-grid">
       <div class="slidex-product-gallery">
-        {* [PS] Galerie photo native — zoom, miniatures, vidéo produit si
-                configurée. NE PAS réécrire cette logique. *}
-        {include file='catalog/_partials/product-images.tpl'}
+        {* [PS] CORRIGÉ : la galerie principale native s'appelle
+                "product-cover-thumbnails.tpl" (PAS "product-images.tpl",
+                qui n'existe pas sur cette install — erreur de ma première
+                version, voir changelog). Zoom, miniatures, vidéo produit
+                si configurée. NE PAS réécrire cette logique. *}
+        {include file='catalog/_partials/product-cover-thumbnails.tpl'}
+
+        {* [PS] AJOUTÉ : modale de zoom/lightbox, fichier séparé de la
+                galerie sur cette install. Si product-cover-thumbnails.tpl
+                l'inclut déjà en interne, cet include est redondant — à
+                vérifier (supprimer l'un des deux si doublon constaté). *}
+        {include file='catalog/_partials/product-images-modal.tpl'}
       </div>
 
       <div class="slidex-product-info">
@@ -60,20 +80,39 @@
           </div>
         {/if}
 
-        {* [PS] Bloc prix natif — gère TTC/HT, promos, taxes. NE PAS recalculer
-                le prix ici, uniquement l'habiller visuellement au besoin
-                via slidex-brand.css (classes .product-prices natives). *}
+        {* [PS] Bloc prix natif — gère TTC/HT, promos, taxes. *}
         {hook h='displayProductPriceBlock' product=$product type='before_price'}
         {include file='catalog/_partials/product-prices.tpl'}
         {hook h='displayProductPriceBlock' product=$product type='after_price'}
 
-        {* [PS] Formulaire natif : déclinaisons (couleur/dimension…),
-                quantité, bouton "Ajouter au panier", disponibilité stock.
-                Le style des sélecteurs de déclinaison peut être rapproché
-                visuellement de .pd-glazing-chip via slidex-brand.css
-                (classe .product-variants du thème natif à cibler en CSS,
-                pas dans ce template). *}
+        {* [PS] AJOUTÉ : table des remises quantitatives, fichier natif
+                séparé. Pertinent uniquement si des paliers de remise sont
+                configurés sur les produits — sinon ce partial ne rend
+                probablement rien (à vérifier). *}
+        {include file='catalog/_partials/product-discounts.tpl'}
+
+        {* [PS] AJOUTÉ : sélecteur de déclinaisons natif (couleur, taille…),
+                fichier séparé de product-add-to-cart.tpl sur cette install.
+                C'est ICI, sur le rendu natif de ce fichier, qu'il faut
+                observer les classes réelles pour rapprocher visuellement le
+                style de .pd-glazing-chip (voir TODO en bas). *}
+        {include file='catalog/_partials/product-variants.tpl'}
+
+        {* [PS] AJOUTÉ : champs de personnalisation produit natifs (texte,
+                upload de fichier). Ne rend probablement rien si le produit
+                n'est pas configuré comme personnalisable — laissé par
+                sécurité, à retirer si jamais utilisé sur ce catalogue. *}
+        {include file='catalog/_partials/product-customization.tpl'}
+
+        {* [PS] Formulaire natif : quantité + bouton "Ajouter au panier" +
+                disponibilité stock. NE PAS recalculer le prix/stock ici. *}
         {include file='catalog/_partials/product-add-to-cart.tpl'}
+
+        {* [PS] AJOUTÉ : fichier natif dont le rôle exact (JS d'activation
+                du widget panier ? état initial ?) n'est pas certain sans
+                lire son contenu — inclus par précaution juste après le
+                formulaire d'ajout panier, à sa place la plus probable. *}
+        {include file='catalog/_partials/product-activation.tpl'}
 
         {* [PS] Hook natif : boutons additionnels (liste d'envies,
                 comparateur, partage social…). Ne pas retirer. *}
@@ -81,29 +120,38 @@
 
         {* [SITE] Bande de réassurance — mise en page reprise de
                 kits-renovation.html (.kr-hero-stats → .slidex-reassurance,
-                voir DESIGN-SYSTEM.md §5.3a). C'est le hook natif
-                `displayReassurance` du thème classic qui remplit ce bloc
-                (module ps_reassurance) : on l'habille, on ne le remplace
-                pas par du contenu en dur. *}
+                voir DESIGN-SYSTEM.md §5.3a). Hook natif `displayReassurance`
+                du thème classic (module ps_reassurance) : on l'habille, on
+                ne le remplace pas par du contenu en dur. *}
         <div class="slidex-reassurance">
           {hook h='displayReassurance' product=$product}
         </div>
       </div>
     </div>
 
+    {* [PS] CORRIGÉ : product-additional-info.tpl est un fichier natif
+            dédié (fabricant, infos complémentaires) qui très probablement
+            déclenche LUI-MÊME le hook displayProductAdditionalInfo en
+            interne vu son nom. Pour éviter un rendu en double, je remplace
+            mon appel direct au hook (version précédente) par l'include de
+            ce partial. À VÉRIFIER : si ce partial ne contient PAS le hook,
+            il faudra rajouter {hook h='displayProductAdditionalInfo'
+            product=$product} en plus. *}
+    {include file='catalog/_partials/product-additional-info.tpl'}
+
+    {* [PS] AJOUTÉ : bloc caractéristiques/détails produit natif — c'est
+            probablement l'équivalent natif de ce que .pd-spec-list stylait
+            sur le site institutionnel (voir DESIGN-SYSTEM.md §5.4). Cibler
+            ses classes réelles dans slidex-brand.css une fois son rendu
+            observé, plutôt que de garder .slidex-spec-* qui n'a pas
+            d'équivalent natif connu. *}
+    {include file='catalog/_partials/product-details.tpl'}
+
     {* [SITE] Panneau à onglets — mise en page reprise de .pd-panel /
-            .pd-tabs (product-detail.html), habille les onglets natifs
-            PrestaShop (Description / Caractéristiques / Avis). Le contenu
-            de chaque onglet reste 100% natif via ces includes/hooks : on
-            ne réécrit ni la description, ni les caractéristiques, ni les
-            avis clients. *}
+            .pd-tabs (product-detail.html), habille la nav d'onglets native
+            PrestaShop (Description / Caractéristiques / Avis). Fichier
+            confirmé présent : product-tabs.tpl. *}
     <div class="slidex-panel-section">
-      {* [PS] `product-tabs.tpl` est le partial natif classic-rocket qui
-              génère la nav .tabs / .tab-content, y compris l'onglet
-              "Avis" si le module ps_productcomments (ou équivalent) est
-              actif. On l'inclut tel quel et on cible ses classes natives
-              (.tabs, .tab-content, .tab-pane) dans slidex-brand.css pour
-              leur donner l'apparence de .slidex-tabs/.slidex-tabpanel. *}
       {include file='catalog/_partials/product-tabs.tpl'}
     </div>
 
@@ -111,40 +159,64 @@
             associés", champs personnalisés). Ne pas retirer. *}
     {hook h='displayFooterProduct' product=$product}
 
-    {* [PS] Hook natif : contenu extra (onglets ajoutés par des modules
-            tiers, ex. avis, FAQ produit). Ne pas retirer — c'est
-            généralement injecté à l'intérieur de product-tabs.tpl, mais
-            certains modules l'attendent aussi ici selon leur implémentation. *}
+    {* [PS] Hook natif : contenu extra ajouté par des modules tiers (ex.
+            avis, FAQ produit). Conservé par précaution — peut faire double
+            emploi avec product-tabs.tpl selon comment les modules s'y
+            accrochent ; à vérifier une fois les modules d'avis installés. *}
     {hook h='displayProductExtraContent' product=$product}
   </div>
 {/block}
 
 {*
-  ── TODO manuel ──
-  1. Vérifier les 3 chemins d'include (`product-images.tpl`,
-     `product-prices.tpl`, `product-add-to-cart.tpl`, `product-tabs.tpl`)
-     contre le thème classic-rocket réellement installé — copier/adapter
-     depuis son propre catalog/product.tpl si les noms diffèrent.
-  2. Vérifier que les hooks utilisés ici (`displayProductAdditionalInfo`,
-     `displayProductPriceBlock`, `displayProductButtons`,
-     `displayReassurance`, `displayFooterProduct`,
+  ── CHANGELOG de cette révision (contre la vraie liste de fichiers) ──
+  - CORRIGÉ : "product-images.tpl" → "product-cover-thumbnails.tpl"
+    (le fichier que j'avais supposé n'existe pas sur cette install).
+  - AJOUTÉ : product-images-modal.tpl, product-flags.tpl,
+    product-discounts.tpl, product-variants.tpl, product-customization.tpl,
+    product-activation.tpl, product-additional-info.tpl, product-details.tpl
+    — fichiers réels dont je n'avais pas connaissance dans la première
+    version (j'avais supposé une structure plus condensée en 4 partials,
+    la réalité en a davantage, plus granulaires).
+  - CHANGÉ : {hook h='displayProductAdditionalInfo'} remplacé par
+    {include file='catalog/_partials/product-additional-info.tpl'},
+    en supposant que ce partial déclenche déjà ce hook en interne (son nom
+    correspond trop exactement pour que ce soit une coïncidence) — à
+    confirmer en lisant son contenu.
+  - INCHANGÉ (noms confirmés corrects par la vraie liste) :
+    product-prices.tpl, product-add-to-cart.tpl, product-tabs.tpl.
+  - NON VÉRIFIABLE depuis une simple liste de fichiers (nécessite le
+    contenu réel) : l'ordre/l'imbrication de tous ces includes, et si
+    product.tpl natif utilise bien {extends file='page.tpl'} /
+    {block name='page_content'}.
+
+  ── TODO manuel (mis à jour) ──
+  1. Fournir le contenu réel de templates/catalog/product.tpl et
+     templates/catalog/_partials/product-add-to-cart.tpl de l'install
+     TORQA pour confirmer l'ordre exact des includes ci-dessus et le
+     pattern d'héritage ({extends}/{block}) — actuellement une hypothèse.
+  2. Vérifier si product-cover-thumbnails.tpl inclut déjà
+     product-images-modal.tpl en interne (dans ce cas, retirer mon include
+     redondant de product-images-modal.tpl).
+  3. Vérifier si product-additional-info.tpl déclenche déjà le hook
+     displayProductAdditionalInfo (voir note ci-dessus) — sinon le
+     rajouter en plus de l'include.
+  4. Observer le rendu natif de product-variants.tpl dans le navigateur et
+     adapter slidex-brand.css à ses classes réelles (`.product-variants`,
+     `.input-color`, `.radio-buttons`…) pour se rapprocher du style
+     `.pd-glazing-chip` du site institutionnel.
+  5. Observer le rendu natif de product-details.tpl et adapter
+     slidex-brand.css à ses classes réelles (remplace l'hypothèse
+     `.slidex-spec-*` qui n'a pas de correspondance native confirmée).
+  6. Vérifier les hooks utilisés (`displayProductPriceBlock`,
+     `displayProductButtons`, `displayReassurance`, `displayFooterProduct`,
      `displayProductExtraContent`) sont bien enregistrés pour le thème dans
-     Back-office > Modules > Positions (certains le sont nativement,
-     d'autres nécessitent d'installer/activer le module correspondant, ex.
-     ps_reassurance pour `displayReassurance`).
-  3. Configurer le module ps_reassurance (ou équivalent) avec 3 items du
-     type "72h expédition / X% clients satisfaits / Support technique" —
-     le HTML qu'il génère sera stylé par `.slidex-reassurance-item` /
-     `-value` / `-label` dans slidex-brand.css, mais seulement si ses
-     classes CSS natives correspondent : sinon, adapter le CSS aux classes
-     réellement rendues par ce module (à vérifier une fois installé).
-  4. Le bloc "sélecteur de déclinaison façon chip" (§5.4 du design system,
-     `.pd-glazing-chip`) n'a pas d'équivalent codé ici : c'est le rendu
-     natif de `product-add-to-cart.tpl` qui gère les déclinaisons. Pour lui
-     donner cette apparence, cibler ses classes réelles
-     (`.product-variants`, `.input-color`, `.radio-buttons`…) dans
-     slidex-brand.css une fois le rendu natif observé dans le navigateur.
-  5. Ajouter itemprop="offers"/schema.org complet si le SEO produit doit
-     égaler celui du site institutionnel (non repris ici, hors périmètre
-     visuel de la demande).
+     Back-office > Modules > Positions.
+  7. Configurer ps_reassurance (ou équivalent) avec 3 items du type "72h
+     expédition / X% clients satisfaits / Support technique" — stylés par
+     `.slidex-reassurance-item`/`-value`/`-label`, sous réserve que ses
+     classes natives correspondent (sinon adapter).
+  8. Vérifier product-customization.tpl et product-discounts.tpl ne
+     cassent rien visuellement s'ils ne rendent rien (produits sans
+     personnalisation / sans palier de remise) — normalement un simple
+     {if} natif dans ces partials, à confirmer.
 *}
