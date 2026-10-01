@@ -26,17 +26,25 @@
  * interne (bloc product_details) — le retrait de l'include racine de
  * product-details.tpl (round 3) était donc correct, rien à changer.
  *
+ * CONTRADICTION CONSTATÉE (round 5) : le contenu complet de
+ * product-add-to-cart.tpl a été fourni — il ne contient PAS de bouton
+ * "Je cherche un pro"/`btn-looking-pro`/`pro.svg`. Ce fichier ne contient
+ * que le sélecteur de quantité, le bouton "Ajouter au panier" (confirmé :
+ * {include file='svg/bag.svg'}, chemin relatif standard) et le message de
+ * quantité minimale. Le bouton "Je cherche un pro" vit donc AILLEURS —
+ * probablement dans product.tpl natif lui-même, ou injecté par un module
+ * sur le hook `displayProductActions` (présent dans product-add-to-cart.tpl).
+ * Pas de retrait fait sur une fausse piste — voir TODO #1 (localisation
+ * demandée à l'utilisateur) avant de pouvoir le retirer à la bonne source.
+ * Le bloc "Une question sur ce produit ?" ajouté ci-dessous reste en place
+ * dans l'intervalle : il garde son utilité une fois le vrai bouton localisé
+ * et retiré.
+ *
  * Ce qui reste NON vérifié (nécessiterait de lire le contenu des autres
  * partials eux-mêmes, non fournis) :
  *   - Si product-cover-thumbnails.tpl inclut déjà product-images-modal.tpl.
  *   - Si product-additional-info.tpl déclenche déjà le hook
  *     displayProductAdditionalInfo en interne.
- *   - ⚠️ Le bouton natif "Je cherche un pro" dans product-add-to-cart.tpl
- *     DOIT être retiré directement dans ce fichier natif — impossible à
- *     faire depuis product.tpl, qui ne fait qu'inclure ce partial sans en
- *     connaître le contenu exact. Le bloc "Une question sur ce produit ?"
- *     ajouté juste après dans ce fichier ne fait que s'AJOUTER à côté tant
- *     que le bouton natif n'est pas supprimé à la source — voir TODO #2.
  *
  * Principe inchangé : on NE réimplémente RIEN de la logique native (panier,
  * stock, déclinaisons, avis) — on inclut les partials d'origine tels quels
@@ -124,24 +132,23 @@
                 sécurité, à retirer si jamais utilisé sur ce catalogue. *}
         {include file='catalog/_partials/product-customization.tpl'}
 
-        {* [PS] Formulaire natif : quantité + bouton "Ajouter au panier" +
-                disponibilité stock. NE PAS recalculer le prix/stock ici.
-                ⚠️ Ce fichier natif contient un bouton "Je cherche un pro"
-                non pertinent pour Slidex Shop — voir TODO #2 en bas :
-                il doit être retiré DIRECTEMENT dans product-add-to-cart.tpl
-                (impossible à faire depuis ce fichier, qui ne fait
-                qu'inclure le partial natif sans en connaître le contenu
-                exact). Le bloc contact ci-dessous le remplace visuellement
-                juste après. *}
+        {* [PS] CONFIRMÉ (round 5, contenu intégral lu) : formulaire natif —
+                quantité + bouton "Ajouter au panier" ({include
+                file='svg/bag.svg'}, chemin relatif standard confirmé) +
+                message de quantité minimale. Ce fichier NE CONTIENT PAS de
+                bouton "Je cherche un pro" (contrairement à ce qui avait été
+                décrit) — ce bouton vit ailleurs, non encore localisé, voir
+                TODO #1. NE PAS recalculer le prix/stock ici. *}
         {include file='catalog/_partials/product-add-to-cart.tpl'}
 
-        {* [SITE] AJOUTÉ : remplace le bouton natif "Je cherche un pro"
-                (retiré de product-add-to-cart.tpl, voir TODO #2) par un
-                contact simple vers le support Slidex — mêmes coordonnées
-                que includes/footer.html du site institutionnel
-                (hello@slidex.fr). Icône reprise du jeu d'icônes natif du
-                thème (svg/check.svg), chemin relatif standard — pas de
-                nouvelle icône créée. *}
+        {* [SITE] AJOUTÉ : bloc de contact simple vers le support Slidex —
+                mêmes coordonnées que includes/footer.html du site
+                institutionnel (hello@slidex.fr). Prévu à l'origine pour
+                remplacer le bouton natif "Je cherche un pro", dont
+                l'emplacement réel reste à confirmer (voir TODO #1) — ce
+                bloc reste pertinent dans tous les cas. Icône reprise du jeu
+                d'icônes natif du thème (svg/check.svg), chemin relatif
+                standard — pas de nouvelle icône créée. *}
         <div class="slidex-product-contact">
           <a class="slidex-product-contact-link" href="mailto:hello@slidex.fr">
             <span class="slidex-product-contact-icon">{include file='svg/check.svg'}</span>
@@ -280,12 +287,32 @@
     `pro.svg` et `contact.svg` n'ont plus d'usage prévu ici puisque le
     bouton qui les utilisait ("Je cherche un pro") est retiré.
 
-  ── TODO manuel (mis à jour, round 4) ──
-  1. **Priorité** : supprimer le bouton "Je cherche un pro" DIRECTEMENT
-     dans product-add-to-cart.tpl (déposer le fichier réel dans ce thème
-     pour que je l'édite, ou le faire manuellement) — tant que ce n'est
-     pas fait, le natif et mon bloc "Une question sur ce produit ?"
-     s'affichent tous les deux.
+  Round 5 (contenu intégral de product-add-to-cart.tpl fourni) :
+  - CONTRADICTION CONSTATÉE : ce fichier ne contient PAS de bouton
+    "Je cherche un pro"/`btn-looking-pro`/`pro.svg`, contrairement à ce
+    qui avait été décrit au round 4. Son contenu réel : sélecteur de
+    quantité (`product_quantity`), bouton "Ajouter au panier" (`product_quantity`
+    aussi, avec `{include file='svg/bag.svg'}`), message de quantité
+    minimale (`product_minimal_quantity`), hook `displayProductActions`.
+    Rien retiré de ce fichier — pas de modification sur une fausse piste.
+  - CONFIRMÉ : `bag.svg` est bien inclus via `{include file='svg/bag.svg'}`
+    — chemin relatif standard, comme pour `check.svg`. 2 des 5 SVG
+    restants (bag.svg confirmé ici, check.svg confirmé au round 4) sont
+    donc vérifiés ; star.svg/pdf.svg/play-button.svg restent à vérifier
+    (voir TODO #5) — ils ne sont probablement même pas utilisés sur une
+    simple page produit (étoiles = avis, pdf = documentation, play-button
+    = vidéo) donc potentiellement non pertinents ici.
+  - EN ATTENTE : localisation réelle du bouton "Je cherche un pro"
+    demandée à l'utilisateur (product.tpl natif lui-même ? module accroché
+    sur `displayProductActions` ?) avant de pouvoir le retirer à la bonne
+    source. Le bloc "Une question sur ce produit ?" reste en place dans
+    product.tpl dans l'intervalle.
+
+  ── TODO manuel (mis à jour, round 5) ──
+  1. **Priorité** : localiser le vrai fichier contenant le bouton
+     "Je cherche un pro" (product.tpl natif ? module sur le hook
+     `displayProductActions` ? autre override ?) avant de pouvoir le
+     retirer — ce n'est PAS dans product-add-to-cart.tpl (confirmé).
   2. Vérifier si product-cover-thumbnails.tpl inclut déjà
      product-images-modal.tpl en interne (dans ce cas, retirer l'include
      redondant de product-images-modal.tpl ci-dessus).
@@ -296,12 +323,10 @@
      adapter slidex-brand.css à ses classes réelles (`.product-variants`,
      `.input-color`, `.radio-buttons`…) pour se rapprocher du style
      `.pd-glazing-chip` du site institutionnel.
-  5. Une fois bag.svg, star.svg, pdf.svg, play-button.svg copiés dans
-     `slidex-shop/templates/svg/` (comme check.svg), vérifier que leurs
-     includes natifs dans product.tpl/product-add-to-cart.tpl pointent
-     bien vers `svg/nom.svg` (chemin relatif à `templates/`) et non un
-     chemin custom — je n'ai pas eu le contenu de ces fichiers pour le
-     confirmer moi-même.
+  5. star.svg/pdf.svg/play-button.svg : vérifier s'ils sont réellement
+     utilisés quelque part sur la page produit avant de les copier
+     "au cas où" — contrairement à bag.svg et check.svg (confirmés
+     utilisés), rien ne prouve encore leur usage sur cette page.
   6. Vérifier les hooks utilisés (`displayProductPriceBlock`,
      `displayProductButtons`, `displayReassurance`, `displayFooterProduct`,
      `displayProductExtraContent`) sont bien enregistrés pour le thème dans
