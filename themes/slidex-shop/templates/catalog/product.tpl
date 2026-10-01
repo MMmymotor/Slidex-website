@@ -22,15 +22,21 @@
  *     déjà la bonne approche dans la version précédente de ce fichier —
  *     confirmés, pas changés.
  *
+ * CONFIRMÉ (round 4) : product-tabs.tpl inclut bien product-details.tpl en
+ * interne (bloc product_details) — le retrait de l'include racine de
+ * product-details.tpl (round 3) était donc correct, rien à changer.
+ *
  * Ce qui reste NON vérifié (nécessiterait de lire le contenu des autres
  * partials eux-mêmes, non fournis) :
  *   - Si product-cover-thumbnails.tpl inclut déjà product-images-modal.tpl.
- *   - Si product-tabs.tpl inclut déjà product-details.tpl en interne pour
- *     son onglet "Caractéristiques" (architecture standard du thème
- *     classic — probable, donc product-details.tpl n'est PLUS inclus en
- *     doublon au niveau racine ici, voir changelog).
  *   - Si product-additional-info.tpl déclenche déjà le hook
  *     displayProductAdditionalInfo en interne.
+ *   - ⚠️ Le bouton natif "Je cherche un pro" dans product-add-to-cart.tpl
+ *     DOIT être retiré directement dans ce fichier natif — impossible à
+ *     faire depuis product.tpl, qui ne fait qu'inclure ce partial sans en
+ *     connaître le contenu exact. Le bloc "Une question sur ce produit ?"
+ *     ajouté juste après dans ce fichier ne fait que s'AJOUTER à côté tant
+ *     que le bouton natif n'est pas supprimé à la source — voir TODO #2.
  *
  * Principe inchangé : on NE réimplémente RIEN de la logique native (panier,
  * stock, déclinaisons, avis) — on inclut les partials d'origine tels quels
@@ -119,8 +125,29 @@
         {include file='catalog/_partials/product-customization.tpl'}
 
         {* [PS] Formulaire natif : quantité + bouton "Ajouter au panier" +
-                disponibilité stock. NE PAS recalculer le prix/stock ici. *}
+                disponibilité stock. NE PAS recalculer le prix/stock ici.
+                ⚠️ Ce fichier natif contient un bouton "Je cherche un pro"
+                non pertinent pour Slidex Shop — voir TODO #2 en bas :
+                il doit être retiré DIRECTEMENT dans product-add-to-cart.tpl
+                (impossible à faire depuis ce fichier, qui ne fait
+                qu'inclure le partial natif sans en connaître le contenu
+                exact). Le bloc contact ci-dessous le remplace visuellement
+                juste après. *}
         {include file='catalog/_partials/product-add-to-cart.tpl'}
+
+        {* [SITE] AJOUTÉ : remplace le bouton natif "Je cherche un pro"
+                (retiré de product-add-to-cart.tpl, voir TODO #2) par un
+                contact simple vers le support Slidex — mêmes coordonnées
+                que includes/footer.html du site institutionnel
+                (hello@slidex.fr). Icône reprise du jeu d'icônes natif du
+                thème (svg/check.svg), chemin relatif standard — pas de
+                nouvelle icône créée. *}
+        <div class="slidex-product-contact">
+          <a class="slidex-product-contact-link" href="mailto:hello@slidex.fr">
+            <span class="slidex-product-contact-icon">{include file='svg/check.svg'}</span>
+            <span>Une question sur ce produit&nbsp;?</span>
+          </a>
+        </div>
 
         {* [PS] AJOUTÉ : fichier natif dont le rôle exact (JS d'activation
                 du widget panier ? état initial ?) n'est pas certain sans
@@ -228,17 +255,40 @@
     inclus ici (cross-sell, hors périmètre de la demande) ;
     `product_images_modal` reste inclus (voir TODO #1).
   - NOUVEAU TODO : vérifier la présence dans le thème Slidex Shop de 7
-    fichiers SVG référencés par product.tpl/product-add-to-cart.tpl natifs
-    (voir TODO #5).
+    fichiers SVG référencés par product.tpl/product-add-to-cart.tpl natifs.
 
-  ── TODO manuel (mis à jour, round 3) ──
-  1. Vérifier si product-cover-thumbnails.tpl inclut déjà
+  Round 4 (confirmations + retrait du bouton "Je cherche un pro") :
+  - CONFIRMÉ : product-tabs.tpl inclut bien product-details.tpl en interne
+    (bloc product_details) — le retrait du round 3 était correct, rien
+    changé sur ce point précis.
+  - DEMANDÉ : supprimer le bouton natif "Je cherche un pro" de
+    product-add-to-cart.tpl (pas pertinent pour Slidex Shop). ⚠️ Ce fichier
+    natif n'a jamais été fourni dans son intégralité (seulement décrit) —
+    je ne peux donc PAS faire ce retrait moi-même depuis product.tpl, qui
+    ne fait qu'inclure ce partial. Ce que j'ai fait à la place : ajouté un
+    bloc "Une question sur ce produit ?" (mailto:hello@slidex.fr, icône
+    svg/check.svg) juste après l'include de product-add-to-cart.tpl — voir
+    TODO #1, à faire en priorité pour éviter que les deux coexistent.
+  - CONFIRMÉ (chemin d'icône) : le seul include SVG que je contrôle dans ce
+    fichier (le bloc contact ajouté ci-dessus) utilise
+    `{include file='svg/check.svg'}` — chemin relatif standard du thème
+    (relatif à `templates/`), pas un chemin custom. Pour les 4 autres SVG
+    (bag.svg, star.svg, pdf.svg, play-button.svg), je n'ai jamais eu le
+    contenu de product.tpl/product-add-to-cart.tpl natifs sous les yeux
+    pour en extraire la syntaxe d'include exacte qu'ils utilisent — je ne
+    peux donc pas confirmer leur chemin depuis ce fichier (voir TODO #5).
+    `pro.svg` et `contact.svg` n'ont plus d'usage prévu ici puisque le
+    bouton qui les utilisait ("Je cherche un pro") est retiré.
+
+  ── TODO manuel (mis à jour, round 4) ──
+  1. **Priorité** : supprimer le bouton "Je cherche un pro" DIRECTEMENT
+     dans product-add-to-cart.tpl (déposer le fichier réel dans ce thème
+     pour que je l'édite, ou le faire manuellement) — tant que ce n'est
+     pas fait, le natif et mon bloc "Une question sur ce produit ?"
+     s'affichent tous les deux.
+  2. Vérifier si product-cover-thumbnails.tpl inclut déjà
      product-images-modal.tpl en interne (dans ce cas, retirer l'include
      redondant de product-images-modal.tpl ci-dessus).
-  2. Vérifier si product-tabs.tpl inclut bien product-details.tpl en
-     interne pour son onglet "Caractéristiques" (voir RETIRÉ ci-dessus) —
-     sinon, réintroduire {include file='catalog/_partials/product-details.tpl'}
-     au niveau racine.
   3. Vérifier si product-additional-info.tpl déclenche déjà le hook
      displayProductAdditionalInfo en interne — sinon le rajouter en plus
      de l'include.
@@ -246,15 +296,12 @@
      adapter slidex-brand.css à ses classes réelles (`.product-variants`,
      `.input-color`, `.radio-buttons`…) pour se rapprocher du style
      `.pd-glazing-chip` du site institutionnel.
-  5. Vérifier la présence de ces 7 SVG dans le thème Slidex Shop (chemin
-     exact à déterminer — probablement `assets/img/icons/` une fois
-     slidex-brand.css déplacé, voir TODO de DESIGN-SYSTEM.md §8) : bag.svg,
-     pro.svg, check.svg, contact.svg, pdf.svg, play-button.svg, star.svg.
-     Référencés par product.tpl/product-add-to-cart.tpl natifs — à copier
-     depuis le thème classic-rocket de TORQA si absents du thème Slidex
-     Shop, ou à resourcer depuis une bibliothèque d'icônes équivalente si
-     leur usage natif (ex. `pro.svg`, `contact.svg`) est spécifique au
-     contexte My Motor et non pertinent pour Slidex Shop.
+  5. Une fois bag.svg, star.svg, pdf.svg, play-button.svg copiés dans
+     `slidex-shop/templates/svg/` (comme check.svg), vérifier que leurs
+     includes natifs dans product.tpl/product-add-to-cart.tpl pointent
+     bien vers `svg/nom.svg` (chemin relatif à `templates/`) et non un
+     chemin custom — je n'ai pas eu le contenu de ces fichiers pour le
+     confirmer moi-même.
   6. Vérifier les hooks utilisés (`displayProductPriceBlock`,
      `displayProductButtons`, `displayReassurance`, `displayFooterProduct`,
      `displayProductExtraContent`) sont bien enregistrés pour le thème dans

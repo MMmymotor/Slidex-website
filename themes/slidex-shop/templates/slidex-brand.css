@@ -335,6 +335,27 @@
 .slidex-spec-row dd { margin: 0; color: var(--slidex-text-muted); }
 
 /* ==========================================================================
+   [SITE] Bloc contact produit — remplace le bouton natif "Je cherche un
+   pro" (non pertinent pour Slidex Shop, voir product.tpl)
+   ========================================================================== */
+.slidex-product-contact { margin-top: 16px; }
+.slidex-product-contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--slidex-text-body);
+  font-size: 0.9rem;
+  font-weight: var(--slidex-weight-medium);
+  text-decoration: none;
+  border-bottom: 1px solid var(--slidex-border);
+  padding-bottom: 2px;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+.slidex-product-contact-link:hover { color: var(--slidex-primary); border-color: var(--slidex-primary); }
+.slidex-product-contact-icon { display: inline-flex; width: 16px; height: 16px; color: var(--slidex-primary); }
+.slidex-product-contact-icon svg { width: 100%; height: 100%; }
+
+/* ==========================================================================
    [PS] Rythme vertical générique des sections de la boutique
    ========================================================================== */
 .slidex-section { padding-top: var(--slidex-section-padding); padding-bottom: var(--slidex-section-padding); }
