@@ -373,12 +373,32 @@ concerné ; voici la même liste regroupée pour la vue d'ensemble.
       `product-customization.tpl`, `product-activation.tpl`,
       `product-additional-info.tpl`, `product-details.tpl`). Détail complet
       et nouveau TODO dans le changelog en bas de `product.tpl`.
-- [ ] **Reste à vérifier** (nécessite le contenu des fichiers, pas
-      seulement leur liste — demandé à l'utilisateur) : l'ordre/imbrication
-      réels de ces includes (ex. `product-cover-thumbnails.tpl` inclut-il
-      déjà `product-images-modal.tpl` en interne ?), et si `product.tpl`
-      natif utilise bien `{extends file='page.tpl'}` /
-      `{block name='page_content'}`.
+- [x] ~~Reste à vérifier (nécessite le contenu des fichiers, pas seulement
+      leur liste)~~ — **fait** : l'utilisateur a fourni le contenu réel de
+      `product.tpl` et `product-add-to-cart.tpl`. Confirmé :
+      `{extends file=$layout}` (pas `'page.tpl'` en dur, corrigé) ;
+      `product-add-to-cart.tpl` n'inclut PAS `product-variants.tpl` ni
+      `product-discounts.tpl` (pas de doublon) ; le natif My Motor a
+      `product_tabs`/`displayReassurance`/`product_accessories`/
+      `product_images_modal` désactivés au profit de champs `dwf_*` d'un
+      module maison absent côté Slidex Shop — décision : ne pas reproduire
+      les sections `dwf_*`, réactiver `product-tabs.tpl` et le hook
+      `displayReassurance` à la place (c'était déjà l'approche retenue,
+      simplement confirmée). L'include racine de `product-details.tpl` a
+      été retiré (probablement déjà inclus par `product-tabs.tpl` en
+      interne pour son onglet Caractéristiques — non confirmé à 100%, voir
+      TODO #2 dans `product.tpl`).
+- [ ] **Reste à vérifier** : si `product-cover-thumbnails.tpl` inclut déjà
+      `product-images-modal.tpl` en interne, et si `product-tabs.tpl`
+      inclut bien `product-details.tpl` pour son onglet Caractéristiques
+      (voir TODO #1 et #2 dans `product.tpl`).
+- [ ] **Nouveau** : vérifier la présence dans le thème Slidex Shop de 7
+      fichiers SVG référencés par `product.tpl`/`product-add-to-cart.tpl`
+      natifs : `bag.svg`, `pro.svg`, `check.svg`, `contact.svg`, `pdf.svg`,
+      `play-button.svg`, `star.svg` — à copier depuis le thème classic-rocket
+      de TORQA si absents, ou à resourcer si leur usage (ex. `pro.svg`,
+      `contact.svg`) s'avère spécifique au contexte My Motor et non
+      pertinent pour Slidex Shop (voir TODO #5 dans `product.tpl`).
 - [ ] Une fois les déclinaisons de démonstration/produits en place, observer
       le rendu natif du sélecteur de déclinaison PrestaShop dans le
       navigateur et adapter le CSS de `slidex-brand.css` à ses classes

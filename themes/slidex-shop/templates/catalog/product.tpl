@@ -1,25 +1,36 @@
 {**
  * product.tpl — Thème "Slidex Shop" (PrestaShop 1.7.8, base classic-rocket)
  *
- * ⚠️ MIS À JOUR contre la vraie liste de fichiers de templates/catalog/_partials/
- * de l'installation TORQA/My Motor en prod (fournie par l'utilisateur,
- * voir le changelog en bas de fichier). Les chemins d'{include} ci-dessous
- * correspondent à des fichiers RÉELLEMENT PRÉSENTS sur cette install.
+ * ⚠️ MIS À JOUR contre le contenu RÉEL de product.tpl et
+ * product-add-to-cart.tpl de l'installation TORQA/My Motor en prod
+ * (fourni par l'utilisateur — voir le changelog en bas de fichier pour
+ * l'historique complet des 3 vagues de corrections).
  *
- * Ce qui reste NON vérifié (je n'ai que la LISTE des fichiers, pas leur
- * CONTENU — je ne connais donc pas l'imbrication exacte native, par ex.
- * si product-add-to-cart.tpl inclut déjà lui-même product-variants.tpl) :
- *   - L'ordre/l'imbrication réels de ces partials dans le product.tpl natif
- *     du thème (certains s'incluent peut-être déjà entre eux).
- *   - Le pattern exact d'héritage ({extends}/{block}) de product.tpl —
- *     supposé par analogie avec l'archi standard classic-rocket, non confirmé
- *     pour CETTE install.
- *   - Si product-additional-info.tpl déclenche déjà lui-même le hook
- *     displayProductAdditionalInfo (probable vu son nom) — voir le choix
- *     fait plus bas et le changelog.
- * → Voir la liste de vérifications en fin de fichier et la demande de
- *   fichiers complémentaires (contenu de product.tpl + product-add-to-cart.tpl
- *   natifs) dans la réponse qui accompagne cette mise à jour.
+ * Confirmé par la lecture du fichier natif (plus une hypothèse) :
+ *   - {extends file=$layout} est la bonne syntaxe sur cette install
+ *     (PAS {extends file='page.tpl'} en dur — corrigé ci-dessous).
+ *   - product-add-to-cart.tpl n'inclut PAS product-variants.tpl ni
+ *     product-discounts.tpl en interne : les trois includes séparés
+ *     ci-dessous ne font donc PAS doublon.
+ *   - Le product.tpl natif de My Motor s'appuie sur un module maison
+ *     (champs "dwf_*" : détails techniques, FAQ, avis) qui N'EXISTE PAS
+ *     côté Slidex Shop. Ces sections ne sont donc PAS reproduites ici —
+ *     à la place, on réactive les blocs standards PrestaShop que ce
+ *     module avait fait désactiver dans le natif : le panneau à onglets
+ *     (product-tabs.tpl, déjà présent ci-dessous) et le hook
+ *     `displayReassurance` (déjà présent ci-dessous). Les deux étaient
+ *     déjà la bonne approche dans la version précédente de ce fichier —
+ *     confirmés, pas changés.
+ *
+ * Ce qui reste NON vérifié (nécessiterait de lire le contenu des autres
+ * partials eux-mêmes, non fournis) :
+ *   - Si product-cover-thumbnails.tpl inclut déjà product-images-modal.tpl.
+ *   - Si product-tabs.tpl inclut déjà product-details.tpl en interne pour
+ *     son onglet "Caractéristiques" (architecture standard du thème
+ *     classic — probable, donc product-details.tpl n'est PLUS inclus en
+ *     doublon au niveau racine ici, voir changelog).
+ *   - Si product-additional-info.tpl déclenche déjà le hook
+ *     displayProductAdditionalInfo en interne.
  *
  * Principe inchangé : on NE réimplémente RIEN de la logique native (panier,
  * stock, déclinaisons, avis) — on inclut les partials d'origine tels quels
@@ -32,7 +43,10 @@
  *   [PS]   = natif PrestaShop, ne pas supprimer/modifier la logique
  *}
 
-{extends file='page.tpl'}
+{* [PS] CORRIGÉ (round 3) : syntaxe confirmée par le fichier natif —
+        $layout est la variable de layout assignée par le contrôleur,
+        pas un chemin en dur. *}
+{extends file=$layout}
 
 {block name='page_content'}
   <div id="product" class="product-detail slidex-section" itemscope itemtype="http://schema.org/Product">
@@ -85,17 +99,17 @@
         {include file='catalog/_partials/product-prices.tpl'}
         {hook h='displayProductPriceBlock' product=$product type='after_price'}
 
-        {* [PS] AJOUTÉ : table des remises quantitatives, fichier natif
-                séparé. Pertinent uniquement si des paliers de remise sont
-                configurés sur les produits — sinon ce partial ne rend
-                probablement rien (à vérifier). *}
+        {* [PS] CONFIRMÉ : product-add-to-cart.tpl n'inclut PAS ce fichier
+                en interne — pas de doublon. Pertinent uniquement si des
+                paliers de remise sont configurés sur les produits. *}
         {include file='catalog/_partials/product-discounts.tpl'}
 
-        {* [PS] AJOUTÉ : sélecteur de déclinaisons natif (couleur, taille…),
-                fichier séparé de product-add-to-cart.tpl sur cette install.
-                C'est ICI, sur le rendu natif de ce fichier, qu'il faut
-                observer les classes réelles pour rapprocher visuellement le
-                style de .pd-glazing-chip (voir TODO en bas). *}
+        {* [PS] CONFIRMÉ : product-add-to-cart.tpl n'inclut PAS ce fichier
+                en interne — pas de doublon. Sélecteur de déclinaisons natif
+                (couleur, taille…). C'est ICI, sur le rendu natif de ce
+                fichier, qu'il faut observer les classes réelles pour
+                rapprocher visuellement le style de .pd-glazing-chip (voir
+                TODO en bas). *}
         {include file='catalog/_partials/product-variants.tpl'}
 
         {* [PS] AJOUTÉ : champs de personnalisation produit natifs (texte,
@@ -118,11 +132,13 @@
                 comparateur, partage social…). Ne pas retirer. *}
         {hook h='displayProductButtons' product=$product}
 
-        {* [SITE] Bande de réassurance — mise en page reprise de
+        {* [SITE] CONFIRMÉ (round 3) : le natif My Motor a ce hook désactivé
+                au profit d'un bloc dwf_* propre à leur module maison, absent
+                côté Slidex Shop — on réactive donc ce hook standard
+                PrestaShop comme demandé. Mise en page reprise de
                 kits-renovation.html (.kr-hero-stats → .slidex-reassurance,
-                voir DESIGN-SYSTEM.md §5.3a). Hook natif `displayReassurance`
-                du thème classic (module ps_reassurance) : on l'habille, on
-                ne le remplace pas par du contenu en dur. *}
+                voir DESIGN-SYSTEM.md §5.3a). Module natif : ps_reassurance —
+                on l'habille, on ne le remplace pas par du contenu en dur. *}
         <div class="slidex-reassurance">
           {hook h='displayReassurance' product=$product}
         </div>
@@ -139,18 +155,25 @@
             product=$product} en plus. *}
     {include file='catalog/_partials/product-additional-info.tpl'}
 
-    {* [PS] AJOUTÉ : bloc caractéristiques/détails produit natif — c'est
-            probablement l'équivalent natif de ce que .pd-spec-list stylait
-            sur le site institutionnel (voir DESIGN-SYSTEM.md §5.4). Cibler
-            ses classes réelles dans slidex-brand.css une fois son rendu
-            observé, plutôt que de garder .slidex-spec-* qui n'a pas
-            d'équivalent natif connu. *}
-    {include file='catalog/_partials/product-details.tpl'}
+    {* [PS] RETIRÉ (round 3) : product-details.tpl n'est plus inclus ici au
+            niveau racine. Dans l'architecture standard du thème classic,
+            c'est product-tabs.tpl qui inclut product-details.tpl en
+            interne pour alimenter son onglet "Caractéristiques" — l'inclure
+            aussi ici aurait dupliqué ce bloc. C'est cohérent avec la
+            confirmation de l'utilisateur que réactiver product_tabs
+            suffit à retrouver "description/caractéristiques/avis natifs"
+            (il n'a pas mentionné product-details.tpl séparément). À
+            vérifier malgré tout une fois le rendu observé — si les
+            caractéristiques n'apparaissent dans aucun onglet, réintroduire
+            cet include ici. *}
 
-    {* [SITE] Panneau à onglets — mise en page reprise de .pd-panel /
-            .pd-tabs (product-detail.html), habille la nav d'onglets native
-            PrestaShop (Description / Caractéristiques / Avis). Fichier
-            confirmé présent : product-tabs.tpl. *}
+    {* [SITE] CONFIRMÉ (round 3) : comme pour la réassurance, le natif My
+            Motor a ce bloc désactivé au profit des champs dwf_* (détails
+            techniques/FAQ/avis) de leur module maison — on réactive donc
+            le panneau à onglets natif PrestaShop pour Slidex Shop, qui n'a
+            pas ce module. Mise en page reprise de .pd-panel / .pd-tabs
+            (product-detail.html), habille Description / Caractéristiques /
+            Avis natifs. *}
     <div class="slidex-panel-section">
       {include file='catalog/_partials/product-tabs.tpl'}
     </div>
@@ -168,45 +191,70 @@
 {/block}
 
 {*
-  ── CHANGELOG de cette révision (contre la vraie liste de fichiers) ──
-  - CORRIGÉ : "product-images.tpl" → "product-cover-thumbnails.tpl"
-    (le fichier que j'avais supposé n'existe pas sur cette install).
+  ── HISTORIQUE DES CORRECTIONS ──
+
+  Round 1 (hypothèse initiale, archi standard classic-rocket générique) :
+  {extends file='page.tpl'}, 4 includes supposés (product-images.tpl,
+  product-prices.tpl, product-add-to-cart.tpl, product-tabs.tpl).
+
+  Round 2 (contre la vraie LISTE de fichiers de templates/catalog/_partials/
+  fournie par l'utilisateur) :
+  - CORRIGÉ : "product-images.tpl" → "product-cover-thumbnails.tpl" (le
+    fichier supposé n'existe pas sur cette install).
   - AJOUTÉ : product-images-modal.tpl, product-flags.tpl,
     product-discounts.tpl, product-variants.tpl, product-customization.tpl,
-    product-activation.tpl, product-additional-info.tpl, product-details.tpl
-    — fichiers réels dont je n'avais pas connaissance dans la première
-    version (j'avais supposé une structure plus condensée en 4 partials,
-    la réalité en a davantage, plus granulaires).
-  - CHANGÉ : {hook h='displayProductAdditionalInfo'} remplacé par
-    {include file='catalog/_partials/product-additional-info.tpl'},
-    en supposant que ce partial déclenche déjà ce hook en interne (son nom
-    correspond trop exactement pour que ce soit une coïncidence) — à
-    confirmer en lisant son contenu.
-  - INCHANGÉ (noms confirmés corrects par la vraie liste) :
-    product-prices.tpl, product-add-to-cart.tpl, product-tabs.tpl.
-  - NON VÉRIFIABLE depuis une simple liste de fichiers (nécessite le
-    contenu réel) : l'ordre/l'imbrication de tous ces includes, et si
-    product.tpl natif utilise bien {extends file='page.tpl'} /
-    {block name='page_content'}.
+    product-activation.tpl, product-additional-info.tpl, product-details.tpl.
 
-  ── TODO manuel (mis à jour) ──
-  1. Fournir le contenu réel de templates/catalog/product.tpl et
-     templates/catalog/_partials/product-add-to-cart.tpl de l'install
-     TORQA pour confirmer l'ordre exact des includes ci-dessus et le
-     pattern d'héritage ({extends}/{block}) — actuellement une hypothèse.
-  2. Vérifier si product-cover-thumbnails.tpl inclut déjà
-     product-images-modal.tpl en interne (dans ce cas, retirer mon include
-     redondant de product-images-modal.tpl).
+  Round 3 (contre le CONTENU réel de product.tpl et product-add-to-cart.tpl
+  fourni par l'utilisateur) :
+  - CORRIGÉ : {extends file='page.tpl'} → {extends file=$layout} (confirmé
+    par le fichier natif).
+  - CONFIRMÉ : product-add-to-cart.tpl n'inclut PAS product-variants.tpl ni
+    product-discounts.tpl en interne — aucun doublon, includes séparés
+    conservés tels quels.
+  - RETIRÉ : l'include racine de product-details.tpl — l'architecture
+    standard du thème classic l'inclut déjà à l'intérieur de
+    product-tabs.tpl (onglet "Caractéristiques") ; le garder ici aurait
+    dupliqué ce bloc. Non confirmé à 100 % (contenu de product-tabs.tpl
+    non fourni) — voir TODO #2.
+  - CONFIRMÉ : le natif My Motor a `product_tabs`, `displayReassurance`,
+    `product_accessories` et `product_images_modal` désactivés au profit de
+    champs "dwf_*" (détails techniques/FAQ/avis) propres à un module maison
+    absent côté Slidex Shop. Décision : NE PAS reproduire les sections
+    dwf_* (ne fonctionneraient pas sans ce module) ; réactiver à la place
+    `product-tabs.tpl` et le hook `displayReassurance` — c'était déjà
+    l'approche de ce fichier, donc inchangée, seulement confirmée.
+    `product_accessories` n'a pas été redemandé explicitement et n'est pas
+    inclus ici (cross-sell, hors périmètre de la demande) ;
+    `product_images_modal` reste inclus (voir TODO #1).
+  - NOUVEAU TODO : vérifier la présence dans le thème Slidex Shop de 7
+    fichiers SVG référencés par product.tpl/product-add-to-cart.tpl natifs
+    (voir TODO #5).
+
+  ── TODO manuel (mis à jour, round 3) ──
+  1. Vérifier si product-cover-thumbnails.tpl inclut déjà
+     product-images-modal.tpl en interne (dans ce cas, retirer l'include
+     redondant de product-images-modal.tpl ci-dessus).
+  2. Vérifier si product-tabs.tpl inclut bien product-details.tpl en
+     interne pour son onglet "Caractéristiques" (voir RETIRÉ ci-dessus) —
+     sinon, réintroduire {include file='catalog/_partials/product-details.tpl'}
+     au niveau racine.
   3. Vérifier si product-additional-info.tpl déclenche déjà le hook
-     displayProductAdditionalInfo (voir note ci-dessus) — sinon le
-     rajouter en plus de l'include.
+     displayProductAdditionalInfo en interne — sinon le rajouter en plus
+     de l'include.
   4. Observer le rendu natif de product-variants.tpl dans le navigateur et
      adapter slidex-brand.css à ses classes réelles (`.product-variants`,
      `.input-color`, `.radio-buttons`…) pour se rapprocher du style
      `.pd-glazing-chip` du site institutionnel.
-  5. Observer le rendu natif de product-details.tpl et adapter
-     slidex-brand.css à ses classes réelles (remplace l'hypothèse
-     `.slidex-spec-*` qui n'a pas de correspondance native confirmée).
+  5. Vérifier la présence de ces 7 SVG dans le thème Slidex Shop (chemin
+     exact à déterminer — probablement `assets/img/icons/` une fois
+     slidex-brand.css déplacé, voir TODO de DESIGN-SYSTEM.md §8) : bag.svg,
+     pro.svg, check.svg, contact.svg, pdf.svg, play-button.svg, star.svg.
+     Référencés par product.tpl/product-add-to-cart.tpl natifs — à copier
+     depuis le thème classic-rocket de TORQA si absents du thème Slidex
+     Shop, ou à resourcer depuis une bibliothèque d'icônes équivalente si
+     leur usage natif (ex. `pro.svg`, `contact.svg`) est spécifique au
+     contexte My Motor et non pertinent pour Slidex Shop.
   6. Vérifier les hooks utilisés (`displayProductPriceBlock`,
      `displayProductButtons`, `displayReassurance`, `displayFooterProduct`,
      `displayProductExtraContent`) sont bien enregistrés pour le thème dans
