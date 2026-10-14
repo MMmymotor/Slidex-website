@@ -155,22 +155,20 @@
   .np-solutions-card { aspect-ratio: 4 / 3; }
 }
 
-/* ── Bloc « Pourquoi SlideX » : réassurance + fabrication ── */
+/* ── Bloc « Pourquoi SlideX » : contenu + faits, en 2 colonnes ── */
 .np-why {
   background: linear-gradient(135deg, #0a0f1e 0%, #0f1f3d 100%);
-  padding: 88px 0 0;
+  padding: 96px 0;
 }
-.np-why-kicker {
-  margin: 0 0 16px;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #60a5fa;
+.np-why-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  gap: clamp(40px, 6vw, 88px);
+  align-items: center;
 }
 .np-why-title {
   margin: 0;
-  max-width: 720px;
+  max-width: 560px;
   font-size: clamp(1.9rem, 3.6vw, 2.75rem);
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -179,44 +177,45 @@
 }
 .np-why-lead {
   margin: 20px 0 0;
-  max-width: 62ch;
+  max-width: 52ch;
   font-size: 1rem;
   line-height: 1.7;
   color: rgba(255,255,255,0.68);
 }
-.np-why-stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  margin-top: 48px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.12);
+.np-why-facts {
+  display: flex;
+  flex-direction: column;
+  margin: 40px 0 0;
+  padding: 0;
+  border-top: 1px solid rgba(255,255,255,0.14);
 }
-.np-why-stat {
-  padding: 30px 24px;
-  background: #0d1428;
-  text-align: center;
+.np-why-facts > div {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.14);
 }
-.np-why-stat-value {
-  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+.np-why-facts dt {
+  flex: 0 0 136px;
+  margin: 0;
+  font-size: 1.05rem;
   font-weight: 800;
+  letter-spacing: -0.01em;
   color: #ffffff;
-  line-height: 1.1;
-  margin-bottom: 10px;
 }
-.np-why-stat-label {
-  font-size: 0.82rem;
+.np-why-facts dd {
+  margin: 0;
+  font-size: 0.9rem;
   line-height: 1.5;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.56);
 }
 .np-why-photo {
   position: relative;
-  margin-top: 64px;
-  aspect-ratio: 21 / 9;
-  background: #131c33;
+  aspect-ratio: 4 / 5;
+  border-radius: 20px;
   overflow: hidden;
+  background: #131c33;
 }
 .np-why-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .np-why-photo-ph {
@@ -236,15 +235,19 @@
   position: absolute;
   left: 0; right: 0; bottom: 0;
   margin: 0;
-  padding: clamp(24px, 4vw, 44px);
-  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  padding: clamp(22px, 3.2vw, 32px);
+  font-size: 0.95rem;
   font-weight: 700;
   color: #ffffff;
   background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 70%);
 }
-@media (max-width: 767px) {
-  .np-why-stats { grid-template-columns: repeat(2, 1fr); }
-  .np-why-photo { aspect-ratio: 4 / 5; }
+@media (max-width: 900px) {
+  .np-why-grid { grid-template-columns: 1fr; }
+  .np-why-title, .np-why-lead { max-width: none; }
+  .np-why-photo { aspect-ratio: 16 / 10; }
+}
+@media (max-width: 480px) {
+  .np-why-facts dt { flex-basis: 108px; }
 }
 
 /* ── Section CTA ── */
@@ -252,16 +255,6 @@
   background: linear-gradient(135deg, #0a0f1e 0%, #0f1f3d 100%);
   padding: 80px 0;
   position: relative;
-  overflow: hidden;
-}
-.np-cta::before {
-  content: '';
-  position: absolute;
-  top: -80px; left: 50%;
-  transform: translateX(-50%);
-  width: 700px; height: 350px;
-  background: radial-gradient(ellipse, rgba(37,99,235,0.12) 0%, transparent 70%);
-  pointer-events: none;
 }
 .np-cta-ghost {
   display: inline-flex;
@@ -371,34 +364,37 @@
   <!-- ── Pourquoi SlideX ── -->
   <section class="np-why">
     <div class="w-layout-blockcontainer container-default w-container">
-      <p class="np-why-kicker">Pourquoi SlideX</p>
-      <h2 class="np-why-title">Pensé pour être installé.<br>Pas pour vous faire perdre du temps.</h2>
-      <p class="np-why-lead">Nos solutions sont conçues avec une logique simple&nbsp;: réduire le temps passé sur chantier. Pré-câblage, réglages simplifiés, documentation claire et support technique direct. Vous recevez une solution prête à être installée et maintenue par vos équipes.</p>
+      <div class="np-why-grid">
+        <div class="np-why-content">
+          <h2 class="np-why-title">Pensé pour être installé.<br>Pas pour vous faire perdre du temps.</h2>
+          <p class="np-why-lead">Nos solutions sont conçues avec une logique simple&nbsp;: réduire le temps passé sur chantier. Pré-câblage, réglages simplifiés, documentation claire et support technique direct. Vous recevez une solution prête à être installée et maintenue par vos équipes.</p>
 
-      <div class="np-why-stats">
-        <div class="np-why-stat">
-          <div class="np-why-stat-value">12 jours</div>
-          <div class="np-why-stat-label">Fabrication standard</div>
+          <dl class="np-why-facts">
+            <div>
+              <dt>12 jours</dt>
+              <dd>Fabrication standard</dd>
+            </div>
+            <div>
+              <dt>Prêt à poser</dt>
+              <dd>Pré-câblé et préparé en atelier</dd>
+            </div>
+            <div>
+              <dt>10 ans</dt>
+              <dd>Disponibilité des pièces SAV</dd>
+            </div>
+            <div>
+              <dt>Support direct</dt>
+              <dd>Une équipe technique qui connaît le produit</dd>
+            </div>
+          </dl>
         </div>
-        <div class="np-why-stat">
-          <div class="np-why-stat-value">Prêt à poser</div>
-          <div class="np-why-stat-label">Pré-câblé et préparé en atelier</div>
-        </div>
-        <div class="np-why-stat">
-          <div class="np-why-stat-value">10 ans</div>
-          <div class="np-why-stat-label">Disponibilité des pièces SAV</div>
-        </div>
-        <div class="np-why-stat">
-          <div class="np-why-stat-value">Support direct</div>
-          <div class="np-why-stat-label">Une équipe technique qui connaît le produit</div>
+
+        <div class="np-why-photo">
+          <img src="../images/atelier-slidex.jpg" alt="Atelier de fabrication SlideX à Seyssins" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
+          <div class="np-why-photo-ph" hidden>Photo atelier / technicien SlideX</div>
+          <p class="np-why-photo-caption">Fabriqué à Seyssins, pensé avec ceux qui l'installent.</p>
         </div>
       </div>
-    </div>
-
-    <div class="np-why-photo">
-      <img src="../images/atelier-slidex.jpg" alt="Atelier de fabrication SlideX à Seyssins" onerror="this.onerror=null; this.hidden=true; this.nextElementSibling.hidden=false;"/>
-      <div class="np-why-photo-ph" hidden>Photo atelier / technicien SlideX</div>
-      <p class="np-why-photo-caption">Fabriqué à Seyssins, pensé avec ceux qui l'installent.</p>
     </div>
   </section>
 
