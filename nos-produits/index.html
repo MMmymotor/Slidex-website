@@ -44,72 +44,79 @@
   .slidex-grid-3 > .card.v6:nth-of-type(3) { grid-column: 1; grid-row: 3; }
 }
 
-/* ── En-tête de page compact ── */
-.np-header {
-  background: linear-gradient(135deg, #0f172a 0%, #162444 100%);
-  padding: 56px 0 52px;
-  position: relative;
-  overflow: hidden;
-}
-.np-header::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0; right: 0;
-  height: 40px;
-  background: white;
-  clip-path: ellipse(55% 100% at 50% 100%);
-}
-.np-header-text { max-width: 680px; }
-.np-header-kicker {
+/* ── En-tête de page : ouverture sobre, fond clair ── */
+.np-intro { padding: 64px 0 48px; border-bottom: 1px solid #eef1f6; }
+.np-intro-text { max-width: 720px; }
+.np-intro-kicker {
   margin: 0 0 18px;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #7db0fb;
+  color: #2563eb;
 }
-.np-header-title {
+.np-intro-title {
   margin: 0;
-  color: #fff;
+  color: #0f172a;
   font-size: clamp(2.1rem, 4vw, 3.25rem);
   font-weight: 800;
   line-height: 1.08;
   letter-spacing: -0.03em;
 }
-.np-header-desc {
-  max-width: 480px;
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 0.95rem;
+.np-intro-desc {
+  max-width: 620px;
+  color: #475569;
+  font-size: 1rem;
   line-height: 1.7;
   margin: 18px 0 0;
 }
-.np-header-cta {
+.np-intro-cta {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 28px;
   margin-top: 32px;
 }
-.np-header-btn-ghost {
+.np-intro-btn-ghost {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding-bottom: 3px;
-  color: rgba(255, 255, 255, 0.85);
+  color: #334155;
   font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid #cbd5e1;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
-.np-header-btn-ghost:hover { color: #fff; border-color: rgba(255, 255, 255, 0.7); }
-.np-header-proof {
+.np-intro-btn-ghost:hover { color: #0f172a; border-color: #94a3b8; }
+.np-intro-proof {
   margin: 24px 0 0;
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.82rem;
+  color: #94a3b8;
   letter-spacing: 0.01em;
 }
+@media (max-width: 767px) {
+  .np-intro { padding: 40px 0 32px; }
+}
+
+/* ── Bloc texte (contexte produit / SEO) ── */
+.np-seo { background: #ffffff; padding: 8px 0 72px; }
+.np-seo-inner { max-width: 740px; }
+.np-seo-inner h2 {
+  margin: 0 0 20px;
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+.np-seo-inner p {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: #475569;
+}
+.np-seo-inner p:last-child { margin-bottom: 0; }
 
 /* ── Bloc « Nos solutions » : 3 grandes cartes ── */
 .np-solutions-head { max-width: 1040px; margin: 0 0 48px; text-align: left; }
@@ -272,10 +279,6 @@
 }
 .np-cta-ghost:hover { background: rgba(255,255,255,0.14); color: white; }
 
-/* ── Responsive ── */
-@media (max-width: 767px) {
-  .np-header { padding: 40px 0 48px; }
-}
 </style>
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="28263fbc-fd1c-4adc-8204-571acc2440a4";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
@@ -286,16 +289,16 @@
 <div class="page-wrapper">
   <div id="header-placeholder"></div>
 
-  <!-- ── En-tête de page ── -->
-  <div class="np-header">
+  <!-- ── En-tête de page : ouverture sobre, fond clair ── -->
+  <header class="np-intro">
     <div class="w-layout-blockcontainer container-default w-container">
-      <div class="np-header-text">
-        <p class="np-header-kicker">Solutions d'automatisation pour les professionnels</p>
-        <h1 class="np-header-title">Portes automatiques, rénovation et motorisation.</h1>
-        <p class="np-header-desc">SlideX conçoit et fabrique des solutions d'automatisation pour les professionnels&nbsp;: portes piétonnes coulissantes, kits de rénovation, motorisations pour portes battantes et accessoires.</p>
-        <p class="np-header-desc">Du neuf à la rénovation, des solutions pensées pour être simples à commander, rapides à installer et faciles à maintenir.</p>
-        <div class="np-header-cta">
-          <a class="np-header-btn-ghost" href="#gamme">
+      <div class="np-intro-text">
+        <p class="np-intro-kicker">Solutions d'automatisation pour les professionnels</p>
+        <h1 class="np-intro-title">Portes automatiques, rénovation et motorisation.</h1>
+        <p class="np-intro-desc">SlideX conçoit et fabrique des solutions d'automatisation pour les professionnels&nbsp;: portes piétonnes coulissantes, kits de rénovation, motorisations pour portes battantes et accessoires.</p>
+        <p class="np-intro-desc">Du neuf à la rénovation, des solutions pensées pour être simples à commander, rapides à installer et faciles à maintenir.</p>
+        <div class="np-intro-cta">
+          <a class="np-intro-btn-ghost" href="#gamme">
             Découvrir nos solutions
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 2v9M3 8l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -308,10 +311,10 @@
             </div>
           </a>
         </div>
-        <p class="np-header-proof">Fabrication française · Support technique dédié · Pièces SAV 10 ans</p>
+        <p class="np-intro-proof">Fabrication française · Support technique dédié · Pièces SAV 10 ans</p>
       </div>
     </div>
-  </div>
+  </header>
 
   <!-- ── Grille des produits ── -->
   <section class="section" id="gamme">
@@ -394,6 +397,18 @@
           <div class="np-why-photo-ph" hidden>Photo atelier / technicien SlideX</div>
           <p class="np-why-photo-caption">Fabriqué à Seyssins, pensé avec ceux qui l'installent.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Bloc texte : contexte produit ── -->
+  <section class="np-seo">
+    <div class="w-layout-blockcontainer container-default w-container">
+      <div class="np-seo-inner">
+        <h2>La référence française de la porte automatique pour professionnels</h2>
+        <p>SlideX conçoit, fabrique et distribue des solutions d'automatisation de portes piétonnes pour les professionnels de la fermeture, de l'agencement et du bâtiment&nbsp;: installateurs, menuisiers métalliers, agenceurs, bureaux d'études et exploitants de commerces ou d'établissements recevant du public (ERP).</p>
+        <p>Notre gamme couvre l'ensemble des besoins d'un chantier&nbsp;: portes automatiques coulissantes neuves (1 vantail, 2 vantaux, télescopique), kits de rénovation compatibles avec les principales marques du marché (Record, Portalp, Dormakaba, Gilgen, Manusa, SOFTICA) et motorisations pour portes battantes existantes. Chaque porte est fabriquée dans notre atelier de Seyssins, en Isère, et livrée en 12 jours ouvrés en configuration standard.</p>
+        <p>Nos systèmes répondent aux exigences réglementaires des ERP et des accès PMR (norme EN 16005, marquage CE, contrôle TÜV SÜD) et sont pensés pour limiter le temps d'installation sur chantier&nbsp;: pré-câblage en atelier, réglages simplifiés et documentation technique complète fournie avec chaque porte.</p>
       </div>
     </div>
   </section>
