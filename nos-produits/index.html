@@ -100,23 +100,41 @@
   .np-intro { padding: 40px 0 32px; }
 }
 
-/* ── Bloc texte (contexte produit / SEO) ── */
-.np-seo { background: #ffffff; padding: 8px 0 72px; }
-.np-seo-inner { max-width: 740px; }
-.np-seo-inner h2 {
-  margin: 0 0 20px;
-  font-size: clamp(1.5rem, 2.6vw, 2rem);
+/* ── Bloc texte (contexte produit / SEO) : titre à gauche, texte à droite ── */
+.np-seo { background: #f8fafc; padding: 80px 0; border-top: 1px solid #eef1f6; border-bottom: 1px solid #eef1f6; }
+.np-seo-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(32px, 6vw, 72px);
+  align-items: start;
+}
+.np-seo-title {
+  margin: 0;
+  max-width: 360px;
+  font-size: clamp(1.6rem, 2.8vw, 2.1rem);
   font-weight: 800;
   letter-spacing: -0.02em;
+  line-height: 1.22;
   color: #0f172a;
+  position: sticky;
+  top: 32px;
 }
-.np-seo-inner p {
-  margin: 0 0 16px;
+.np-seo-body p {
+  margin: 0 0 18px;
   font-size: 0.95rem;
-  line-height: 1.75;
-  color: #475569;
+  line-height: 1.8;
+  color: #64748b;
 }
-.np-seo-inner p:last-child { margin-bottom: 0; }
+.np-seo-body p:first-of-type {
+  font-size: 1.04rem;
+  font-weight: 500;
+  color: #334155;
+}
+.np-seo-body p:last-child { margin-bottom: 0; }
+@media (max-width: 860px) {
+  .np-seo-grid { grid-template-columns: 1fr; gap: 20px; }
+  .np-seo-title { max-width: none; position: static; }
+}
 
 /* ── Bloc « Nos solutions » : 3 grandes cartes ── */
 .np-solutions-head { max-width: 1040px; margin: 0 0 48px; text-align: left; }
@@ -404,11 +422,13 @@
   <!-- ── Bloc texte : contexte produit ── -->
   <section class="np-seo">
     <div class="w-layout-blockcontainer container-default w-container">
-      <div class="np-seo-inner">
-        <h2>La référence française de la porte automatique pour professionnels</h2>
-        <p>SlideX conçoit, fabrique et distribue des solutions d'automatisation de portes piétonnes pour les professionnels de la fermeture, de l'agencement et du bâtiment&nbsp;: installateurs, menuisiers métalliers, agenceurs, bureaux d'études et exploitants de commerces ou d'établissements recevant du public (ERP).</p>
-        <p>Notre gamme couvre l'ensemble des besoins d'un chantier&nbsp;: portes automatiques coulissantes neuves (1 vantail, 2 vantaux, télescopique), kits de rénovation compatibles avec les principales marques du marché (Record, Portalp, Dormakaba, Gilgen, Manusa, SOFTICA) et motorisations pour portes battantes existantes. Chaque porte est fabriquée dans notre atelier de Seyssins, en Isère, et livrée en 12 jours ouvrés en configuration standard.</p>
-        <p>Nos systèmes répondent aux exigences réglementaires des ERP et des accès PMR (norme EN 16005, marquage CE, contrôle TÜV SÜD) et sont pensés pour limiter le temps d'installation sur chantier&nbsp;: pré-câblage en atelier, réglages simplifiés et documentation technique complète fournie avec chaque porte.</p>
+      <div class="np-seo-grid">
+        <h2 class="np-seo-title">La référence française de la porte automatique pour professionnels</h2>
+        <div class="np-seo-body">
+          <p>SlideX conçoit, fabrique et distribue des solutions d'automatisation de portes piétonnes pour les professionnels de la fermeture, de l'agencement et du bâtiment&nbsp;: installateurs, menuisiers métalliers, agenceurs, bureaux d'études et exploitants de commerces ou d'établissements recevant du public (ERP).</p>
+          <p>Notre gamme couvre l'ensemble des besoins d'un chantier&nbsp;: portes automatiques coulissantes neuves (1 vantail, 2 vantaux, télescopique), kits de rénovation compatibles avec les principales marques du marché (Record, Portalp, Dormakaba, Gilgen, Manusa, SOFTICA) et motorisations pour portes battantes existantes. Chaque porte est fabriquée dans notre atelier de Seyssins, en Isère, et livrée en 12 jours ouvrés en configuration standard.</p>
+          <p>Nos systèmes répondent aux exigences réglementaires des ERP et des accès PMR (norme EN 16005, marquage CE, contrôle TÜV SÜD) et sont pensés pour limiter le temps d'installation sur chantier&nbsp;: pré-câblage en atelier, réglages simplifiés et documentation technique complète fournie avec chaque porte.</p>
+        </div>
       </div>
     </div>
   </section>
