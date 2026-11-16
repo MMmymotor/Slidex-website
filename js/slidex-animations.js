@@ -50,45 +50,6 @@
 	mq.addEventListener ? mq.addEventListener('change', onWide) : mq.addListener(onWide);
 })();
 
-// Sitewide top banner injection
-(function(){
-		function injectTopBanner(){
-				var header = document.querySelector('.header-wrapper.w-nav');
-				// Idempotent: skip if already present anywhere
-				if (document.querySelector('.top-banner')) {
-					document.body.classList.add('has-top-banner');
-					return;
-				}
-			var banner = document.createElement('div');
-			banner.className = 'top-banner';
-			var inner = document.createElement('div');
-			inner.className = 'top-banner-inner';
-				var track1 = document.createElement('div');
-				track1.className = 'top-banner-track';
-			track1.textContent = '⭐ 5 étoiles sur Google  •  Déjà plus de 1000 kits motorisation vendues   •   ⭐ 5 étoiles sur Google  •  Déjà plus de 1000 kits motorisation vendues   •   ';
-				var track2 = document.createElement('div');
-				track2.className = 'top-banner-track';
-				track2.style.left = '100%';
-			track2.textContent = '⭐ 5 étoiles sur Google  •  Déjà plus de 1000 kits motorisation vendues   •   ⭐ 5 étoiles sur Google  •  Déjà plus de 1000 kits motorisation vendues   •   ';
-				inner.appendChild(track1);
-				inner.appendChild(track2);
-				banner.appendChild(inner);
-				if (header) {
-					header.insertAdjacentElement('afterbegin', banner);
-				} else if (document.body.firstChild) {
-					document.body.insertBefore(banner, document.body.firstChild);
-				} else {
-					document.body.appendChild(banner);
-				}
-				document.body.classList.add('has-top-banner');
-		}
-	if (document.readyState === 'loading') {
-		document.addEventListener('DOMContentLoaded', injectTopBanner);
-	} else {
-		injectTopBanner();
-	}
-})();
-
 // Widget production — données pseudo-aléatoires, seed toutes les 3 jours
 (function(){
   var DISMISS_KEY = 'slx_prod_widget_dismissed';

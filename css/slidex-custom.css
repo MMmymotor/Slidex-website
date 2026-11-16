@@ -646,57 +646,6 @@
   text-decoration: underline !important;
 }
 
-/* ========================= */
-/*    TOP BANNER (SITEWIDE)   */
-/* ========================= */
-.top-banner {
-  height: 25px;
-  background: #2563eb; /* brand blue */
-  color: #ffffff;
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1100;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.top-banner .top-banner-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  position: relative;
-  height: 25px;
-  overflow: hidden;
-}
-.top-banner .top-banner-track {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  will-change: transform;
-  animation: topBannerMarquee 20s linear infinite !important;
-  font-size: 12px;
-  line-height: 25px;
-  letter-spacing: .2px;
-}
-/* Pause on hover */
-.top-banner:hover .top-banner-track {
-  animation-play-state: paused !important;
-  -webkit-animation-play-state: paused !important;
-}
-/* second track starts off to the right for continuous scroll */
-.top-banner .top-banner-track:nth-child(2) {
-  left: 100%;
-  animation-delay: 10s;
-}
-@keyframes topBannerMarquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
-}
-
-/* Offset page content when banner is present */
-body.has-top-banner { padding-top: 25px !important; }
-
 /* ── WIDGET PRODUCTION (fixed to the bottom, dismissible) ── */
 .prod-widget {
   position: fixed;
@@ -813,11 +762,6 @@ body.has-top-banner { padding-top: 25px !important; }
   .prod-widget.prod-widget-closure { display: flex; }
 }
 
-/* When banner is present, ensure header content starts right below */
-.header-wrapper.w-nav .top-banner + .container-default {
-  margin-top: 0 !important;
-}
-
 /* Page-specific: reduce top padding on first section of 2-vantaux detail */
 body.page-product-2v .section.product-detail-section {
   padding-top: 24px !important; /* increased breathing space under header */
@@ -834,9 +778,6 @@ body.page-product-2v .page-wrapper { margin-top: 0 !important; padding-top: 0 !i
 /* Remove min-height that might push layout visually on this page */
 body.page-product-2v .page-wrapper { min-height: auto !important; height: auto !important; }
 
-/* Hide the promo top banner on this page to avoid extra offset */
-body.page-product-2v .top-banner { display: none !important; }
-body.page-product-2v.has-top-banner { padding-top: 0 !important; }
 body.page-product-2v { padding-top: 0 !important; }
 
 /* Containers directly under header: no stray margin collapse */
