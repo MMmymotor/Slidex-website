@@ -27,9 +27,26 @@
 <link href="images/favicon.svg" rel="shortcut icon" type="image/x-icon"/>
 <link href="images/webclip.svg" rel="apple-touch-icon"/>
 <style>
-/* ── Hero : ouverture sobre, fond clair ── */
+/* ── Hero : ouverture sobre, fond clair, avec vraie photo ── */
 .np-intro { padding: 64px 0 48px; border-bottom: 1px solid #eef1f6; }
-.pac-hero { max-width: 640px; }
+.pac-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+.pac-hero { max-width: 560px; }
+.pac-hero-photo {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #f5f5f7;
+}
+.pac-hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+@media (max-width: 900px) {
+  .pac-hero-grid { grid-template-columns: 1fr; }
+}
 .op-back {
   color: #64748b;
   font-size: 0.85rem;
@@ -114,8 +131,9 @@
 .pac-product--rev .pac-product-copy { order: 1; }
 
 .pac-product-visual {
-  background: #f5f5f7;
-  border-radius: 24px;
+  background: #f8fafc;
+  border: 1px solid #e8edf5;
+  border-radius: 20px;
   aspect-ratio: 4 / 3;
   display: grid;
   place-items: center;
@@ -155,40 +173,52 @@
   color: #64748b;
 }
 .pac-product-specs {
-  list-style: none;
   margin: 24px 0 0;
-  padding: 0;
+  padding-top: 2px;
+  border-top: 1px solid #eef2f7;
+}
+.pac-product-specs > div {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid #eef2f7;
 }
-.pac-product-specs li {
+.pac-product-specs dt {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #64748b;
+}
+.pac-product-specs dd {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: right;
+}
+.pac-product-tags {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  line-height: 1.4;
-  color: #374151;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 0;
 }
-.pac-product-specs li::before {
-  content: '';
-  flex-shrink: 0;
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: #2563eb;
-}
-.pac-product-note {
-  margin: 20px 0 0;
+.pac-product-note,
+.pac-product-tag {
   display: inline-block;
   font-size: 0.78rem;
   font-weight: 700;
   line-height: 1.4;
   letter-spacing: 0.02em;
-  color: #475569;
-  background: #f1f5f9;
+  color: #2563eb;
+  background: #eff6ff;
   padding: 6px 12px;
   border-radius: 100px;
+}
+.pac-product-note {
+  color: #475569;
+  background: #f1f5f9;
+  margin: 18px 0 0;
 }
 .pac-product-actions {
   display: flex;
@@ -268,20 +298,25 @@
   <!-- ── Hero : ouverture sobre, fond clair ── -->
   <header class="np-intro">
     <div class="w-layout-blockcontainer container-default w-container">
-      <div class="pac-hero">
-        <a class="op-back" href="nos-produits/index.html">← Nos produits</a>
-        <p class="np-intro-kicker">Portes automatiques coulissantes</p>
-        <h1 class="np-intro-title">Une porte automatique pour chaque passage.</h1>
-        <p class="np-intro-desc">1 vantail, 2 vantaux ou télescopique&nbsp;: des portes piétonnes coulissantes fabriquées sur mesure, pré-câblées et prêtes à poser, produites en 12 jours dans notre atelier en Isère.</p>
-        <div class="np-intro-cta">
-          <a class="primary-button w-inline-block" href="connexion-inscription.html">
-            <div>Configurer ma porte</div>
-            <div class="item-icon-right icon-right-circle">
-              <div class="base-icon-font" style="display:flex;align-items:center;justify-content:center;">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="pac-hero-grid">
+        <div class="pac-hero">
+          <a class="op-back" href="nos-produits/index.html">← Nos produits</a>
+          <p class="np-intro-kicker">Portes automatiques coulissantes</p>
+          <h1 class="np-intro-title">Une porte automatique pour chaque passage.</h1>
+          <p class="np-intro-desc">1 vantail, 2 vantaux ou télescopique&nbsp;: des portes piétonnes coulissantes fabriquées sur mesure, pré-câblées et prêtes à poser, produites en 12 jours dans notre atelier en Isère.</p>
+          <div class="np-intro-cta">
+            <a class="primary-button w-inline-block" href="connexion-inscription.html">
+              <div>Configurer ma porte</div>
+              <div class="item-icon-right icon-right-circle">
+                <div class="base-icon-font" style="display:flex;align-items:center;justify-content:center;">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 10H15" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/><path d="M10 5L15 10L10 15" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
               </div>
-            </div>
-          </a>
+            </a>
+          </div>
+        </div>
+        <div class="pac-hero-photo">
+          <img alt="Porte automatique coulissante SlideX en situation" src="images/porte-automatique-coulissante-situation.jpg"/>
         </div>
       </div>
     </div>
@@ -307,11 +342,13 @@
           <h2 class="pac-product-title">Simple. Compacte. Efficace.</h2>
           <p class="pac-product-subtitle">Porte automatique coulissante 1 vantail</p>
           <p class="pac-product-desc">Conçue pour les passages où l'espace disponible est limité. Fabriquée sur mesure dans notre atelier et livrée pré-câblée, prête à être installée.</p>
-          <ul class="pac-product-specs">
-            <li>Passage 600 – 1 200 mm</li>
-            <li>Fabrication 12 jours</li>
-            <li>Compatible PMR</li>
-          </ul>
+          <dl class="pac-product-specs">
+            <div><dt>Passage</dt><dd>600 – 1 200 mm</dd></div>
+            <div><dt>Fabrication</dt><dd>12 jours</dd></div>
+          </dl>
+          <div class="pac-product-tags">
+            <span class="pac-product-tag">Compatible PMR</span>
+          </div>
           <div class="pac-product-actions">
             <a class="pac-link" href="product-detail.html">Découvrir le 1 vantail →</a>
             <a class="primary-button w-inline-block" href="connexion-inscription.html">
@@ -336,11 +373,14 @@
           <h2 class="pac-product-title">Plus de passage. Même simplicité.</h2>
           <p class="pac-product-subtitle">Porte automatique coulissante 2 vantaux</p>
           <p class="pac-product-desc">Pour un passage large, fluide et confortable. Idéale pour les zones à fort trafic et les entrées professionnelles, elle allie performance, esthétique et sécurité.</p>
-          <ul class="pac-product-specs">
-            <li>Passage 1 200 – 2 400 mm</li>
-            <li>Fabrication 12 jours</li>
-            <li>Ouverture symétrique, fort trafic</li>
-          </ul>
+          <dl class="pac-product-specs">
+            <div><dt>Passage</dt><dd>1 200 – 2 400 mm</dd></div>
+            <div><dt>Fabrication</dt><dd>12 jours</dd></div>
+          </dl>
+          <div class="pac-product-tags">
+            <span class="pac-product-tag">Ouverture symétrique</span>
+            <span class="pac-product-tag">Fort trafic</span>
+          </div>
           <div class="pac-product-actions">
             <a class="pac-link" href="product-detail-2-vantaux.html">Découvrir le 2 vantaux →</a>
             <a class="primary-button w-inline-block" href="connexion-inscription.html">
@@ -365,11 +405,13 @@
           <h2 class="pac-product-title">Le passage maximal dans un minimum d'espace.</h2>
           <p class="pac-product-subtitle">Porte automatique coulissante télescopique</p>
           <p class="pac-product-desc">Solution optimale pour les espaces restreints nécessitant un large passage. Le système télescopique réduit l'encombrement au sol tout en offrant un passage généreux — idéal pour les hôpitaux, centres commerciaux et bâtiments publics.</p>
-          <ul class="pac-product-specs">
-            <li>Passage sur mesure</li>
-            <li>Fabrication sur demande</li>
-            <li>Encombrement optimisé</li>
-          </ul>
+          <dl class="pac-product-specs">
+            <div><dt>Passage</dt><dd>Sur mesure</dd></div>
+            <div><dt>Fabrication</dt><dd>Sur demande</dd></div>
+          </dl>
+          <div class="pac-product-tags">
+            <span class="pac-product-tag">Encombrement optimisé</span>
+          </div>
           <p class="pac-product-note">Disponible décembre 2026</p>
           <div class="pac-product-actions">
             <a class="pac-link" href="kit-renovation-bientot-disponible.html">Découvrir le télescopique →</a>
