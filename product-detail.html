@@ -875,6 +875,173 @@
 </div>
 </section>
 
+<!-- PERSONNALISATION -->
+<section class="section">
+<div class="w-layout-blockcontainer container-default w-container">
+<p class="pd-accessories-kicker">Personnalisation</p>
+<h2 class="pd-accessories-title">Des options pour adapter la porte à votre site.</h2>
+</div>
+<div class="hl hl--duo" style="margin-top:40px;">
+<div class="hl__viewport">
+<ol class="hl__track">
+<li class="hl__slide">
+<div class="hl__media" style="background-image:url('images/rail-encastre-sol.png');"></div>
+<div class="hl__copy">
+<p class="hl__kicker">Finition sol</p>
+<p class="hl__head">Rail encastré au sol</p>
+<p class="hl__sub">Guide de sol invisible une fois la porte fermée, pour une finition au ras du sol sans seuil apparent.</p>
+<div class="hl__actions">
+<button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('rail-popup')">En savoir plus</button>
+</div>
+</div>
+</li>
+<li class="hl__slide">
+<div class="hl__media" style="background-image:url('images/verrou-cle-integre.png');"></div>
+<div class="hl__copy">
+<p class="hl__kicker">Verrouillage</p>
+<p class="hl__head">Verrou applique supplémentaire</p>
+<p class="hl__sub">En complément du verrou à clé intégré de série, un verrou à mollette posé en applique sécurise la fermeture en dehors des horaires d'ouverture.</p>
+<div class="hl__actions">
+<button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('verrou-applique-popup')">En savoir plus</button>
+</div>
+</div>
+</li>
+<li class="hl__slide">
+<div class="hl__media" style="background-image:url('images/verrou-courroie.png');"></div>
+<div class="hl__copy">
+<p class="hl__kicker">Verrouillage</p>
+<p class="hl__head">Verrou courroie</p>
+<p class="hl__sub">En cas de coupure de courant ou en mode nuit, la porte reste verrouillée grâce au verrou intégré sur la courroie de motorisation.</p>
+<div class="hl__actions">
+<button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('verrou-courroie-popup')">En savoir plus</button>
+</div>
+</div>
+</li>
+<li class="hl__slide">
+<div class="hl__media" style="background-image:url('images/laquage-ral.png');"></div>
+<div class="hl__copy">
+<p class="hl__kicker">Finition</p>
+<p class="hl__head">Laquage RAL personnalisé</p>
+<p class="hl__sub">Un coloris RAL au choix pour intégrer la porte à votre façade ou votre charte graphique.</p>
+<div class="hl__actions">
+<button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('laquage-popup')">En savoir plus</button>
+</div>
+</div>
+</li>
+<li class="hl__slide">
+<div class="hl__media" style="background-image:url('images/bouton-sans-contact.png');"></div>
+<div class="hl__copy">
+<p class="hl__kicker">Contrôle d'accès</p>
+<p class="hl__head">Badge, code, bouton sans contact</p>
+<p class="hl__sub">Compatible lecteurs RFID, claviers à code et boutons d'ouverture sans contact.</p>
+<div class="hl__actions">
+<button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('controle-acces-popup')">En savoir plus</button>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="w-layout-blockcontainer container-default w-container">
+<div class="hl__controls">
+<button class="hl__playpause" type="button" data-state="playing" aria-label="Pause">
+<svg class="hl__ic-pause" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" width="3" height="12" rx="1"/><rect x="7.5" width="3" height="12" rx="1"/></svg>
+<svg class="hl__ic-play" width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z"/></svg>
+</button>
+<div class="hl__progress">
+<button class="hl__seg" type="button" aria-label="Aller à l'option 1"></button>
+<button class="hl__seg" type="button" aria-label="Aller à l'option 2"></button>
+<button class="hl__seg" type="button" aria-label="Aller à l'option 3"></button>
+<button class="hl__seg" type="button" aria-label="Aller à l'option 4"></button>
+<button class="hl__seg" type="button" aria-label="Aller à l'option 5"></button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Popup Rail encastré -->
+<div id="rail-popup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
+  <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 520px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s ease;">
+    <button onclick="closePopup('rail-popup')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease;">×</button>
+    <div style="text-align: center; margin-bottom: 24px;">
+      <h2 style="color: #1a1a1a; font-size: 26px; font-weight: 700; margin-bottom: 8px;">Rail encastré au sol</h2>
+      <p style="color: #666; font-size: 15px; margin: 0;">Une finition au ras du sol, sans seuil</p>
+    </div>
+    <div style="color: #333; line-height: 1.65; font-size: 15px;">
+      <p style="margin: 0;">Le rail de guidage est encastré directement dans la dalle, invisible une fois la porte fermée. Fini les seuils qui dépassent&nbsp;: la circulation reste fluide, y compris pour les fauteuils roulants et les chariots.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Popup Verrou applique -->
+<div id="verrou-applique-popup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
+  <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 520px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s ease;">
+    <button onclick="closePopup('verrou-applique-popup')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease;">×</button>
+    <div style="display:flex;gap:10px;margin-bottom:24px;height:220px;">
+      <img src="images/verrou-applique-supplementaire.png" alt="Verrou applique SlideX" style="width:50%;height:100%;object-fit:contain;background:#f8fafc;border-radius:14px;"/>
+      <img src="images/verrou-cle-integre.png" alt="Verrou à clé intégré SlideX" style="width:50%;height:100%;object-fit:contain;background:#f8fafc;border-radius:14px;"/>
+    </div>
+    <div style="text-align: center; margin-bottom: 24px;">
+      <h2 style="color: #1a1a1a; font-size: 26px; font-weight: 700; margin-bottom: 8px;">Verrou applique supplémentaire</h2>
+      <p style="color: #666; font-size: 15px; margin: 0;">Un second point de verrouillage, en complément</p>
+    </div>
+    <div style="color: #333; line-height: 1.65; font-size: 15px;">
+      <p style="margin: 0;">La porte intègre de série un verrou à clé directement dans le profilé, discret et robuste. En option, un verrou à mollette supplémentaire posé en applique sécurise la fermeture en dehors des horaires d'ouverture.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Popup Verrou courroie -->
+<div id="verrou-courroie-popup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
+  <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 520px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s ease;">
+    <button onclick="closePopup('verrou-courroie-popup')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease;">×</button>
+    <div style="margin-bottom:24px;height:220px;">
+      <img src="images/verrou-courroie.png" alt="Verrou courroie SlideX" style="width:100%;height:100%;object-fit:contain;background:#f8fafc;border-radius:14px;"/>
+    </div>
+    <div style="text-align: center; margin-bottom: 24px;">
+      <h2 style="color: #1a1a1a; font-size: 26px; font-weight: 700; margin-bottom: 8px;">Verrou courroie</h2>
+      <p style="color: #666; font-size: 15px; margin: 0;">Verrouillée même sans courant</p>
+    </div>
+    <div style="color: #333; line-height: 1.65; font-size: 15px;">
+      <p style="margin: 0;">Un verrou intégré directement sur la courroie de motorisation maintient la porte fermée en cas de coupure de courant ou en mode nuit, sans dispositif mécanique supplémentaire à poser.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Popup Laquage RAL -->
+<div id="laquage-popup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
+  <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 520px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s ease;">
+    <button onclick="closePopup('laquage-popup')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease;">×</button>
+    <div style="margin-bottom:24px;height:220px;">
+      <img src="images/laquage-ral.png" alt="Laquage RAL SlideX" style="width:100%;height:100%;object-fit:contain;background:#f8fafc;border-radius:14px;"/>
+    </div>
+    <div style="text-align: center; margin-bottom: 24px;">
+      <h2 style="color: #1a1a1a; font-size: 26px; font-weight: 700; margin-bottom: 8px;">Laquage RAL personnalisé</h2>
+      <p style="color: #666; font-size: 15px; margin: 0;">Une teinte qui s'accorde à votre façade</p>
+    </div>
+    <div style="color: #333; line-height: 1.65; font-size: 15px;">
+      <p style="margin: 0;">Au-delà de la finition anodisée de série, un coloris RAL au choix permet d'intégrer la porte à votre façade ou à votre charte graphique.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Popup Contrôle d'accès (Personnalisation) -->
+<div id="controle-acces-popup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
+  <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 520px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s ease;">
+    <button onclick="closePopup('controle-acces-popup')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease;">×</button>
+    <div style="margin-bottom:24px;height:220px;">
+      <img src="images/bouton-sans-contact.png" alt="Bouton exit sans contact SlideX" style="width:100%;height:100%;object-fit:contain;background:#f8fafc;border-radius:14px;"/>
+    </div>
+    <div style="text-align: center; margin-bottom: 24px;">
+      <h2 style="color: #1a1a1a; font-size: 26px; font-weight: 700; margin-bottom: 8px;">Contrôle d'accès intégré</h2>
+      <p style="color: #666; font-size: 15px; margin: 0;">Badge, code ou bouton sans contact</p>
+    </div>
+    <div style="color: #333; line-height: 1.65; font-size: 15px;">
+      <p style="margin: 0;">Compatible avec les lecteurs RFID, claviers à code et boutons d'ouverture sans contact, pour une intégration directe à votre système de contrôle d'accès.</p>
+    </div>
+  </div>
+</div>
+
 <div id="google-reviews-placeholder"></div>
 
 <!-- FAQ SECTION -->
