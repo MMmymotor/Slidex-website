@@ -441,14 +441,31 @@
               <p class="hl__kicker">Finition sol</p>
               <p class="hl__head">Rail encastré au sol</p>
               <p class="hl__sub">Guide de sol invisible une fois la porte fermée, pour une finition au ras du sol sans seuil apparent.</p>
+              <div class="hl__actions">
+                <button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('rail-popup')">En savoir plus</button>
+              </div>
             </div>
           </li>
           <li class="hl__slide">
-            <div class="hl__media"><span class="hl__ph">Photo verrou applique</span></div>
+            <div class="hl__media" style="background-image:url('images/verrou-cle-integre.png');"></div>
+            <div class="hl__copy">
+              <p class="hl__kicker">Verrouillage</p>
+              <p class="hl__head">Verrou à clé intégré</p>
+              <p class="hl__sub">Cylindre à clé intégré directement dans le profilé, pour un verrouillage discret et robuste.</p>
+              <div class="hl__actions">
+                <button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('verrou-cle-popup')">En savoir plus</button>
+              </div>
+            </div>
+          </li>
+          <li class="hl__slide">
+            <div class="hl__media" style="background-image:url('images/verrou-applique-supplementaire.png');"></div>
             <div class="hl__copy">
               <p class="hl__kicker">Verrouillage</p>
               <p class="hl__head">Verrou applique supplémentaire</p>
               <p class="hl__sub">Verrouillage mécanique additionnel posé en applique, pour sécuriser la fermeture en dehors des horaires d'ouverture.</p>
+              <div class="hl__actions">
+                <button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('verrou-applique-popup')">En savoir plus</button>
+              </div>
             </div>
           </li>
           <li class="hl__slide">
@@ -457,6 +474,9 @@
               <p class="hl__kicker">Vitrage</p>
               <p class="hl__head">Vitrage sur mesure</p>
               <p class="hl__sub">44.2, 55.2 ou double vitrage isolant, selon les contraintes thermiques et acoustiques du projet.</p>
+              <div class="hl__actions">
+                <button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('vitrage-popup')">En savoir plus</button>
+              </div>
             </div>
           </li>
           <li class="hl__slide">
@@ -465,6 +485,9 @@
               <p class="hl__kicker">Finition</p>
               <p class="hl__head">Laquage RAL personnalisé</p>
               <p class="hl__sub">Un coloris RAL au choix pour intégrer la porte à votre façade ou votre charte graphique.</p>
+              <div class="hl__actions">
+                <button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('laquage-popup')">En savoir plus</button>
+              </div>
             </div>
           </li>
           <li class="hl__slide">
@@ -473,6 +496,9 @@
               <p class="hl__kicker">Sécurité</p>
               <p class="hl__head">Détection de sécurité</p>
               <p class="hl__sub">Cellules et détecteurs anti-pincement en option, pour sécuriser la zone de passage selon la norme NF P25-362.</p>
+              <div class="hl__actions">
+                <button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('detection-popup')">En savoir plus</button>
+              </div>
             </div>
           </li>
           <li class="hl__slide">
@@ -481,6 +507,9 @@
               <p class="hl__kicker">Contrôle d'accès</p>
               <p class="hl__head">Badge, code, bouton sans contact</p>
               <p class="hl__sub">Compatible lecteurs RFID, claviers à code et boutons d'ouverture sans contact.</p>
+              <div class="hl__actions">
+                <button type="button" class="hl__btn hl__btn--ghost" style="border:0;cursor:pointer;font:inherit;" onclick="openPopup('controle-acces-popup')">En savoir plus</button>
+              </div>
             </div>
           </li>
         </ol>
@@ -498,11 +527,104 @@
             <button class="hl__seg" type="button" aria-label="Aller à l'option 4"></button>
             <button class="hl__seg" type="button" aria-label="Aller à l'option 5"></button>
             <button class="hl__seg" type="button" aria-label="Aller à l'option 6"></button>
+            <button class="hl__seg" type="button" aria-label="Aller à l'option 7"></button>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Popups bandeau options -->
+  <div id="rail-popup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
+    <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 520px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s ease;">
+      <button onclick="closePopup('rail-popup')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease;">×</button>
+      <div style="text-align: center; margin-bottom: 24px;">
+        <h2 style="color: #1a1a1a; font-size: 26px; font-weight: 700; margin-bottom: 8px;">Rail encastré au sol</h2>
+        <p style="color: #666; font-size: 15px; margin: 0;">Une finition au ras du sol, sans seuil</p>
+      </div>
+      <div style="color: #333; line-height: 1.65; font-size: 15px;">
+        <p style="margin: 0;">Le rail de guidage est encastré directement dans la dalle, invisible une fois la porte fermée. Fini les seuils qui dépassent&nbsp;: la circulation reste fluide, y compris pour les fauteuils roulants et les chariots.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="verrou-cle-popup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
+    <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 520px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s ease;">
+      <button onclick="closePopup('verrou-cle-popup')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease;">×</button>
+      <div style="text-align: center; margin-bottom: 24px;">
+        <h2 style="color: #1a1a1a; font-size: 26px; font-weight: 700; margin-bottom: 8px;">Verrou à clé intégré</h2>
+        <p style="color: #666; font-size: 15px; margin: 0;">Le verrouillage SlideX, discret et robuste</p>
+      </div>
+      <div style="color: #333; line-height: 1.65; font-size: 15px;">
+        <p style="margin: 0;">Cylindre à clé intégré directement dans le profilé, badgé SlideX. Il verrouille la porte en toute discrétion, sans élément rapporté qui dépasse de la ligne du profil.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="verrou-applique-popup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
+    <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 520px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s ease;">
+      <button onclick="closePopup('verrou-applique-popup')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease;">×</button>
+      <div style="text-align: center; margin-bottom: 24px;">
+        <h2 style="color: #1a1a1a; font-size: 26px; font-weight: 700; margin-bottom: 8px;">Verrou applique supplémentaire</h2>
+        <p style="color: #666; font-size: 15px; margin: 0;">Un second point de verrouillage, en complément</p>
+      </div>
+      <div style="color: #333; line-height: 1.65; font-size: 15px;">
+        <p style="margin: 0;">Verrou à mollette posé en applique sur le profilé, pour sécuriser la fermeture en dehors des horaires d'ouverture — en complément ou à la place du verrou à clé intégré, selon vos besoins.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="vitrage-popup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
+    <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 520px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s ease;">
+      <button onclick="closePopup('vitrage-popup')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease;">×</button>
+      <div style="text-align: center; margin-bottom: 24px;">
+        <h2 style="color: #1a1a1a; font-size: 26px; font-weight: 700; margin-bottom: 8px;">Vitrage sur mesure</h2>
+        <p style="color: #666; font-size: 15px; margin: 0;">44.2, 55.2 ou double vitrage isolant</p>
+      </div>
+      <div style="color: #333; line-height: 1.65; font-size: 15px;">
+        <p style="margin: 0;">Le vitrage se choisit selon les contraintes thermiques et acoustiques du projet, sans jamais compromettre la ligne épurée de la porte.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="laquage-popup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
+    <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 520px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s ease;">
+      <button onclick="closePopup('laquage-popup')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease;">×</button>
+      <div style="text-align: center; margin-bottom: 24px;">
+        <h2 style="color: #1a1a1a; font-size: 26px; font-weight: 700; margin-bottom: 8px;">Laquage RAL personnalisé</h2>
+        <p style="color: #666; font-size: 15px; margin: 0;">Une teinte qui s'accorde à votre façade</p>
+      </div>
+      <div style="color: #333; line-height: 1.65; font-size: 15px;">
+        <p style="margin: 0;">Au-delà de la finition anodisée de série, un coloris RAL au choix permet d'intégrer la porte à votre façade ou à votre charte graphique.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="detection-popup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
+    <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 520px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s ease;">
+      <button onclick="closePopup('detection-popup')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease;">×</button>
+      <div style="text-align: center; margin-bottom: 24px;">
+        <h2 style="color: #1a1a1a; font-size: 26px; font-weight: 700; margin-bottom: 8px;">Détection de sécurité</h2>
+        <p style="color: #666; font-size: 15px; margin: 0;">Cellules et détecteurs anti-pincement</p>
+      </div>
+      <div style="color: #333; line-height: 1.65; font-size: 15px;">
+        <p style="margin: 0;">En option, des cellules de détection sécurisent la zone de passage et préviennent le pincement, conformément à la norme NF P25-362.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="controle-acces-popup" class="popup-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease;">
+    <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 520px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); transform: scale(0.9); transition: transform 0.3s ease;">
+      <button onclick="closePopup('controle-acces-popup')" style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s ease;">×</button>
+      <div style="text-align: center; margin-bottom: 24px;">
+        <h2 style="color: #1a1a1a; font-size: 26px; font-weight: 700; margin-bottom: 8px;">Contrôle d'accès intégré</h2>
+        <p style="color: #666; font-size: 15px; margin: 0;">Badge, code ou bouton sans contact</p>
+      </div>
+      <div style="color: #333; line-height: 1.65; font-size: 15px;">
+        <p style="margin: 0;">Compatible avec les lecteurs RFID, claviers à code et boutons d'ouverture sans contact, pour une intégration directe à votre système de contrôle d'accès.</p>
+      </div>
+    </div>
+  </div>
 
   <!-- ── Tableau comparatif ── -->
   <section class="section" style="background:#f8fafc;">
@@ -554,6 +676,33 @@
   document.addEventListener('click', function(e){
     var a = e.target.closest('a[href="#"]');
     if (a) { e.preventDefault(); }
+  });
+
+  // Popups bandeau options
+  function openPopup(popupId) {
+    var popup = document.getElementById(popupId);
+    var popupContent = popup.querySelector('.popup-content');
+    popup.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(function () {
+      popup.style.opacity = '1';
+      popupContent.style.transform = 'scale(1)';
+    });
+  }
+  function closePopup(popupId) {
+    var popup = document.getElementById(popupId);
+    var popupContent = popup.querySelector('.popup-content');
+    popup.style.opacity = '0';
+    popupContent.style.transform = 'scale(0.9)';
+    setTimeout(function () {
+      popup.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }, 300);
+  }
+  document.addEventListener('click', function (event) {
+    document.querySelectorAll('.popup-overlay').forEach(function (popup) {
+      if (event.target === popup) { closePopup(popup.id); }
+    });
   });
 </script>
 <script src="js/slidex-animations.js" type="text/javascript"></script>
